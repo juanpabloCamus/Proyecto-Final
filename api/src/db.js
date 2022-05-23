@@ -3,7 +3,7 @@ const CompanyAccount = require('../models/CompanyAccount');
 const UserAccount = require('../models/UserAccount');
 const Experience = require('../models/Experience');
 const Education = require('../models/Education');
-
+const Job = require('../models/Job')
 require('dotenv').config();
 
 const {
@@ -19,6 +19,8 @@ CompanyAccount(db);
 UserAccount(db);
 Experience(db);
 Education(db);
+Job(db)
+
 
 //const {CompanyAccount, UserAccount} = db.models
 
