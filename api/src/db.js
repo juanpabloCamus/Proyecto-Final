@@ -1,6 +1,6 @@
 const { Sequelize, Op } = require('sequelize');
-const CompanyAccount = require('../models/CompanyAccount');
-const UserAccount = require('../models/UserAccount');
+const CompanyAccount = require('./models/CompanyAccount');
+const UserAccount = require('./models/UserAccount');
 require('dotenv').config();
 
 const {
