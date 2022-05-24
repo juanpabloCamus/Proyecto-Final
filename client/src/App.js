@@ -1,12 +1,13 @@
+import { LandinPage } from "./components/landin_page/LandinPage";
 
-import './App.css';
+
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hola!</h1>
-    </div>
-  );
+  
+
+  return <div className="App">
+      <LandinPage/>
+    </div>;
 }
 
 export default App;

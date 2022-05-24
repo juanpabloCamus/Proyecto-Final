@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         description:{
-            type:DataTypes.STRING,
+            type:DataTypes.TEXT,
         },
         start_date:{
             type:DataTypes.DATEONLY
@@ -19,5 +19,5 @@ module.exports = (sequelize) => {
         end_date:{
             type:DataTypes.DATEONLY
         }
-    })
+    },{timestamps:false})
 }
