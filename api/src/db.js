@@ -26,35 +26,35 @@ AppliedJob(db);
 Technology(db);
 
 
-//const {CompanyAccount, UserAccount, Experience, Education, Job, AppliedJob, Technology} = db.models
+const {company_account, user_account, experience, education, job, applied_job, technology} = db.models
 
 /////////// RELACIONES DE JOBS //////////////
 
-CompanyAccount.belongsToMany(Job, {through: "company_job"})
-Job.belongsToMany(CompanyAccount, {through: "company_job"})
+company_account.belongsToMany(job, {through: "company_job"})
+job.belongsToMany(company_account, {through: "company_job"})
 
-UserAccount.belongsToMany(Job, {through: "user_favorites"})
-Job.belongsToMany(UserAccount, {through: "user_favorites"})
+user_account.belongsToMany(job, {through: "user_favorites"})
+job.belongsToMany(user_account, {through: "user_favorites"})
 
-Technology.belongsToMany(Job, {through: "technology_job"})
-Job.belongsToMany(Technology, {through: "technology_job"})
+technology.belongsToMany(job, {through: "technology_job"})
+job.belongsToMany(technology, {through: "technology_job"})
 
-Job.hasMany(AppliedJob)
-AppliedJob.belongsTo(Job)
+job.hasMany(applied_job)
+applied_job.belongsTo(job)
 
 ///////////RELACIONES DE USER ACCOUNT//////////////
 
-UserAccount.hasMany(AppliedJob)
-AppliedJob.belongsTo(UserAccount)
+user_account.hasMany(applied_job)
+applied_job.belongsTo(user_account)
 
-Technology.belongsToMany(UserAccount, {through: "technology_job"})
-UserAccount.belongsToMany(Technology, {through: "technology_job"})
+technology.belongsToMany(user_account, {through: "technology_job"})
+user_account.belongsToMany(technology, {through: "technology_job"})
 
-UserAccount.hasMany(Experience)
-Experience.belongsTo(UserAccount)
+user_account.hasMany(experience)
+experience.belongsTo(user_account)
 
-UserAccount.hasMany(Education)
-Education.belongsTo(UserAccount)
+user_account.hasMany(education)
+education.belongsTo(user_account)
 
 // Country.belongsToMany(Turist_activity, {through: "country_ta"})
 // Turist_activity.belongsToMany(Country, {through: "country_ta"})
