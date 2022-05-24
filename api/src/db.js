@@ -1,6 +1,9 @@
 const { Sequelize, Op } = require('sequelize');
 const CompanyAccount = require('./models/CompanyAccount');
 const UserAccount = require('./models/UserAccount');
+const Experience = require('./models/Experience');
+const Education = require('./models/Education');
+const Job = require('./models/Job')
 require('dotenv').config();
 
 const {
@@ -14,6 +17,10 @@ const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}
 
 CompanyAccount(db);
 UserAccount(db);
+Experience(db);
+Education(db);
+Job(db)
+
 
 //const {CompanyAccount, UserAccount} = db.models
 
