@@ -14,14 +14,14 @@ module.exports = (sequelize) => {
         },
 
         description: {
-            type: DataTypes.STRING(1000)
+            type: DataTypes.TEXT
         },
 
         time: {
             type: DataTypes.STRING
         },
 
-        salaryRange: {
+        salary_range: {
             type: DataTypes.STRING
         },
 
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
         },
 
         requirements: {
-            type: DataTypes.STRING(1000)
+            type: DataTypes.TEXT
         }
     })
     }
