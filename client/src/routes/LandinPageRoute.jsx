@@ -11,6 +11,7 @@ export const LandinPageRoute = () => {
                 <Route path='/' element={ <LandinPage /> } />
             </Routes>
         </BrowserRouter>
+        
     </div>
   )
 }

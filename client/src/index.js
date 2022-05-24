@@ -3,15 +3,23 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {Auth0Provider} from "@auth0/auth0-react"
+
+import { Provider } from 'react-redux'
+import { store } from './store/store'
+
+// import { auth0UserDomain } from './helpers/env'
+// import { auth0UserId } from './helpers/env'
+
+// import { auth0CompanyDomain } from './helpers/env'
+// import { auth0CompanyId } from './helpers/env'
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <Auth0Provider
-    domain="palo.us.auth0.com"
-    clientId="BklBtp1Ml9h3TCZGloURwUdc208iZ4T3"
-    redirectUri={window.location.origin}>
-    <App />
-    </Auth0Provider>
+    <Provider store={ store }>
+      <App />
+    </Provider>
   </React.StrictMode>,
 
   document.getElementById("root")
