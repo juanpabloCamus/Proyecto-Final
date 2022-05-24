@@ -19,5 +19,5 @@ module.exports = (sequelize) => {
         end_date:{
             type:DataTypes.DATEONLY
         }
-    })
+    },{timestamps:false})
 }
