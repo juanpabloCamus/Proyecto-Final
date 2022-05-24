@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
             type:DataTypes.DATEONLY
         },
         profile_pic: {
-            type:DataTypes.STRING
+            type:DataTypes.TEXT
         },
         description: {
             type:DataTypes.TEXT

@@ -36,7 +36,7 @@ module.exports = (sequelize) => {
         },
 
         logo: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
 
         description: {
@@ -56,11 +56,11 @@ module.exports = (sequelize) => {
         },
 
         web_site: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
 
         banner: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
 
     })
