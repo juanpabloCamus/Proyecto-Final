@@ -37,8 +37,6 @@ router.post('/', async (req,res)=>{
                         email: email
                     }
                 })
-                console.log(mailUser)
-                console.log(mailCompany)
                 if(mailUser.length<1&&mailCompany.length<1){
                     const newUser = await user_account.create({
                         name,
