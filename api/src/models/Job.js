@@ -2,12 +2,6 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('job', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-
         position: {
             type: DataTypes.STRING,
             allowNull: false
@@ -32,5 +26,5 @@ module.exports = (sequelize) => {
         requirements: {
             type: DataTypes.TEXT
         }
-    })
+    },{timestamps:false})
     }
