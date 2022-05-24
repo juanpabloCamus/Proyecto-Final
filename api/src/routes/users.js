@@ -1,16 +1,16 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {UserAccount} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db')
 
 const router = Router();
 
 router.get('/', async (req,res)=>{
-    const users = await UserAccount.findAll({
-        where:{
-            name: agus
-        }
-    })
-    res.send('users')
+    try{
+        let users = await user_account.findAll()
+        res.send(users)
+    }catch(error){
+        console.log(error)
+    }
 })
 
 
