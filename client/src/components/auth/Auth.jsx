@@ -23,7 +23,6 @@ const handleCloseModal = ()  =>{
     dispatch(modalActions.activateRegisterModal(false))
   }
 
-  console.log(isOpen)
 
   return ReactDOM.createPortal(
     <>

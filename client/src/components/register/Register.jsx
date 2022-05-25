@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, {  useState } from 'react'
 import { useForm } from '../../hooks/useForm'
+import { GoogleLogin } from 'react-google-login';
+import GitHubLogin from 'react-github-login';
 
 import styles from './register.module.css'
+;
 
 export const Register = () => {
 
@@ -29,6 +31,20 @@ const activeComForm = () => {
     setShowelements(true)
 }
 
+//Google register response
+
+const handleLogin = (response) => {
+    console.log(response.tokenObj);
+}
+
+const handleFailure = (result) => {
+    console.log(result)
+}
+
+//Github responses
+
+const onSuccess = response => console.log(response);
+const onFailure = response => console.error(response);
 
 
 
@@ -37,6 +53,7 @@ const handleSubmit = (e) => {
     // postNewUser()
 
 }
+
 
 
   return (
@@ -61,8 +78,20 @@ const handleSubmit = (e) => {
                 <label>Password*</label>
                 <input type="password" name='password' value={ password } onChange={ handleInputChange }/>
                 <button type='submit'>Send</button>
-                <br /> <p>or register with</p>
-                <button>git</button>
+                <br /> <p>or register with:</p>
+                {/* <GoogleLogin
+                    clientId="996200896012-95ji9s0sqfr03css2fhl4f57u752u70e.apps.googleusercontent.com"
+                    buttonText="Login"
+                    onSuccess={ handleLogin }
+                    onFailure={ handleFailure }
+                    cookiePolicy={'single_host_origin'}
+                /> */}
+
+                <GitHubLogin clientId="3fa17a142cea230151ea"
+                    redirectUri="http://localhost:3000/"
+                    onSuccess={onSuccess}
+                    onFailure={onFailure}
+                />
             </form>
         </div>
     </div>
