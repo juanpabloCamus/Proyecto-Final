@@ -1,11 +1,9 @@
 const express = require('express');
-
 const server = express();
+const routes = require('./routes/index.js');
 
 server.use(express.json());
 
-server.get('/', (req, res) => {
-  res.send('Home');
-});
+server.use('/',routes)
 
 module.exports = server;

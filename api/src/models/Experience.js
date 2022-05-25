@@ -1,17 +1,17 @@
 const { DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('education', {
-        institution:{
+    sequelize.define('experience', {
+        company:{
             type:DataTypes.STRING,
             allowNull: false
         },
-        degree:{
+        position:{
             type:DataTypes.STRING,
             allowNull: false
         },
         description:{
-            type:DataTypes.STRING,
+            type:DataTypes.TEXT,
         },
         start_date:{
             type:DataTypes.DATEONLY
@@ -19,5 +19,5 @@ module.exports = (sequelize) => {
         end_date:{
             type:DataTypes.DATEONLY
         }
-    })
+    },{timestamps:false})
 }
