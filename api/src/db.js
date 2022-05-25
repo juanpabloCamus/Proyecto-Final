@@ -90,8 +90,8 @@ applied_job.belongsTo(job)
 user_account.hasMany(applied_job)
 applied_job.belongsTo(user_account)
 
-technology.belongsToMany(user_account, {through: "technology_job"})
-user_account.belongsToMany(technology, {through: "technology_job"})
+technology.belongsToMany(user_account, {through: "technology_user"})
+user_account.belongsToMany(technology, {through: "technology_user"})
 
 user_account.hasMany(experience)
 experience.belongsTo(user_account)
