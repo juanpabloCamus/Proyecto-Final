@@ -1,8 +1,25 @@
-// import { useAuth0 } from "@auth0/auth0-react";
-
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { modalActions } from '../../redux/modal_slice/modalSlice'
 
 export const Navbar = () => {
+
+const dispatch = useDispatch()
+
+    const handleOpenLoginModal = ()  =>{
+        dispatch(modalActions.setModalValue())
+        dispatch(modalActions.activateLoginModal(true))
+      }
+    
+    
+      const handleOpenRegisterModal = ()  =>{
+        dispatch(modalActions.setModalValue())
+        dispatch(modalActions.activateRegisterModal(true))
+      }
+
+
+
   return (
     <nav>
         <div className="logo">
@@ -10,10 +27,14 @@ export const Navbar = () => {
         </div>
         <ul className="navbar">
             <li>
-                <button>Developers</button>
+                <button
+                    onClick={ handleOpenLoginModal }
+                >Login</button>
             </li>
             <li>
-                <button>Companies</button>
+                <button
+                    onClick={ handleOpenRegisterModal }
+                >Sign Up</button>
             </li>
         </ul>
     </nav>
