@@ -13,6 +13,20 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.get('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        let user = await user_account.findAll({
+            where:{id:id}
+        })
+        res.send(user)
+
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post('/register', async (req,res)=>{
     try{
         const {name, last_name, email, password} = req.body
