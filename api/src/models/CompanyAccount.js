@@ -59,7 +59,8 @@ module.exports = (sequelize) => {
         },
 
         active: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
 
     },{timestamps:false})
