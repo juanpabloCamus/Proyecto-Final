@@ -13,14 +13,14 @@ router.get('/', async (req,res)=>{
     }
 })
 
-router.post('/', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     try{
         const {name, email, password} = req.body
 
         if(!name||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
-            if(!/^[a-zA-Z]+$/.test(name)){
+            if(!/^[a-zA-Z0-9_\-\.\!\&\@\$]+$/.test(name)){
                 res.send('El nombre solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
@@ -48,6 +48,29 @@ router.post('/', async (req,res)=>{
             }
         }
 
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.post('/login', async (req,res)=>{
+    try{
+        const {email, password} = req.body;
+
+        let mailCompany = await company_account.findAll({
+            where:{
+                email: email
+            }
+        })
+        if(mailCompany.length>0){
+            if(mailCompany[0].password===password){
+                res.send('Logueado con exito.')
+            }else{
+                res.send('Contraseña no valida.')
+            }
+        }else{
+            res.send('El mail ingresado no es valido.')
+        }
     }catch(error){
         console.log(error)
     }
