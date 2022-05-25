@@ -43,7 +43,7 @@ router.post('/register', async (req,res)=>{
         if(!name||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
-            if(!/^[a-zA-Z0-9_\-\.\!\&\@\$]+$/.test(name)){
+            if(!/^[a-zA-Z0-9_\-\.\'\!\&\@\$]+$/.test(name)){
                 res.send('El nombre solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
