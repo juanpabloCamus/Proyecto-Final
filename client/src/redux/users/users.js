@@ -3,7 +3,9 @@ import axios from 'axios'
 export const fetchUsers=createAsyncThunk('users/fetchUsers',
 async()=>{
     try {
+        console.log("hola")
         const res=await axios.get('http://localhost:3001/users')
+        console.log(res)
         return res  
     } catch (error) {
         console.log(error)
@@ -26,8 +28,8 @@ export const usersSlice=createSlice({
         },
         [fetchUsers.fulfilled]:(state,{payload})=>
         {
-          state.users=payload;
-          state.status="fulfilled";
+          state.users=payload
+          state.status="fulfilled"
         },
         [fetchUsers.rejected]:(state)=>
         {
