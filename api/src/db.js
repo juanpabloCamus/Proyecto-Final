@@ -7,7 +7,7 @@ const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
 require('dotenv').config();
-const { user, company, jobs, techs } = require('./data.js')
+const { user, company, jobs, techs,} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, PORT,
@@ -99,8 +99,6 @@ experience.belongsTo(user_account)
 user_account.hasMany(education)
 education.belongsTo(user_account)
 
-// Country.belongsToMany(Turist_activity, {through: "country_ta"})
-// Turist_activity.belongsToMany(Country, {through: "country_ta"})
 
 module.exports = {
   ...db.models,

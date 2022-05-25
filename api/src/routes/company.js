@@ -13,6 +13,29 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.post('/login', async (req,res)=>{
+    try{
+        const {email, password} = req.body;
+
+        let mailCompany = await company_account.findAll({
+            where:{
+                email: email
+            }
+        })
+        if(mailCompany.length>0){
+            if(mailCompany[0].password===password){
+                res.send('Logueado con exito.')
+            }else{
+                res.send('Contraseña no valida.')
+            }
+        }else{
+            res.send('El mail ingresado no es valido.')
+        }
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post('/register', async (req,res)=>{
     try{
         const {name, email, password} = req.body
@@ -53,24 +76,30 @@ router.post('/register', async (req,res)=>{
     }
 })
 
-router.post('/login', async (req,res)=>{
+router.get('/:id', async (req,res)=>{
+    const { id } = req.params
     try{
-        const {email, password} = req.body;
-
-        let mailCompany = await company_account.findAll({
-            where:{
-                email: email
-            }
-        })
-        if(mailCompany.length>0){
-            if(mailCompany[0].password===password){
-                res.send('Logueado con exito.')
-            }else{
-                res.send('Contraseña no valida.')
-            }
-        }else{
-            res.send('El mail ingresado no es valido.')
+        let company = await company_account.findByPk(id
+            , {
+            include: job
         }
+        )
+        res.send(company)
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.get('/jobApplication/:id', async (req,res)=>{
+    const { id } = req.params
+    try{
+        let company = await job.findByPk(id, {
+            include: [{
+                model: applied_job,
+                where: {id_job: id}
+            }]
+        })
+        res.send(company)
     }catch(error){
         console.log(error)
     }
