@@ -29,6 +29,10 @@ module.exports = (sequelize) => {
 
         state:{
             type: DataTypes.ENUM('active', 'disabled')
+        },
+
+        active: {
+            type: DataTypes.BOOLEAN
         }
     },{timestamps:false})
     }

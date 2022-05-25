@@ -58,5 +58,9 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT
         },
 
+        active: {
+            type: DataTypes.BOOLEAN
+        }
+
     },{timestamps:false})
 }

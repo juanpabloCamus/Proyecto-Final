@@ -22,7 +22,10 @@ module.exports = (sequelize) => {
 
         description:{
             type:DataTypes.TEXT
-        }
+        },
 
+        active: {
+            type: DataTypes.BOOLEAN
+        }
     },{timestamps:false})
 }
