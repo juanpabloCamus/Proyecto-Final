@@ -93,15 +93,9 @@ router.get('/:id', async (req,res)=>{
 router.get('/jobApplication/:id', async (req,res)=>{
     const { id } = req.params
     try{
-        let company = await job.findByPk(id
-            , {
+        let company = await job.findByPk(id, {
                 include: applied_job
-        //     include: [{
-        //         model: applied_job,
-        //         where: {jobId: id}
-        //     }]
-        }
-         )
+        })
          console.log(company)
         res.send(company)
     }catch(error){

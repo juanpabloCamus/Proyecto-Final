@@ -18,11 +18,16 @@ router.post('/:company_id', async (req,res)=>{
         const {company_id} = req.params
 
     try{
-        const {tech_id, position, description, time, salary_range, english_level, requirements} = req.body;
+        const {tech_name, position, description, time, salary_range, english_level, requirements} = req.body;
 
         const company = await company_account.findByPk(company_id)
 
-        //const tech = await technology.findByPk()
+        const getTech = await tech_name.map(async t => (
+            t.findOrCreate({
+                where: {name: tech_name}
+            })
+        ))
+
 
         let jobs = await job.create({
             position,
@@ -30,9 +35,13 @@ router.post('/:company_id', async (req,res)=>{
             time,
             salary_range,
             english_level,
-            requirements
-        })
+            requirements,
 
+        })
+        getTech.forEach(async t => (
+            jobs.createTechnology(t[0])
+        ))
+         //await jobs.createTechnology(tech)
          await jobs.addCompany_account(company)
          //await jobs.addTechnology(tech)
         res.send(jobs)
