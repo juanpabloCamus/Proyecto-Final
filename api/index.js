@@ -4,7 +4,7 @@ const PORT = 3001;
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
-  db.sync({ force: true }).then(() => {
+  db.sync({ force: false }).then(() => {
     console.log('Modelos sincronizados');
   });
 });

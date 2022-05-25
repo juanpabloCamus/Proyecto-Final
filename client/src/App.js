@@ -1,6 +1,5 @@
 import { AppContainer } from "./components/app_container/AppContainer";
 import { Auth0Provider } from '@auth0/auth0-react'
-
 import { auth0UserDomain } from './helpers/env'
 import { auth0UserId } from './helpers/env'
 
