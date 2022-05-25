@@ -13,7 +13,7 @@ router.get('/', async (req,res)=>{
     }
 })
 
-router.post('/', async (req,res)=>{
+router.post('/register', async (req,res)=>{
     try{
         const {name, last_name, email, password} = req.body
 
@@ -51,6 +51,29 @@ router.post('/', async (req,res)=>{
             }
         }
 
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.post('/login', async (req,res)=>{
+    try{
+        const {email, password} = req.body;
+
+        let mailUser = await user_account.findAll({
+            where:{
+                email: email
+            }
+        })
+        if(mailUser.length>0){
+            if(mailUser[0].password===password){
+                res.send('Logueado con exito.')
+            }else{
+                res.send('Contraseña no valida.')
+            }
+        }else{
+            res.send('El mail ingresado no es valido.')
+        }
     }catch(error){
         console.log(error)
     }
