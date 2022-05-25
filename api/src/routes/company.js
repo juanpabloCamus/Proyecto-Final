@@ -125,6 +125,8 @@ router.put('/:id', async (req,res)=>{
         if(logo){
             if(!/(https?:\/\/.*\.)/.test(logo)){
                 errores.push('logo')
+            }else if(/\s/.test(logo)){
+                errores.push('logo')
             }else{
                 await company_account.update(
                     {
@@ -178,6 +180,8 @@ router.put('/:id', async (req,res)=>{
         if(web_site){
             if(!/(https?:\/\/.*\.)/.test(web_site)){
                 errores.push('web site')
+            }else if(/\s/.test(web_site)){
+                errores.push('web site')
             }else{
                 await company_account.update(
                     {
@@ -190,6 +194,8 @@ router.put('/:id', async (req,res)=>{
         }
         if(banner){
             if(!/(https?:\/\/.*\.)/.test(banner)){
+                errores.push('banner')
+            }else if(/\s/.test(banner)){
                 errores.push('banner')
             }else{
                 await company_account.update(
@@ -231,11 +237,9 @@ router.get('/jobApplication/:id', async (req,res)=>{
     const { id } = req.params
     try{
         let company = await job.findByPk(id, {
-            include: [{
-                model: applied_job,
-                where: {id_job: id}
-            }]
+                include: applied_job
         })
+         console.log(company)
         res.send(company)
     }catch(error){
         console.log(error)

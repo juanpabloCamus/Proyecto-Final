@@ -2,20 +2,6 @@ const { DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('applied_job', {
-        id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true
-        },
-
-        id_user:{
-            type: DataTypes.INTEGER
-        },
-
-        id_job:{
-            type: DataTypes.INTEGER
-        },
-
         pdf:{
             type:DataTypes.TEXT
         },
@@ -25,7 +11,8 @@ module.exports = (sequelize) => {
         },
 
         active: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{timestamps:false})
 }
