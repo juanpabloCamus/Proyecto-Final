@@ -21,7 +21,8 @@ module.exports = (sequelize) => {
             allowNull: false,
             validator:{
                 isEmail: true,
-            }
+            },
+            unique:true
         },
 
         password: {
@@ -56,6 +57,10 @@ module.exports = (sequelize) => {
         banner: {
             type: DataTypes.TEXT
         },
+
+        active: {
+            type: DataTypes.BOOLEAN
+        }
 
     },{timestamps:false})
 }
