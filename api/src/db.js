@@ -7,7 +7,7 @@ const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
 require('dotenv').config();
-const { user, company, jobs, techs, applied } = require('./data.js')
+const { user, company, jobs, techs,} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, PORT,
@@ -63,13 +63,6 @@ async function loadDb(){
     techs.map((u) => {
       technology.create({
         name: u.name
-      })
-    })
-
-    applied.map((u) => {
-      applied_job.create({
-        jobId: u.jobId,
-        userAccountId: u.userAccountId
       })
     })
 
