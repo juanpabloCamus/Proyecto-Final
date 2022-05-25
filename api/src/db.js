@@ -56,8 +56,6 @@ experience.belongsTo(user_account)
 user_account.hasMany(education)
 education.belongsTo(user_account)
 
-// Country.belongsToMany(Turist_activity, {through: "country_ta"})
-// Turist_activity.belongsToMany(Country, {through: "country_ta"})
 
 module.exports = {
   ...db.models,
