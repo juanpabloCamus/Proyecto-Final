@@ -138,7 +138,6 @@ router.put('/:id', async (req,res)=>{
                     }
                 )
             }
-            
         }
         if(profile_pic){
             if(!/(https?:\/\/.*\.)/.test(profile_pic)){
@@ -152,7 +151,6 @@ router.put('/:id', async (req,res)=>{
                     }
                 )
             }
-            
         }
         if(description){
             await user_account.update(
