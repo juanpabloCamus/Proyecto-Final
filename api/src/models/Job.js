@@ -25,6 +25,10 @@ module.exports = (sequelize) => {
 
         requirements: {
             type: DataTypes.TEXT
+        },
+
+        state:{
+            type: DataTypes.ENUM('active', 'disabled')
         }
     },{timestamps:false})
     }
