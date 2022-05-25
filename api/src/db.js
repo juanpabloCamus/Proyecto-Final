@@ -73,8 +73,8 @@ async function loadDb(){
 
 /////////// RELACIONES DE JOBS //////////////
 
-company_account.belongsToMany(job, {through: "company_job"})
 job.belongsToMany(company_account, {through: "company_job"})
+company_account.belongsToMany(job, {through: "company_job"})
 
 user_account.belongsToMany(job, {through: "user_favorites"})
 job.belongsToMany(user_account, {through: "user_favorites"})
