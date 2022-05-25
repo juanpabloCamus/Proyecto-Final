@@ -5,8 +5,8 @@ import { Navbar } from '../navbar/Navbar'
 export const LandinPage = () => {
   return (
     <div>
-      <Developer/>
         <Navbar/>
+ 
     </div>
   )
 }

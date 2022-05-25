@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {fetchUsers} from '../../../redux/users/users'
+import { fetchCompany } from '../../../redux/company/company'
 
 function Developer() {
-    const users=useSelector(state=>state.users.users)
+    const company=useSelector(state=>state.company.company)
     
   const dispatch=useDispatch()
   useEffect(()=>{
     
-    dispatch(fetchUsers())
+    dispatch(fetchCompany())
    },   
   [dispatch])
 
@@ -17,7 +17,7 @@ function Developer() {
         <h1>Hola</h1>
 
         <div>
-            {users.length>0 ? users.map(e => <p>{e.name}  {e.last_name}</p>):<p>No hay nada</p>}
+         {console.log(company)}
         </div>
     </div>
   )

@@ -1,13 +1,18 @@
 import { AppContainer } from "./components/app_container/AppContainer";
+
 import { Auth0Provider } from '@auth0/auth0-react'
 import { auth0UserDomain } from './helpers/env'
 import { auth0UserId } from './helpers/env'
 
 import { auth0CompanyDomain } from './helpers/env'
 import { auth0CompanyId } from './helpers/env'
+import Company from './components/Home/Company/Company'
+import Jobs from './components/Home/Jobs/Jobs'
+import Techs from './components/Home/Techs/Techs'
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
+import Developer from "./components/Home/Developer/Developer";
 
 
 function App() {
@@ -28,9 +33,6 @@ if( clientType === 'company' ){
   setId(auth0CompanyId)
 }
 
-console.log(domain)
-console.log(id)
-
   return <div className="App">
       <Auth0Provider 
         domain={ domain }
@@ -38,6 +40,10 @@ console.log(id)
         redirectUri={ window.location.origin }
       >
           <AppContainer />
+          <Developer/>
+          <Company/>
+          <Jobs/>
+          <Techs/>
         </Auth0Provider>
       
     </div>
