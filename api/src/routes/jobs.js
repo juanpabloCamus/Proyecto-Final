@@ -35,12 +35,10 @@ router.post('/:company_id', async (req,res)=>{
             const tech = await technology.findOrCreate({
                 where:{name:t}
             })
-            console.log(tech);
             await jobs.addTechnology(tech[0])
         })
 
         await jobs.addCompany_account(company)
-        console.log(jobs);
         res.send(jobs)
     
     }catch(error){

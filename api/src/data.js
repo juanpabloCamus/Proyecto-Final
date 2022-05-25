@@ -14,7 +14,7 @@ const user = [
     {
         name: 'Alberto',
         last_name: 'Ortolani',
-        email: 'betitorompehuevos@notevoyadecir.com',
+        email: 'betitorompehuevos@uruguayprovincia.com',
         password: 'sfee45454',
     },
     {
