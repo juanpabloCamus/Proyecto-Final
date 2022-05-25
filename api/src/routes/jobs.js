@@ -19,15 +19,8 @@ router.post('/:company_id', async (req,res)=>{
 
     try{
         const {tech_name, position, description, time, salary_range, english_level, requirements} = req.body;
-
-        const company = await company_account.findByPk(company_id)
-
-        const getTech = await tech_name.map(async t => (
-            t.findOrCreate({
-                where: {name: tech_name}
-            })
-        ))
-
+        //TECH NAME debe ser un array
+        const company = await company_account.findByPk(company_id);
 
         let jobs = await job.create({
             position,
@@ -36,16 +29,20 @@ router.post('/:company_id', async (req,res)=>{
             salary_range,
             english_level,
             requirements,
-
         })
-        getTech.forEach(async t => (
-            jobs.createTechnology(t[0])
-        ))
-         //await jobs.createTechnology(tech)
-         await jobs.addCompany_account(company)
-         //await jobs.addTechnology(tech)
+
+        tech_name.map(async t => {
+            const tech = await technology.findOrCreate({
+                where:{name:t}
+            })
+            console.log(tech);
+            await jobs.addTechnology(tech[0])
+        })
+
+        await jobs.addCompany_account(company)
+        console.log(jobs);
         res.send(jobs)
-       
+    
     }catch(error){
         console.log(error)
     }

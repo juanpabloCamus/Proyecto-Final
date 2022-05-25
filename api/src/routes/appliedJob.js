@@ -18,10 +18,10 @@ try{
         await jobApplication.setJob(jobs)
 
         res.send(jobApplication);
-    
-    }catch(error){
+
+}catch(error){
         console.log(error)
-    }
+}
 })
 
 module.exports = router;
