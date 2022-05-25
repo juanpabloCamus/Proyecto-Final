@@ -7,15 +7,7 @@ module.exports = (sequelize) => {
             autoIncrement: true,
             primaryKey: true
         },
-
-        id_user:{
-            type: DataTypes.INTEGER
-        },
-
-        id_job:{
-            type: DataTypes.INTEGER
-        },
-
+        
         pdf:{
             type:DataTypes.TEXT
         },

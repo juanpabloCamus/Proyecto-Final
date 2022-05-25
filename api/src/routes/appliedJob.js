@@ -10,14 +10,15 @@ router.post('/', async (req,res)=>{
 
         const user = await user_account.findByPk(id_user)
 
-        const job = await company_account.findByPk(id_job)
+        const Job = await job.findByPk(id_job)
 
         let jobApplication = await applied_job.create({
             pdf,
             description,
         })
-        await applied_job.adduser_account(user)
-        await applied_job.addjob(job)
+
+         await jobApplication.setUser_account(user)
+         await jobApplication.setJob(Job)
         res.send(jobApplication)
        
     }catch(error){
