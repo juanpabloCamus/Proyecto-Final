@@ -13,6 +13,22 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.get('/:id', async (req,res)=>{
+    try{
+        const { id } = req.params
+        let company = await company_account.findAll({
+            where:{id: id},
+            include: job
+        })
+        if(company.length<1){
+            res.send('No existe la empresa')
+        }
+        res.send(company)
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post('/login', async (req,res)=>{
     try{
         const {email, password} = req.body;
@@ -218,20 +234,6 @@ router.put('/:id', async (req,res)=>{
 })
 
 //
-
-router.get('/:id', async (req,res)=>{
-    const { id } = req.params
-    try{
-        let company = await company_account.findByPk(id
-            , {
-            include: job
-        }
-        )
-        res.send(company)
-    }catch(error){
-        console.log(error)
-    }
-})
 
 router.get('/jobApplication/:id', async (req,res)=>{
     const { id } = req.params
