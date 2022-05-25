@@ -27,12 +27,9 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT
         },
 
-        state:{
-            type: DataTypes.ENUM('active', 'disabled')
-        },
-
         active: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{timestamps:false})
     }
