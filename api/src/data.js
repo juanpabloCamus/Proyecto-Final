@@ -135,9 +135,29 @@ const techs = [
     },
 ]
 
+const applied = [
+    {
+        jobId:1,
+        userAccountId:1
+    },
+    {
+        jobId:2,
+        userAccountId:2
+    },
+    {
+        jobId:3,
+        userAccountId:3
+    },
+    {
+        jobId:4,
+        userAccountId:4
+    },
+]
+
 module.exports = {
     user,
     company,
     jobs,
-    techs
+    techs,
+    applied
 }
