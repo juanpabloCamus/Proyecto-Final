@@ -21,7 +21,8 @@ module.exports = (sequelize) => {
             allowNull: false,
             validator:{
                 isEmail: true,
-            }
+            },
+            unique:true
         },
 
         password: {
