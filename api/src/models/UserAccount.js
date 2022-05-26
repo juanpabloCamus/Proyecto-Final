@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             allowNull: false
         },
+        fullName: {
+            type: DataTypes.VIRTUAL,
+            get() {return `${this.name} ${this.last_name}`;}
+        },
         password:{
             type:DataTypes.STRING,
             allowNull: false
@@ -31,7 +35,6 @@ module.exports = (sequelize) => {
         description: {
             type:DataTypes.TEXT
         },
-
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true

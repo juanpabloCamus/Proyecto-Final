@@ -19,8 +19,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
 
-        language: {
-            type: DataTypes.STRING
+        english_level: {
+            type: DataTypes.ENUM('No Requerido','Basic','Conversational', 'Advanced or Native'),
+            defaultValue: 'No Requerido'
         },
 
         requirements: {

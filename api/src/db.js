@@ -6,13 +6,13 @@ const Education = require('./models/Education');
 const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
+const Language = require('./models/Language')
 require('dotenv').config();
-const { user, company, jobs, techs,} = require('./data.js')
+const { user, company, jobs, techs, languages} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, PORT,
 } = process.env
-
 
 const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}/proyecto_final_db`, {
     logging: false,
@@ -25,47 +25,20 @@ Education(db);
 Job(db);
 AppliedJob(db);
 Technology(db);
+Language(db)
 
-
-
-const {company_account, user_account, experience, education, job, applied_job, technology} = db.models
-
+const {company_account, user_account, experience, education, job, applied_job, technology, language} = db.models
 
 async function loadDb(){
 
   let users = await user_account.findAll();
   if(users.length > 0) return null
-
   try{
-    user.map((u) => {
-      user_account.create({
-        name: u.name,
-        last_name: u.last_name,
-        email: u.email,
-        password: u.password
-      })
-    })
-
-    company.map((u) => {
-      company_account.create({
-        name: u.name,
-        email: u.email,
-        password: u.password
-      })
-    })
-
-    jobs.map((u) => {
-      job.create({
-        position: u.position
-      })
-    })
-
-    techs.map((u) => {
-      technology.create({
-        name: u.name
-      })
-    })
-
+    user_account.bulkCreate(user);
+    company_account.bulkCreate(company);
+    job.bulkCreate(jobs);
+    technology.bulkCreate(techs);
+    language.bulkCreate(languages);
   }catch(e){
     console.log(e);
   }
@@ -92,6 +65,9 @@ applied_job.belongsTo(user_account)
 
 technology.belongsToMany(user_account, {through: "technology_user"})
 user_account.belongsToMany(technology, {through: "technology_user"})
+
+language.belongsToMany(user_account, {through: "language_user"})
+user_account.belongsToMany(language, {through: "language_user"})
 
 user_account.hasMany(experience)
 experience.belongsTo(user_account)
