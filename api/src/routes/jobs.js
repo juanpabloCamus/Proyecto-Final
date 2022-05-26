@@ -7,12 +7,25 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const jobs = await job.findAll({
+        const { tech, seniority, time, eLevel, salary } = req.query
+
+        let jobs = await job.findAll({
             include: company_account,
             order: [
                 ['id', 'DESC']
             ],
-    })
+        })
+
+        if(tech){
+            
+        }
+
+        for(let i=0;i<jobs.length;i++){
+            if(jobs[i].dataValues.company_accounts.length>0){
+                delete jobs[i].dataValues.company_accounts[0].dataValues.password
+            }
+        }
+
         res.send(jobs)
     }catch(error){
         console.log(error)
@@ -37,23 +50,28 @@ router.get('/:id',async (req,res)=>{
 router.post('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {position, description, time, salary_range, language, requirements, tecnologias} = req.body
+        const {position, description, time, salary_range, english_level, requirements, seniority, technologies} = req.body
 
-        if(position&&description&&time&&salary_range&&language&&requirements){
+        if(position&&description&&time&&salary_range&&english_level&&requirements&&seniority&&technologies){
             if(!/^[a-zA-Z\s]+$/.test(position)){
                 res.send('Pocision invalida')
-            }else if(!/^[a-zA-Z\s]+$/.test(time)){
-                res.send('Tiempo invalido')
-            }else if(!/^([0-9]){1,6}-([0-9]){1,6}$/.test(salary_range)){
+            }else if(time!=='No Especificado'&&time!=='Part-Time'&&time!=='Full-Time'){
+                res.send('Tiempo es invalido')
+            }else if(salary_range!=='No Especificado'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+ 10000$'){
                 res.send('Rango salarial no valido')
+            }else if(english_level!=='No Requerido'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+                res.send('Nivel de ingles incorrecto')
+            }else if(seniority!=='No Especificado'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+                res.send('seniority incorrecto')
             }else{
                 const newJob = await job.create({
                     position,
                     description,
                     time,
                     salary_range,
-                    language,
-                    requirements
+                    english_level,
+                    requirements,
+                    seniority
                 })
 
                 let techs = await technology.findAll({
@@ -62,9 +80,8 @@ router.post('/:id', async (req,res)=>{
                     ]
                 })
 
-                for(let i=0;i<tecnologias.length;i++){
-                    let tecno = techs.find(t=>t.dataValues.name===tecnologias[i])
-                    console.log(tecno.dataValues.id)
+                for(let i=0;i<technologies.length;i++){
+                    let tecno = techs.find(t=>t.dataValues.name===technologies[i])
                     await newJob.addTechnology(tecno.dataValues.id)
                 }
 

@@ -7,6 +7,7 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll()
+
         res.send(users)
     }catch(error){
         console.log(error)
