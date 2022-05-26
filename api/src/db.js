@@ -30,7 +30,7 @@ Language(db)
 const {company_account, user_account, experience, education, job, applied_job, technology, language} = db.models
 
 async function loadDb(){
-
+  let langs = await languages
   let users = await user_account.findAll();
   if(users.length > 0) return null
   try{
@@ -38,7 +38,7 @@ async function loadDb(){
     company_account.bulkCreate(company);
     job.bulkCreate(jobs);
     technology.bulkCreate(techs);
-    language.bulkCreate(languages);
+    language.bulkCreate(langs);
   }catch(e){
     console.log(e);
   }
