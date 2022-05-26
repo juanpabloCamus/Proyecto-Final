@@ -56,11 +56,17 @@ router.post('/:id', async (req,res)=>{
                     requirements
                 })
 
-                /* let techs = await technology.findAll()
+                let techs = await technology.findAll({
+                    order: [
+                        ['id', 'ASC'] 
+                    ]
+                })
 
                 for(let i=0;i<tecnologias.length;i++){
-                    
-                } */
+                    let tecno = techs.find(t=>t.dataValues.name===tecnologias[i])
+                    console.log(tecno.dataValues.id)
+                    await newJob.addTechnology(tecno.dataValues.id)
+                }
 
                 await newJob.addCompany_account(id)
 
