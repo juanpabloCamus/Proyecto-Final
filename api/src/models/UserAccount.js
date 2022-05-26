@@ -19,7 +19,8 @@ module.exports = (sequelize) => {
             allowNull: false,
             validate:{
                 isEmail: true
-            }
+            },
+            unique:true
         },
         date_birth:{
             type:DataTypes.DATEONLY
@@ -29,6 +30,11 @@ module.exports = (sequelize) => {
         },
         description: {
             type:DataTypes.TEXT
+        },
+
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{timestamps:false})
 }

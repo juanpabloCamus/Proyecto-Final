@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
 
+import { authActions } from "../../redux/auth/authSlice";
+
 export const Navbar = () => {
 
 const dispatch = useDispatch()

@@ -1,59 +1,48 @@
 import React, {  useState } from 'react'
-import { useForm } from '../../hooks/useForm'
-import { GoogleLogin } from 'react-google-login';
-import GitHubLogin from 'react-github-login';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from '../../hooks/useForm';
+import { conditionalRegActions } from '../../redux/conditional_register/conditionalRegisterSlice';
+
 
 import styles from './register.module.css'
 ;
 
 export const Register = () => {
-
+ 
+const [condition, setCondition] = useState('')
 const [formValues, handleInputChange, reset] = useForm({
     name: '',
     email: '',
     password: ''
 })
 
-const [condition, setCondition] = useState('')
 const [showElements, setShowelements] = useState(false)
 
 const { name, email, password } = formValues
 
+const dispatch = useDispatch()
 
+const { profileType } = useSelector(state => state.conditionalReg)
 
 const activeDevForm = () => {
     setCondition('dev')
     setShowelements(true)
+    dispatch(conditionalRegActions.setConditionalRegister('dev'))   
 }
 
 const activeComForm = () => {
     setCondition('com')
     setShowelements(true)
+    dispatch(conditionalRegActions.setConditionalRegister('com'))  
 }
 
-//Google register response
-
-const handleLogin = (response) => {
-    console.log(response.tokenObj);
-}
-
-const handleFailure = (result) => {
-    console.log(result)
-}
-
-//Github responses
-
-const onSuccess = response => console.log(response);
-const onFailure = response => console.error(response);
-
-
+console.log({...formValues, profileType})
 
 const handleSubmit = (e) => {
     e.preventDefault()
     // postNewUser()
 
 }
-
 
 
   return (
@@ -76,22 +65,9 @@ const handleSubmit = (e) => {
                 <label>{ condition === 'dev' ? "Email*" : "Company Email*" }</label>
                 <input type="text" name='email' value={ email } onChange={ handleInputChange }/>
                 <label>Password*</label>
-                <input type="password" name='password' value={ password } onChange={ handleInputChange }/>
                 <button type='submit'>Send</button>
-                <br /> <p>or register with:</p>
-                {/* <GoogleLogin
-                    clientId="996200896012-95ji9s0sqfr03css2fhl4f57u752u70e.apps.googleusercontent.com"
-                    buttonText="Login"
-                    onSuccess={ handleLogin }
-                    onFailure={ handleFailure }
-                    cookiePolicy={'single_host_origin'}
-                /> */}
-
-                <GitHubLogin clientId="3fa17a142cea230151ea"
-                    redirectUri="http://localhost:3000/"
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                />
+                <input type="password" name='password' value={ password } onChange={ handleInputChange }/>
+               
             </form>
         </div>
     </div>

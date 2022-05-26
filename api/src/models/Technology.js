@@ -4,7 +4,12 @@ module.exports = (sequelize) => {
     sequelize.define('technology', {
         name:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
+        },
+        
+        active: {
+            type: DataTypes.BOOLEAN
         }
     },{timestamps:false})
 }
