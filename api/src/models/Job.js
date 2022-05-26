@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
 
-        english_level: {
+        language: {
             type: DataTypes.STRING
         },
 

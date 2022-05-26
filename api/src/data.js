@@ -14,7 +14,7 @@ const user = [
     {
         name: 'Alberto',
         last_name: 'Ortolani',
-        email: 'betitorompehuevos@uruguayprovincia.com',
+        email: 'betitorompehuevos@notevoyadecir.com',
         password: 'sfee45454',
     },
     {
@@ -122,9 +122,6 @@ const techs = [
         name: 'NodeJS'
     },
     {
-        name: 'PostgreSQL'
-    },
-    {
         name: 'PHP'
     },
     {
@@ -133,6 +130,39 @@ const techs = [
     {
         name: 'NextJS'
     },
+    {
+        name: 'C#'
+    },
+    {
+        name: 'C'
+    },
+    {
+        name: 'C++'
+    },
+    {
+        name: 'TypeScript'
+    },
+    {
+        name: 'C+'
+    },
+    {
+        name: 'Assembler'
+    },
+    {
+        name: 'Java'
+    },
+    {
+        name: 'Pascal'
+    },
+    {
+        name: 'SQL'
+    },
+    {
+        name: 'Ruby'
+    },
+    {
+        name: 'Swift'
+    }
 ]
 
 // const applied = [
