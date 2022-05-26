@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const user = [
     {
         fullName: 'Mati Monas',
@@ -274,47 +276,69 @@ const techs = [
     }
 ]
 
-const languages = [
-    {
-        name: 'Ingles'
-    },
-    {
-        name: 'Español'
-    },
-    {
-        name: 'Italiano'
-    },
-    {
-        name: 'Frances'
-    },
-    {
-        name: 'Aleman'
-    },
-    {
-        name: 'Chino'
-    },
-    {
-        name: 'Japones'
-    },
-    {
-        name: 'Coreano'
-    },
-    {
-        name: 'Arabe'
-    },
-    {
-        name: 'Ruso'
-    },
-    {
-        name: 'Ucraniano'
-    },
-    {
-        name: 'Checo'
-    },
-    {
-        name: 'Portugues'
-    },
-]
+const options = {
+    method: 'GET',
+    url: 'https://microsoft-translator-text.p.rapidapi.com/languages',
+    params: {'api-version': '3.0'},
+    headers: {
+      'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com',
+      'X-RapidAPI-Key': '9d3f099d39msh1a9c6f7625046bdp1dddc3jsna5bac18f6940'
+    }
+};
+async function lang(){
+    let data
+    await axios.request(options).then(r => data = r.data.translation)
+    let lang = []
+    for (const property in data) {
+        let obj = {}
+        obj.name = data[property].name
+        lang.push(obj);
+    }
+    return lang
+}
+const languages = lang();
+
+// const languages = [
+//     {
+//         name: 'Ingles'
+//     },
+//     {
+//         name: 'Español'
+//     },
+//     {
+//         name: 'Italiano'
+//     },
+//     {
+//         name: 'Frances'
+//     },
+//     {
+//         name: 'Aleman'
+//     },
+//     {
+//         name: 'Chino'
+//     },
+//     {
+//         name: 'Japones'
+//     },
+//     {
+//         name: 'Coreano'
+//     },
+//     {
+//         name: 'Arabe'
+//     },
+//     {
+//         name: 'Ruso'
+//     },
+//     {
+//         name: 'Ucraniano'
+//     },
+//     {
+//         name: 'Checo'
+//     },
+//     {
+//         name: 'Portugues'
+//     },
+// ]
 
 module.exports = {
     user,
