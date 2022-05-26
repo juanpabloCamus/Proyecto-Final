@@ -12,7 +12,7 @@ function FilterBar() {
   return (
     <div>
       <div>
-       <form>
+      
            
            {techs.length>0 ? techs.map(e=>
            <div>
@@ -20,7 +20,7 @@ function FilterBar() {
            <input>{e.name}</input>
            </div>           
            ): <input>NO hay nada</input>}
-       </form>
+    
     
       </div>
     </div>
