@@ -37,7 +37,7 @@ router.post('/register', async (req,res)=>{
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
-            if(!/^[a-zA-Z]+$/.test(fullName)){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
                 res.send('El nombre solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
@@ -78,7 +78,7 @@ router.put('/:id', async (req,res)=>{
         let errores = []
 
         if(fullName){
-            if(!/^[a-zA-Z]+$/.test(fullName)){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
                 errores.push('nombre')
             }else{
                 await user_account.update(
