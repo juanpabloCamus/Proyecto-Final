@@ -2,17 +2,9 @@ const { DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('user_account', {
-        name:{
+        fullName:{
             type:DataTypes.STRING,
             allowNull: false
-        },
-        last_name:{
-            type:DataTypes.STRING,
-            allowNull: false
-        },
-        fullName: {
-            type: DataTypes.VIRTUAL,
-            get() {return `${this.name} ${this.last_name}`;}
         },
         password:{
             type:DataTypes.STRING,
