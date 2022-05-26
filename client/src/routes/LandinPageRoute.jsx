@@ -10,7 +10,7 @@ export const LandinPageRoute = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' exact  element={ <LandinPage /> } /> 
-                <Route path='/home' element={<AppRouter/>} />
+                <Route path='/home/' element={<AppRouter/>} />
 
             </Routes>
         </BrowserRouter>

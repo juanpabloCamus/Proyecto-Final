@@ -1,8 +1,9 @@
 import React from 'react'
+import Posts from './Posts/Posts'
 
-function Developer() {
+export const Developer = () => {
   return (
-    <div>Developer</div>
+    <div><Posts/></div>
   )
 }
 
