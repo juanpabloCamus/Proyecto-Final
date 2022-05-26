@@ -5,8 +5,14 @@ module.exports = (sequelize) => {
         pdf:{
             type:DataTypes.TEXT
         },
+
         description:{
             type:DataTypes.TEXT
+        },
+
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{timestamps:false})
 }

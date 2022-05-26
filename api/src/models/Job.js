@@ -19,12 +19,17 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
 
-        english_level: {
+        language: {
             type: DataTypes.STRING
         },
 
         requirements: {
             type: DataTypes.TEXT
+        },
+
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         }
     },{timestamps:false})
     }
