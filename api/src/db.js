@@ -16,7 +16,7 @@ const {
 
 
 
-const db = new Sequelize(`postgres://postgres:ALmita12@localhost:5432/proyecto_final_db`, {
+const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}/proyecto_final_db`, {
 
     logging: false,
 });

@@ -1,7 +1,6 @@
 import React from 'react'
-import {Routes,Route } from 'react-router-dom'
-import Home from '../Components/Home/Home'
-
+import { Navbar } from '../components/navbar/Navbar'
+import { Home } from '../components/home/Home'
 
 export const AppRouter = () => {
   return (
@@ -10,6 +9,9 @@ export const AppRouter = () => {
           <Routes>
             <Route path='/'element={<Home/>} /> 
 
+            <Route path='/*' element={ <Home/> } />
+            <Route path='*' element={ <Home /> } />
+   
         </Routes>
           
   

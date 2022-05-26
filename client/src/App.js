@@ -1,11 +1,11 @@
 import { LandinPageRoute } from "./routes/LandinPageRoute";
+
+
+
 function App() {
-  
 
   return <div className="App">
- 
-      <LandinPageRoute/>
-      
+      <LandinPageRoute />
     </div>
 }
 
