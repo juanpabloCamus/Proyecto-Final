@@ -20,6 +20,9 @@ router.get('/:id', async (req,res)=>{
         let user = await user_account.findAll({
             where:{id:id}
         })
+        if(user.length<1){
+            res.send('No existe el usuario')
+        }
         res.send(user)
 
     }catch(error){
@@ -138,10 +141,11 @@ router.put('/:id', async (req,res)=>{
                     }
                 )
             }
-            
         }
         if(profile_pic){
             if(!/(https?:\/\/.*\.)/.test(profile_pic)){
+                errores.push('imagen')
+            }else if(/\s/.test(profile_pic)){
                 errores.push('imagen')
             }else{
                 await user_account.update(
@@ -152,7 +156,6 @@ router.put('/:id', async (req,res)=>{
                     }
                 )
             }
-            
         }
         if(description){
             await user_account.update(
