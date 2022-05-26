@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../redux/modal_slice/modalSlice';
 import { Login } from '../login/Login';
 import { OptionalRegister } from '../optional_register/OptionalRegister';
-import styles from './auth.module.css'
+
+import "./auth.css"
 
 export const Auth = () => {
 
@@ -30,12 +31,14 @@ const handleCloseModal = ()  =>{
         isOpen && 
 
                 <>
-                <div className={styles.overlay__modal}></div>
-                <div className={styles.modal}>
-                    <MdClose 
-                        onClick={ handleCloseModal }
-                        />
-
+                <div className="overlay__modal"></div>
+                <div className="modal">
+                    <div className='close__icon'>
+                        <MdClose 
+                            onClick={ handleCloseModal }
+                            />
+                    </div>
+                    <div className='form_container'>
                     {
                         activeLoginModal && <Login/>
                     }
@@ -43,7 +46,7 @@ const handleCloseModal = ()  =>{
                     {
                         activeRegisterModal && <OptionalRegister/>
                     }
-                    
+                    </div>
                 </div>
                 </>
         

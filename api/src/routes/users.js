@@ -32,15 +32,13 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {name, last_name, email, password} = req.body
+        const {name, email, password} = req.body
 
-        if(!name||!last_name||!email||!password){
+        if(!name||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
             if(!/^[a-zA-Z]+$/.test(name)){
                 res.send('El nombre solo admite letras')
-            }else if(!/^[a-zA-Z]+$/.test(last_name)){
-                res.send('El apellido solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
             }else{
@@ -57,7 +55,6 @@ router.post('/register', async (req,res)=>{
                 if(mailUser.length<1&&mailCompany.length<1){
                     const newUser = await user_account.create({
                         name,
-                        last_name,
                         email,
                         password
                     })

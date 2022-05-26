@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
 
-import { authActions } from "../../redux/auth/authSlice";
+import './navbar.css'
 
 export const Navbar = () => {
 
@@ -23,19 +23,21 @@ const dispatch = useDispatch()
 
 
   return (
-    <nav>
+    <nav className='nav'>
         <div className="logo">
-            <span>Logo</span>
+            <span>Rocket</span>
         </div>
         <ul className="navbar">
             <li>
                 <button
                     onClick={ handleOpenLoginModal }
+                    className="navbar_button login"
                 >Login</button>
             </li>
             <li>
                 <button
                     onClick={ handleOpenRegisterModal }
+                    className="navbar_button register"
                 >Sign Up</button>
             </li>
         </ul>

@@ -3,7 +3,6 @@ import conditionalRegisterSlice from '../redux/conditional_register/conditionalR
 import  modalSlice  from '../redux/modal_slice/modalSlice'
 
 
-
 export const store = configureStore({
     reducer:{
        modal: modalSlice,
