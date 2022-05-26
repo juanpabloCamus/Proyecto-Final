@@ -29,29 +29,6 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
-router.post('/login', async (req,res)=>{
-    try{
-        const {email, password} = req.body;
-
-        let mailCompany = await company_account.findAll({
-            where:{
-                email: email
-            }
-        })
-        if(mailCompany.length>0){
-            if(mailCompany[0].password===password){
-                res.send('Logueado con exito.')
-            }else{
-                res.send('Contraseña no valida.')
-            }
-        }else{
-            res.send('El mail ingresado no es valido.')
-        }
-    }catch(error){
-        console.log(error)
-    }
-})
-
 router.post('/register', async (req,res)=>{
     try{
         const {name, email, password} = req.body
