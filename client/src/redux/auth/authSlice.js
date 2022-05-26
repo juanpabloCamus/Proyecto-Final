@@ -10,9 +10,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers:{
-        setClientType(state, { payload }){
 
-        }
     }
 })
 
