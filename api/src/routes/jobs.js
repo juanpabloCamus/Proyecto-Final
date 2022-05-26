@@ -7,7 +7,12 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const jobs = await job.findAll()
+        const jobs = await job.findAll({
+            include: company_account,
+            order: [
+                ['id', 'DESC']
+            ],
+    })
         res.send(jobs)
     }catch(error){
         console.log(error)
@@ -32,12 +37,7 @@ router.get('/:id',async (req,res)=>{
 router.post('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {position, description, time, salary_range, language, requirements} = req.body
-
-        let techs = await technology.findAll({
-            where:{name: requirements}
-        })
-
+        const {position, description, time, salary_range, language, requirements, tecnologias} = req.body
 
         if(position&&description&&time&&salary_range&&language&&requirements){
             if(!/^[a-zA-Z\s]+$/.test(position)){
@@ -46,8 +46,6 @@ router.post('/:id', async (req,res)=>{
                 res.send('Tiempo invalido')
             }else if(!/^([0-9]){1,6}-([0-9]){1,6}$/.test(salary_range)){
                 res.send('Rango salarial no valido')
-            }else if(!techs.length>0){
-                res.send('Requisitos invalidos')
             }else{
                 const newJob = await job.create({
                     position,
@@ -57,6 +55,12 @@ router.post('/:id', async (req,res)=>{
                     language,
                     requirements
                 })
+
+                /* let techs = await technology.findAll()
+
+                for(let i=0;i<tecnologias.length;i++){
+                    
+                } */
 
                 await newJob.addCompany_account(id)
 
