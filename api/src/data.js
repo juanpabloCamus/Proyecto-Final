@@ -165,53 +165,51 @@ const jobs = [
     {
         position:'NodeJs Developer',
         description:'Deberas construir un server para nuestra nueva APP',
-        time:'Full-Time',
         english_level:'Basic',
-        salary_range:'70K - 100K USD per year',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
+        salary_range:'1000$ - 3000$',
+        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        seniority: 'Senior'
     },
     {
         position:'React Native Developer',
         description:'Deberas construir una APP para nuestra empresa',
-        time:'Full-Time',
-        salary_range:'70K - 100K USD per year',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
+        salary_range:'3000$ - 6000$',
+        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        seniority: 'Junior',
+        time: 'Full-Time'
     },
     {
         position:'Full Stack Dev',
         description:'Deberas construir un SPA para la empresa',
-        time:'Full-Time',
         english_level:'Conversational',
-        salary_range:'70K - 100K USD per year',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
+        salary_range:'1000$ - 3000$',
+        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        seniority: 'Semi-Senior',
+        time: 'Part-Time'
     },
     {
         position:'Blockchain Developer',
         description:'Deberas construir un smart contract en la red de Etherium',
-        time:'Full-Time',
         english_level:'Advanced or Native',
-        salary_range:'70K - 100K USD per year',
+        salary_range:'1000$ - 3000$',
         requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
     },
     {
         position:'Mobile - IOS Dev',
         description:'Deberas construir una APP que desplegable en la app store',
-        time:'Full-Time',
-        salary_range:'70K - 100K USD per year',
+        salary_range:'3000$ - 6000$',
         requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
     },
     {
         position:'Backend Dev',
         description:'Deberas construir un server para nuestra nueva APP',
-        time:'Full-Time',
-        salary_range:'70K - 100K USD per year',
+        salary_range:'3000$ - 6000$',
         requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
     },
     {
         position:'Software Enginner',
         description:'Deberas construir un sistema para la empresa',
-        time:'Full-Time',
-        salary_range:'70K - 100K USD per year',
+        salary_range:'3000$ - 6000$',
         requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas'
     },
 ]
