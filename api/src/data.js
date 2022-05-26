@@ -1,6 +1,8 @@
+const axios = require('axios');
+
 const user = [
     {
-        name: 'Mati',
+        fullName: 'Mati Monas',
         last_name: 'Monas',
         email: 'matimonas97@notevoyadecir.com',
         password: '2646545645sa46d',
@@ -8,54 +10,48 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Juan Pablo',
-        last_name: 'Camus',
+    {   
+        fullName: 'Juan Pablo Camus',
         email: 'juanpablo@gmail.com',
         password: 'sdasdasd545',
         date_birth: '1980-02-23',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Alberto',
-        last_name: 'Ortolani',
+    {   
+        fullName: 'Alberto Ortolani',
         email: 'betitorompehuevos@uruguayprovincia.com',
         password: 'sfee45454',
         date_birth: '2000-11-02',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Daniel',
-        last_name: 'Sanchez',
+    {   
+        fullName: 'Daniel Sanchez',
         email: 'dani@gmail.com',
         password: 'dsfdsfsf1654',
         date_birth: '1987-07-06',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Agustin',
-        last_name: 'Banegas',
+    {   
+        fullName: 'Agustin Banegas',
         email: 'agus@notevoyadecir.com',
         password: '2abc6465456',
         date_birth: '1995-12-28',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Paloma',
-        last_name: 'Vaira',
+    {   
+        fullName: 'Paloma Vaira',
         email: 'palo@notevoyadecir.com',
         password: '26465456',
         date_birth: '2000-05-10',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
-    {
-        name: 'Elon',
-        last_name: 'Musk',
+    {   
+        fullName: 'Elon Musk',
         email: 'elon@millonario.com',
         password: '26465456',
         date_birth: '2022-05-10',
@@ -280,47 +276,69 @@ const techs = [
     }
 ]
 
-const languages = [
-    {
-        name: 'Ingles'
-    },
-    {
-        name: 'Español'
-    },
-    {
-        name: 'Italiano'
-    },
-    {
-        name: 'Frances'
-    },
-    {
-        name: 'Aleman'
-    },
-    {
-        name: 'Chino'
-    },
-    {
-        name: 'Japones'
-    },
-    {
-        name: 'Coreano'
-    },
-    {
-        name: 'Arabe'
-    },
-    {
-        name: 'Ruso'
-    },
-    {
-        name: 'Ucraniano'
-    },
-    {
-        name: 'Checo'
-    },
-    {
-        name: 'Portugues'
-    },
-]
+const options = {
+    method: 'GET',
+    url: 'https://microsoft-translator-text.p.rapidapi.com/languages',
+    params: {'api-version': '3.0'},
+    headers: {
+      'X-RapidAPI-Host': 'microsoft-translator-text.p.rapidapi.com',
+      'X-RapidAPI-Key': '9d3f099d39msh1a9c6f7625046bdp1dddc3jsna5bac18f6940'
+    }
+};
+async function lang(){
+    let data
+    await axios.request(options).then(r => data = r.data.translation)
+    let lang = []
+    for (const property in data) {
+        let obj = {}
+        obj.name = data[property].name
+        lang.push(obj);
+    }
+    return lang
+}
+const languages = lang();
+
+// const languages = [
+//     {
+//         name: 'Ingles'
+//     },
+//     {
+//         name: 'Español'
+//     },
+//     {
+//         name: 'Italiano'
+//     },
+//     {
+//         name: 'Frances'
+//     },
+//     {
+//         name: 'Aleman'
+//     },
+//     {
+//         name: 'Chino'
+//     },
+//     {
+//         name: 'Japones'
+//     },
+//     {
+//         name: 'Coreano'
+//     },
+//     {
+//         name: 'Arabe'
+//     },
+//     {
+//         name: 'Ruso'
+//     },
+//     {
+//         name: 'Ucraniano'
+//     },
+//     {
+//         name: 'Checo'
+//     },
+//     {
+//         name: 'Portugues'
+//     },
+// ]
 
 module.exports = {
     user,
