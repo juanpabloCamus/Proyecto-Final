@@ -13,6 +13,7 @@ async()=>{
 )
 const initialState = {
     jobs: []
+    
 }
 
 export const jobsSlice=createSlice({

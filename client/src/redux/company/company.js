@@ -19,7 +19,7 @@ export const companySlice=createSlice({
     name:'company',
     initialState,
     reducers:{
-
+            
     },
     extraReducers:{
         [fetchCompany.pending]:(state)=>{

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Routes,Route } from 'react-router-dom'
-import Developer from '../components/Home/User/Developer'
+import Home from '../components/Home/Home'
 
 
 export const AppRouter = () => {
@@ -8,7 +8,7 @@ export const AppRouter = () => {
     <div>
    
           <Routes>
-            <Route path='/'element={<Developer/>} /> 
+            <Route path='/'element={<Home/>} /> 
 
         </Routes>
           

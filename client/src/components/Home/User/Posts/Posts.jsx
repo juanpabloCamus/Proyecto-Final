@@ -1,7 +1,9 @@
 import React ,{useEffect}  from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchJobs } from '../../../../redux/jobs/jobs'
+import FilterBar from '../FilterBar/FilterBar';
 import Post from '../Post/Post';
+import SearchBar from '../SearchBar/SearchBar';
 
 
 export function Posts() {
@@ -17,9 +19,15 @@ useEffect(()=>{
 },[dispatch])
   return (
     <div >
-      {jobs.length>0?jobs?.map((e)=>{
+      <div>      <FilterBar/>
+      </div>
+      <div>
+        <SearchBar/>
+      </div>
+{console.log(jobs)}
+      {jobs.length>0? jobs.map((e)=>{
         return (
-          <div >
+          <div key={e.id} >
            <Post
            key={e.id}
            position={e.position}
@@ -27,7 +35,7 @@ useEffect(()=>{
            time={e.time}
            requirements={e.requirements}
            langauge={e.langauge}
-           company_accoounts={e.company_accoounts?.map(e.name)}></Post>
+           company_accounts={e.company_accounts}></Post>
           </div>
         )
       }):<p>No hay Nada</p>}
