@@ -1,27 +1,27 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTechs } from "../../../../redux/techs/techs";
+import { fetchUsers } from "../../../../redux/users/users";
 
 function FilterBar() {
-  const techs = useSelector((state) => state.techs.techs);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTechs());
+    dispatch(fetchUsers({}));
   }, [dispatch]);
   return (
     <div>
       <div>
-      
-           
+
+           {/* <div>      
            {techs.length>0 ? techs.map(e=>
-           <div>
+          <>
            <label>{e.name}</label>
-           <input>{e.name}</input>
-           </div>           
-           ): <input>NO hay nada</input>}
+           <input value={e.name}>{e.name}</input>
+           </>        
+           ): <label>NO hay nada</label>} 
     
-    
+     </div>  */}
+
       </div>
     </div>
   );
