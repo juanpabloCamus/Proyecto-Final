@@ -1,19 +1,19 @@
-import { Route, Routes } from 'react-router-dom'
 import React from 'react'
-import { Navbar } from '../components/navbar/Navbar'
+import {Routes,Route } from 'react-router-dom'
+import Home from '../components/Home/Home'
+
 
 export const AppRouter = () => {
   return (
     <div>
-      <Navbar />
-        <Routes>
-
-            {/* <Route path='/*' element={ <Main /> } />
-            <Route path='dog/:dogId' element={ <DogDescription /> } />   
-            <Route path='newbreed' element={ <CreateBreed /> } />
-            <Route path='*' element={ <Home /> } /> */}
    
+          <Routes>
+            <Route path='/'element={<Home/>} /> 
+
         </Routes>
+          
+  
     </div>
+            /*Como hacer para que la ruta sea users*/
   )
 }

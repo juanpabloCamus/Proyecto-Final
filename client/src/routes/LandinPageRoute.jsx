@@ -1,6 +1,7 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react'
-import { LandinPage } from '../components/landin_page/LandinPage'
+import { BrowserRouter,Routes, Route } from 'react-router-dom'
+ import { LandinPage } from '../components/landin_page/LandinPage'
+import { AppRouter } from './AppRouter'
 
 export const LandinPageRoute = () => {
   return (
@@ -8,7 +9,9 @@ export const LandinPageRoute = () => {
 
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={ <LandinPage /> } />
+                <Route path='/' exact  element={ <LandinPage /> } /> 
+                <Route path='/home/' element={<AppRouter/>} />
+
             </Routes>
         </BrowserRouter>
         

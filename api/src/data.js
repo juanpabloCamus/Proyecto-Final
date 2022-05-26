@@ -303,4 +303,3 @@ module.exports = {
     techs,
     languages
 }
-

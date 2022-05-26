@@ -5,6 +5,7 @@ export const LandinPage = () => {
   return (
     <div>
         <Navbar/>
+ 
     </div>
   )
 }
