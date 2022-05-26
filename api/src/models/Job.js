@@ -12,12 +12,12 @@ module.exports = (sequelize) => {
         },
 
         time: {
-            type: DataTypes.ENUM('No especificado', 'Part-Time', 'Full-Time'),
+            type: DataTypes.ENUM('No Especificado', 'Part-Time', 'Full-Time'),
             defaultValue: 'No Especificado'
         },
 
         salary_range: {
-            type: DataTypes.ENUM('No especificado','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+ 10000$'),
+            type: DataTypes.ENUM('No Especificado','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+ 10000$'),
             defaultValue: 'No Especificado'
         },
 
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
         },
 
         seniority: {
-            type: DataTypes.ENUM('No especificado','Junior', 'Semi-Senior', 'Senior'),
+            type: DataTypes.ENUM('No Especificado','Junior', 'Semi-Senior', 'Senior'),
             defaultValue: 'No Especificado'
         },
 
