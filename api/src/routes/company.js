@@ -12,6 +12,11 @@ router.get('/', async (req,res)=>{
         if(company.length<1){
             res.send('No existe la empresa')
         }
+        if(company.length>0){
+            for(let i=0;i<company.length;i++){
+                delete company[i].dataValues.password
+            }
+        }
         res.send(company)
     }catch(error){
         console.log(error)
@@ -28,6 +33,7 @@ router.get('/:id', async (req,res)=>{
         if(company.length<1){
             res.send('No existe la empresa')
         }
+        delete company[0].dataValues.password
         res.send(company)
 
     }catch(error){
