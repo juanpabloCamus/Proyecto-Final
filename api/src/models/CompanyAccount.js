@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
         },
 
         size: {
-            type: DataTypes.STRING
+            type: DataTypes.RANGE
         },
 
         foundation: {
@@ -51,7 +51,10 @@ module.exports = (sequelize) => {
         },
 
         web_site: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            validator:{
+                isUrl: true
+            }
         },
 
         banner: {

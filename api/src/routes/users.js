@@ -32,12 +32,12 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {name, email, password} = req.body
+        const {fullName, email, password} = req.body
 
-        if(!name||!email||!password){
+        if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
-            if(!/^[a-zA-Z]+$/.test(name)){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
                 res.send('El nombre solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
@@ -54,7 +54,7 @@ router.post('/register', async (req,res)=>{
                 })
                 if(mailUser.length<1&&mailCompany.length<1){
                     const newUser = await user_account.create({
-                        name,
+                        fullName,
                         email,
                         password
                     })
@@ -70,56 +70,20 @@ router.post('/register', async (req,res)=>{
     }
 })
 
-router.post('/login', async (req,res)=>{
-    try{
-        const {email, password} = req.body;
-
-        let mailUser = await user_account.findAll({
-            where:{
-                email: email
-            }
-        })
-        if(mailUser.length>0){
-            if(mailUser[0].password===password){
-                res.send('Logueado con exito.')
-            }else{
-                res.send('Contraseña no valida.')
-            }
-        }else{
-            res.send('El mail ingresado no es valido.')
-        }
-    }catch(error){
-        console.log(error)
-    }
-})
-
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {name, last_name, date_birth, profile_pic, description} = req.body
+        const {fullName, date_birth, profile_pic, description} = req.body
 
         let errores = []
 
-        if(name){
-            if(!/^[a-zA-Z]+$/.test(name)){
+        if(fullName){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
                 errores.push('nombre')
             }else{
                 await user_account.update(
                     {
-                        name: name
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }
-        }
-        if(last_name){
-            if(!/^[a-zA-Z]+$/.test(last_name)){
-                errores.push('apellido')
-            }else{
-                await user_account.update(
-                    {
-                        last_name: last_name
+                        fullName: fullName
                     },{
                         where:{id: id}
                     }
