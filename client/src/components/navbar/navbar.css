@@ -1,0 +1,43 @@
+.nav{
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 40px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 30px;
+}
+
+.logo{
+    color: #46499c;
+    font-size: 30px;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.navbar{
+    align-items: center;
+    display: flex;
+    gap: 50px;
+}
+
+.nav li{
+    list-style: none;
+}
+
+.navbar_button{
+    cursor: pointer;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+.navbar_button.login{
+    border: none;
+}
+
+.navbar_button.register{
+    border: 2px solid black;
+    padding: 10px;
+}

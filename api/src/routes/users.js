@@ -7,7 +7,25 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll()
+
         res.send(users)
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.get('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        let user = await user_account.findAll({
+            where:{id:id}
+        })
+        if(user.length<1){
+            res.send('No existe el usuario')
+        }
+        res.send(user)
+
     }catch(error){
         console.log(error)
     }
@@ -15,15 +33,13 @@ router.get('/', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {name, last_name, email, password} = req.body
+        const {fullName, email, password} = req.body
 
-        if(!name||!last_name||!email||!password){
+        if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
-            if(!/^[a-zA-Z]+$/.test(name)){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
                 res.send('El nombre solo admite letras')
-            }else if(!/^[a-zA-Z]+$/.test(last_name)){
-                res.send('El apellido solo admite letras')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
                 res.send('El mail tiene un formato invalido')
             }else{
@@ -34,13 +50,12 @@ router.post('/register', async (req,res)=>{
                 })
                 let mailCompany = await company_account.findAll({
                     where:{
-                        email: email
+                        email: email 
                     }
                 })
                 if(mailUser.length<1&&mailCompany.length<1){
                     const newUser = await user_account.create({
-                        name,
-                        last_name,
+                        fullName,
                         email,
                         password
                     })
@@ -56,24 +71,68 @@ router.post('/register', async (req,res)=>{
     }
 })
 
-router.post('/login', async (req,res)=>{
+router.put('/:id', async (req,res)=>{
     try{
-        const {email, password} = req.body;
+        const {id} = req.params
+        const {fullName, date_birth, profile_pic, description} = req.body
 
-        let mailUser = await user_account.findAll({
-            where:{
-                email: email
-            }
-        })
-        if(mailUser.length>0){
-            if(mailUser[0].password===password){
-                res.send('Logueado con exito.')
+        let errores = []
+
+        if(fullName){
+            if(!/^[a-zA-Z\s]+$/.test(fullName)){
+                errores.push('nombre')
             }else{
-                res.send('Contraseña no valida.')
+                await user_account.update(
+                    {
+                        fullName: fullName
+                    },{
+                        where:{id: id}
+                    }
+                )
             }
-        }else{
-            res.send('El mail ingresado no es valido.')
         }
+        if(date_birth){
+            if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(date_birth)){
+                errores.push('fecha de nacimiento')
+            }else{
+                await user_account.update(
+                    {
+                        date_birth: date_birth
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(profile_pic){
+            if(!/(https?:\/\/.*\.)/.test(profile_pic)){
+                errores.push('imagen')
+            }else if(/\s/.test(profile_pic)){
+                errores.push('imagen')
+            }else{
+                await user_account.update(
+                    {
+                        profile_pic: profile_pic
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(description){
+            await user_account.update(
+                {
+                    description: description
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(errores.length>0){
+            const error = errores.join(', ')
+            res.send(`No se actualizaron los campos: ${error}.`)
+        }
+        res.send('datos actualizados.')
     }catch(error){
         console.log(error)
     }

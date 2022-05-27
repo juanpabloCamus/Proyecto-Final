@@ -6,14 +6,15 @@ const Education = require('./models/Education');
 const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
+const Language = require('./models/Language')
 require('dotenv').config();
+const { user, company, jobs, techs, languages} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, PORT,
 } = process.env
 
-
-const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}/proyecto_final_db`, {
+const db = new Sequelize(`postgres://postgres:daniel32@localhost:5432/proyecto_final_db`, {
     logging: false,
 });
 
@@ -24,14 +25,29 @@ Education(db);
 Job(db);
 AppliedJob(db);
 Technology(db);
+Language(db)
 
+const {company_account, user_account, experience, education, job, applied_job, technology, language} = db.models
 
-const {company_account, user_account, experience, education, job, applied_job, technology} = db.models
+async function loadDb(){
+  let langs = await languages
+  let users = await user_account.findAll();
+  if(users.length > 0) return null
+  try{
+    user_account.bulkCreate(user);
+    company_account.bulkCreate(company);
+    job.bulkCreate(jobs);
+    technology.bulkCreate(techs);
+    language.bulkCreate(langs);
+  }catch(e){
+    console.log(e);
+  }
+}
 
 /////////// RELACIONES DE JOBS //////////////
 
-company_account.belongsToMany(job, {through: "company_job"})
 job.belongsToMany(company_account, {through: "company_job"})
+company_account.belongsToMany(job, {through: "company_job"})
 
 user_account.belongsToMany(job, {through: "user_favorites"})
 job.belongsToMany(user_account, {through: "user_favorites"})
@@ -47,8 +63,11 @@ applied_job.belongsTo(job)
 user_account.hasMany(applied_job)
 applied_job.belongsTo(user_account)
 
-technology.belongsToMany(user_account, {through: "technology_job"})
-user_account.belongsToMany(technology, {through: "technology_job"})
+technology.belongsToMany(user_account, {through: "technology_user"})
+user_account.belongsToMany(technology, {through: "technology_user"})
+
+language.belongsToMany(user_account, {through: "language_user"})
+user_account.belongsToMany(language, {through: "language_user"})
 
 user_account.hasMany(experience)
 experience.belongsTo(user_account)
@@ -56,11 +75,10 @@ experience.belongsTo(user_account)
 user_account.hasMany(education)
 education.belongsTo(user_account)
 
-// Country.belongsToMany(Turist_activity, {through: "country_ta"})
-// Turist_activity.belongsToMany(Country, {through: "country_ta"})
 
 module.exports = {
   ...db.models,
   db,
-  Op
+  Op,
+  loadDb
 }
