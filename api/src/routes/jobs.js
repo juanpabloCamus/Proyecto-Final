@@ -10,21 +10,37 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary } = req.query
 
         let jobs = await job.findAll({
-            include: company_account,
+            include: [{model: company_account},
+            {model: technology}],
             order: [
                 ['id', 'DESC']
             ],
         })
 
         if(tech){
-            
-        }
-
-        for(let i=0;i<jobs.length;i++){
-            if(jobs[i].dataValues.company_accounts.length>0){
-                delete jobs[i].dataValues.company_accounts[0].dataValues.password
+            let techs = await technology.findAll({
+                order: [
+                    ['id', 'ASC']
+                ]
+            })
+            let tecno = techs.find(t=>t.dataValues.name===tech)
+            if(tecno){
+                tecno = tecno.dataValues.name
+                if(jobs.length>0){
+                    jobs = jobs.filter(j=>j.dataValues.technologies.find(t=>t.dataValues.name===tecno))
+                }
             }
         }
+
+        if(jobs.length>0){
+            for(let i=0;i<jobs.length;i++){
+                if(jobs[i].dataValues.company_accounts.length>0){
+                    delete jobs[i].dataValues.company_accounts[0].dataValues.password
+                }
+            }
+        }
+
+        
 
         res.send(jobs)
     }catch(error){
