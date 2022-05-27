@@ -2,6 +2,8 @@ import React from 'react'
 import { useForm } from '../../hooks/useForm'
 import axios from 'axios'
 
+import Swal from 'sweetalert2'
+
 import './login.css'
 
 
@@ -16,7 +18,8 @@ const { email, password } = formValues;
 
 const loginUser = async() => {
  try {
-    await axios.post('http://localhost:3001/login', formValues)
+    const res = await axios.post('http://localhost:3001/login', formValues)
+    
  } catch (error) {
    console.log(error);
  }
