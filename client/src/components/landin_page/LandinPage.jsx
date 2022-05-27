@@ -2,6 +2,7 @@ import React from 'react'
 import { Auth } from '../auth/Auth'
 import { Navbar } from '../navbar/Navbar'
 import { useDispatch } from 'react-redux'
+import Acordion from './Acordion'
 
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
@@ -35,6 +36,7 @@ const handleOpenModal = () =>{
             <img src={image} alt="" />
           </div>
         </div>
+        <Acordion></Acordion>
     </div>
   )
 }
