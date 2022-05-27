@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
 
@@ -9,24 +11,27 @@ export const Navbar = () => {
 
 const dispatch = useDispatch()
 
-    const handleOpenLoginModal = ()  =>{
-        dispatch(modalActions.setModalValue())
-        dispatch(modalActions.activateLoginModal(true))
-      }
-    
-    
-      const handleOpenRegisterModal = ()  =>{
-        dispatch(modalActions.setModalValue())
-        dispatch(modalActions.activateRegisterModal(true))
-      }
+const handleOpenLoginModal = ()  =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateLoginModal(true))
+}
+
+
+    const handleOpenRegisterModal = ()  =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateRegisterModal(true))
+}
 
 
 
   return (
-    <nav className='nav'>
-        <div className="logo">
-            <span>Rocket</span>
-        </div>
+      
+    <nav className='nav animate__animated animate__fadeInDownBig'>
+        <Link to="/">
+            <div className="logo">
+                <span>Rocket</span>
+            </div>
+        </Link>
         <ul className="navbar">
             <li>
                 <button

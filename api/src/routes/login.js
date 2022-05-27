@@ -15,8 +15,9 @@ router.post('/', async (req,res)=>{
         })
         if(mailUser.length>0){
             if(mailUser[0].password===password){
-                delete mailUser[0].dataValues.password 
-                res.send(mailUser[0])
+                delete mailUser[0].dataValues.password
+                res.send('Acceso valido') 
+                // res.send(mailUser[0])
             }else{
                 res.send('Contraseña no valida.')
             }
@@ -29,7 +30,8 @@ router.post('/', async (req,res)=>{
             if(mailCompany.length>0){
                 if(mailCompany[0].password===password){
                     delete mailCompany[0].dataValues.password
-                    res.send(mailCompany[0])
+                    res.send('Acceso valido')
+                    // res.send(mailCompany[0])
                 }else{
                     res.send('Contraseña no valida.')
                 }

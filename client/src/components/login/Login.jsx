@@ -1,5 +1,6 @@
 import React from 'react'
 import { useForm } from '../../hooks/useForm'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 import Swal from 'sweetalert2'
@@ -16,19 +17,34 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 
+const navigate = useNavigate()
+
+
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
-    
+    console.log(res)
+    if(res.data === "Acceso valido"){
+      Swal.fire({
+        icon: 'success',
+        text: res.data
+      })
+    }else{
+      Swal.fire({
+        icon: 'error',
+        text: res.data
+      })
+    }
  } catch (error) {
    console.log(error);
  }
 }
 
-
 const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formValues);
     loginUser();
+    navigate('/home')
   }
 
   return (
