@@ -7,6 +7,7 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll()
+
         res.send(users)
     }catch(error){
         console.log(error)
@@ -49,7 +50,7 @@ router.post('/register', async (req,res)=>{
                 })
                 let mailCompany = await company_account.findAll({
                     where:{
-                        email: email
+                        email: email 
                     }
                 })
                 if(mailUser.length<1&&mailCompany.length<1){
