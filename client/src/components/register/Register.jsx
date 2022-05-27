@@ -15,14 +15,14 @@ export const Register = () => {
  
 const [condition, setCondition] = useState('')
 const [formValues, handleInputChange, reset] = useForm({
-    name: '',
+    fullName: '',
     email: '',
     password: ''
 })
 
 const [showElements, setShowelements] = useState(false)
 
-const { name, email, password } = formValues
+const { fullName, email, password } = formValues
 
 const dispatch = useDispatch()
 const { profileType } = useSelector(state => state.conditionalReg)
@@ -127,7 +127,7 @@ console.log(showElements)
         <div className={showElements ? null : "active_elements" }>
             <form onSubmit={ handleSubmit } className="register_form">
                 <label>Full Name*</label>
-                <input type="text" name='name' value={ name } onChange={ handleInputChange } required/>
+                <input type="text" name='fullName' value={ fullName } onChange={ handleInputChange } required/>
                 <label>{ condition === 'dev' ? "Email*" : "Company Email*" }</label>
                 <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
                 <label>Password*</label>

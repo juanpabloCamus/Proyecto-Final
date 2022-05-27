@@ -14,13 +14,18 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 
-const loginUser = () => {
-  axios.post('http://localhost:3001/users/login')
+const loginUser = async() => {
+ try {
+    await axios.post('http://localhost:3001/login', formValues)
+ } catch (error) {
+   console.log(error);
+ }
 }
 
 
 const handleSubmit = (e) => {
     e.preventDefault();
+    loginUser();
   }
 
   return (
