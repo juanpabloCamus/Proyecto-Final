@@ -118,7 +118,7 @@ router.post('/:id', async (req,res)=>{
                 res.send('Pocision invalida')
             }else if(time!=='No Especificado'&&time!=='Part-Time'&&time!=='Full-Time'){
                 res.send('Tiempo es invalido')
-            }else if(salary_range!=='No Especificado',salary_range!=='0$ - 1000$',salary_range!=='1000$ - 3000$',salary_range!=='3000$ - 6000$',salary_range!=='6000$ - 10000$',salary_range!=='+ 10000$'){
+            }else if(salary_range!=='No Especificado'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+ 10000$'){
                 res.send('Rango salarial no valido')
             }else if(english_level!=='No Requerido'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Nivel de ingles incorrecto')
