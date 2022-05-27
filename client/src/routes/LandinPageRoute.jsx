@@ -1,12 +1,11 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react'
 import { LandinPage } from '../components/landin_page/LandinPage'
 import { AppRouter } from './AppRouter'
+import {Routes,Route,BrowserRouter} from "react-router-dom"
 
 export const LandinPageRoute = () => {
   return (
     <div>
-
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={ <LandinPage /> } />
