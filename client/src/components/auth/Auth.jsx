@@ -22,7 +22,7 @@ const handleCloseModal = ()  =>{
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateLoginModal(false))
     dispatch(modalActions.activateRegisterModal(false))
-  }
+}
 
 
   return ReactDOM.createPortal(
