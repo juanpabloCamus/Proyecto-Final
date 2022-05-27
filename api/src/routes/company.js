@@ -220,7 +220,11 @@ router.put('/:id', async (req,res)=>{
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
         }
-        res.send('datos actualizados.')
+        let empresa = company_account.findAll({
+            where:{id:id}
+        })
+        delete company[0].dataValues.password
+        res.send(company[0])
     }catch(error){
         console.log(error)
     }
