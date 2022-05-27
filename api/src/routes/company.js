@@ -6,17 +6,7 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        let company = await company_account.findAll()
-        res.send(company)
-    }catch(error){
-        console.log(error)
-    }
-})
-
-router.get('/', async (req,res)=>{
-    try{
         let company = await company_account.findAll({
-           
             include: job
         })
         if(company.length<1){
