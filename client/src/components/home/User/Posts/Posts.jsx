@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchJobs } from '../../../../redux/jobs/jobs'
 import FilterBar from '../FilterBar/FilterBar';
 import Post from '../Post/Post';
-import style from "../Posts/Posts.module.css"
+import style from "./Posts.module.css"
 import  NavBarUsers  from "../NavBar/NavBarUsers";
 
 export function Posts() {
