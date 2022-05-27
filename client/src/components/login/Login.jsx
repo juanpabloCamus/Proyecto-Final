@@ -27,9 +27,9 @@ const handleSubmit = (e) => {
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
             <label>Email*</label>
-            <input type="text" name='email' value={ email } onChange={ handleInputChange }/>
+            <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
             <label>Password*</label>
-            <input type="password" name='password' value={ password } onChange={ handleInputChange }/>
+            <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
             <button type="submit" className='login__button'>Send</button>
         </form>
     </div>

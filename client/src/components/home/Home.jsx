@@ -1,7 +1,14 @@
-import React from 'react'
+import React   from 'react'
+import Developer from './User/Developer'
 
-export const Home = () => {
+const Home = () => {
+
   return (
-    <div>Home</div>
+    //Hacer un if si es usuario se renderiza el developer
+    //Sino la compania
+    
+    <div><Developer/></div>
   )
 }
+
+export default Home

@@ -9,6 +9,7 @@
     border: 1px solid lightgrey;
     font-size: 18px;
     padding: 10px;
+    margin-bottom: 10px;
     outline: none;
 }
 
@@ -19,6 +20,10 @@
     color: white;
     border: none;
     font-size: 16px;
+    margin-top: 10px;
     padding: 15px;
-    margin-top: 15px;
+}
+
+.login__button:hover{
+    background-color: rgba(70, 73, 156, 0.9);
 }

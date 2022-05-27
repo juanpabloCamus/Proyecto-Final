@@ -1,9 +1,13 @@
-import React, {  useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
-import { conditionalRegActions } from '../../redux/conditional_register/conditionalRegisterSlice';
-
 import axios from 'axios'
+import Swal from 'sweetalert2'
+
+import { conditionalRegActions } from '../../redux/conditional_register/conditionalRegisterSlice';
+import { modalActions } from '../../redux/modal_slice/modalSlice';
+
+
 import './register.css'
 
 
@@ -38,21 +42,52 @@ const activeComForm = () => {
 
 
 
-const postNewUser = () => {
+const postNewUser = async() => {
     try {
-        axios.post('http://localhost:3001/users/register', formValues)
+        const res = await axios.post('http://localhost:3001/users/register', formValues)
+        if(res.data.includes('Usuario creado correctamente.')){
+            Swal.fire({
+                icon: 'success',
+                text: res.data
+              })
+        }
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: res.data
+              })
+        }
+        
     } catch (error) {
         console.log(error)
     }
+    
 }
 
 
-const postNewCompany = () => {
+const postNewCompany = async() => {
     try {
-        axios.post('http://localhost:3001/company/register', formValues)
+        const res = await axios.post('http://localhost:3001/company/register', formValues)
+        
+        if(res.data.includes('Empresa creada correctamente.')){
+            Swal.fire({
+                icon: 'success',
+                text: res.data
+              })
+        }else{
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: res.data
+              })
+        }
+        
     } catch (error) {
         console.log(error)
     }
+
 }
 
 
@@ -60,17 +95,21 @@ const handleSubmit = (e) => {
     e.preventDefault()
 
     if(profileType === 'dev'){
-        console.log('Dev');
         postNewUser()
+        dispatch(modalActions.setModalValue())
+        
     }
 
     if(profileType === 'com'){
-        console.log('Com');
         postNewCompany()
+        dispatch(modalActions.setModalValue())
     }
 
 }
-// {showElements ? "active_elements" : null}
+
+console.log(showElements)
+
+
 
   return (
     <div>
@@ -88,11 +127,11 @@ const handleSubmit = (e) => {
         <div className={showElements ? null : "active_elements" }>
             <form onSubmit={ handleSubmit } className="register_form">
                 <label>Full Name*</label>
-                <input type="text" name='name' value={ name } onChange={ handleInputChange }/>
+                <input type="text" name='name' value={ name } onChange={ handleInputChange } required/>
                 <label>{ condition === 'dev' ? "Email*" : "Company Email*" }</label>
-                <input type="text" name='email' value={ email } onChange={ handleInputChange }/>
+                <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
                 <label>Password*</label>
-                <input type="password" name='password' value={ password } onChange={ handleInputChange }/>
+                <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
                 <button type='submit' className='register__button'>Send</button>
             </form>
         </div>

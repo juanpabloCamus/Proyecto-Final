@@ -23,6 +23,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.3.0",
     "remove": "^0.1.5",
+    "sweetalert2": "^11.4.17",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
