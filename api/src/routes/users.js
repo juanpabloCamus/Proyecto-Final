@@ -59,7 +59,11 @@ router.post('/register', async (req,res)=>{
                         email,
                         password
                     })
-                    res.send('Usuario creado correctamente.')
+                    let usuario = await user_account.findAll({
+                        where: {id: newUser.dataValues.id}
+                    })
+                    delete usuario[0].dataValues.password
+                    res.send(usuario[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
                 }
@@ -135,6 +139,22 @@ router.put('/:id', async (req,res)=>{
         res.send('datos actualizados.')
     }catch(error){
         console.log(error)
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        await user_account.update({
+            active: false
+        },{
+            where: {id: id}
+        })
+
+        res.send('usuario eliminado')
+    }catch(error){
+        console.log()
     }
 })
 

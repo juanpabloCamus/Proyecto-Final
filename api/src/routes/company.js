@@ -18,6 +18,23 @@ router.get('/', async (req,res)=>{
     }
 })
 
+router.get('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        let company = await company_account.findAll({
+            where:{id:id}
+        })
+        if(company.length<1){
+            res.send('No existe la empresa')
+        }
+        res.send(company)
+
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post('/register', async (req,res)=>{
     try{
         const {name, email, password} = req.body
@@ -46,7 +63,11 @@ router.post('/register', async (req,res)=>{
                         email,
                         password
                     })
-                    res.send('Empresa creada correctamente.')
+                    let empresa = await company_account.findAll({
+                        where: {id: newCompany.dataValues.id}
+                    })
+                    delete empresa[0].dataValues.password
+                    res.send(empresa[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
                 }
@@ -196,6 +217,22 @@ router.put('/:id', async (req,res)=>{
         res.send('datos actualizados.')
     }catch(error){
         console.log(error)
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        await company_account.update({
+            active: false
+        },{
+            where: {id: id}
+        })
+
+        res.send('Empresa eliminada')
+    }catch(error){
+        console.log()
     }
 })
 
