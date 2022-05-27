@@ -296,48 +296,6 @@ async function lang(){
 }
 const languages = lang();
 
-// const languages = [
-//     {
-//         name: 'Ingles'
-//     },
-//     {
-//         name: 'Español'
-//     },
-//     {
-//         name: 'Italiano'
-//     },
-//     {
-//         name: 'Frances'
-//     },
-//     {
-//         name: 'Aleman'
-//     },
-//     {
-//         name: 'Chino'
-//     },
-//     {
-//         name: 'Japones'
-//     },
-//     {
-//         name: 'Coreano'
-//     },
-//     {
-//         name: 'Arabe'
-//     },
-//     {
-//         name: 'Ruso'
-//     },
-//     {
-//         name: 'Ucraniano'
-//     },
-//     {
-//         name: 'Checo'
-//     },
-//     {
-//         name: 'Portugues'
-//     },
-// ]
-
 module.exports = {
     user,
     company,
@@ -345,4 +303,3 @@ module.exports = {
     techs,
     languages
 }
-

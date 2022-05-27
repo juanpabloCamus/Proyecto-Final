@@ -8,7 +8,6 @@ import SearchBar from '../SearchBar/SearchBar';
 
 export function Posts() {
   const jobs=useSelector(state=>state.jobs.jobs)
-  console.log(jobs)
 const dispatch=useDispatch();
 
 useEffect(()=>{
@@ -25,6 +24,7 @@ useEffect(()=>{
       <div>
         <SearchBar/>
       </div>
+{console.log(jobs)}
       {jobs.length>0? jobs.map((e)=>{
         return (
           <div key={e.id} >
@@ -34,13 +34,8 @@ useEffect(()=>{
            salary_range={e.salary_range}
            time={e.time}
            requirements={e.requirements}
-           seniority={e.seniority}
-           company_accounts={e.company_accounts}
-           technologies={e.technologies}
-           description={e.description}
-           english_level={e.english_level}>
-           
-           </Post>
+           langauge={e.langauge}
+           company_accounts={e.company_accounts}></Post>
           </div>
         )
       }):<p>No hay Nada</p>}

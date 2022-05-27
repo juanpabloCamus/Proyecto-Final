@@ -10,17 +10,7 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers:{
-        setClientType(state, { payload }){
 
-
-            if(payload === 'developer'){
-                state.clientType = payload
-            }
-
-            if(payload === 'company'){
-                state.clientType = payload
-            }
-        }
     }
 })
 

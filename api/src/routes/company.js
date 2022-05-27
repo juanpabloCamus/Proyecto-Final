@@ -13,11 +13,10 @@ router.get('/', async (req,res)=>{
     }
 })
 
-router.get('/:id', async (req,res)=>{
+router.get('/', async (req,res)=>{
     try{
-        const { id } = req.params
         let company = await company_account.findAll({
-            where:{id: id},
+           
             include: job
         })
         if(company.length<1){

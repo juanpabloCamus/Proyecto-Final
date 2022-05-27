@@ -13,7 +13,7 @@ export const store = configureStore({
        users:usersSlice,
         company:companySlice,
         jobs:jobsSlice,
-        techs:techsSlice 
+        techs:techsSlice
     }
 })
 
