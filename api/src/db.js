@@ -29,21 +29,6 @@ Language(db)
 
 const {company_account, user_account, experience, education, job, applied_job, technology, language} = db.models
 
-async function loadDb(){
-  let langs = await languages
-  let users = await user_account.findAll();
-  if(users.length > 0) return null
-  try{
-    user_account.bulkCreate(user);
-    company_account.bulkCreate(company);
-    job.bulkCreate(jobs);
-    technology.bulkCreate(techs);
-    language.bulkCreate(langs);
-  }catch(e){
-    console.log(e);
-  }
-}
-
 /////////// RELACIONES DE JOBS //////////////
 
 job.belongsToMany(company_account, {through: "company_job"})
@@ -74,6 +59,75 @@ experience.belongsTo(user_account)
 
 user_account.hasMany(education)
 education.belongsTo(user_account)
+
+//////////////// LOAD DATABASE ///////////////
+
+async function loadDb(){
+  let langs = await languages
+  let users = await user_account.findAll();
+  if(users.length > 0) return null
+
+  language.bulkCreate(langs)
+
+  techs.map((u) => {
+    technology.create({
+      name: u.name
+    })
+  })
+
+  company.map((u) => {
+    company_account.create({
+      name: u.name,
+      email: u.email,
+      password: u.password
+    })
+  })
+  
+  //RELACIONES CON USERS
+  user.map(async (u) => {
+
+    let us
+
+    us = await user_account.create({
+      fullName: u.fullName,
+      last_name: u.last_name,
+      email: u.email,
+      password: u.password
+    })
+
+    for (let i = 0; i < 5; i++) {
+      await us.addLanguage(i)
+    }
+
+    for (let i = 0; i < techs.length; i++) {
+      await us.addTechnology(i)
+    }
+  })
+
+  //RELACIONES CON JOBS
+  jobs.map(async (u) => {
+
+    let j
+
+    j = await job.create({
+      position: u.position
+    })
+
+    for (let i = 0; i < techs.length; i++) {
+      await j.addTechnology(i)
+    }
+
+    for (let i = 0; i < company.length; i++) {
+      await j.addCompany_account(i)
+    }
+
+    for (let i = 0; i < company.length; i++) {
+      await j.addUser_account(i)
+    }
+
+  })
+
+}
 
 
 module.exports = {
