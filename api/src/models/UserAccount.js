@@ -2,11 +2,7 @@ const { DataTypes} = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('user_account', {
-        name:{
-            type:DataTypes.STRING,
-            allowNull: false
-        },
-        last_name:{
+        fullName:{
             type:DataTypes.STRING,
             allowNull: false
         },
@@ -31,7 +27,6 @@ module.exports = (sequelize) => {
         description: {
             type:DataTypes.TEXT
         },
-
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
