@@ -1,23 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-
 import { Provider } from 'react-redux'
+
+
+import App from "./App";
+import "./index.css";
+
 import { store } from './store/store'
-
-// import { auth0UserDomain } from './helpers/env'
-// import { auth0UserId } from './helpers/env'
-
-// import { auth0CompanyDomain } from './helpers/env'
-// import { auth0CompanyId } from './helpers/env'
-
+import reportWebVitals from "./reportWebVitals";
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={ store }>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,

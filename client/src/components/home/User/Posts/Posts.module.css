@@ -1,0 +1,23 @@
+.cards {
+  display: flex;
+  justify-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 120rem;
+  margin: 5rem auto;
+
+  grid-gap: 1rem;
+  gap: 2rem;
+  width: 100%;
+  padding: 0%;
+}
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
