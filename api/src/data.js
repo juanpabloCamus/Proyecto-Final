@@ -240,7 +240,7 @@ const techs = [
         name: 'NextJS'
     },
     {
-        name: 'C#'
+        name: 'CSharp'
     },
     {
         name: 'C'

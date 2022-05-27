@@ -217,7 +217,6 @@ router.get('/jobApplication/:id', async (req,res)=>{
         let company = await job.findByPk(id, {
                 include: applied_job
         })
-         console.log(company)
         res.send(company)
     }catch(error){
         console.log(error)
