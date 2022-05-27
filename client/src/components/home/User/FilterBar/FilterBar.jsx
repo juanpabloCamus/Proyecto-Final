@@ -15,22 +15,23 @@ function FilterBar() {
 
   const handleTechs = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     setTech(e.target.value);
   };
 
   const handleSeniorF = (e) => {
     e.preventDefault();
-    console.log(e.target.value)
     setSeniority(e.target.value);
   };
+
   const handleTimeF = (e) => {
     e.preventDefault();
     setTime(e.target.value);
   };
+
   const handleELevelF = (e) => {
     e.preventDefault();
     setELevel(e.target.value);
+    console.log(time)
   };
 
   const handleSalaryF = (e) => {
@@ -38,9 +39,7 @@ function FilterBar() {
     setSalary(e.target.value);
   };
   useEffect(() => {
-    dispatch(fetchTechs());
-    
-    dispatch(fetchJobs(tech, seniority, time, eLevel, salary));
+    dispatch(fetchJobs({tech, seniority, time, eLevel, salary}));
   }, [dispatch, tech, seniority, time, eLevel, salary]);
   return (
     <div>
@@ -54,7 +53,7 @@ function FilterBar() {
           <div>
             <select onChange={(e) => handleSeniorF(e)}>
              
-             <option value="" default>All</option>
+             <option value="">All</option>
               <option value="No Especificado">No Especificado</option>
               <option value="Senior">Senior</option>
               <option value="Semi-Senior">Semi-Senior</option>
