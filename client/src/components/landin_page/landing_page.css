@@ -1,0 +1,40 @@
+.landing__page-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    margin-top: 40px;
+}
+
+.landing__page-text{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.landing__page-text h4{
+    color: rgb(58, 58, 58);
+    font-weight: 400;
+}
+
+.landing__page-text h1{
+    font-size: 50px;
+}
+
+.landing__page-text h1 span{
+    color: #46499c;
+}
+
+.landing__page-button{
+    background-color: #46499c;
+    align-self: flex-start;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 700;
+    padding: 15px 30px;
+    margin-top: 10px;
+}
+

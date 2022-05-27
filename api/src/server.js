@@ -2,8 +2,11 @@ const express = require('express');
 const server = express();
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const cors = require('cors')
 const routes = require('./routes/index.js');
 
+
+server.use(cors());
 server.use(express.json());
 
 server.use(express.urlencoded({ extended: true, limit: '50mb' }));
