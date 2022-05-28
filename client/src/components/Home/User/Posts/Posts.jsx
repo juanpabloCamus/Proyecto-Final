@@ -13,8 +13,7 @@ export function Posts() {
   useEffect(()=>{
   dispatch(fetchJobs())
   },[dispatch])
-  console.log(jobs);
-
+  
   return (
     <div >
       <div>      <FilterBar/>

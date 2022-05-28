@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT
         },
 
-        specialty: {
+        speciality: {
             type: DataTypes.STRING
         },
 
