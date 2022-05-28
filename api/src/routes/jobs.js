@@ -96,7 +96,7 @@ router.get('/:id',async (req,res)=>{
         const {id} = req.params
         const jobId = await job.findAll({
             include: [{model: company_account},
-            {model: technology}],
+            {model: technology}], 
             where:{id: id}
         })
         if(jobId.length<1){
