@@ -4,7 +4,6 @@ import axios from 'axios'
 export const jobsSearchBar = createAsyncThunk('jobs/fetchJobs',
 async(techSearch)=>{
     try {
-        console.log(techSearch)
         const res=await axios.get(`http://localhost:3001/jobs?techSearch=${techSearch}`)
         return res.data
     } catch (error) {

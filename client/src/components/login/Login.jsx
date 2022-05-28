@@ -54,7 +54,6 @@ const loginUser = async() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
     loginUser();
     if(select === "Company"){
       rout = '/company'

@@ -108,7 +108,6 @@ const handleSubmit = (e) => {
 
 }
 
-console.log(showElements)
 
 
 
