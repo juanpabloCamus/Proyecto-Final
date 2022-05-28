@@ -26,7 +26,7 @@ export default function Post({id,position,salary_range,time,requirements,company
           <h3>{position}</h3>
           <div className={styles.subDetails}>
             <p>{salary_range}</p>
-            <p>Time: {time}</p>
+            <p>Horario: {time}</p>
             <p>Seniority: {seniority}</p>
           </div>
         </div>

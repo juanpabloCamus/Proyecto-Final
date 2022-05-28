@@ -84,13 +84,14 @@
   cursor: pointer;
 }
 .imgContainer{
+  width: 20%;
   text-align: center;
   margin-top: auto;
   margin-bottom: auto;
 }
 
 .detailsContainer{
-  margin-left: 50px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
