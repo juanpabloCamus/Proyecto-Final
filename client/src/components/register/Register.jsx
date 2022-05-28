@@ -46,10 +46,10 @@ const activeComForm = () => {
 const postNewUser = async() => {
     try {
         const res = await axios.post('http://localhost:3001/users/register', formValues)
-        if(res.data.includes('Usuario creado correctamente.')){
+        if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: res.data
+                text: 'Accceso válido'
               })
         }
         else{
@@ -70,11 +70,11 @@ const postNewUser = async() => {
 const postNewCompany = async() => {
     try {
         const res = await axios.post('http://localhost:3001/company/register', formValues)
-        
-        if(res.data.includes('Empresa creada correctamente.')){
+ 
+        if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: res.data
+                text: "Usuario creado"
               })
         }else{
 
@@ -84,7 +84,7 @@ const postNewCompany = async() => {
                 text: res.data
               })
         }
-        
+       
     } catch (error) {
         console.log(error)
     }
@@ -97,8 +97,8 @@ const handleSubmit = (e) => {
 
     if(profileType === 'dev'){
         postNewUser()
+        setShowelements(false)
         dispatch(modalActions.setModalValue())
-        
     }
 
     if(profileType === 'com'){
@@ -106,11 +106,9 @@ const handleSubmit = (e) => {
         dispatch(modalActions.setModalValue())
     }
 
+    
+
 }
-
-console.log(showElements)
-
-
 
   return (
     <div>

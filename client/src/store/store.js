@@ -6,12 +6,16 @@ import usersSlice  from '../redux/users/users'
 import jobsSlice  from '../redux/jobs/jobs'
 import techsSlice  from '../redux/techs/techs'
 import jobDetailSlice  from '../redux/jobs/jobDetail'
+import authSlice from '../redux/auth/authSlice'
+
+
 
 export const store = configureStore({
     reducer:{
-       modal: modalSlice,
-       conditionalReg: conditionalRegisterSlice,
-       users:usersSlice,
+        auth: authSlice,
+        modal: modalSlice,
+        conditionalReg: conditionalRegisterSlice,
+        users:usersSlice,
         company:companySlice,
         jobs:jobsSlice,
         techs:techsSlice,

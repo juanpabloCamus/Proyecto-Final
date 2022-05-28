@@ -2,9 +2,11 @@ import React from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
+import { authActions } from '../../redux/auth/authSlice';
+import { useDispatch } from 'react-redux';
+
 
 import Swal from 'sweetalert2'
-
 import './login.css'
 
 
@@ -18,17 +20,19 @@ const [formValues, handleInputChange, reset] = useForm({
 const { email, password } = formValues;
 
 const navigate = useNavigate()
-
+const dispatch = useDispatch()
 
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
-    console.log(res)
-    if(res.data === "Acceso valido"){
+   
+    if(res.data.active === true){
       Swal.fire({
         icon: 'success',
-        text: res.data
+        text: "Acceso válido"
       })
+      dispatch(authActions.setIsLogged(res.data))
+      navigate('/home')
     }else{
       Swal.fire({
         icon: 'error',
@@ -42,9 +46,7 @@ const loginUser = async() => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formValues);
     loginUser();
-    navigate('/home')
   }
 
   return (
