@@ -46,10 +46,10 @@ const activeComForm = () => {
 const postNewUser = async() => {
     try {
         const res = await axios.post('http://localhost:3001/users/register', formValues)
-        if(res.data.includes('Usuario creado correctamente.')){
+        if(typeof res.data === "object"){
             Swal.fire({
                 icon: 'success',
-                text: res.data
+                text: 'Usuario creado correctamente.'
               })
         }
         else{
@@ -71,10 +71,10 @@ const postNewCompany = async() => {
     try {
         const res = await axios.post('http://localhost:3001/company/register', formValues)
         
-        if(res.data.includes('Empresa creada correctamente.')){
+        if(typeof res.data === "object"){
             Swal.fire({
                 icon: 'success',
-                text: res.data
+                text: 'Empresa creada correctamente.'
               })
         }else{
 
