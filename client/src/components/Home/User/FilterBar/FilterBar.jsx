@@ -31,7 +31,6 @@ function FilterBar() {
   const handleELevelF = (e) => {
     e.preventDefault();
     setELevel(e.target.value);
-    console.log(time)
   };
 
   const handleSalaryF = (e) => {
