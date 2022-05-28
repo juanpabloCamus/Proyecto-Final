@@ -2,14 +2,10 @@ import { React, useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-<<<<<<< HEAD
 import { authActions } from '../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-=======
-//import { profileReducer } from '../../redux/Profile/profileData'
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
 import Swal from 'sweetalert2'
 import './login.css'
 
@@ -36,7 +32,6 @@ const dispatch = useDispatch()
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
-<<<<<<< HEAD
 
 
    
@@ -49,17 +44,6 @@ const loginUser = async() => {
       // dispatch(authActions.setLogin(userData))
       
       navigate('/home')
-=======
-    console.log(res)
-    if(typeof res.data === 'object'){
-      Swal.fire({
-        icon: 'success',
-        text: "Acceso valido"
-      })
-
-      //dispatch(profileReducer(res.data))
-
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
     }else{
       Swal.fire({
         icon: 'error',
@@ -81,13 +65,6 @@ const loginUser = async() => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
-<<<<<<< HEAD
-=======
-    if(select === "Company"){
-      rout = '/company'
-    }
-    navigate(rout)
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
   }
 
   return (

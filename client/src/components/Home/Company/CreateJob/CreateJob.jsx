@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useForm } from '../../../../hooks/useForm'
+import { MdClose } from 'react-icons/md'
 import styles from './createJob.module.css'
+import axios from 'axios'
+
+
+let techId = 0
 
 export default function CreateJob() {
 
@@ -16,9 +22,11 @@ export default function CreateJob() {
   const [time, setTime] = useState("");
   const [english_level, setEnglish_level] = useState("");
   const [salary_range, setSalary_range] = useState("");
+  const [addedTechs, setAddedTechs] = useState([])
 
   const { position, description,  requirements } = formValues
 
+  const techs = useSelector((state) => state.techs.techs);
 
   const handleSeniorF = (e) => {
     setSeniority(e.target.value);
@@ -36,12 +44,42 @@ export default function CreateJob() {
     setSalary_range(e.target.value);
   };
 
+  const addTechs = (e) => {
+    const techObj = {
+      tech: e.target.value,
+      id:techId++
+    }
+    setAddedTechs(value => [...value, techObj])
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleDelete = (id) =>{
+    const deletedTechs = addedTechs.filter(tech => tech.id !== id)
+    setAddedTechs(deletedTechs)
+  }
+
+  const postNewJob = async () => {
+    try {
+          const res = await axios.post('http://localhost:3001/jobs/1', {
+            position,
+            description,
+            time,
+            salary_range,
+            english_level,
+            requirements,
+            seniority,
+            technologies: addedTechs.map(tech => tech.tech)
+        })
+        console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    postNewJob()
+  }
 
 
   return (
@@ -93,6 +131,24 @@ export default function CreateJob() {
                 <option value="6000$ - 10000$">6000$ - 10000$</option>
                 <option value="+ 10000$">+ 10000$</option>
               </select>
+
+              <select className={styles.form_select} onChange={addTechs}>
+                <option value="" default>Technologies</option>
+                {techs.map((e) => (
+                <option key={e.id} value={e.name}>{e.name}</option>
+                  ))}
+              </select>
+              
+              <div className={styles.added_techs}>
+                {
+                  addedTechs.map((e, i) => (
+                    <div key={i}>
+                      <p>{e.tech}</p>
+                      <MdClose onClick={() => handleDelete(e.id)}/>
+                    </div>
+                  ))
+                }
+              </div>
               
 
             </div>

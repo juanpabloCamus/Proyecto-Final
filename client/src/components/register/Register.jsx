@@ -47,17 +47,10 @@ const activeComForm = () => {
 const postNewUser = async() => {
     try {
         const res = await axios.post('http://localhost:3001/users/register', formValues)
-<<<<<<< HEAD
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
                 text: 'Usuario creado'
-=======
-        if(typeof res.data === "object"){
-            Swal.fire({
-                icon: 'success',
-                text: 'Usuario creado correctamente.'
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
               })
               localStorage.setItem("userType", profileType)
         }
@@ -79,19 +72,11 @@ const postNewUser = async() => {
 const postNewCompany = async() => {
     try {
         const res = await axios.post('http://localhost:3001/company/register', formValues)
-<<<<<<< HEAD
  
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
                 text: "Usuario creado"
-=======
-        
-        if(typeof res.data === "object"){
-            Swal.fire({
-                icon: 'success',
-                text: 'Empresa creada correctamente.'
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
               })
               localStorage.setItem("userType", profileType)
         }else{

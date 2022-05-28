@@ -1,10 +1,6 @@
 .filterSet {
 	display: flex;
-<<<<<<< HEAD
-	gap: 10px;
-=======
 	
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
 	justify-content: center;
 	align-items: center;
     
@@ -25,15 +21,6 @@
     max-width: 160px;
     text-overflow: ellipsis;
     overflow: hidden;
-<<<<<<< HEAD
-    padding: 10px;
-    background: #F2F7FB;
-    outline: none;
-}
-
-    
-=======
     background: #F2F7FB;
 
 }
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae

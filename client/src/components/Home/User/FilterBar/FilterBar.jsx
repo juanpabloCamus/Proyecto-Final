@@ -46,22 +46,13 @@ function FilterBar() {
   return (
     <div>  
      <div className={style.filterBar}>   
-<<<<<<< HEAD
-       <label>All Filter</label>
-=======
       
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
        <div className={style.filterSet}>
 
           <select className={style.filter} onChange={(e) => handleTechs(e)}>
             <option value="" default>Technologies</option>
-<<<<<<< HEAD
-            {techs.map((e, i) => (
-              <option key={i} value={e.name}>{e.name}</option>
-=======
             {techs.map((e) => (
               <option key={e.id} value={e.name}>{e.name}</option>
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
               
             ))}
           </select>
@@ -78,11 +69,7 @@ function FilterBar() {
 
          
             <select className={style.filter} onChange={(e) => handleTimeF(e)}>
-<<<<<<< HEAD
-            <option value="" default>Time</option>
-=======
             <option value="" default>Horario</option>
->>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
               <option value="No Especificado">No Especificado</option>
               <option value="Part-Time">Part-Time</option>
               <option value="Full-Time">Full-Time</option>
