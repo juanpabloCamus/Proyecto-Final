@@ -22,7 +22,8 @@ export function Posts() {
         <FilterBar />
       </div>
       <div className={styles.postsContainer}>
-        {jobs[0] ? (
+        {jobs.length>0 ? (
+          jobs[0].offers ?
           jobs[0].offers.map((e) => {
             return (
               <div key={e.id}>
@@ -43,7 +44,7 @@ export function Posts() {
                 </div>
               </div>
             );
-          })
+          }):<></>
         ) : (
           <p>No hay Oferta</p>
         )}
