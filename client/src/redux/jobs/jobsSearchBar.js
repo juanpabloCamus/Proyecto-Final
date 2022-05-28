@@ -2,10 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 export const jobsSearchBar = createAsyncThunk('jobs/fetchJobs',
-async(tech)=>{
+async(techSearch)=>{
     try {
-        const res=await axios.get(`http://localhost:3001/jobs?tech=${tech}`)
-        return res.data[0].offers
+        console.log(techSearch)
+        const res=await axios.get(`http://localhost:3001/jobs?techSearch=${techSearch}`)
+        return res.data
     } catch (error) {
         console.log(error)
     }
