@@ -15,6 +15,7 @@ export function Posts() {
     dispatch(fetchJobs());
   }, [dispatch]);
 
+  let i = 0;
   return (
     <div>
       <div>
@@ -24,8 +25,8 @@ export function Posts() {
       <div className={styles.postsContainer}>
         {jobs ?
         jobs.length>0 ? (
-          jobs[0].offers ?
-          jobs[0].offers.map((e) => {
+          jobs[i].offers ?
+          jobs[i].offers.map((e) => {
             return (
               <div key={e.id}>
                 <div >
@@ -49,7 +50,7 @@ export function Posts() {
         ) : (
           <p>No hay Oferta</p>
         ):<></>}
-        <div>{jobs[1] ?<button>Ver mas</button>:<></>} </div>
+        <div>{jobs[i+1] ?<button>Ver mas</button>:<></>} </div>
       </div>
     </div>
   );
