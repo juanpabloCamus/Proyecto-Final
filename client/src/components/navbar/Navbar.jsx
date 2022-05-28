@@ -13,7 +13,7 @@ export const Navbar = () => {
 const dispatch = useDispatch()
 
 //Cambiar cuando este lista la autenticacion
-const userLocalStorage = localStorage.getItem("userType")
+
 
 
 const handleOpenLoginModal = ()  => {

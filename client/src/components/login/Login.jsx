@@ -24,16 +24,23 @@ const navigate = useNavigate()
 const dispatch = useDispatch()
 
 
+
+
+
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
+
+
    
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
         text: "Acceso válido"
       })
-      dispatch(authActions.setIsLogged({...res.data, profileType}))
+      const isLogged = true
+      // dispatch(authActions.setLogin(userData))
+      
       navigate('/home')
     }else{
       Swal.fire({

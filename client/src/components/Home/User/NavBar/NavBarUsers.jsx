@@ -3,6 +3,8 @@ import SearchBar from '../SearchBar/SearchBar'
 import style from "./NavBar.module.css";
 
 function NavBarUsers() {
+
+
   return (
     <div>
            <div className={style.container}>

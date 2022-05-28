@@ -1,6 +1,7 @@
 import React   from 'react'
 import { Navbar } from '../navbar/Navbar'
-import CreateJob from './Company/CreateJob/CreateJob'
+import { Company } from './Company/Company'
+
 import Developer from './User/Developer'
 
 const Home = () => {
@@ -12,7 +13,7 @@ const Home = () => {
     <div>
       <Navbar />
       <Developer />
-      <CreateJob />
+      <Company />
     </div>
   )
 }
