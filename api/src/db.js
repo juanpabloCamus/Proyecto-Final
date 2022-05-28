@@ -34,6 +34,9 @@ const {company_account, user_account, experience, education, job, applied_job, t
 job.belongsToMany(company_account, {through: "company_job"})
 company_account.belongsToMany(job, {through: "company_job"})
 
+// company_account.hasMany(job)
+// job.belongsTo(company_account)
+
 user_account.belongsToMany(job, {through: "user_favorites"})
 job.belongsToMany(user_account, {through: "user_favorites"})
 
@@ -48,8 +51,8 @@ applied_job.belongsTo(job)
 user_account.hasMany(applied_job)
 applied_job.belongsTo(user_account)
 
-technology.belongsToMany(user_account, {through: "technology_user"})
 user_account.belongsToMany(technology, {through: "technology_user"})
+technology.belongsToMany(user_account, {through: "technology_user"})
 
 language.belongsToMany(user_account, {through: "language_user"})
 user_account.belongsToMany(language, {through: "language_user"})
@@ -79,10 +82,19 @@ async function loadDb(){
     company_account.create({
       name: u.name,
       email: u.email,
-      password: u.password
+      password: u.password,
+      country: u.country,
+      city: u.city,
+      logo: u.logo,
+      description: u.description,
+      specialty: u.specialty,
+      size: u.size,
+      foundation: u.foundation,
+      web_site: u.web_site,
+      banner: u.banner,
     })
   })
-  
+
   //RELACIONES CON USERS
   user.map(async (u) => {
 
@@ -92,7 +104,10 @@ async function loadDb(){
       fullName: u.fullName,
       last_name: u.last_name,
       email: u.email,
-      password: u.password
+      password: u.password,
+      date_birth:u.date_birth,
+      profile_pic:u.profile_pic,
+      description:u.description,
     })
 
     for (let i = 0; i < 5; i++) {
@@ -110,16 +125,24 @@ async function loadDb(){
     let j
 
     j = await job.create({
-      position: u.position
+      position: u.position,
+      description: u.description ,
+      time: u.time ,
+      salary_range: u.salary_range ,
+      english_level: u.english_level ,
+      requirements: u.requirements ,
+      seniority: u.seniority,
     })
 
-    for (let i = 0; i < techs.length; i++) {
-      await j.addTechnology(i)
-    }
+ 
+    await j.addTechnology(j.dataValues.id + 1)
+    await j.addTechnology(j.dataValues.id + 2)
+    await j.addTechnology(j.dataValues.id + 3)
+    
 
-    for (let i = 0; i < company.length; i++) {
-      await j.addCompany_account(i)
-    }
+    
+    await j.addCompany_account(j.dataValues.id)
+    
 
     for (let i = 0; i < company.length; i++) {
       await j.addUser_account(i)
