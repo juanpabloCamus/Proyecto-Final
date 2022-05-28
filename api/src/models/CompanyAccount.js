@@ -41,9 +41,10 @@ module.exports = (sequelize) => {
         speciality: {
             type: DataTypes.STRING
         },
-
+        
         size: {
-            type: DataTypes.RANGE
+            type: DataTypes.ENUM('No Especificado','0 - 500','500 - 2000','2000 - 5000','5000 - 10000','10000 - 50000','+50000'),
+            defaultValue: 'No Especificado'
         },
 
         foundation: {

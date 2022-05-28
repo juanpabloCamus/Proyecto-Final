@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTechs } from "../../../../redux/techs/techs";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
-
+import style from "./FilterBar.module.css"
 function FilterBar() {
   const techs = useSelector((state) => state.techs.techs);
   const [tech, setTech] = useState("");
@@ -39,51 +39,57 @@ function FilterBar() {
     setSalary(e.target.value);
   };
   useEffect(() => {
+    dispatch(fetchTechs());
+   
     dispatch(fetchJobs({tech, seniority, time, eLevel, salary}));
+    
   }, [dispatch, tech, seniority, time, eLevel, salary]);
   return (
-    <div>
-      <div>
-        <div>
-          <select onChange={(e) => handleTechs(e)}>
+    <div>  
+     <div className={style.filterBar}>   
+      
+       <div className={style.filterSet}>
+
+          <select className={style.filter} onChange={(e) => handleTechs(e)}>
+            <option value="" default>Technologies</option>
             {techs.map((e) => (
-              <option value={e.name}>{e.name}</option>
+              <option key={e.id} value={e.name}>{e.name}</option>
+              
             ))}
           </select>
-          <div>
-            <select onChange={(e) => handleSeniorF(e)}>
+         
+            <select className={style.filter} onChange={(e) => handleSeniorF(e)}>
              
-             <option value="">All</option>
+             <option value="" default>Seniority</option>
               <option value="No Especificado">No Especificado</option>
               <option value="Senior">Senior</option>
               <option value="Semi-Senior">Semi-Senior</option>
               <option value="Junior">Junior</option>
             </select>
-          </div>
+          
 
-          <div>
-            <select onChange={(e) => handleTimeF(e)}>
-            <option value="" default>All</option>
+         
+            <select className={style.filter} onChange={(e) => handleTimeF(e)}>
+            <option value="" default>Time</option>
               <option value="No Especificado">No Especificado</option>
               <option value="Part-Time">Part-Time</option>
               <option value="Full-Time">Full-Time</option>
             </select>
-          </div>
-
-          <div>
-            <select onChange={(e) => handleELevelF(e)}>
-            <option value="" default>All</option>
+         
+         
+            <select className={style.filter} onChange={(e) => handleELevelF(e)}>
+            <option value="" default>English Level</option>
               <option value="No Especificado">No Especificado</option>
               <option value="No Requerido">No Requerido</option>
               <option value="Basic">Basic</option>
               <option value="Conversational">Conversational</option>
               <option value="Advanced or Native">Advanced or Native</option>
             </select>
-          </div>
+         
 
-          <div>
-            <select onChange={(e) => handleSalaryF(e)}>
-            <option value="" default>All</option>
+         
+            <select className={style.filter}  onChange={(e) => handleSalaryF(e)}>
+            <option value="" default>Salary</option>
               <option value="No Especificado">No Especificado</option>
               <option value="0$ - 1000$">0$ - 1000$</option>
               <option value="1000$ - 3000$">1000$ - 3000$</option>
@@ -91,7 +97,8 @@ function FilterBar() {
               <option value="6000$ - 10000$">6000$ - 10000$</option>
               <option value="+ 10000$">+ 10000$</option>
             </select>
-          </div>
+          
+        
         </div>
       </div>
     </div>
@@ -99,3 +106,4 @@ function FilterBar() {
 }
 
 export default FilterBar;
+
