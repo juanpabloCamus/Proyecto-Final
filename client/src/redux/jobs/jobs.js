@@ -5,7 +5,7 @@ export const fetchJobs = createAsyncThunk('jobs/fetchJobs',
 async({tech, seniority, time, eLevel, salary})=>{
     try {
         const res=await axios.get(`http://localhost:3001/jobs?tech=${tech}&seniority=${seniority}&time=${time}&eLevel=${eLevel}&salary=${salary}`)
-        return res.data[0].offers
+        return res.data
     } catch (error) {
         console.log(error)
     }
