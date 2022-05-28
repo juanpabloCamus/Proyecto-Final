@@ -16,6 +16,7 @@ function PostDetail() {
     },[dispatch,id])
 
     let detail = useSelector((state)=> state.jobDetail.jobDetail);
+    if (detail[0] === undefined) return(<h1>Loading...</h1>)
     let {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description} = detail[0]
     
     return (
@@ -24,6 +25,7 @@ function PostDetail() {
             <Link to={'/home'}>
                 <img alt="arrowBack" src={arrow}></img>
             </Link>
+            
             </div>
             <div className={styles.detailContainer}>
                 <div className={styles.detailOne}>
