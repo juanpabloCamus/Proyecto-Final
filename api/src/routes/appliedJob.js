@@ -5,23 +5,29 @@ const {company_account, user_account, experience, education, job, applied_job, t
 const router = Router();
 
 router.post('/', async (req,res)=>{
-try{
-        const {id_user, id_job, description, pdf} = req.body;
-        const user = await user_account.findByPk(id_user)
-        const jobs = await job.findByPk(id_job)
+    try{
+        const {id_user, id_job, pdf, description} = req.body;
 
-        let jobApplication = await applied_job.create({
-        pdf,
-        description,
+        const user = await user_account.findAll({
+            where: {id: id_user}
         })
-        await jobApplication.setUser_account(user)
-        await jobApplication.setJob(jobs)
+        const jobs = await job.findAll({
+            where: {id: id_job}
+        })
+
+        let postulacion = await applied_job.create({
+            pdf: pdf,
+            description: description,
+        })
+
+        await postulacion.setUser_account(user[0])
+        await postulacion.setJob(jobs[0])
 
         res.send(jobApplication);
 
-}catch(error){
+    }catch(error){
         console.log(error)
-}
+    }
 })
 
 module.exports = router;

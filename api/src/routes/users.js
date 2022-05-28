@@ -6,7 +6,9 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        let users = await user_account.findAll()
+        let users = await user_account.findAll({
+            include: technology
+        })
 
         res.send(users)
     }catch(error){
@@ -19,7 +21,8 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let user = await user_account.findAll({
-            where:{id:id}
+            where:{id:id},
+            include: technology
         })
         if(user.length<1){
             res.send('No existe el usuario')
@@ -59,7 +62,12 @@ router.post('/register', async (req,res)=>{
                         email,
                         password
                     })
-                    res.send('Usuario creado correctamente.')
+                    let usuario = await user_account.findAll({
+                        where: {id: newUser.dataValues.id},
+                        include: technology
+                    })
+                    delete usuario[0].dataValues.password
+                    res.send(usuario[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
                 }
@@ -74,7 +82,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description} = req.body
+        const {fullName, date_birth, profile_pic, description, technologies} = req.body
 
         let errores = []
 
@@ -128,6 +136,32 @@ router.put('/:id', async (req,res)=>{
                 }
             )
         }
+        if(typeof technologies === 'object'){
+            if(technologies.length>0){
+                let newtechnologies = []
+                let techs = await technology.findAll({
+                    order: [
+                        ['id', 'ASC'] 
+                    ]
+                })
+                for(let i=0;i<technologies.length;i++){
+                    let tecno = techs.find(t=>t.dataValues.name===technologies[i])
+                    newtechnologies.push(tecno.dataValues.id)
+                }
+                let usuario = await user_account.findAll({
+                    where:{id:id}
+                })
+                usuario = usuario[0]
+                for(let i=0;i<newtechnologies.length;i++){
+                    await usuario.addTechnology(newtechnologies[i])
+                }
+            }else{
+                if(technologies.length<1){
+                }else{
+                    errores.push('tecnologias')
+                }
+            }
+        }
         if(errores.length>0){
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
@@ -135,6 +169,22 @@ router.put('/:id', async (req,res)=>{
         res.send('datos actualizados.')
     }catch(error){
         console.log(error)
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+
+        await user_account.update({
+            active: false
+        },{
+            where: {id: id}
+        })
+
+        res.send('usuario eliminado')
+    }catch(error){
+        console.log()
     }
 })
 

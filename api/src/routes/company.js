@@ -6,7 +6,17 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        let company = await company_account.findAll()
+        let company = await company_account.findAll({
+            include: job
+        })
+        if(company.length<1){
+            res.send('No existe la empresa')
+        }
+        if(company.length>0){
+            for(let i=0;i<company.length;i++){
+                delete company[i].dataValues.password
+            }
+        }
         res.send(company)
     }catch(error){
         console.log(error)
@@ -15,15 +25,18 @@ router.get('/', async (req,res)=>{
 
 router.get('/:id', async (req,res)=>{
     try{
-        const { id } = req.params
+        const {id} = req.params
+
         let company = await company_account.findAll({
-            where:{id: id},
-            include: job
+            include: job,
+            where:{id:id}
         })
         if(company.length<1){
             res.send('No existe la empresa')
         }
+        delete company[0].dataValues.password
         res.send(company)
+
     }catch(error){
         console.log(error)
     }
@@ -57,7 +70,12 @@ router.post('/register', async (req,res)=>{
                         email,
                         password
                     })
-                    res.send('Empresa creada correctamente.')
+                    let empresa = await company_account.findAll({
+                        include: job,
+                        where: {id: newCompany.dataValues.id}
+                    })
+                    delete empresa[0].dataValues.password
+                    res.send(empresa[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
                 }
@@ -149,13 +167,18 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(size){
-            await company_account.update(
-                {
-                    size: size
-                },{
-                    where:{id: id}
-                }
-            )
+            if(size!=='No Especificado'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
+                res.send('tamaño')
+            }else{
+                await company_account.update(
+                    {
+                        size: size
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+            
         }
         if(foundation){
             if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(foundation)){
@@ -204,23 +227,30 @@ router.put('/:id', async (req,res)=>{
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
         }
-        res.send('datos actualizados.')
+        let empresa = await company_account.findAll({
+            include: job,
+            where:{id:id}
+        })
+        delete empresa[0].dataValues.password
+        res.send(empresa[0])
     }catch(error){
         console.log(error)
     }
 })
 
-//
-
-router.get('/jobApplication/:id', async (req,res)=>{
-    const { id } = req.params
+router.delete('/:id', async (req,res)=>{
     try{
-        let company = await job.findByPk(id, {
-                include: applied_job
+        const {id} = req.params
+
+        await company_account.update({
+            active: false
+        },{
+            where: {id: id}
         })
-        res.send(company)
+
+        res.send('Empresa eliminada')
     }catch(error){
-        console.log(error)
+        console.log()
     }
 })
 

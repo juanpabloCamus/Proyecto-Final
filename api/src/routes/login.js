@@ -15,7 +15,7 @@ router.post('/', async (req,res)=>{
         })
         if(mailUser.length>0){
             if(mailUser[0].password===password){
-                delete mailUser[0].dataValues.password 
+                delete mailUser[0].dataValues.password
                 res.send(mailUser[0])
             }else{
                 res.send('Contraseña no valida.')
