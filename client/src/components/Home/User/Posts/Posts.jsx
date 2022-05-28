@@ -11,6 +11,8 @@ export function Posts() {
   const jobs = useSelector((state) => state.jobs.jobs);
   const [pagina, setPagina]=useState(0);
   const [render,setRender]= useState([])
+
+    //setAlgo(value => [...value, algo])
   
   useEffect(() => {
     dispatch(fetchJobs());
