@@ -1,0 +1,34 @@
+.filterBar {
+	flex: 1;
+	display: flex;
+	/* justify-content: center;
+	align-items: center; */
+	margin: 0 8px;
+	padding: 10px;
+	background: white;
+	border-radius: 4px;
+	box-shadow: 0px 2px 24px -4px rgba(0,0,0,0.33);
+	flex-direction: column;
+	
+
+}
+
+.filterSet {
+	display: flex;
+	
+	justify-content: center;
+	align-items: center;
+
+}
+.filter {
+	color: #424242;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding: 6px 12px;
+	border-radius: 4px;
+	background: white;
+	border: 1px solid #BDBDBD;
+	font-size: 16px;
+	font-weight: 300;
+
+}
