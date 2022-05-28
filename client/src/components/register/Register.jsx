@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import axios from 'axios'
@@ -26,6 +26,7 @@ const [showElements, setShowelements] = useState(false)
 const { name, fullName, email, password } = formValues
 
 const dispatch = useDispatch()
+
 const { profileType } = useSelector(state => state.conditionalReg)
 
 
@@ -49,8 +50,9 @@ const postNewUser = async() => {
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: 'Accceso válido'
+                text: 'Usuario creado'
               })
+              localStorage.setItem("userType", profileType)
         }
         else{
             Swal.fire({
@@ -76,6 +78,7 @@ const postNewCompany = async() => {
                 icon: 'success',
                 text: "Usuario creado"
               })
+              localStorage.setItem("userType", profileType)
         }else{
 
             Swal.fire({
@@ -94,15 +97,16 @@ const postNewCompany = async() => {
 
 const handleSubmit = (e) => {
     e.preventDefault()
-
+    
     if(profileType === 'dev'){
         postNewUser()
-        setShowelements(false)
+        dispatch(modalActions.activateRegisterModal(false))
         dispatch(modalActions.setModalValue())
     }
 
     if(profileType === 'com'){
         postNewCompany()
+        dispatch(modalActions.activateRegisterModal(false))
         dispatch(modalActions.setModalValue())
     }
 

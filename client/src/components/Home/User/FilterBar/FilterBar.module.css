@@ -1,0 +1,29 @@
+.filterSet {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+    
+
+}
+.filter {
+    position: relative;
+    margin-right: 8px;
+    padding: 8px 24px;
+    border: 2px solid #F2F7FB;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    white-space: nowrap;
+    color: #46499C;
+    cursor: pointer;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 10px;
+    background: #F2F7FB;
+    outline: none;
+}
+
+    

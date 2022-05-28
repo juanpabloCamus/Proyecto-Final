@@ -11,13 +11,13 @@ export const Navbar = () => {
 
 const dispatch = useDispatch()
 
-const handleOpenLoginModal = ()  =>{
+const handleOpenLoginModal = ()  => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateLoginModal(true))
 }
 
 
-    const handleOpenRegisterModal = ()  =>{
+const handleOpenRegisterModal = ()  => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateRegisterModal(true))
 }
