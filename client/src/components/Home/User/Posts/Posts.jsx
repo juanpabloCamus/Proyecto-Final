@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
 import FilterBar from "../FilterBar/FilterBar";
@@ -9,11 +9,29 @@ import styles from "./Posts.module.css";
 export function Posts() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
+  const [pagina, setPagina]=useState(0);
   console.log(jobs);
-
+  
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
+
+function handleShowMore(e) {
+  e.preventDefault();
+  if(jobs[pagina+1])
+  {
+      setPagina(pagina+1)
+
+  }
+}
+function handleShowLess(e) {
+  e.preventDefault();
+  if(jobs[pagina-1])
+  {
+      setPagina(pagina-1)
+
+  }
+}
 
   return (
     <div>
@@ -24,8 +42,8 @@ export function Posts() {
       <div className={styles.postsContainer}>
         {jobs ?
         jobs.length>0 ? (
-          jobs[0].offers ?
-          jobs[0].offers.map((e) => {
+          jobs[pagina].offers ?
+          jobs[pagina].offers.map((e) => {
             return (
               <div key={e.id}>
                 <div >
@@ -49,7 +67,14 @@ export function Posts() {
         ) : (
           <p>No hay Oferta</p>
         ):<></>}
-        <div>{jobs[1] ?<button>Ver mas</button>:<></>} </div>
+        <div>{
+          < >
+          <button  type="submit" onClick={(e)=>handleShowLess(e)}>Pagina Anterior</button><></>
+
+        <button  type="submit" onClick={(e)=>handleShowMore(e)}>Pagina Siguiente</button><></>
+        </>
+        } </div>
+      
       </div>
     </div>
   );
