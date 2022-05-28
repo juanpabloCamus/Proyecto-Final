@@ -9,8 +9,8 @@ async({tech, seniority, time, eLevel, salary})=>{
     } catch (error) {
         console.log(error)
     }
-}
-)
+})
+
 const initialState = {
     jobs: []
     
