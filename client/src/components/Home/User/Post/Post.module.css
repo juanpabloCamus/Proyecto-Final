@@ -74,9 +74,55 @@
   padding: 1rem;
   transition: 0.5s;
   color: black;
+  display: flex;
+  gap:40px;
+  flex-wrap: wrap;
 }
 
 .postCard:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
 }
+.imgContainer{
+  width: 20%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.detailsContainer{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+}
+
+.techsContainer{
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  font-size: 15px;
+  flex-wrap: wrap;
+  max-height: 180px;
+}
+
+.techsContainer label{
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 10px;
+  background-color: rgba(239, 245, 250, 0.793);
+}
+
+#logo{
+  margin-top: 20px;
+  width: 200px;
+}
+
+
+

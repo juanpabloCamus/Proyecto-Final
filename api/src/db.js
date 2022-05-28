@@ -87,7 +87,7 @@ async function loadDb(){
       city: u.city,
       logo: u.logo,
       description: u.description,
-      specialty: u.specialty,
+      speciality: u.speciality,
       size: u.size,
       foundation: u.foundation,
       web_site: u.web_site,
