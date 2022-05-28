@@ -82,7 +82,7 @@ async function loadDb(){
       password: u.password
     })
   })
-  
+
   //RELACIONES CON USERS
   user.map(async (u) => {
 
@@ -92,7 +92,10 @@ async function loadDb(){
       fullName: u.fullName,
       last_name: u.last_name,
       email: u.email,
-      password: u.password
+      password: u.password,
+      date_birth:u.date_birth,
+      profile_pic:u.profile_pic,
+      description:u.description,
     })
 
     for (let i = 0; i < 5; i++) {
@@ -110,7 +113,13 @@ async function loadDb(){
     let j
 
     j = await job.create({
-      position: u.position
+      position: u.position,
+      description: u.description ,
+      time: u.time ,
+      salary_range: u.salary_range ,
+      english_level: u.english_level ,
+      requirements: u.requirements ,
+      seniority: u.seniority,
     })
 
     for (let i = 0; i < techs.length; i++) {
