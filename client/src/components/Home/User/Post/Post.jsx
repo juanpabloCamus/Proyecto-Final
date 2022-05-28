@@ -18,14 +18,18 @@ export default function Post({id,position,salary_range,time,requirements,company
   return (
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
-        <div className={styles.companyContainer}>
+        <div className={styles.imgContainer}>
           <img id={styles.logo} src={logo}></img>
-          <h1>{companyName}</h1>
         </div>
-        <h2>{position}</h2>
-        <p>{salary_range}</p>
-        <p>Time: {time}</p>
-        <p>Seniority: {seniority}</p>
+        <div div className={styles.detailsContainer}>
+          <h2>{companyName}</h2>
+          <h3>{position}</h3>
+          <div className={styles.subDetails}>
+            <p>{salary_range}</p>
+            <p>Time: {time}</p>
+            <p>Seniority: {seniority}</p>
+          </div>
+        </div>
         <div className={styles.techsContainer}>
           {techs.map(t => (<label key={t.id} >{t.name}</label>))}
         </div>
