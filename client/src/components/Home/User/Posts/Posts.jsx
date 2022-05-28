@@ -10,26 +10,48 @@ export function Posts() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
   const [pagina, setPagina]=useState(0);
-  console.log(jobs);
+  const [render,setRender]= useState([])
   
   useEffect(() => {
     dispatch(fetchJobs());
   }, [dispatch]);
 
-function handleShowMore(e) {
-  e.preventDefault();
-  if(jobs[pagina+1])
-  {
-      setPagina(pagina+1)
-
+let jobsRender = []
+if(render.length<1){
+  if(jobs){
+    if(jobs.length>0){
+      if(jobs[pagina].offers){
+        if(jobsRender.length<pagina+1){
+          for(let i=0;i<jobs[pagina].offers.length;i++){
+            jobsRender.push(jobs[pagina].offers[i])
+          }
+          setRender(jobsRender)
+        }
+      }
+    }
   }
 }
-function handleShowLess(e) {
-  e.preventDefault();
-  if(jobs[pagina-1])
-  {
-      setPagina(pagina-1)
-
+window.onscroll = function (){
+  var scroll = window.scrollY + window.innerHeight > document.documentElement.offsetHeight/100*90
+  if(scroll){
+    if(jobs.length-1>pagina){
+      setPagina(pagina+1)
+    }
+    if(jobs){
+      if(jobs.length>0){
+        if(jobs[pagina+1]){
+          if(jobs[pagina+1].offers){
+            if(jobsRender.length<pagina+1){
+              for(let i=0;i<jobs[pagina+1].offers.length;i++){
+                jobsRender.push(jobs[pagina+1].offers[i])
+              }
+              let instancia = render.concat(jobsRender)
+              setRender(instancia)
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -40,10 +62,10 @@ function handleShowLess(e) {
         <FilterBar />
       </div>
       <div className={styles.postsContainer}>
-        {jobs ?
-        jobs.length>0 ? (
-          jobs[pagina].offers ?
-          jobs[pagina].offers.map((e) => {
+        {render ?
+        render.length>0 ? (
+          render ?
+          render.map((e) => {
             return (
               <div key={e.id}>
                 <div >
@@ -68,11 +90,11 @@ function handleShowLess(e) {
           <p>No hay Oferta</p>
         ):<></>}
         <div>{
-          < >
+         /*  < >
           <button  type="submit" onClick={(e)=>handleShowLess(e)}>Pagina Anterior</button><></>
 
         <button  type="submit" onClick={(e)=>handleShowMore(e)}>Pagina Siguiente</button><></>
-        </>
+        </> */
         } </div>
       
       </div>

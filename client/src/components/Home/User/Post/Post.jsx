@@ -21,7 +21,7 @@ export default function Post({id,position,salary_range,time,requirements,company
         <div className={styles.imgContainer}>
           {/* <img id={styles.logo} src={logo} alt="Company logo"></img> */}
         </div>
-        <div div className={styles.detailsContainer}>
+        <div className={styles.detailsContainer}>
           <h2>{companyName}</h2>
           <h3>{position}</h3>
           <div className={styles.subDetails}>
