@@ -6,9 +6,13 @@ import usersSlice  from '../redux/users/users'
 import jobsSlice  from '../redux/jobs/jobs'
 import techsSlice  from '../redux/techs/techs'
 import jobDetailSlice  from '../redux/jobs/jobDetail'
+<<<<<<< HEAD
 import authSlice from '../redux/auth/authSlice'
 
 
+=======
+import profileSlice from '../redux/Profile/profileData'
+>>>>>>> 41a05aabbeadea649c79184afd8332542b776dae
 
 export const store = configureStore({
     reducer:{
@@ -19,7 +23,8 @@ export const store = configureStore({
         company:companySlice,
         jobs:jobsSlice,
         techs:techsSlice,
-        jobDetail: jobDetailSlice
+        jobDetail: jobDetailSlice,
+        profile:profileSlice
     }
 })
 

@@ -1,13 +1,11 @@
 const { Router } = require('express');
-const axios = require('axios');
 const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db');
-const { jobs } = require('../data');
 
 const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const { tech, seniority, time, eLevel, salary } = req.query
+        const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
             include: [{model: company_account},
@@ -18,6 +16,23 @@ router.get('/', async (req,res)=>{
         })
 
         let Paginado = []
+
+        if(techSearch){
+            let techs = await technology.findAll({
+                order: [
+                    ['id', 'ASC']
+                ]
+            })
+            let tecno = techs.find(t=>t.dataValues.name===techSearch)
+            if(tecno){
+                tecno = tecno.dataValues.name
+                if(jobs.length>0){
+                    jobs = jobs.filter(j=>j.dataValues.technologies.find(t=>t.dataValues.name===tecno))
+                }
+            }else{
+                jobs = []
+            }
+        }
 
         if(tech){
             let techs = await technology.findAll({
@@ -97,6 +112,8 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         const jobId = await job.findAll({
+            include: [{model: company_account},
+            {model: technology}], 
             where:{id: id}
         })
         if(jobId.length<1){
