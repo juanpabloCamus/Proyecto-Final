@@ -3,7 +3,7 @@ import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { authActions } from '../../redux/auth/authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 import Swal from 'sweetalert2'
@@ -18,6 +18,7 @@ const [formValues, handleInputChange, reset] = useForm({
 });
 
 const { email, password } = formValues;
+const { profileType } = useSelector(state => state.conditionalReg)
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const loginUser = async() => {
         icon: 'success',
         text: "Acceso válido"
       })
-      dispatch(authActions.setIsLogged(res.data))
+      dispatch(authActions.setIsLogged({...res.data, profileType}))
       navigate('/home')
     }else{
       Swal.fire({

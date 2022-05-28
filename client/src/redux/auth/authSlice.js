@@ -11,7 +11,7 @@ const authSlice = createSlice({
     initialState,
     reducers:{
         setIsLogged(state, {payload}){
-            state.loggedUser = {...state.loggedUser, payload}
+            state.loggedUser = payload
         }
     }
 })

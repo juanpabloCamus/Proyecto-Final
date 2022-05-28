@@ -12,6 +12,7 @@ const Home = () => {
     <div>
       <Navbar />
       <Developer />
+      <CreateJob />
     </div>
   )
 }

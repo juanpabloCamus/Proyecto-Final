@@ -52,8 +52,8 @@ function FilterBar() {
 
           <select className={style.filter} onChange={(e) => handleTechs(e)}>
             <option value="" default>Technologies</option>
-            {techs.map((e) => (
-              <option value={e.name}>{e.name}</option>
+            {techs.map((e, i) => (
+              <option key={i} value={e.name}>{e.name}</option>
               
             ))}
           </select>
