@@ -22,7 +22,8 @@ export function Posts() {
         <FilterBar />
       </div>
       <div className={styles.postsContainer}>
-        {jobs.length>0 ? (
+        {jobs ?
+        jobs.length>0 ? (
           jobs[0].offers ?
           jobs[0].offers.map((e) => {
             return (
@@ -47,7 +48,7 @@ export function Posts() {
           }):<></>
         ) : (
           <p>No hay Oferta</p>
-        )}
+        ):<></>}
         <div>{jobs[1] ?<button>Ver mas</button>:<></>} </div>
       </div>
     </div>
