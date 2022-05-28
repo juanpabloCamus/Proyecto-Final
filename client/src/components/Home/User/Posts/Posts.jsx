@@ -45,7 +45,7 @@ export function Posts() {
             );
           })
         ) : (
-          <p>No hay Nada</p>
+          <p>No hay Oferta</p>
         )}
         <div>{jobs[1] ?<button>Ver mas</button>:<></>} </div>
       </div>
