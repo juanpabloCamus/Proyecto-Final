@@ -5,7 +5,6 @@ import Developer from './User/Developer'
 
 const Home = () => {
 
-  const userLocalStorage = localStorage.getItem("userType")
 
   return (
     //Hacer un if si es usuario se renderiza el developer
