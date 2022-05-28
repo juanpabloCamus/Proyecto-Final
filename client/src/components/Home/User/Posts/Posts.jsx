@@ -5,6 +5,7 @@ import FilterBar from "../FilterBar/FilterBar";
 import Post from "../Post/Post";
 import SearchBar from "../SearchBar/SearchBar";
 import styles from "./Posts.module.css";
+import CreateJob from '../../Company/CreateJob/CreateJob'
 
 export function Posts() {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ export function Posts() {
       <div>
         <SearchBar />
         <FilterBar />
+        <CreateJob />
       </div>
       <div className={styles.postsContainer}>
         {jobs ? (

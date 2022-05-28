@@ -19,9 +19,9 @@ export default function Post({id,position,salary_range,time,requirements,company
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          <img id={styles.logo} src={logo}></img>
+          <img id={styles.logo} src={logo}/>
         </div>
-        <div div className={styles.detailsContainer}>
+        <div  className={styles.detailsContainer}>
           <h2>{companyName}</h2>
           <h3>{position}</h3>
           <div className={styles.subDetails}>

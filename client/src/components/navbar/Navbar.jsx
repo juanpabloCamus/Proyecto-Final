@@ -6,18 +6,23 @@ import { Link } from 'react-router-dom'
 import { modalActions } from '../../redux/modal_slice/modalSlice'
 
 import './navbar.css'
+import { UserNav } from './user_nav/UserNav'
 
 export const Navbar = () => {
 
 const dispatch = useDispatch()
 
-const handleOpenLoginModal = ()  =>{
+//Cambiar cuando este lista la autenticacion
+const userLocalStorage = localStorage.getItem("userType")
+
+
+const handleOpenLoginModal = ()  => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateLoginModal(true))
 }
 
 
-    const handleOpenRegisterModal = ()  =>{
+const handleOpenRegisterModal = ()  => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateRegisterModal(true))
 }
@@ -32,6 +37,7 @@ const handleOpenLoginModal = ()  =>{
                 <span>Rocket</span>
             </div>
         </Link>
+        
         <ul className="navbar">
             <li>
                 <button

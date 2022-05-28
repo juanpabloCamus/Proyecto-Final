@@ -1,0 +1,59 @@
+.form_container{
+    box-shadow: 2px 2px 5px 1px lightgrey;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.form_title{
+    background-color: #46499c;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.form_title h2{
+    font-size: 28px;
+}
+
+.create_job_form{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-column-gap: 40px;
+    padding: 40px;
+}
+
+.form_left_column{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label{
+    font-size: 18px;
+}
+
+.form_select, input{
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    padding: 10px;
+    outline: none;
+}
+
+.form_right_column{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;  
+}
+
+textarea{
+    resize: vertical;
+    overflow: hidden;
+    margin-right: 40px;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    outline: none;
+}
