@@ -51,8 +51,8 @@ applied_job.belongsTo(job)
 user_account.hasMany(applied_job)
 applied_job.belongsTo(user_account)
 
-technology.belongsToMany(user_account, {through: "technology_user"})
 user_account.belongsToMany(technology, {through: "technology_user"})
+technology.belongsToMany(user_account, {through: "technology_user"})
 
 language.belongsToMany(user_account, {through: "language_user"})
 user_account.belongsToMany(language, {through: "language_user"})
