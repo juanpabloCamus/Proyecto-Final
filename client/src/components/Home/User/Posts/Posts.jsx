@@ -6,19 +6,15 @@ import Post from '../Post/Post';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './Posts.module.css'
 
-
 export function Posts() {
-  const jobs=useSelector(state=>state.jobs.jobs)
-  
-const dispatch=useDispatch();
+  const dispatch=useDispatch();
+  const jobs=useSelector(state=>state.jobs.jobs);
 
-useEffect(()=>{
- 
-    dispatch(fetchJobs())
+  useEffect(()=>{
+  dispatch(fetchJobs())
+  },[dispatch])
+  console.log(jobs);
 
-
-
-},[dispatch])
   return (
     <div >
       <div>      <FilterBar/>

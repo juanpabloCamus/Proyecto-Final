@@ -34,6 +34,9 @@ const {company_account, user_account, experience, education, job, applied_job, t
 job.belongsToMany(company_account, {through: "company_job"})
 company_account.belongsToMany(job, {through: "company_job"})
 
+// company_account.hasMany(job)
+// job.belongsTo(company_account)
+
 user_account.belongsToMany(job, {through: "user_favorites"})
 job.belongsToMany(user_account, {through: "user_favorites"})
 
@@ -79,7 +82,16 @@ async function loadDb(){
     company_account.create({
       name: u.name,
       email: u.email,
-      password: u.password
+      password: u.password,
+      country: u.country,
+      city: u.city,
+      logo: u.logo,
+      description: u.description,
+      specialty: u.specialty,
+      size: u.size,
+      foundation: u.foundation,
+      web_site: u.web_site,
+      banner: u.banner,
     })
   })
 
@@ -122,13 +134,15 @@ async function loadDb(){
       seniority: u.seniority,
     })
 
-    for (let i = 0; i < techs.length; i++) {
-      await j.addTechnology(i)
-    }
+ 
+    await j.addTechnology(j.dataValues.id + 1)
+    await j.addTechnology(j.dataValues.id + 2)
+    await j.addTechnology(j.dataValues.id + 3)
+    
 
-    for (let i = 0; i < company.length; i++) {
-      await j.addCompany_account(i)
-    }
+    
+    await j.addCompany_account(j.dataValues.id)
+    
 
     for (let i = 0; i < company.length; i++) {
       await j.addUser_account(i)
