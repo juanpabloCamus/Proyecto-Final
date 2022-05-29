@@ -10,8 +10,10 @@ export default function Post({id,position,salary_range,time,requirements,company
   
   if (company_accounts === undefined) return null
   else {
+    if(company_accounts[0]){
     logo = company_accounts[0].logo
     companyName = company_accounts[0].name
+    }
   }
   
   let techs = technologies
@@ -19,15 +21,15 @@ export default function Post({id,position,salary_range,time,requirements,company
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          <img id={styles.logo} src={logo} alt="Company logo"></img>
+          {<img id={styles.logo} src={logo} alt="Company logo"></img>}
         </div>
         <div className={styles.detailsContainer}>
           <h2>{companyName}</h2>
           <h3>{position}</h3>
           <div className={styles.subDetails}>
             <p>{salary_range}</p>
-            <p>Horario: {time}</p>
             <p>Seniority: {seniority}</p>
+            <p>Time: {time}</p>
           </div>
         </div>
         <div className={styles.techsContainer}>
