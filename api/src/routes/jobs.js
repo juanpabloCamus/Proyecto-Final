@@ -163,15 +163,6 @@ router.post('/:id', async (req,res)=>{
                 }
                 await newJob.addCompany_account(id)
 
-<<<<<<< HEAD
-                let jobCreated = await job.findAll({
-                    where:{id: newJob.dataValues.id},
-                    include: company_account
-                })
-                console.log(jobCreated[0].company_accounts)
-
-=======
->>>>>>> 0b4a1bc6bcb799c5434331e888e8f4c82b7a1e25
                 res.send('Oferta laboral creada correctamente.')
             }
         }else{
