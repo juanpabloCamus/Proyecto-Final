@@ -3,10 +3,13 @@ import { useSelector } from 'react-redux'
 import { useForm } from '../../../../hooks/useForm'
 import { MdClose } from 'react-icons/md'
 import Swal from 'sweetalert2'
+import img from '../../../../assets/arrow.png'
+import { Link } from 'react-router-dom'
 
 
 import styles from './createJob.module.css'
 import axios from 'axios'
+import { Navbar } from '../../../navbar/Navbar'
 
 
 let techId = 0
@@ -96,10 +99,16 @@ export default function CreateJob() {
   const handleSubmit = (e) => {
     e.preventDefault()
     postNewJob()
+
   }
 
 
   return (
+    <div>
+      <Navbar/>
+      <Link to={'/home'}>
+        <img className={styles.arrowBack} alt="arrowBack" src={img}></img>
+      </Link>
     <div className={styles.form_container}>
       <div className={styles.form_title}>
         <h2>Create a new job offer</h2>
@@ -179,6 +188,7 @@ export default function CreateJob() {
             <button type='submit' >Send</button>
           </div>
       </form>
+    </div>
     </div>
   )
 }

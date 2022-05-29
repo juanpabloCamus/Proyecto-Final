@@ -1,6 +1,6 @@
 .box {
     margin: 100px auto;
-    width: 20%;
+    width: 50%; 
     
 }
 .box .box-item {
@@ -30,4 +30,9 @@ ul li{
 }
 .box:hover .box-item:hover .box-item-content {
     height: 100px;
+}
+
+.title{
+    font-weight: bold ;
+    font-size: 20px;
 }
