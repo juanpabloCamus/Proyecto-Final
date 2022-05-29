@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../../../hooks/useForm'
 import { MdClose } from 'react-icons/md'
 import Swal from 'sweetalert2'
 import img from '../../../../assets/arrow.png'
 import { Link } from 'react-router-dom'
-
-
+import { fetchTechs } from "../../../../redux/techs/techs";
 import styles from './createJob.module.css'
 import axios from 'axios'
 import { Navbar } from '../../../navbar/Navbar'
@@ -16,6 +15,13 @@ let techId = 0
 
 export default function CreateJob() {
 
+  const techs = useSelector((state) => state.techs.techs);
+  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTechs());    
+  }, [dispatch]);
 
   const [formValues, handleInputChange] = useForm({
     position: '', 
@@ -31,8 +37,6 @@ export default function CreateJob() {
   const [addedTechs, setAddedTechs] = useState([])
 
   const { position, description,  requirements } = formValues
-
-  const techs = useSelector((state) => state.techs.techs);
 
   const handleSeniorF = (e) => {
     setSeniority(e.target.value);
@@ -172,8 +176,8 @@ export default function CreateJob() {
                 {
                   addedTechs.map((e, i) => (
                     <div key={i}>
-                     {e.tech === 'Cplus'?<p>C+</p>:e.tech==='Cplusplus'?<p>C++</p>:<p>{e.tech}</p>}
-                      <MdClose onClick={() => handleDelete(e.id)}/>
+                      {e.tech === 'Cplus'?<p>C+</p>:e.tech==='Cplusplus'?<p>C++</p>:<p>{e.tech}</p>}
+                      {e.tech===''?<></>:<MdClose onClick={() => handleDelete(e.id)}/>}
                     </div>
                   ))
                 }

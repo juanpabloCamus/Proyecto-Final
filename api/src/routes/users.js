@@ -184,7 +184,7 @@ router.delete('/:id', async (req,res)=>{
 
         res.send('usuario eliminado')
     }catch(error){
-        console.log()
+        console.log(error)
     }
 })
 

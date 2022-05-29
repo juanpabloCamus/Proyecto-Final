@@ -47,38 +47,33 @@ const handleOpenRegisterModal = ()  => {
                 </div>
             </Link>
         }
-
         {ubicacion === '/' ?
         <ul className="navbar">
             <li>
                 <button
-                    onClick={ handleOpenLoginModal }
-                    className="navbar_button login"
+                onClick={ handleOpenLoginModal }
+                className="navbar_button login"
                 >Login</button>
             </li>
             <li>
                 <button
-                    onClick={ handleOpenRegisterModal }
-                    className="navbar_button register"
+                onClick={ handleOpenRegisterModal }
+                className="navbar_button register"
                 >Sign Up</button>
             </li>
         </ul>:
-        
         <>
-
         <div className='searchBar'>
-
             <SearchBar />
         </div>
-
-        <div className='profileDiv'>
-        <Link to="/home/createjob">
-            <div className="buttonJob">
-                <span>Create new job</span>
+            <div className='profileDiv'>
+                <Link to="/home/createjob">
+                    <div className="buttonJob">
+                        <span>Create new job</span>
+                    </div>
+                </Link>
+                <UserNav />
             </div>
-        </Link>
-            <UserNav />
-        </div>
         </>
         }
     </nav>
