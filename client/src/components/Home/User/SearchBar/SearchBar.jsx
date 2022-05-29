@@ -20,7 +20,7 @@ function SearchBar() {
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(jobsSearchBar(tech))
+      dispatch(jobsSearchBar(tech==='C+'?'Cplus':tech==='C++'?'Cplusplus':tech))
     };
     return (
           <div className={style.searchBar}>
