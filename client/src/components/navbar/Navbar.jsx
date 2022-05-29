@@ -35,11 +35,18 @@ const handleOpenRegisterModal = ()  => {
   return (
       
     <nav className='nav animate__animated animate__fadeInDownBig'>
-        <Link to="/">
-            <div className="logo">
-                <span>Rocket</span>
-            </div>
-        </Link>
+        {ubicacion === '/'?
+            <Link to="/">
+                <div className="logo">
+                    <span>Rocket</span>
+                </div>
+            </Link>:
+            <Link to="/home">
+                <div className="logo">
+                    <span>Rocket</span>
+                </div>
+            </Link>
+        }
 
         {ubicacion === '/' ?
         <ul className="navbar">

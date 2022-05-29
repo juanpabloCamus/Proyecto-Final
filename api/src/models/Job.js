@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
         },
 
         salary_range: {
-            type: DataTypes.ENUM('Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+10000$'),
+            type: DataTypes.ENUM('Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','10000$'),
             defaultValue: 'Not Specified'
         },
 

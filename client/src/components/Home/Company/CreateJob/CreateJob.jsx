@@ -154,12 +154,16 @@ export default function CreateJob() {
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
                 <option value="6000$ - 10000$">6000$ - 10000$</option>
-                <option value="+10000$">+ 10000$</option>
+                <option value="10000$">+ 10000$</option>
               </select>
 
               <select className={styles.form_select} onChange={addTechs}>
                 <option value="" default>Technologies</option>
-                {techs.map((e) => (
+                {techs.map((e) => e.name==='Cplus'?(
+                <option key={e.id} value={e.name}>C+</option>
+                  ): e.name==='Cplusplus'?(
+                    <option key={e.id} value={e.name}>C++</option>
+                      ) : (
                 <option key={e.id} value={e.name}>{e.name}</option>
                   ))}
               </select>
@@ -168,7 +172,7 @@ export default function CreateJob() {
                 {
                   addedTechs.map((e, i) => (
                     <div key={i}>
-                      <p>{e.tech}</p>
+                     {e.tech === 'Cplus'?<p>C+</p>:e.tech==='Cplusplus'?<p>C++</p>:<p>{e.tech}</p>}
                       <MdClose onClick={() => handleDelete(e.id)}/>
                     </div>
                   ))
