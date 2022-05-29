@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useForm } from '../../../../hooks/useForm'
 import { MdClose } from 'react-icons/md'
+import Swal from 'sweetalert2'
+
+
 import styles from './createJob.module.css'
 import axios from 'axios'
 
@@ -49,6 +52,7 @@ export default function CreateJob() {
       tech: e.target.value,
       id:techId++
     }
+
     setAddedTechs(value => [...value, techObj])
   };
 
@@ -59,7 +63,7 @@ export default function CreateJob() {
 
   const postNewJob = async () => {
     try {
-           await axios.post('http://localhost:3001/jobs/1', {
+           const res = await axios.post('http://localhost:3001/jobs/1', {
             position,
             description,
             time,
@@ -69,6 +73,20 @@ export default function CreateJob() {
             seniority,
             technologies: addedTechs.map(tech => tech.tech)
         })
+
+       if(res.data === 'Oferta laboral creada correctamente.'){
+        Swal.fire({
+          icon:"success",
+          text: res.data
+        })
+      }
+        else{
+          Swal.fire({
+            icon:"error",
+            text: res.data
+          })
+        }
+
     } catch (error) {
       console.log(error);
     }
@@ -153,7 +171,7 @@ export default function CreateJob() {
             </div>
             <div className={styles.form_right_column}>
                 <label>Requirements</label>
-                <textarea name="requirements" columns="10" rows="3" value={requirements} onChange={handleInputChange}></textarea>
+                <textarea name="requirements" columns="10" rows="5" value={requirements} onChange={handleInputChange}></textarea>
                 <label>Description</label>
                 <textarea name="description" columns="10" rows="5" value={description} onChange={handleInputChange}></textarea>
             </div>

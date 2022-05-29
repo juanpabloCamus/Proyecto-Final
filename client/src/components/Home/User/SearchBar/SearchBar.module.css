@@ -1,36 +1,41 @@
-.SearchBar
+.searchBar
 {
-   position: relative;
-   display: flex;
-   justify-content:center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 
 }
+
+.searchBar input{
+   border-radius: 20px;
+   box-shadow: 2px 2px 5px 1px lightgray;
+}
 .containerS div{
-   padding-right: 30px;
+   
 }
 .searchTerm
 {
 
-   border: 3px solid #ac59ff;
-   border-right: none;
-   padding: 5px;
-   height: 20px;
-   border-radius: 5px 0 0 5px;
-   outline: none;
-   color: #ac59ff;
 }
 .searchTerm:focus{
-   color: #ac59ff;
+
  }
+
+ .BtnSearch_container{
+   
+ }
+
 .BtnSearch
 {
-   width: 100px;
-   height: 36px;
-   border: 1px solid #ac59ff;
-   background: #ac59ff;
-   text-align: center;
-   color: #fff;
-   border-radius: 0 5px 5px 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: none;
+   border-radius: 50%;
+   background-color: #aaaaaa;
+   box-shadow: 4px 4px 7px 1px lightgray;
+   color: white;
    cursor: pointer;
-   font-size: 20px;
+   font-size: 18px;
+   padding: 0 12px;
 }
