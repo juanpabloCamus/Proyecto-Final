@@ -1,0 +1,42 @@
+.logged_user_navbar{
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+
+.logged_user_icon{
+    cursor: pointer;
+    width: 60px;
+}
+
+.logged_user_icon img{
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}
+
+.logged_user_menu{
+    display: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px lightgray;
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+    left: -35px;
+    width: 120px;
+}
+
+.logged_user_menu span{
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+}
+
+.logged_user_menu span:hover{
+    background-color: #eaeaea;
+}
+
+.active{
+    display: block;
+}

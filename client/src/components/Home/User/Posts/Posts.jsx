@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
+import CreateJob from "../../Company/CreateJob/CreateJob";
 import FilterBar from "../FilterBar/FilterBar";
 import Post from "../Post/Post";
-import SearchBar from "../SearchBar/SearchBar";
 import styles from "./Posts.module.css";
 
 export function Posts() {
@@ -11,57 +11,67 @@ export function Posts() {
   const jobs = useSelector((state) => state.jobs.jobs);
   const [pagina, setPagina]=useState(0);
   const [render,setRender]= useState([])
+  const [newJobs, setNewJobs] = useState([])
 
-    //setAlgo(value => [...value, algo])
-  
-  useEffect(() => {
-    dispatch(fetchJobs());
-  }, [dispatch]);
-
-let jobsRender = []
-if(render.length<1){
-  if(jobs){
-    if(jobs.length>0){
-      if(jobs[pagina].offers){
-        if(jobsRender.length<pagina+1){
-          for(let i=0;i<jobs[pagina].offers.length;i++){
-            jobsRender.push(jobs[pagina].offers[i])
-          }
-          setRender(jobsRender)
-        }
-      }
-    }
-  }
+if(jobs!==newJobs){
+  setNewJobs(jobs)
+  setRender([])
+  setPagina(0)
 }
-window.onscroll = function (){
-  var scroll = window.scrollY + window.innerHeight > document.documentElement.offsetHeight/100*90
-  if(scroll){
-    if(jobs.length-1>pagina){
-      setPagina(pagina+1)
-    }
+  
+useEffect(() => {
+  dispatch(fetchJobs());
+}, [dispatch]);
+
+useEffect(() => {
+  let jobsRender = []
+  if(render.length<1){
     if(jobs){
       if(jobs.length>0){
-        if(jobs[pagina+1]){
-          if(jobs[pagina+1].offers){
+        if(jobs[pagina]){
+          if(jobs[pagina].offers){
             if(jobsRender.length<pagina+1){
-              for(let i=0;i<jobs[pagina+1].offers.length;i++){
-                jobsRender.push(jobs[pagina+1].offers[i])
+              for(let i=0;i<jobs[pagina].offers.length;i++){
+                jobsRender.push(jobs[pagina].offers[i])
               }
-              let instancia = render.concat(jobsRender)
-              setRender(instancia)
+              setRender(jobsRender)
             }
           }
         }
       }
     }
   }
-}
+  window.onscroll = function (){
+    var scroll = window.scrollY + window.innerHeight > document.documentElement.offsetHeight/100*90
+    if(scroll){
+      if(jobs.length-1>pagina){
+        setPagina(pagina+1)
+      }
+      if(jobs){
+        if(jobs.length>0){
+          if(jobs[pagina+1]){
+            if(jobs[pagina+1].offers){
+              if(jobsRender.length<pagina+1){
+                for(let i=0;i<jobs[pagina+1].offers.length;i++){
+                  jobsRender.push(jobs[pagina+1].offers[i])
+                }
+                let instancia = render.concat(jobsRender)
+                setRender(instancia)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},[jobs,pagina,render])
+
 
   return (
     <div>
       <div>
-        <SearchBar />
         <FilterBar />
+        <CreateJob />
       </div>
       <div className={styles.postsContainer}>
         {render ?
@@ -90,15 +100,7 @@ window.onscroll = function (){
           }):<></>
         ) : (
           <p>No hay Oferta</p>
-        ):<></>}
-        <div>{
-         /*  < >
-          <button  type="submit" onClick={(e)=>handleShowLess(e)}>Pagina Anterior</button><></>
-
-        <button  type="submit" onClick={(e)=>handleShowMore(e)}>Pagina Siguiente</button><></>
-        </> */
-        } </div>
-      
+        ):<></>}      
       </div>
     </div>
   );

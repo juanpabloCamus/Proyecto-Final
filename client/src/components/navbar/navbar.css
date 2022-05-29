@@ -1,5 +1,6 @@
 .nav{
     align-items: center;
+    background-color: white;
     justify-content: space-between;
     display: flex;
     padding: 40px 0;
@@ -8,6 +9,7 @@
     top: 0;
     left: 0;
     padding: 30px;
+    z-index: 100;
 }
 
 .logo{
