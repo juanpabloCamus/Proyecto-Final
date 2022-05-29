@@ -26,15 +26,10 @@ const navigate = useNavigate()
 const dispatch = useDispatch()
 
 
-
-
-
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
-
-   
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
@@ -55,12 +50,6 @@ const loginUser = async() => {
  }
 }
 
-  const handleSelect = (e) => {
-  e.preventDefault();
-  setSelect(e.target.value)
-}
-
-  let rout = '/home'
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,13 +59,6 @@ const loginUser = async() => {
   return (
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
-
-            <label>AcountType*</label>
-            <select onChange={(e)=> handleSelect(e)}>
-              <option value="">Select</option>
-              <option value="Developer">Developer</option>
-              <option value="Company">Company</option>
-            </select>
 
             <label>Email*</label>
             <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>

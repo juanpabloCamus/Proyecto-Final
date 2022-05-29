@@ -1,5 +1,6 @@
 .nav{
     align-items: center;
+    box-shadow: 1px 1px 5px 1px lightgray;
     background-color: white;
     justify-content: space-between;
     display: flex;

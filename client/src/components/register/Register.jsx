@@ -94,7 +94,6 @@ const postNewCompany = async() => {
 
 }
 
-
 const handleSubmit = (e) => {
     e.preventDefault()
     
