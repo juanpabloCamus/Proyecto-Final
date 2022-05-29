@@ -10,8 +10,10 @@ export default function Post({id,position,salary_range,time,requirements,company
   
   if (company_accounts === undefined) return null
   else {
+    if(company_accounts[0]){
     logo = company_accounts[0].logo
     companyName = company_accounts[0].name
+    }
   }
   
   let techs = technologies
