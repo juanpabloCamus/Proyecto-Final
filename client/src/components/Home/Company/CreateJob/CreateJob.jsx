@@ -104,6 +104,7 @@ export default function CreateJob() {
     e.preventDefault()
     postNewJob()
 
+    
   }
 
 
@@ -162,12 +163,14 @@ export default function CreateJob() {
               </select>
 
               <select className={styles.form_select} onChange={addTechs}>
-                <option value="" default>Technologies</option>
+                <option value="" default disabled>Technologies</option>
                 {techs.map((e) => e.name==='Cplus'?(
                 <option key={e.id} value={e.name}>C+</option>
                   ): e.name==='Cplusplus'?(
                     <option key={e.id} value={e.name}>C++</option>
-                      ) : (
+                      ) : e.name==='CSharp'?(
+                        <option key={e.id} value={e.name}>C#</option>
+                          ) : (
                 <option key={e.id} value={e.name}>{e.name}</option>
                   ))}
               </select>
@@ -176,7 +179,7 @@ export default function CreateJob() {
                 {
                   addedTechs.map((e, i) => (
                     <div key={i}>
-                      {e.tech === 'Cplus'?<p>C+</p>:e.tech==='Cplusplus'?<p>C++</p>:<p>{e.tech}</p>}
+                      {e.tech === 'Cplus'?<p>C+</p>:e.tech==='Cplusplus'?<p>C++</p>:e.tech==='CSharp'?<p>C#</p>:<p>{e.tech}</p>}
                       {e.tech===''?<></>:<MdClose onClick={() => handleDelete(e.id)}/>}
                     </div>
                   ))

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-
+import { Link } from 'react-router-dom'
 import profile_image from '../../../assets/profile_img.jpg'
 import styles from './userNav.module.css'
 
 export const UserNav = () => {
 
-const [ toggleMenu, setToggleMenu ] = useState(false)
+  const [ toggleMenu, setToggleMenu ] = useState(false)
 
   const handleMenu = () => {
     setToggleMenu(!toggleMenu)
@@ -18,7 +18,7 @@ const [ toggleMenu, setToggleMenu ] = useState(false)
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>
             <span>Go to profile</span>
-            <span>Logout</span>
+            <span><Link to='/'>Logout</Link></span>
         </div>
     </div>
   )

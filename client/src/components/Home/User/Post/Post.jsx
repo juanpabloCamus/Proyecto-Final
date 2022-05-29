@@ -35,6 +35,8 @@ export default function Post({id,position,salary_range,time,requirements,company
             (<label key={t.id} >C+</label>) :
             t.name==='Cplusplus' ?
             (<label key={t.id} >C++</label>) :
+            t.name==='CSharp' ?
+            (<label key={t.id} >C#</label>) :
             (<label key={t.id} >{t.name}</label>))}
         </div>
       </div>
