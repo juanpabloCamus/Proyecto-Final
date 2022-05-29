@@ -2,12 +2,17 @@ import { React, useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { authActions } from '../../redux/auth/authSlice';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { modalActions } from '../../redux/modal_slice/modalSlice';
+import { authActions } from '../../redux/auth/authSlice';
+
 
 
 import Swal from 'sweetalert2'
 import './login.css'
+import { fetchActions } from '../../redux/users/users'
+
 
 
 export const Login = () => {
@@ -19,11 +24,14 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 const { profileType } = useSelector(state => state.conditionalReg)
+const { isLogged } = useSelector(state => state.auth)
 
 const [select, setSelect] = useState("")
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
+
+
 
 
 const loginUser = async() => {
@@ -35,9 +43,9 @@ const loginUser = async() => {
         icon: 'success',
         text: "Acceso válido"
       })
-      const isLogged = true
-      // dispatch(authActions.setLogin(userData))
-      
+      // const isLogged = true
+
+      dispatch(authActions.getNewUser(res.data))
       navigate('/home')
     }else{
       Swal.fire({
@@ -54,6 +62,7 @@ const loginUser = async() => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
+    dispatch(modalActions.setModalValue())
   }
 
   return (
