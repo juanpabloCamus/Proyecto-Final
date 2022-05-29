@@ -32,6 +32,7 @@ const handleOpenRegisterModal = ()  => {
   return (
       
     <nav className='nav animate__animated animate__fadeInDownBig'>
+       
         <Link to="/">
             <div className="logo">
                 <span>Rocket</span>

@@ -19,7 +19,7 @@ function SearchBar() {
       dispatch(jobsSearchBar(tech))
     };
     return (
-        <div className={style.containerS}>
+        <div >
           <div className={style.SearchBar}>
             <input
             className={style.searchTerm}
@@ -28,9 +28,9 @@ function SearchBar() {
               placeholder="Buscar...."
             />
             <button
-      className={style.BtnSearch}
+             className={style.BtnSearch}
              onClick={(e) => handleSubmit(e)}
-              type="submit"
+             type="submit"
             >
             
              Buscar

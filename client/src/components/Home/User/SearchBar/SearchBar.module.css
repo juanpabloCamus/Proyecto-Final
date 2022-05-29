@@ -4,27 +4,29 @@
    justify-content:center;
 
 }
-.containerS div{
-   padding-right: 30px;
-}
+
 .searchTerm
 {
 
-   border: 3px solid #46499C;
+   width: 280px;
+   padding: 16px 48px 16px 16px;
+   border: 1px solid rgb(230, 230, 230);
+   border-radius: 6px;
+   background-color: rgb(255, 255, 255);
+   font-size: 16px;
+   outline: none;
+   /* border: 3px solid #46499C;
    border-right: none;
-   padding: 5px;
    height: 20px;
    border-radius: 5px 0 0 5px;
    outline: none;
-   color: #46499C;
+   color: #46499C; */
 }
 .searchTerm:focus{
    color: #46499C;
  }
 .BtnSearch
 {
-   width: 100px;
-   height: 36px;
    border: 1px solid #46499C;
    background:#46499C;
    text-align: center;
