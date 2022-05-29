@@ -7,7 +7,7 @@ import { fetchJobs } from '../../../../redux/jobs/jobs';
 export default function Post({id,position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description}) {
   let companyName
   let logo
-
+  
   if (company_accounts === undefined) return null
   else {
     logo = company_accounts[0].logo
@@ -19,7 +19,7 @@ export default function Post({id,position,salary_range,time,requirements,company
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          <img id={styles.logo} src={logo}></img>
+          <img id={styles.logo} src={logo} alt="Company logo"></img>
         </div>
         <div className={styles.detailsContainer}>
           <h2>{companyName}</h2>
