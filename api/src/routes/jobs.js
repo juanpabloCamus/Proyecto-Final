@@ -108,7 +108,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(salary){
-            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+10000$']
+            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','10000$']
             let sal = salario.find(s=>s===salary)
             if(sal){
                 jobs = jobs.filter(j=>j.dataValues.salary_range===sal)
@@ -169,7 +169,7 @@ router.post('/:id', async (req,res)=>{
                 res.send('Pocision invalida')
             }else if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
                 res.send('Tiempo es invalido')
-            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+10000$'){
+            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
                 res.send('Rango salarial no valido')
             }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Nivel de ingles incorrecto')
