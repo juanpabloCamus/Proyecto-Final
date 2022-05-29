@@ -15,7 +15,7 @@
 
 .logo{
     color: #46499c;
-    font-size: 30px;
+    font-size: 45px;
     font-weight: 700;
     font-style: italic;
 }
@@ -44,4 +44,28 @@
     border: 2px solid black;
     padding: 10px;
     border-radius: 5px;
+}
+
+.buttonJob{
+    background-color: #46499c;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    border: none;
+    font-size: 16px;
+    
+    padding: 15px;
+}
+
+.buttonJob:hover{
+    background-color: rgba(70, 73, 156, 0.9);
+}
+
+.profileDiv{
+    display: flex;
+    gap: 100px;
+}
+
+.searchBar{
+    margin-left: 150px;
 }

@@ -4,6 +4,7 @@
     overflow: hidden;
     width: 60%;
     margin: 0 auto;
+    margin-top: 50px;
 }
 
 .form{
@@ -79,4 +80,10 @@ textarea{
 
 .form_button button:hover{
     background-color: rgba(70, 73, 156, .9);
+}
+
+.arrowBack{
+    width: 40px;
+    margin-top: 40px;
+    margin-left: 100px;
 }
