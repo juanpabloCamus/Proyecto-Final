@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { authActions } from '../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
+//import Reducer from '../../redux/Profile/profileData'
 
 
 import Swal from 'sweetalert2'
@@ -42,7 +43,7 @@ const loginUser = async() => {
       })
       const isLogged = true
       // dispatch(authActions.setLogin(userData))
-      
+      //dispatch(Reducer(res.data))
       navigate('/home')
     }else{
       Swal.fire({
