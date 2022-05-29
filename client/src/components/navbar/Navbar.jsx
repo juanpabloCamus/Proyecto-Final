@@ -40,6 +40,7 @@ const handleOpenRegisterModal = ()  => {
                 <span>Rocket</span>
             </div>
         </Link>
+
         {ubicacion === '/' ?
         <ul className="navbar">
             <li>
@@ -55,11 +56,20 @@ const handleOpenRegisterModal = ()  => {
                 >Sign Up</button>
             </li>
         </ul>:
+        
         <>
-        <div>
+
+        <div className='searchBar'>
+
             <SearchBar />
         </div>
-        <div>
+
+        <div className='profileDiv'>
+        <Link to="/home/createjob">
+            <div className="buttonJob">
+                <span>Create new job</span>
+            </div>
+        </Link>
             <UserNav />
         </div>
         </>
