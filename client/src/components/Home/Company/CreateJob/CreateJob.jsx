@@ -59,7 +59,7 @@ export default function CreateJob() {
 
   const postNewJob = async () => {
     try {
-          const res = await axios.post('http://localhost:3001/jobs/1', {
+           await axios.post('http://localhost:3001/jobs/1', {
             position,
             description,
             time,
@@ -69,7 +69,6 @@ export default function CreateJob() {
             seniority,
             technologies: addedTechs.map(tech => tech.tech)
         })
-        console.log(res);
     } catch (error) {
       console.log(error);
     }
