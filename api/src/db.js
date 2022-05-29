@@ -135,14 +135,14 @@ async function loadDb(){
     })
 
  
-    await j.addTechnology(1)
-    await j.addTechnology(2)
-    await j.addTechnology(3)
-    
+    await j.addTechnology(j.dataValues.id + 1)
+    await j.addTechnology(j.dataValues.id + 2)
+    await j.addTechnology(j.dataValues.id + 3)
 
-    
-    await j.addCompany_account(1)
-    
+
+
+    await j.addCompany_account(j.dataValues.id)
+
 
     for (let i = 0; i < company.length; i++) {
       await j.addUser_account(i)
@@ -151,8 +151,6 @@ async function loadDb(){
   })
 
 }
-
-
 module.exports = {
   ...db.models,
   db,

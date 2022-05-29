@@ -13,7 +13,7 @@ const [ toggleMenu, setToggleMenu ] = useState(false)
   
   return (
     <div className={ styles.logged_user_navbar }>
-        <div onClick={ handleMenu } className={ styles.logged_user_icon }>
+                <div onClick={ handleMenu } className={ styles.logged_user_icon }>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>

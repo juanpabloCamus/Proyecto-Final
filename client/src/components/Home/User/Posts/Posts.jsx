@@ -71,7 +71,7 @@ useEffect(() => {
     <div>
       <div>
         <FilterBar />
-        <CreateJob />
+        {/* <CreateJob /> */}
       </div>
       <div className={styles.postsContainer}>
         {render ?
