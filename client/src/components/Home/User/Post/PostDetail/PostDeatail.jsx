@@ -19,7 +19,6 @@ function PostDetail() {
     if (detail[0] === undefined) return(<h1>Loading...</h1>)
     let {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description} = detail[0]
     if (company_accounts === undefined) return(<h1>Loading...</h1>)
-    console.log(technologies);
     return (
         <div className={styles.pageContainer}>
             <div className={styles.back}>
@@ -30,7 +29,7 @@ function PostDetail() {
             </div>
             <div className={styles.companyInfoContainer}>
                 <div className={styles.logoContainer}>
-                <img id={styles.logo} src={company_accounts[0].logo}></img>
+                <img id={styles.logo} src={company_accounts[0].logo} alt=''></img>
             </div>
             <div className={styles.nameContainer}>
                 <h1>{company_accounts[0].name}</h1>
