@@ -8,11 +8,13 @@ export default function Post({id,position,salary_range,time,requirements,company
   let companyName
   let logo
   
-  // if (company_accounts === undefined) return null
-  // else {
-  //   logo = company_accounts[0].logo
-  //   companyName = company_accounts[0].name
-  // }
+  if (company_accounts === undefined) return null
+  else {
+    if(company_accounts[0]){
+    logo = company_accounts[0].logo
+    companyName = company_accounts[0].name
+    }
+  }
   
   let techs = technologies
   return (

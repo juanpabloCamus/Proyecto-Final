@@ -113,7 +113,7 @@ export default function CreateJob() {
               <select className={styles.form_select} onChange={handleSeniorF}>
               
               <option value="" default>Seniority</option>
-                <option value="No Especificado">No Especificado</option>
+                <option value="Not Specified">Not Specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
@@ -122,7 +122,7 @@ export default function CreateJob() {
 
           <select className={styles.form_select} onChange={handleTimeF}>
               <option value="" default>Time</option>
-                <option value="No Especificado">No Especificado</option>
+                <option value="Not Specified">Not Specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
@@ -130,8 +130,7 @@ export default function CreateJob() {
           
               <select className={styles.form_select} onChange={handleELevelF}>
               <option value="" default>English Level</option>
-                <option value="No Especificado">No Especificado</option>
-                <option value="No Requerido">No Requerido</option>
+                <option value="Not required">Not required</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
@@ -141,12 +140,12 @@ export default function CreateJob() {
           
               <select className={styles.form_select}  onChange={handleSalaryF}>
               <option value="" default>Salary</option>
-                <option value="No Especificado">No Especificado</option>
+                <option value="Not Specified">Not Specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
                 <option value="6000$ - 10000$">6000$ - 10000$</option>
-                <option value="+ 10000$">+ 10000$</option>
+                <option value="+10000$">+ 10000$</option>
               </select>
 
               <select className={styles.form_select} onChange={addTechs}>
