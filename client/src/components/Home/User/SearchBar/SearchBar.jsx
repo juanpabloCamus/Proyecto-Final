@@ -2,7 +2,8 @@ import React from 'react'
 import {useState} from "react";
 import {useDispatch} from "react-redux"
 import { jobsSearchBar } from "../../../../redux/jobs/jobsSearchBar";
-import style from './SearchBar.module.css'
+import style from "./SearchBar.module.css"
+
 
 function SearchBar() {
 
@@ -25,15 +26,15 @@ function SearchBar() {
             className={style.searchTerm}
               onChange={(e)=> handleChange(e)}        
               type="text"
-              placeholder="Buscar...."
+              placeholder="Buscar tecnologia.."
             />
             <button
-             className={style.BtnSearch}
-             onClick={(e) => handleSubmit(e)}
-             type="submit"
+            className={style.BtnSearch}
+            onClick={(e) => handleSubmit(e)}
+              type="submit"
             >
-            
-             Buscar
+            Buscar
+             
             </button>
           </div>
         </div>

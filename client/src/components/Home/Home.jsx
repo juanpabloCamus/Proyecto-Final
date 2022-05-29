@@ -1,6 +1,11 @@
 import React   from 'react'
 import { Navbar } from '../navbar/Navbar'
+<<<<<<< HEAD
 import { UserNav } from '../navbar/user_nav/UserNav'
+=======
+import { Company } from './Company/Company'
+
+>>>>>>> b16926ecfdd2d8612a7a5d4dd032a26da07c9cdd
 import Developer from './User/Developer'
 
 const Home = () => {
@@ -12,7 +17,7 @@ const Home = () => {
     <div>
       <UserNav/>
       <Developer />
-
+      <Company />
     </div>
   )
 }

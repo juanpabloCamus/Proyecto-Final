@@ -20,6 +20,7 @@ export const store = configureStore({
         jobs:jobsSlice,
         techs:techsSlice,
         jobDetail: jobDetailSlice,
+       
     }
 })
 
