@@ -50,7 +50,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(seniority){
-            let snrt = ['No Especificado', 'Junior', 'Semi-Senior', 'Senior']
+            let snrt = ['Not Specified', 'Junior', 'Semi-Senior', 'Senior']
             let seni = snrt.find(s=>s===seniority)
             if(seni){
                 jobs = jobs.filter(j=>j.dataValues.seniority===seni)
@@ -58,7 +58,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(time){
-            let tiempo = ['No Especificado', 'Part-Time', 'Full-Time']
+            let tiempo = ['Not Specified', 'Part-Time', 'Full-Time']
             let tim = tiempo.find(t=>t===time)
             if(tim){
                 jobs = jobs.filter(j=>j.dataValues.time===tim)
@@ -66,7 +66,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(eLevel){
-            let ingles = ['No Requerido','Basic','Conversational', 'Advanced or Native']
+            let ingles = ['Not required','Basic','Conversational', 'Advanced or Native']
             let eng = ingles.find(i=>i===eLevel)
             if(eng){
                 jobs = jobs.filter(j=>j.dataValues.english_level===eng)
@@ -74,7 +74,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(salary){
-            let salario = ['No Especificado','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+ 10000$']
+            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+10000$']
             let sal = salario.find(s=>s===salary)
             if(sal){
                 jobs = jobs.filter(j=>j.dataValues.salary_range===sal)
@@ -133,13 +133,13 @@ router.post('/:id', async (req,res)=>{
         if(position&&description&&time&&salary_range&&english_level&&requirements&&seniority&&technologies){
             if(!/^[a-zA-Z\s]+$/.test(position)){
                 res.send('Pocision invalida')
-            }else if(time!=='No Especificado'&&time!=='Part-Time'&&time!=='Full-Time'){
+            }else if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
                 res.send('Tiempo es invalido')
-            }else if(salary_range!=='No Especificado'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+ 10000$'){
+            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+10000$'){
                 res.send('Rango salarial no valido')
-            }else if(english_level!=='No Requerido'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Nivel de ingles incorrecto')
-            }else if(seniority!=='No Especificado'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+            }else if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
                 res.send('seniority incorrecto')
             }else{
                 const newJob = await job.create({
@@ -157,12 +157,10 @@ router.post('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
-
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
                     await newJob.addTechnology(tecno.dataValues.id)
                 }
-
                 await newJob.addCompany_account(id)
 
                 res.send('Oferta laboral creada correctamente.')
