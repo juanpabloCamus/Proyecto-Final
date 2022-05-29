@@ -32,7 +32,7 @@ function SearchBar() {
               type="submit"
             >
             
-             Buscar tecnologia
+             Search Technology
             </button>
           </div>
         </div>

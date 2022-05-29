@@ -69,7 +69,7 @@ function FilterBar() {
 
          
             <select className={style.filter} onChange={(e) => handleTimeF(e)}>
-            <option value="" default>Horario</option>
+            <option value="" default>Time</option>
               <option value="No Especificado">No Especificado</option>
               <option value="Part-Time">Part-Time</option>
               <option value="Full-Time">Full-Time</option>
