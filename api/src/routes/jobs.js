@@ -169,7 +169,7 @@ router.post('/:id', async (req,res)=>{
                 })
                 console.log(jobCreated[0].company_accounts)
 
-                res.send(jobCreated)
+                res.send('Oferta laboral creada correctamente.')
             }
         }else{
             res.send('Completar todos los campos.')

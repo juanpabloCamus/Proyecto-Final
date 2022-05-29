@@ -28,7 +28,7 @@ function SearchBar() {
             className={style.searchTerm}
               onChange={(e)=> handleChange(e)}        
               type="text"
-              placeholder="Buscar tecnologia.."
+              placeholder="Search.."
             />
           
               <button
