@@ -5,16 +5,13 @@ import axios from 'axios'
 
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../redux/modal_slice/modalSlice';
-<<<<<<< HEAD
 import { authActions } from '../../redux/auth/authSlice';
 
-=======
->>>>>>> eb54a1d7581666882317796383b2bab868c96871
 
 
 import Swal from 'sweetalert2'
 import './login.css'
-import { fetchActions } from '../../redux/users/users'
+
 
 
 
