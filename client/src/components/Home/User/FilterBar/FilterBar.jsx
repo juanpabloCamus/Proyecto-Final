@@ -51,10 +51,13 @@ function FilterBar() {
 
           <select className={style.filter} onChange={(e) => handleTechs(e)}>
             <option value="" default>Technologies</option>
-            {techs.map((e) => (
-              <option key={e.id} value={e.name}>{e.name}</option>
-              
-            ))}
+            {techs.map((e) => e.name==='Cplus'?(
+                <option key={e.id} value={e.name}>C+</option>
+                  ): e.name==='Cplusplus'?(
+                    <option key={e.id} value={e.name}>C++</option>
+                      ) : (
+                <option key={e.id} value={e.name}>{e.name}</option>
+                  ))}
           </select>
          
             <select className={style.filter} onChange={(e) => handleSeniorF(e)}>
@@ -93,7 +96,7 @@ function FilterBar() {
               <option value="1000$ - 3000$">1000$ - 3000$</option>
               <option value="3000$ - 6000$">3000$ - 6000$</option>
               <option value="6000$ - 10000$">6000$ - 10000$</option>
-              <option value="+10000$">+ 10000$</option>
+              <option value="10000$">+ 10000$</option>
             </select>
           
         

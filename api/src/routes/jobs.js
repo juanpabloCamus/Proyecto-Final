@@ -18,17 +18,51 @@ router.get('/', async (req,res)=>{
         let Paginado = []
 
         if(techSearch){
+            let allTechs = []
             let techs = await technology.findAll({
                 order: [
                     ['id', 'ASC']
                 ]
             })
-            let tecno = techs.find(t=>t.dataValues.name===techSearch)
-            if(tecno){
-                tecno = tecno.dataValues.name
-                if(jobs.length>0){
-                    jobs = jobs.filter(j=>j.dataValues.technologies.find(t=>t.dataValues.name===tecno))
+            function FindTecno (tecno, search) {
+                const length = search.length
+                
+                    if(tecno[0]===search[0]){
+                        for(let j=0;j<search.length;j++){
+                            if(tecno[0+j]===search[j]){
+                                if(j===search.length-1){
+                                    return tecno
+                                }
+                            }else{
+                                continue;
+                            }
+                        }
+                    } 
+                return '';
+            }
+            for(let i=0;i<techs.length;i++){
+                if(techs[i].dataValues.name.toLowerCase()===FindTecno(techs[i].dataValues.name.toLowerCase(),techSearch.toLowerCase())){
+                    let tecno = techs[i].dataValues.name
+                    allTechs.push(tecno)
                 }
+            }
+            let jobsInstacia = []
+            let jobsSearched = []
+            if(allTechs.length>0){
+                for(let i=0;i<allTechs.length;i++){
+                    if(jobs.length>0){
+                        let instancia = jobs.filter(j=>j.dataValues.technologies.find(t=>t.dataValues.name===allTechs[i]))
+                        jobsInstacia.push(instancia)
+                    }
+                }
+                for(let i=0;i<jobsInstacia.length;i++){
+                    for(let j=0;j<jobsInstacia[i].length;j++){
+                        if(!jobsSearched.includes(jobsInstacia[i][j])){
+                            jobsSearched.push(jobsInstacia[i][j])
+                        }
+                    }
+                }
+                jobs = jobsSearched
             }else{
                 jobs = []
             }
@@ -63,7 +97,7 @@ router.get('/', async (req,res)=>{
             if(tim){
                 jobs = jobs.filter(j=>j.dataValues.time===tim)
             }
-        }
+        } 
 
         if(eLevel){
             let ingles = ['Not required','Basic','Conversational', 'Advanced or Native']
@@ -74,7 +108,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(salary){
-            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','+10000$']
+            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','10000$']
             let sal = salario.find(s=>s===salary)
             if(sal){
                 jobs = jobs.filter(j=>j.dataValues.salary_range===sal)
@@ -135,7 +169,7 @@ router.post('/:id', async (req,res)=>{
                 res.send('Pocision invalida')
             }else if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
                 res.send('Tiempo es invalido')
-            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='+10000$'){
+            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
                 res.send('Rango salarial no valido')
             }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Nivel de ingles incorrecto')

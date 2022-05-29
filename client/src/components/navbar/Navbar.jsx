@@ -35,43 +35,45 @@ const handleOpenRegisterModal = ()  => {
   return (
       
     <nav className='nav animate__animated animate__fadeInDownBig'>
-        <Link to="/">
-            <div className="logo">
-                <span>Rocket</span>
-            </div>
-        </Link>
-
+        {ubicacion === '/'?
+            <Link to="/">
+                <div className="logo">
+                    <span>Rocket</span>
+                </div>
+            </Link>:
+            <Link to="/home">
+                <div className="logo">
+                    <span>Rocket</span>
+                </div>
+            </Link>
+        }
         {ubicacion === '/' ?
         <ul className="navbar">
             <li>
                 <button
-                    onClick={ handleOpenLoginModal }
-                    className="navbar_button login"
+                onClick={ handleOpenLoginModal }
+                className="navbar_button login"
                 >Login</button>
             </li>
             <li>
                 <button
-                    onClick={ handleOpenRegisterModal }
-                    className="navbar_button register"
+                onClick={ handleOpenRegisterModal }
+                className="navbar_button register"
                 >Sign Up</button>
             </li>
         </ul>:
-        
         <>
-
         <div className='searchBar'>
-
             <SearchBar />
         </div>
-
-        <div className='profileDiv'>
-        <Link to="/home/createjob">
-            <div className="buttonJob">
-                <span>Create new job</span>
+            <div className='profileDiv'>
+                <Link to="/home/createjob">
+                    <div className="buttonJob">
+                        <span>Create new job</span>
+                    </div>
+                </Link>
+                <UserNav />
             </div>
-        </Link>
-            <UserNav />
-        </div>
         </>
         }
     </nav>
