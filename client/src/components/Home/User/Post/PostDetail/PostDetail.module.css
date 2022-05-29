@@ -14,12 +14,11 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 1000px;
-    background-color: rgba(239, 245, 250, 0.793);
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 50px;
-    border-radius: 5px;
+    border-bottom: 1px solid black;
 }
 
 .back{
@@ -67,6 +66,55 @@
     background-color: rgba(70, 73, 156, 0.9);
 }
 
-#position{
-    margin-bottom: 50px;
+.logoContainer{
+    width: 200px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.nameContainer{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#logo{
+    max-width: 150px;
+}
+
+.companyInfoContainer{
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    align-content: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.techsDetailContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.techContainer{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.tech{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: rgba(201, 221, 238, 0.51);
+    color: #46499c;
 }

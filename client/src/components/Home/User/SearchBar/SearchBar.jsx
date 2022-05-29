@@ -33,8 +33,8 @@ function SearchBar() {
             onClick={(e) => handleSubmit(e)}
               type="submit"
             >
-            Buscar
-             
+            
+             Search Technology
             </button>
           </div>
         </div>

@@ -16,24 +16,36 @@ function PostDetail() {
     },[dispatch,id])
 
     let detail = useSelector((state)=> state.jobDetail.jobDetail);
+    if (detail[0] === undefined) return(<h1>Loading...</h1>)
     let {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description} = detail[0]
-    
+    if (company_accounts === undefined) return(<h1>Loading...</h1>)
+    console.log(technologies);
     return (
         <div className={styles.pageContainer}>
             <div className={styles.back}>
             <Link to={'/home'}>
                 <img alt="arrowBack" src={arrow}></img>
             </Link>
+            
+            </div>
+            <div className={styles.companyInfoContainer}>
+                <div className={styles.logoContainer}>
+                <img id={styles.logo} src={company_accounts[0].logo}></img>
+            </div>
+            <div className={styles.nameContainer}>
+                <h1>{company_accounts[0].name}</h1>
+                <h5>{company_accounts[0].speciality}</h5>
+            </div>
             </div>
             <div className={styles.detailContainer}>
                 <div className={styles.detailOne}>
                     <h2 id={styles.position}>{position}</h2>
                     <div className={styles.fields}>
-                        <h4>Rango de salario: </h4>
+                        <h4>Salary Range: </h4>
                         <label>{salary_range}</label>
                     </div>
                     <div className={styles.fields}>
-                        <h4>Tiempo: </h4>
+                        <h4>Time: </h4>
                         <label>{time}</label>
                     </div>
                     <div className={styles.fields}>
@@ -41,23 +53,29 @@ function PostDetail() {
                         <label>{seniority}</label>
                     </div>
                     <div className={styles.fields}>
-                        <h4>Nivel de Ingles: </h4>
+                        <h4>English Level: </h4>
                         <label>{english_level}</label>
                     </div>
                 </div>
                 <div className={styles.detailTwo}>
                     <div id={styles.description} className={styles.fields}>
-                        <h4>Descripcion</h4>
+                        <h4>Description</h4>
                         <label>{description}</label>
                     </div>
                     <div id={styles.requirements} className={styles.fields}>
-                        <h4>Requerimientos</h4>
+                        <h4>Requirements</h4>
                         <label>{requirements}</label>
                     </div>
                 </div>
             </div>
+            <div className={styles.techsDetailContainer}>
+                <h4>Technologies Required</h4>
+                <div className={styles.techContainer}>
+                {technologies.map(t => (<label className={styles.tech} key={t.id} >{t.name}</label>))}
+                </div>
+            </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.button}>Aplicar</button>
+                <button className={styles.button}>Apply now</button>
                 <button className={styles.button}><img id={styles.heart} src={heart}></img></button>
             </div>
         </div>
