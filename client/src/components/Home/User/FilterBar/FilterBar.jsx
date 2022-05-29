@@ -93,7 +93,7 @@ function FilterBar() {
               <option value="1000$ - 3000$">1000$ - 3000$</option>
               <option value="3000$ - 6000$">3000$ - 6000$</option>
               <option value="6000$ - 10000$">6000$ - 10000$</option>
-              <option value="+ 10000$">+ 10000$</option>
+              <option value="+10000$">+ 10000$</option>
             </select>
           
         
