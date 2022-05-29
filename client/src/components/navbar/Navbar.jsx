@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
+import SearchBar from '../Home/User/SearchBar/SearchBar'
 
 import './navbar.css'
 import { UserNav } from './user_nav/UserNav'
@@ -13,6 +14,8 @@ export const Navbar = () => {
 const dispatch = useDispatch()
 
 //Cambiar cuando este lista la autenticacion
+
+let ubicacion = window.location.pathname
 
 
 
@@ -37,7 +40,7 @@ const handleOpenRegisterModal = ()  => {
                 <span>Rocket</span>
             </div>
         </Link>
-        
+        {ubicacion === '/' ?
         <ul className="navbar">
             <li>
                 <button
@@ -51,8 +54,16 @@ const handleOpenRegisterModal = ()  => {
                     className="navbar_button register"
                 >Sign Up</button>
             </li>
-        </ul>
-        <UserNav />
+        </ul>:
+        <>
+        <div>
+            <SearchBar />
+        </div>
+        <div>
+            <UserNav />
+        </div>
+        </>
+        }
     </nav>
   )
 }

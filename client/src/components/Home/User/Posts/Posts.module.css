@@ -5,11 +5,8 @@
   gap: 2rem;
   max-width: 120rem;
   margin: 5rem auto;
-
-  grid-gap: 1rem;
   gap: 2rem;
   width: 100%;
-  padding: 0%;
 }
 a:link,
 a:visited,
@@ -30,4 +27,7 @@ a:active {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 }
