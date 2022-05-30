@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { authActions } from '../../redux/auth/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
-//import Reducer from '../../redux/Profile/profileData'
+import { modalActions } from '../../redux/modal_slice/modalSlice';
 
 
 import Swal from 'sweetalert2'
@@ -20,6 +20,7 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 const { profileType } = useSelector(state => state.conditionalReg)
+const data = useSelector(state => state.auth)
 
 const [select, setSelect] = useState("")
 
@@ -37,7 +38,7 @@ const loginUser = async() => {
         text: "Acceso válido"
       })
       const isLogged = true
-      // dispatch(authActions.setLogin(userData))
+      dispatch(authActions.setLogin(res.data))
       //dispatch(Reducer(res.data))
       navigate('/home')
     }else{
@@ -55,6 +56,7 @@ const loginUser = async() => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
+    dispatch(modalActions.setModalValue())
   }
 
   return (
