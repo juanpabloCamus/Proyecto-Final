@@ -23,8 +23,9 @@ router.post('/', async (req,res)=>{
         }else{
             let mailCompany = await company_account.findAll({
                 where:{
-                    email: email,
+                    email: email
                 },
+                    include: job
             })
             if(mailCompany.length>0){
                 if(mailCompany[0].password===password){
