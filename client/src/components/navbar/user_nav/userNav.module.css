@@ -45,3 +45,7 @@
 .active{
     display: block;
 }
+
+.option{
+    background: white;
+}

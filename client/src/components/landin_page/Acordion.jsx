@@ -32,22 +32,7 @@ export default function Acordion () {
             <li>rocket@rocket.com.ar</li>
         </ul>
     </div>
-    <div className="box-item">
-        <p className="title">¿Por qué crees que te pusieron tu nombre?</p>
-        <ul className="box-item-content">
-            <li>No lo se...tu dimelo</li>
-        </ul>
     </div>
-    <div className="box-item">
-        <p className="title">¿Querés plata?</p>
-        <ul className="box-item-content">
-            <li>Nosotros también</li>
-        </ul>
-    </div>
-</div>
-    
-  
- 
 </div>
     );
 };
