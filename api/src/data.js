@@ -3,7 +3,6 @@ const axios = require('axios');
 const user = [
     {
         fullName: 'Mati Monas',
-        last_name: 'Monas',
         email: 'matimonas97@notevoyadecir.com',
         password: '2646545645sa46d',
         date_birth: '2022-05-10',
@@ -58,6 +57,11 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
+    {
+        fullName: 'Admin',
+        email: 'admin@admin.com',
+        password: 'admin',
+    }
 ]
 
 const company = [
