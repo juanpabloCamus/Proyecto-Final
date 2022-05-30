@@ -138,11 +138,11 @@ async function loadDb(){
     await j.addTechnology(j.dataValues.id + 1)
     await j.addTechnology(j.dataValues.id + 2)
     await j.addTechnology(j.dataValues.id + 3)
+    
 
-
-
+    
     await j.addCompany_account(j.dataValues.id)
-
+    
 
     for (let i = 0; i < company.length; i++) {
       await j.addUser_account(i)

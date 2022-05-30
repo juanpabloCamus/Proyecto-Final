@@ -250,13 +250,13 @@ const techs = [
         name: 'C'
     },
     {
-        name: 'C++'
+        name: 'Cplusplus'
     },
     {
         name: 'TypeScript'
     },
     {
-        name: 'C+'
+        name: 'Cplus'
     },
     {
         name: 'Assembler'

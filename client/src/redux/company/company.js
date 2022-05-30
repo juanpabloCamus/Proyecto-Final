@@ -4,7 +4,6 @@ export const fetchCompany=createAsyncThunk('company/fetchCompany',
 async()=>{
     try {
         const res=await axios.get('http://localhost:3001/company/1')
-        console.log(res)
         return res.data
     } catch (error) {
         console.log(error)

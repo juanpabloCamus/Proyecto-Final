@@ -8,26 +8,26 @@ export default function Acordion () {
  
   <div className="box">
     <div className="box-item">
-        <p className="title">¿Quienes somos?</p>
+        <p className="title">About us</p>
         <ul className="box-item-content">
-            <li>Somos el exito papi</li>
+            <li>We are Henry Students</li>
         </ul>
     </div>
     <div className="box-item">
-        <p className="title">¿Que hacemos?</p>
+        <p className="title">What do we do?</p>
         <ul className="box-item-content">
-            <li>Servicios ágiles, con personalidad y marcado estilo propio.</li>
+            <li>We will help you to obatin your dream job</li>
         </ul>
     </div>
     <div  className="box-item ">
-        <p className="title">Saber más</p>
+        <p className="title">Know more</p>
         <ul className="box-item-content">
             <li>www.Rocket.com.ar</li>
        
         </ul>
     </div>
     <div className="box-item">
-        <p className="title">Contactanos</p>
+        <p className="title">Contact us</p>
         <ul className="box-item-content">
             <li>rocket@rocket.com.ar</li>
         </ul>
