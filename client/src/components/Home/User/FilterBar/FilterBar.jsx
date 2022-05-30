@@ -51,16 +51,21 @@ function FilterBar() {
 
           <select className={style.filter} onChange={(e) => handleTechs(e)}>
             <option value="" default>Technologies</option>
-            {techs.map((e) => (
-              <option key={e.id} value={e.name}>{e.name}</option>
-              
-            ))}
+            {techs.map((e) => e.name==='Cplus'?(
+                <option key={e.id} value={e.name}>C+</option>
+                  ): e.name==='Cplusplus'?(
+                    <option key={e.id} value={e.name}>C++</option>
+                      ) : e.name==='CSharp'? 
+                      <option key={e.id} value={e.name}>C#</option>
+                      : (
+                <option key={e.id} value={e.name}>{e.name}</option>
+                  ))}
           </select>
          
             <select className={style.filter} onChange={(e) => handleSeniorF(e)}>
              
              <option value="" default>Seniority</option>
-              <option value="No Especificado">No Especificado</option>
+              <option value='Not Specified'>Not Specified</option>
               <option value="Senior">Senior</option>
               <option value="Semi-Senior">Semi-Senior</option>
               <option value="Junior">Junior</option>
@@ -69,8 +74,8 @@ function FilterBar() {
 
          
             <select className={style.filter} onChange={(e) => handleTimeF(e)}>
-            <option value="" default>Horario</option>
-              <option value="No Especificado">No Especificado</option>
+            <option value="" default>Time</option>
+              <option value='Not Specified'>Not Specified</option>
               <option value="Part-Time">Part-Time</option>
               <option value="Full-Time">Full-Time</option>
             </select>
@@ -78,8 +83,7 @@ function FilterBar() {
          
             <select className={style.filter} onChange={(e) => handleELevelF(e)}>
             <option value="" default>English Level</option>
-              <option value="No Especificado">No Especificado</option>
-              <option value="No Requerido">No Requerido</option>
+              <option value="Not required">Not required</option>
               <option value="Basic">Basic</option>
               <option value="Conversational">Conversational</option>
               <option value="Advanced or Native">Advanced or Native</option>
@@ -89,12 +93,12 @@ function FilterBar() {
          
             <select className={style.filter}  onChange={(e) => handleSalaryF(e)}>
             <option value="" default>Salary</option>
-              <option value="No Especificado">No Especificado</option>
+              <option value='Not Specified'>Not Specified</option>
               <option value="0$ - 1000$">0$ - 1000$</option>
               <option value="1000$ - 3000$">1000$ - 3000$</option>
               <option value="3000$ - 6000$">3000$ - 6000$</option>
               <option value="6000$ - 10000$">6000$ - 10000$</option>
-              <option value="+ 10000$">+ 10000$</option>
+              <option value="10000$">+ 10000$</option>
             </select>
           
         

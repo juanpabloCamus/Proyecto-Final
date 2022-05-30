@@ -43,8 +43,8 @@ module.exports = (sequelize) => {
         },
         
         size: {
-            type: DataTypes.ENUM('No Especificado','0 - 500','500 - 2000','2000 - 5000','5000 - 10000','10000 - 50000','+50000'),
-            defaultValue: 'No Especificado'
+            type: DataTypes.ENUM('Not Specified','0 - 500','500 - 2000','2000 - 5000','5000 - 10000','10000 - 50000','+50000'),
+            defaultValue: 'Not Specified'
         },
 
         foundation: {

@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import axios from 'axios'
@@ -26,6 +26,7 @@ const [showElements, setShowelements] = useState(false)
 const { name, fullName, email, password } = formValues
 
 const dispatch = useDispatch()
+
 const { profileType } = useSelector(state => state.conditionalReg)
 
 
@@ -46,11 +47,12 @@ const activeComForm = () => {
 const postNewUser = async() => {
     try {
         const res = await axios.post('http://localhost:3001/users/register', formValues)
-        if(typeof res.data === "object"){
+        if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: 'Usuario creado correctamente.'
+                text: 'Usuario creado'
               })
+              localStorage.setItem("userType", profileType)
         }
         else{
             Swal.fire({
@@ -70,12 +72,13 @@ const postNewUser = async() => {
 const postNewCompany = async() => {
     try {
         const res = await axios.post('http://localhost:3001/company/register', formValues)
-        
-        if(typeof res.data === "object"){
+ 
+        if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: 'Empresa creada correctamente.'
+                text: "Usuario creado"
               })
+              localStorage.setItem("userType", profileType)
         }else{
 
             Swal.fire({
@@ -84,33 +87,31 @@ const postNewCompany = async() => {
                 text: res.data
               })
         }
-        
+       
     } catch (error) {
         console.log(error)
     }
 
 }
 
-
 const handleSubmit = (e) => {
     e.preventDefault()
-
+    
     if(profileType === 'dev'){
         postNewUser()
+        dispatch(modalActions.activateRegisterModal(false))
         dispatch(modalActions.setModalValue())
-        
     }
 
     if(profileType === 'com'){
         postNewCompany()
+        dispatch(modalActions.activateRegisterModal(false))
         dispatch(modalActions.setModalValue())
     }
 
+    
+
 }
-
-console.log(showElements)
-
-
 
   return (
     <div>

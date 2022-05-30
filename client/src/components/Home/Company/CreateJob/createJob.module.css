@@ -1,0 +1,89 @@
+.form_container{
+    box-shadow: 2px 2px 5px 1px lightgrey;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.form{
+    padding: 40px;
+}
+
+.form_title{
+    background-color: #46499c;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.form_title h2{
+    font-size: 28px;
+}
+
+.create_job_form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+}
+
+.form_left_column{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label{
+    font-size: 18px;
+}
+
+.form_select, input{
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    padding: 10px;
+    outline: none;
+}
+
+.form_right_column{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;  
+}
+
+textarea{
+    resize: vertical;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.form_button{
+    text-align: center;
+}
+
+.form_button button{
+    background-color: rgb(70, 73, 156);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 50px;
+    margin-top: 30px;
+}
+
+.form_button button:hover{
+    background-color: rgba(70, 73, 156, .9);
+}
+
+.arrowBack{
+    width: 40px;
+    margin-top: 40px;
+    margin-left: 100px;
+}

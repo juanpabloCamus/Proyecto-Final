@@ -2,6 +2,10 @@ import React from 'react'
 import {useState} from "react";
 import {useDispatch} from "react-redux"
 import { jobsSearchBar } from "../../../../redux/jobs/jobsSearchBar";
+import { GoSearch } from 'react-icons/go'
+
+
+import style from "./SearchBar.module.css"
 
 
 function SearchBar() {
@@ -16,26 +20,26 @@ function SearchBar() {
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(jobsSearchBar(tech))
+      dispatch(jobsSearchBar(tech==='C+'?'Cplus':tech==='C++'?'Cplusplus':tech==='C#'?'CSharp':tech))
     };
     return (
-        <div >
-          <div >
+          <div className={style.searchBar}>
             <input
+            className={style.searchTerm}
               onChange={(e)=> handleChange(e)}        
-              type="text"
-              placeholder="Buscar...."
+              type="search"
+              placeholder="Search technology.."
             />
-            <button
-    
-             onClick={(e) => handleSubmit(e)}
-              type="submit"
-            >
+          
+              <button
+              className={style.BtnSearch}
+              onClick={(e) => handleSubmit(e)}
+                type="submit"
+              >
+                <GoSearch />
+              </button>
             
-             Buscar tecnologia
-            </button>
           </div>
-        </div>
       );
 
    
