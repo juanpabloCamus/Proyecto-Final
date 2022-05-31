@@ -9,7 +9,7 @@ import CompanyNav from "./company_nav/CompanyNav";
 import "./navbar.css";
 import { UserNav } from "./user_nav/UserNav";
 
-export const Navbar = () => {
+export const Navbar = ({id}) => {
   const dispatch = useDispatch();
 
   //Cambiar cuando este lista la autenticacion
@@ -84,7 +84,7 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div>
-                <CompanyNav />
+                <CompanyNav id = {id} />
               </div>
             </>
           )}

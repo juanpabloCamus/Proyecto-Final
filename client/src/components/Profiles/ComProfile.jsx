@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from './ComProfile.module.css';
 import { Navbar } from "../navbar/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import location from '../../assets/location.png';
 import size from '../../assets/size.png';
 import web from '../../assets/website.png';
+import { fetchCompanyProfile } from "../../redux/Profile/profileData";
+import { useParams } from "react-router";
+import Post from "../Home/User/Post/Post";
+import { Link } from "react-router-dom";
+
 
 function ComProfile() {
+    const dispatch = useDispatch()
+    const {id} = useParams()
+    
+    useEffect(()=> {
+        dispatch(fetchCompanyProfile(id))
+    },[dispatch, id])
 
-    const user = {
-        name:'Microsoft',
-        email:'microsoft@gmail.com',
-        password:'dasd45a46',
-        country:'United States',
-        city:'California',
-        logo:"https://www.insights.la/wp-content/uploads/2015/04/Microsoft-logo-m-box-880x660.png",
-        description:'A software company',
-        speciality: 'OS & Software',
-        size: '+50000',
-        foundation: '1970-10-25',
-        web_site: 'microsoft.com',
-        banner: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3AA4-8T2uRR_YJz_DiXblfr__O24YkP8T6JG2YqqhExukbyGERTNKZLf43tBKvtJsaQ8&usqp=CAU',
-    }
-
+    let user = useSelector(state => state.companyProfile.companyProfile[0])
+    if(user === undefined) return <h1>Loading</h1>
+    
     return (
         <div className={styles.pageContainer}>
             <Navbar></Navbar>
@@ -62,7 +61,37 @@ function ComProfile() {
                     <p>{user.description}</p>
                 </div>
                 <div className={styles.jobsContainer}>
-                    <h3>Current offers</h3>
+                    <h3>Current job offers in {user.name}</h3>
+                    <div>
+                        {user.jobs.map((j) => 
+                            <div>
+                            <Link to={`/home/post/${id}`}>
+                            <div className={styles.postCard}>
+                                <div className={styles.imgContainer}>
+                                {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}
+                                </div>
+                                <div className={styles.detailsContainer}>
+                                <h3>{j.position}</h3>
+                                <div className={styles.subDetails}>
+                                    <p>{j.salary_range === '10000$'? '+ 10000$': j.salary_range}</p>
+                                    <p>Seniority: {j.seniority}</p>
+                                    <p>Time: {j.time}</p>
+                                </div>
+                                </div>
+                                {/* <div className={styles.techsContainer}>
+                                {j.techs.map(t => t.name==='Cplus' ?
+                                    (<label key={t.id} >C+</label>) :
+                                    t.name==='Cplusplus' ?
+                                    (<label key={t.id} >C++</label>) :
+                                    t.name==='CSharp' ?
+                                    (<label key={t.id} >C#</label>) :
+                                    (<label key={t.id} >{t.name}</label>))}
+                                </div> */}
+                            </div>
+                            </Link>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

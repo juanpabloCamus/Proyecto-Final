@@ -7,7 +7,9 @@ const user = [
         password: '2646545645sa46d',
         date_birth: '2022-05-10',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Juan Pablo Camus',
@@ -15,7 +17,9 @@ const user = [
         password: 'sdasdasd545',
         date_birth: '1980-02-23',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Alberto Ortolani',
@@ -23,7 +27,9 @@ const user = [
         password: 'sfee45454',
         date_birth: '2000-11-02',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Daniel Sanchez',
@@ -31,7 +37,9 @@ const user = [
         password: 'dsfdsfsf1654',
         date_birth: '1987-07-06',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Agustin Banegas',
@@ -39,7 +47,9 @@ const user = [
         password: '2abc6465456',
         date_birth: '1995-12-28',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Paloma Vaira',
@@ -47,7 +57,9 @@ const user = [
         password: '26465456',
         date_birth: '2000-05-10',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {   
         fullName: 'Elon Musk',
@@ -55,7 +67,9 @@ const user = [
         password: '26465456',
         date_birth: '2022-05-10',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Buenos Aires'
     },
     {
         fullName: 'Admin',
@@ -68,7 +82,7 @@ const company = [
     {
         name:'Microsoft',
         email:'microsoft@gmail.com',
-        password:'dasd45a46',
+        password:'micro',
         country:'United States',
         city:'California',
         logo:"https://www.insights.la/wp-content/uploads/2015/04/Microsoft-logo-m-box-880x660.png",
@@ -77,12 +91,12 @@ const company = [
         size: '+50000',
         foundation: '1970-10-25',
         web_site: 'microsoft.com',
-        banner: 'https://images.twinkl.co.uk/tr/image/upload/t_illustration/illustation/banner.png',
+        banner: 'https://www.feynmangroup.com/wp-content/uploads/2015/04/MicrosoftLogo-1024x376.jpg',
     },
     {
         name:'Apple',
         email:'apple@gmail.com',
-        password:'dasd45a46',
+        password:'app',
         country:'United States',
         city:'Palo Alto, CA',
         logo:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Apple-logo.png/640px-Apple-logo.png",
@@ -91,7 +105,7 @@ const company = [
         size: '0 - 500',
         foundation: '1970-10-25',
         web_site: 'apple.com',
-        banner: 'https://images.twinkl.co.uk/tr/image/upload/t_illustration/illustation/banner.png',
+        banner: 'https://img2.freepng.es/20180723/to/kisspng-iphone-x-iphone-8-apple-a11-price-phone-banner-5b55785b058000.9942494415323280270225.jpg',
     },
     {
         name:'Google',

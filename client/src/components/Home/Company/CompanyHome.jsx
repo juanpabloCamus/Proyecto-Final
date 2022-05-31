@@ -18,7 +18,7 @@ function  CompanyHome() {
   const company=useSelector(state=>state.company)
   const profile = useSelector(state => state.companyProfile)
   const { id } = useParams()
-  console.log(id)
+  
 
   useEffect(()=> {
       dispatch(fetchUsers())
@@ -28,9 +28,9 @@ function  CompanyHome() {
     return (
     <div>
          
-        <Navbar/>
+        <Navbar id = {id}/>
        
-      {console.log(users)}
+      
         {/* <CompanySerchBar /> */}
         <div className={styles.postsContainer}>{
             users.length>0?
