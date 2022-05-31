@@ -33,6 +33,16 @@ module.exports = (sequelize) => {
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        stack: {
+            type: DataTypes.STRING
+        },
+        banner: {
+            type: DataTypes.TEXT
+        },
+        currentJob: {
+            type: DataTypes.STRING,
+            defaultValue:'Searching Job...'
         }
     },{timestamps:false})
 }
