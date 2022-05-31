@@ -7,23 +7,11 @@
 }
 
 .searchBar input{
+   border: none;
    border-radius: 20px;
    box-shadow: 2px 2px 5px 1px lightgray;
+   outline: none;
 }
-.containerS div{
-   
-}
-.searchTerm
-{
-
-}
-.searchTerm:focus{
-
- }
-
- .BtnSearch_container{
-   
- }
 
 .BtnSearch
 {
@@ -32,9 +20,9 @@
    justify-content: center;
    border: none;
    border-radius: 50%;
-   background-color: #aaaaaa;
+   background-color: #F2F7FB;
    box-shadow: 4px 4px 7px 1px lightgray;
-   color: white;
+   color: #46499C;
    cursor: pointer;
    font-size: 18px;
    padding: 0 12px;
