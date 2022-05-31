@@ -35,7 +35,7 @@ const loginUser = async() => {
         text: "Acceso válido"
       })
       const isLogged = true
-      // dispatch(authActions.setLogin(userData))
+      dispatch(authActions.setLogin())
       
       navigate('/home')
     }else{

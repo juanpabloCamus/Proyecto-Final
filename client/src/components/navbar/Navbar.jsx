@@ -41,11 +41,11 @@ const handleOpenRegisterModal = ()  => {
                     <span>Rocket</span>
                 </div>
             </Link>:
-            <a href="/home">
+            <Link to="/home">
                 <div className="logo">
                     <span>Rocket</span>
                 </div>
-            </a>
+            </Link>
         }
         {ubicacion === '/' ?
         <ul className="navbar">

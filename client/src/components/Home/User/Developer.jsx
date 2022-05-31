@@ -5,7 +5,7 @@ export const Developer = () => {
   return (
     <div>
       
-      <Posts/></div>
+      <Posts /></div>
   )
 }
 
