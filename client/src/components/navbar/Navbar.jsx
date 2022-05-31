@@ -42,7 +42,7 @@ console.log(sessionStorage)
         {sessionStorage ?
 
             <div className='profileDiv'>
-                    <Link to="/home/createjob">
+                    <Link to="/company/createjob">
                         <div className="buttonJob">
                             <span>Create new job</span>
                         </div>
@@ -51,6 +51,7 @@ console.log(sessionStorage)
             </div>
                 :
             <>
+
                 <li>
                     <button
                     onClick={ handleOpenLoginModal }
@@ -70,4 +71,3 @@ console.log(sessionStorage)
     </nav>
   )
 }
-

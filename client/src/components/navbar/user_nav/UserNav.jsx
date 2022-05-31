@@ -6,7 +6,7 @@ import profile_image from '../../../assets/profile_img.jpg'
 import { authActions } from '../../../redux/auth/authSlice'
 import styles from './userNav.module.css'
 
-export const UserNav = () => {
+export const UserNav = ({id}) => {
 
   const [ toggleMenu, setToggleMenu ] = useState(false)
   const navigate = useNavigate()

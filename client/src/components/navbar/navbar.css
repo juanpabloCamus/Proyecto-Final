@@ -23,7 +23,7 @@
 .navbar{
     align-items: center;
     display: flex;
-    gap: 50px;
+    gap: 60px;
 }
 
 .nav li{
@@ -32,7 +32,7 @@
 
 .navbar_button{
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     background-color: transparent;
 }
 
@@ -53,7 +53,6 @@
     color: white;
     border: none;
     font-size: 16px;
-    
     padding: 15px;
 }
 

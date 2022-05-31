@@ -108,7 +108,10 @@ async function loadDb(){
       date_birth:u.date_birth,
       profile_pic:u.profile_pic,
       description:u.description,
-      profileType: 'develop'
+      profileType: 'develop',
+      country: u.country,
+      city: u.city,
+      stack: u.stack
     }) : 
     us = await user_account.create({
       fullName: u.fullName,
@@ -161,8 +164,6 @@ async function loadDb(){
   })
 
 }
-
-
 module.exports = {
   ...db.models,
   db,

@@ -8,6 +8,7 @@
 .logged_user_icon{
     cursor: pointer;
     width: 60px;
+
 }
 
 .logged_user_icon img{
@@ -26,12 +27,15 @@
     top: 70px;
     left: -5px;
     width: 120px;
+   
+
 }
 
 .logged_user_menu span{
     cursor: pointer;
     padding: 10px;
     display: block;
+    justify-content:flex-end;
 }
 
 .logged_user_menu span:hover{

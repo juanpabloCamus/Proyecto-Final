@@ -36,6 +36,24 @@ module.exports = (sequelize) => {
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
-        }
+        },
+        stack: {
+            type: DataTypes.STRING
+        },
+        banner: {
+            type: DataTypes.TEXT,
+            defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/User_page_banner.png'
+        },
+        currentJob: {
+            type: DataTypes.STRING,
+            defaultValue:'Searching Job...'
+        },
+        country: {
+            type: DataTypes.STRING,
+        },
+
+        city: {
+            type: DataTypes.STRING,
+        },
     },{timestamps:false})
 }

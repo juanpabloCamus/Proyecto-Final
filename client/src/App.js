@@ -17,6 +17,7 @@ import { Navbar } from "./components/navbar/Navbar";
 
 import './App.css'
 import { NotFound } from "./components/not_found/NotFound";
+import CompanyHome from "./components/Home/Company/CompanyHome";
 
 
 
@@ -45,11 +46,11 @@ function App() {
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
               <Route path="home" element={<Home />} />
               <Route path="home/post/:id" element={<PostDetail />} />
-              <Route path="home/createjob" element={<CreateJob />} /> 
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
-              <Route path="company" element={<Company />} />
+              <Route path="company" element={<CompanyHome />} />
+              <Route path="company/createjob" element={<CreateJob />} /> 
             </Route>
               
           
