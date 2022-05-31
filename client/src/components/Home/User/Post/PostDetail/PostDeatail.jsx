@@ -11,7 +11,7 @@ function PostDetail() {
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    const [ state, setState] = useState(false)
+    const [ state, setState] = useState(true)
 
     const userLocalStorage=JSON.parse(localStorage.getItem("user"))
 
@@ -23,11 +23,13 @@ function PostDetail() {
 
     const handleFavorite = async (e) => {
 
-        if(state === false) setState(true)
-        if(state === true) setState(false)
-
+        if(state === true) {setState(false)
+        }else setState(true)
+        console.log(state)
         try {
-            const fav = await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, state)
+            console.log(state)
+            const fav = await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, {state})
+            console.log(fav)
 
         } catch (error) {
             console.log(error)
@@ -100,7 +102,7 @@ function PostDetail() {
             <div className={styles.buttonContainer}>
                 <button className={styles.button}>Apply now</button>
                 <button className={styles.button} onClick={(e)=> handleFavorite(e)}>
-                    { state ?
+                    { !state ?
                         <img id={styles.heart} src={selectedHeart}></img>
                         :
                         <img id={styles.heart} src={heart}></img>}
