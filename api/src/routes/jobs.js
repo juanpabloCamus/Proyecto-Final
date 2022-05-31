@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
-            include: [{model: company_account},{model: technology}],
+            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}],
             order: [
                 ['id', 'DESC']
             ],
@@ -145,8 +145,7 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         const jobId = await job.findAll({
-            include: [{model: company_account},
-            {model: technology}], 
+            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}], 
             where:{id: id}
         })
         if(jobId.length<1){
