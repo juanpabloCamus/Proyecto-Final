@@ -1,15 +1,39 @@
 import { Link, useParams } from "react-router-dom";
 import arrow from '../../../../../assets/arrow.png';
-import heart from '../../../../../assets/heart.png';
-import { useEffect } from "react";
+import selectedHeart from '../../../../../assets/heart.png';
+import heart from '../../../../../assets/heart2.png';
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import styles from './PostDetail.module.css';
-
+import axios from 'axios'
 function PostDetail() {
 
     const {id} = useParams();
     const dispatch = useDispatch();
+    const [ state, setState] = useState(false)
+
+    const userLocalStorage=JSON.parse(localStorage.getItem("user"))
+
+    let idUser = userLocalStorage.id
+    console.log(idUser)
+
+    let idJob = id
+    console.log(idJob)
+
+    const handleFavorite = async (e) => {
+
+        if(state === false) setState(true)
+        if(state === true) setState(false)
+
+        try {
+            const fav = await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, state)
+
+        } catch (error) {
+            console.log(error)
+        }
+
+         };
     
     useEffect(()=>{
         dispatch(fetchJobDetail(id))
@@ -75,7 +99,12 @@ function PostDetail() {
             </div>
             <div className={styles.buttonContainer}>
                 <button className={styles.button}>Apply now</button>
-                <button className={styles.button}><img id={styles.heart} src={heart}></img></button>
+                <button className={styles.button} onClick={(e)=> handleFavorite(e)}>
+                    { state ?
+                        <img id={styles.heart} src={selectedHeart}></img>
+                        :
+                        <img id={styles.heart} src={heart}></img>}
+                    </button>
             </div>
         </div>
     );

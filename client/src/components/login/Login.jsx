@@ -45,10 +45,12 @@ const loginUser = async() => {
         icon: 'success',
         text: "Acceso válido"
       })
+      const user = res.data
+      localStorage.setItem("user",JSON.stringify(user))
+
       let rout = `/home/${res.data.id}`
       const isLogged = true
       dispatch(authActions.getNewUser(res.data))
-      //dispatch(Reducer(res.data))
       if(res.data.name)  rout = `/company/${res.data.id}`
       console.log(rout)
       navigate(rout)
