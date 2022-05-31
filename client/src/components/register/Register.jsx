@@ -46,7 +46,10 @@ const activeComForm = () => {
 
 const postNewUser = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/users/register', formValues)
+        const res = await axios.post('http://localhost:3001/users/register', {
+            ...formValues,
+            profileType
+        })
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
@@ -71,14 +74,17 @@ const postNewUser = async() => {
 
 const postNewCompany = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/company/register', formValues)
+        const res = await axios.post('http://localhost:3001/company/register', {
+            ...formValues,
+            profileType
+        })
  
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
                 text: "Usuario creado"
               })
-              localStorage.setItem("userType", profileType)
+              
         }else{
 
             Swal.fire({

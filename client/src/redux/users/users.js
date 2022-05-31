@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
+
+
 export const fetchUsers=createAsyncThunk('users/fetchUsers',
 async()=>{
     try {
@@ -13,6 +15,7 @@ async()=>{
 }
 )
 
+
 const initialState = {
     users: {}
 }
@@ -21,7 +24,7 @@ export const usersSlice=createSlice({
     name:'users',
     initialState,
     reducers:{
-
+        
     },
     extraReducers:{
         [fetchUsers.pending]:(state)=>{
