@@ -1,21 +1,21 @@
 import { useSelector } from "react-redux"
-import { useLocation, Navigate } from "react-router"
+import { useLocation, Navigate, Outlet } from "react-router"
 
 
-export const RequireAuth = ({allowedRole, children}) => {
+export const RequireAuth = ({allowedRoles}) => {
 
 const location = useLocation()
 const { isLogged } = useSelector(state => state.auth)
 
 
 // console.log(isLogged.profileType)
-console.log(allowedRole)
+console.log(allowedRoles)
  
 
   return (
-    ["company"].find(item => allowedRole.includes(item))
+    ["develop"].find(item => allowedRoles.includes(item))
     ?
-    children
+    <Outlet/>
     :
     <Navigate to="/" state={{from: location}} replace/>
   )

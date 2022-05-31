@@ -11,6 +11,8 @@ import { RequireAuth } from "./components/require_auth/RequireAuth";
 import { Company } from "./components/Home/Company/Company";
 import { Admin } from "./components/admin/Admin";
 import Home from "./components/Home/Home";
+import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
+import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 
 const ROLES ={
   developer: "develop",
@@ -29,33 +31,20 @@ function App() {
         <Route path="/" element={ <LandinPage /> } />
 
         {/* Private Routes */}
-        <Route 
-        path="home"
-        element={
-          <RequireAuth  allowedRole={["develop"]} >
-            <Home />
-          </ RequireAuth>
-        }
-        />
+        <Route element={<RequireAuth allowedRoles={["develop"]} />}>
+          <Route path="home" element={<Home />} />
+          <Route path="home/post/:id" element={<PostDetail />} />
+          <Route path="home/createjob" element={<CreateJob />} />
+        </Route>
 
-        <Route 
-        path="company"
-        element={
-          <RequireAuth  allowedRole={["company"]} >
-            <Company />
-          </ RequireAuth>
-        }
-        />
+        <Route element={<RequireAuth allowedRoles={["company"]} />}>
+          <Route path="company" element={<Company />} />
+        </Route>
            
        
-        <Route
-        path="admin"
-         element={
-          <RequireAuth  allowedRole={["admin"]} >
-            <Admin/>
-          </ RequireAuth>
-        }
-        />
+        <Route element={<RequireAuth allowedRoles={["admin"]} />}>
+          <Route path="admin" element={<Admin />} />
+        </Route>
 
       {/* </Route> */}
     </Routes>
