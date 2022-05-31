@@ -27,6 +27,9 @@ module.exports = (sequelize) => {
         description: {
             type:DataTypes.TEXT
         },
+        profileType:{
+            type: DataTypes.ENUM('develop','admin')
+        },
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true

@@ -60,7 +60,8 @@ router.post('/register', async (req,res)=>{
                     const newUser = await user_account.create({
                         fullName,
                         email,
-                        password
+                        password,
+                        profileType: 'develop'
                     })
                     let usuario = await user_account.findAll({
                         where: {id: newUser.dataValues.id},
