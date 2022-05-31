@@ -92,6 +92,7 @@ async function loadDb(){
       foundation: u.foundation,
       web_site: u.web_site,
       banner: u.banner,
+      profileType: 'company'
     })
   })
 
@@ -99,23 +100,32 @@ async function loadDb(){
   user.map(async (u) => {
 
     let us
-
+    u.email !== 'admin@admin.com' ?
     us = await user_account.create({
       fullName: u.fullName,
-      last_name: u.last_name,
       email: u.email,
       password: u.password,
       date_birth:u.date_birth,
       profile_pic:u.profile_pic,
       description:u.description,
+      profileType: 'develop'
+    }) : 
+    us = await user_account.create({
+      fullName: u.fullName,
+      email: u.email,
+      password: u.password,
+      date_birth:u.date_birth,
+      profile_pic:u.profile_pic,
+      description:u.description,
+      profileType: 'admin'
     })
 
     for (let i = 0; i < 5; i++) {
       await us.addLanguage(i)
     }
 
-    for (let i = 0; i < techs.length; i++) {
-      await us.addTechnology(i)
+    for (let i = 0; i < 4; i++) {
+      await us.addTechnology(us.id + i)
     }
   })
 

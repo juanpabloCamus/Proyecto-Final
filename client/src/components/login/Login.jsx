@@ -2,13 +2,18 @@ import { React, useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-import { authActions } from '../../redux/auth/authSlice';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../redux/modal_slice/modalSlice';
+import { authActions } from '../../redux/auth/authSlice';
+
 
 
 import Swal from 'sweetalert2'
 import './login.css'
+
+
+
 
 export const Login = () => {
 
@@ -19,12 +24,14 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 const { profileType } = useSelector(state => state.conditionalReg)
-const data = useSelector(state => state.auth)
+const { isLogged } = useSelector(state => state.auth)
 
 const [select, setSelect] = useState("")
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
+
+
 
 
 const loginUser = async() => {
@@ -38,12 +45,12 @@ const loginUser = async() => {
         icon: 'success',
         text: "Acceso válido"
       })
-      let rout = "/home"
+      let rout = `/home/${res.data.id}`
       const isLogged = true
-      dispatch(authActions.setLogin(res.data))
+      dispatch(authActions.getNewUser(res.data))
       //dispatch(Reducer(res.data))
-      if(res.data.name)  rout = '/company'
-      
+      if(res.data.name)  rout = `/company/${res.data.id}`
+      console.log(rout)
       navigate(rout)
     }else{
       Swal.fire({

@@ -163,7 +163,7 @@ export default function CreateJob() {
               </select>
 
               <select className={styles.form_select} onChange={addTechs}>
-                {/* <option value="" default selected>Technologies</option> */}
+                <option selected disabled>Technologies</option>
                 {techs.map((e) => e.name==='Cplus'?(
                 <option key={e.id} value={e.name}>C+</option>
                   ): e.name==='Cplusplus'?(

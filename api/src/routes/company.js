@@ -68,7 +68,8 @@ router.post('/register', async (req,res)=>{
                     const newCompany = await company_account.create({
                         name,
                         email,
-                        password
+                        password,
+                        profileType: 'company'
                     })
                     let empresa = await company_account.findAll({
                         include: job,

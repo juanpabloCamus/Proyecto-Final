@@ -27,9 +27,22 @@ module.exports = (sequelize) => {
         description: {
             type:DataTypes.TEXT
         },
+        profileType:{
+            type: DataTypes.ENUM('develop','admin')
+        },
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        stack: {
+            type: DataTypes.STRING
+        },
+        banner: {
+            type: DataTypes.TEXT
+        },
+        currentJob: {
+            type: DataTypes.STRING,
+            defaultValue:'Searching Job...'
         }
     },{timestamps:false})
 }

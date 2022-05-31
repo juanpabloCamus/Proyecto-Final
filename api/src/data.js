@@ -3,7 +3,6 @@ const axios = require('axios');
 const user = [
     {
         fullName: 'Mati Monas',
-        last_name: 'Monas',
         email: 'matimonas97@notevoyadecir.com',
         password: '2646545645sa46d',
         date_birth: '2022-05-10',
@@ -58,6 +57,11 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
     },
+    {
+        fullName: 'Admin',
+        email: 'admin@admin.com',
+        password: 'admin',
+    }
 ]
 
 const company = [
@@ -167,14 +171,14 @@ const jobs = [
         description:'Deberas construir un server para nuestra nueva APP',
         english_level:'Basic',
         salary_range:'1000$ - 3000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Senior'
     },
     {
         position:'React Native Developer',
         description:'Deberas construir una APP para nuestra empresa',
         salary_range:'3000$ - 6000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Junior',
         time: 'Full-Time'
     },
@@ -183,7 +187,7 @@ const jobs = [
         description:'Deberas construir un SPA para la empresa',
         english_level:'Conversational',
         salary_range:'1000$ - 3000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Semi-Senior',
         time: 'Part-Time'
     },
@@ -192,28 +196,28 @@ const jobs = [
         description:'Deberas construir un smart contract en la red de Etherium',
         english_level:'Advanced or Native',
         salary_range:'1000$ - 3000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Semi-Senior'
     },
     {
         position:'Mobile - IOS Dev',
         description:'Deberas construir una APP que desplegable en la app store',
         salary_range:'3000$ - 6000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Junior',
     },
     {
         position:'Backend Dev',
         description:'Deberas construir un server para nuestra nueva APP',
         salary_range:'3000$ - 6000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Senior'
     },
     {
         position:'Software Enginner',
         description:'Deberas construir un sistema para la empresa',
         salary_range:'3000$ - 6000$',
-        requirements: 'Ponerse a hardcodear 24/7 pibe, laburar los finde semanas',
+        requirements: `Compromiso con el trabajo que se le asigna. Trabajo de forma eficiente.`,
         seniority: 'Junior',
     },
 ]
