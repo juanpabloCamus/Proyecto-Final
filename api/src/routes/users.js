@@ -34,6 +34,8 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
+
+
 router.post('/register', async (req,res)=>{
     try{
         const {fullName, email, password} = req.body
