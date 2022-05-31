@@ -18,7 +18,6 @@ const dispatch = useDispatch()
 let ubicacion = window.location.pathname
 
 
-
 const handleOpenLoginModal = ()  => {
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateLoginModal(true))
@@ -49,6 +48,7 @@ const handleOpenRegisterModal = ()  => {
         }
         {ubicacion === '/' ?
         <ul className="navbar">
+        
             <li>
                 <button
                 onClick={ handleOpenLoginModal }

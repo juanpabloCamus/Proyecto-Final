@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../redux/modal_slice/modalSlice';
 import { authActions } from '../../redux/auth/authSlice';
 
-
+import { useLocation } from "react-router"
 
 import Swal from 'sweetalert2'
 import './login.css'
+// import { user } from '../../../../api/src/data';
 
 
 
@@ -23,7 +24,7 @@ const [formValues, handleInputChange, reset] = useForm({
 });
 
 const { email, password } = formValues;
-const { profileType } = useSelector(state => state.conditionalReg)
+// const { profileType } = useSelector(state => state.conditionalReg)
 const { isLogged } = useSelector(state => state.auth)
 
 const [select, setSelect] = useState("")
@@ -31,21 +32,36 @@ const [select, setSelect] = useState("")
 const navigate = useNavigate()
 const dispatch = useDispatch()
 
-
-
+const location = useLocation()
+const from = location.state?.from?.pathname || "/"
 
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
-  console.log(res.data)
+    console.log(res.data)
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
         text: "Acceso válido"
       })
-    
-      dispatch(authActions.getNewUser(res.data))
-      navigate('/home')
+      const userData = res.data
+      userData.profileType = userData.profileType.split(" ") 
+      
+      
+
+      localStorage.setItem("userData", JSON.stringify(userData))
+      dispatch(authActions.getNewUser(userData))
+
+      if(userData.profileType.includes("develop")){
+        navigate("/home")
+      }else if(userData.profileType.includes("company")){
+        navigate("company")
+      }else if(userData.profileType.includes("admin")){
+        navigate("/admin")
+      }else{
+        navigate("/")
+      }
+      // navigate(from, {replace:true})
     }else{
       Swal.fire({
         icon: 'error',

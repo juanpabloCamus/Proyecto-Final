@@ -4,19 +4,20 @@ import { useLocation, Navigate, Outlet } from "react-router"
 
 export const RequireAuth = ({allowedRoles}) => {
 
-const location = useLocation()
+const storage = JSON.parse(localStorage.getItem("userData"))
 const { isLogged } = useSelector(state => state.auth)
 
 
-// console.log(isLogged.profileType)
+console.log(storage)
+console.log(isLogged.profileType)
 console.log(allowedRoles)
  
 
   return (
-    ["develop"].find(item => allowedRoles.includes(item))
+    isLogged.profileType?.find(item => allowedRoles.includes(item))
     ?
     <Outlet/>
     :
-    <Navigate to="/" state={{from: location}} replace/>
+    <Navigate to="/"/>
   )
 }
