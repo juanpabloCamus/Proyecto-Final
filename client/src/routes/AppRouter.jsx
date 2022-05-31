@@ -8,17 +8,15 @@ import DevProfile from '../components/Profiles/DevProfile'
 export const AppRouter = () => {
   return (
     <div>
-  
           <Routes>
             <Route path='/'element={<Home/>} /> 
             <Route path='/*' element={ <Home/> } />
             <Route path='*' element={ <Home /> } />
+            <Route path={'/:id'} element={ <Home /> } />
+            <Route path='/:id/profile' element={<DevProfile/>}></Route>
             <Route path={'post/:id'} element={<PostDetail/>}/>
             <Route path='/createjob' element={<CreateJob/>}></Route>
-            <Route path='/profile' element={<DevProfile/>}></Route>
           </Routes>
-          
-  
     </div>
             /*Como hacer para que la ruta sea users*/
   )

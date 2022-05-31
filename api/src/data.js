@@ -3,23 +3,25 @@ const axios = require('axios');
 const user = [
     {
         fullName: 'Mati Monas',
-        email: 'matimonas97@notevoyadecir.com',
-        password: '2646545645sa46d',
+        email: 'mati@gmail.com',
+        password: 'mati',
         date_birth: '2022-05-10',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Back End Enginer'
     },
     {   
         fullName: 'Juan Pablo Camus',
         email: 'juanpablo@gmail.com',
-        password: 'sdasdasd545',
+        password: 'juampi',
         date_birth: '1980-02-23',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Front End Developer'
     },
     {   
         fullName: 'Alberto Ortolani',
@@ -29,7 +31,8 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Mobile Developer'
     },
     {   
         fullName: 'Daniel Sanchez',
@@ -39,7 +42,8 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Back End Enginer'
     },
     {   
         fullName: 'Agustin Banegas',
@@ -49,7 +53,8 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Front End Developer'
     },
     {   
         fullName: 'Paloma Vaira',
@@ -59,7 +64,8 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Software Enginer'
     },
     {   
         fullName: 'Elon Musk',
@@ -69,7 +75,8 @@ const user = [
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
-        city: 'Buenos Aires'
+        city: 'Buenos Aires',
+        stack: 'Software Enginer'
     },
     {
         fullName: 'Admin',
@@ -92,6 +99,7 @@ const company = [
         foundation: '1970-10-25',
         web_site: 'microsoft.com',
         banner: 'https://www.feynmangroup.com/wp-content/uploads/2015/04/MicrosoftLogo-1024x376.jpg',
+        profileType:'company'
     },
     {
         name:'Apple',

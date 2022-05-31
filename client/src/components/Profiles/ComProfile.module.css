@@ -139,7 +139,17 @@
     max-height: 180px;
   }
   
-  .techsContainer label{
+  .companyTechsContainer{
+      margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .techsContainer label, .companyTechsContainer label{
     margin-top: auto;
     margin-bottom: auto;
     text-align: center;
@@ -149,4 +159,12 @@
     background-color: rgba(239, 245, 250, 0.793);
     color:#46499c
   }
+
+  .companyTechsContainer label{
+      background-color: white;
+  }
   
+  .jobContainer{
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }

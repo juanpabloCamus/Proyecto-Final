@@ -28,6 +28,9 @@ export const Navbar = ({id}) => {
     dispatch(modalActions.activateRegisterModal(true));
   };
 
+  const prof = useSelector(state => state.auth.isLogged.profileType)
+  
+
   return (
     <nav className="nav animate__animated animate__fadeInDownBig">
       {ubicacion === "/" ? (
@@ -64,13 +67,13 @@ export const Navbar = ({id}) => {
         </ul>
       ) : (
         <>
-                 {userLocalStorage.profileType === "develop" ? (
+                 {prof === "develop" ? (
             <>
               <div className="searchBar">
                 <SearchBar />
               </div>
               <div className="profileDiv">
-                <UserNav />
+                <UserNav id = {id}/>
               </div>
             </>
           ) : (

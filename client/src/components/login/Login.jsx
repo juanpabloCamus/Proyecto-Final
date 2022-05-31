@@ -60,7 +60,7 @@ const loginUser = async() => {
       dispatch(authActions.getNewUser(res.data))
       //dispatch(Reducer(res.data))
       if(res.data.name)  rout = `/company/${res.data.id}`
-      console.log(rout)
+      
       navigate(rout)
     }else{
       Swal.fire({

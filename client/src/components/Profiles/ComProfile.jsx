@@ -21,6 +21,13 @@ function ComProfile() {
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
     if(user === undefined) return <h1>Loading</h1>
+    let companyTechs = []
+    for (let i = 0; i < user.jobs.length; i++) {
+        let aux = user.jobs[i].technologies
+        for (let i = 0; i < aux.length; i++) {
+            if(!(companyTechs.includes(aux[i].name)))companyTechs.push(aux[i].name)
+        }
+    }
     
     return (
         <div className={styles.pageContainer}>
@@ -55,6 +62,15 @@ function ComProfile() {
                 </div>
                 <div className={styles.technologiesContainer}>
                     <h3>Technologies used at {user.name}</h3>
+                    <div className={styles.companyTechsContainer}>
+                        {companyTechs.map(t => t ==='Cplus' ?
+                        (<label key={t} >C+</label>) :
+                        t==='Cplusplus' ?
+                        (<label key={t} >C++</label>) :
+                        t==='CSharp' ?
+                        (<label key={t} >C#</label>) :
+                        (<label key={t} >{t}</label>))}
+                    </div>
                 </div>
                 <div className={styles.descriptionContainer}>
                     <h3>Description</h3>
@@ -64,7 +80,7 @@ function ComProfile() {
                     <h3>Current job offers in {user.name}</h3>
                     <div>
                         {user.jobs.map((j) => 
-                            <div>
+                            <div className={styles.jobContainer}>
                             <Link to={`/home/post/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
@@ -78,15 +94,15 @@ function ComProfile() {
                                     <p>Time: {j.time}</p>
                                 </div>
                                 </div>
-                                {/* <div className={styles.techsContainer}>
-                                {j.techs.map(t => t.name==='Cplus' ?
+                                <div className={styles.techsContainer}>
+                                {j.technologies.map(t => t.name==='Cplus' ?
                                     (<label key={t.id} >C+</label>) :
                                     t.name==='Cplusplus' ?
                                     (<label key={t.id} >C++</label>) :
                                     t.name==='CSharp' ?
                                     (<label key={t.id} >C#</label>) :
                                     (<label key={t.id} >{t.name}</label>))}
-                                </div> */}
+                                </div>
                             </div>
                             </Link>
                             </div>

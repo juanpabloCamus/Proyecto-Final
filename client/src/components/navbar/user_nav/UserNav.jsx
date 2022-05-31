@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styles from './userNav.module.css'
 
-export const UserNav = () => {
+export const UserNav = ({id}) => {
 
   const [ toggleMenu, setToggleMenu ] = useState(false)
 
@@ -16,7 +16,7 @@ export const UserNav = () => {
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>
-            <span className={styles.option}>Go to profile</span>
+            <span className={styles.option}><Link to={`/home/${id}/profile`}>Profile</Link></span>
             <span className={styles.option}><Link to='/'>Logout</Link></span>
         </div>
     </div>

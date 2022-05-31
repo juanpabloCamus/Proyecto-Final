@@ -16,7 +16,7 @@ function CompanyNav({id}) {
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>
-            <span className={styles.option}><Link to={`/company/profile/${id}`}>Go to profile</Link></span>
+            <span className={styles.option}><Link to={`/company/profile/${id}`}>Profile</Link></span>
             <span className={styles.option}><Link to='/'>Logout</Link></span>
         </div>
     </div>
