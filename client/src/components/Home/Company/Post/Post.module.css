@@ -2,6 +2,7 @@
 
 
 .postCard{
+  display: flex;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -12,7 +13,7 @@
     transition: 0.5s;
     color: #46499C;
     gap:40px;
-    flex-wrap: wrap;
+
   }
   
   .postCard:hover{
@@ -20,6 +21,7 @@
     cursor: pointer;
   }
   .imgContainer{
+    border-radius: 50%;
     width:15%;
     text-align: center;
     margin-top: auto;

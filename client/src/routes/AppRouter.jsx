@@ -3,8 +3,6 @@ import Home  from '../components/Home/Home'
 import {Routes,Route} from "react-router-dom"
 import PostDetail from '../components/Home/User/Post/PostDetail/PostDeatail'
 import CreateJob from '../components/Home/Company/CreateJob/CreateJob.jsx'
-import DevProfile from '../components/Profiles/DevProfile'
-
 export const AppRouter = () => {
   return (
     <div>
@@ -15,7 +13,6 @@ export const AppRouter = () => {
             <Route path='*' element={ <Home /> } />
             <Route path={'post/:id'} element={<PostDetail/>}/>
             <Route path='/createjob' element={<CreateJob/>}></Route>
-            <Route path='/profile' element={<DevProfile/>}></Route>
           </Routes>
           
   

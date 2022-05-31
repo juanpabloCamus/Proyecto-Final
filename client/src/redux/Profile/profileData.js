@@ -1,43 +1,21 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from 'axios'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const fetchCompanyProfile = createAsyncThunk('companyProfile/fetchCompanyProfile',
-async(id)=>{
-    try {
-        const res=await axios.get(`http://localhost:3001/company/${id}`)
-        console.log()
-        return res.data
-    } catch (error) {
-        console.log(error)
+
+const initialState = {
+    userData: []
+}
+
+
+const profileSlice = createSlice({
+    name: 'profile',
+    initialState,
+    reducers:{
+        profileReducer(state, action){
+            state.userData = action.payload
+        }
     }
 })
 
-const initialState = {
-    companyProfile: []
-    
-}
 
-export const CompanyPSlice=createSlice({
-    name:'companyProfile',
-    initialState,
-    reducers:{
-
-    },
-    extraReducers:{
-        [fetchCompanyProfile.pending]:(state)=>{
-            state.status="pending"
-        },
-        [fetchCompanyProfile.fulfilled]:(state,{payload})=>
-        {
-          state.companyProfile=payload
-          state.status="fulfilled"
-        },
-        [fetchCompanyProfile.rejected]:(state)=>
-        {
-         state.status="rejected"
-        }   
- }
-})
-
-export const fetchActions=CompanyPSlice.actions
-export default CompanyPSlice.reducer
+export const authActions = profileSlice.actions
+export default profileSlice.reducer

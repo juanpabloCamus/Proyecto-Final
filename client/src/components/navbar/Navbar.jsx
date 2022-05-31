@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { modalActions } from "../../redux/modal_slice/modalSlice";
@@ -67,7 +67,7 @@ export const Navbar = () => {
                  {userLocalStorage.profileType === "develop" ? (
             <>
               <div className="searchBar">
-                <SearchBar />
+               
               </div>
               <div className="profileDiv">
                 <UserNav />
@@ -84,7 +84,7 @@ export const Navbar = () => {
                 </Link>
               </div>
               <div>
-                <CompanyNav />
+                <UserNav/>
               </div>
             </>
           )}
