@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import styles from './PostDetail.module.css';
+import { MdFavoriteBorder } from "react-icons/md";
 
 function PostDetail() {
 
@@ -77,6 +78,7 @@ function PostDetail() {
                 <button className={styles.button}>Apply now</button>
                 <button className={styles.button}><img id={styles.heart} src={heart}></img></button>
             </div>
+
         </div>
     );
 }
