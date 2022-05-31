@@ -1,5 +1,4 @@
 import React from 'react'
-import { Navbar } from '../components/navbar/Navbar'
 import Home  from '../components/Home/Home'
 import {Routes,Route} from "react-router-dom"
 import PostDetail from '../components/Home/User/Post/PostDetail/PostDeatail'

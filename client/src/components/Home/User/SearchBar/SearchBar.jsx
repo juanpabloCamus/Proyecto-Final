@@ -1,6 +1,6 @@
-import React from 'react'
-import {useState} from "react";
-import {useDispatch} from "react-redux"
+import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { jobsSearchBar } from "../../../../redux/jobs/jobsSearchBar";
 import { GoSearch } from 'react-icons/go'
 
@@ -9,10 +9,9 @@ import style from "./SearchBar.module.css"
 
 
 function SearchBar() {
+  const [tech, setTech] = useState("");
 
-  const [tech, setTech] = useState("")
-    
-    const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
     const handleChange = (e) => {
       e.preventDefault();
@@ -42,7 +41,8 @@ function SearchBar() {
           </div>
       );
 
-   
+  
+  
 }
 
-export default SearchBar
+export default SearchBar;

@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import styles from './userNav.module.css'
+import styles from './CompanyNav.module.css'
 
-export const UserNav = () => {
-
+function CompanyNav() {
   const [ toggleMenu, setToggleMenu ] = useState(false)
 
   const handleMenu = () => {
@@ -12,6 +11,7 @@ export const UserNav = () => {
   
   return (
     <div className={ styles.logged_user_navbar }>
+      
                 <div onClick={ handleMenu } className={ styles.logged_user_icon }>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
@@ -22,3 +22,6 @@ export const UserNav = () => {
     </div>
   )
 }
+
+
+export default CompanyNav

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import React from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -23,10 +23,7 @@ const [formValues, handleInputChange, reset] = useForm({
 });
 
 const { email, password } = formValues;
-const { profileType } = useSelector(state => state.conditionalReg)
-const { isLogged } = useSelector(state => state.auth)
 
-const [select, setSelect] = useState("")
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
@@ -38,6 +35,8 @@ const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
+    
+
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
@@ -45,9 +44,15 @@ const loginUser = async() => {
       })
       // const isLogged = true
 
-      
+      const user=res.data
       dispatch(authActions.getNewUser(res.data))
-      navigate('/home')
+      localStorage.setItem("user",JSON.stringify(user))
+     
+      res.data.profileType==="develop" ? navigate('/home') : navigate("/company")
+      
+        
+     
+      
     }else{
       Swal.fire({
         icon: 'error',
@@ -69,10 +74,8 @@ const loginUser = async() => {
   return (
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
-
             <label>Email*</label>
             <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
-
             <label>Password*</label>
             <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
             <button type="submit" className='login__button'>Send</button>
@@ -80,3 +83,5 @@ const loginUser = async() => {
     </div>
   )
 }
+
+
