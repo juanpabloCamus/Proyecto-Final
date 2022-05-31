@@ -64,30 +64,26 @@ export const Navbar = () => {
         </ul>
       ) : (
         <>
-                 {userLocalStorage.profileType === "develop" ? (
-            <>
-              <div className="searchBar">
-               
-              </div>
-              <div className="profileDiv">
-                <UserNav />
-              </div>
-            </>
-          ) : (
-            <>
-      
-              <div>
-                <Link to="/company/createjob">
-                  <div className="buttonJob">
-                    <span>Create new job</span>
-                  </div>
+        <div className='searchBar'>
+            <SearchBar />
+        </div>
+            <div className='profileDiv'>
+                <Link to="/home/createjob">
+                    <div className="buttonJob">
+                        <span>Create new job</span>
+                    </div>
                 </Link>
-              </div>
-              <div>
-                <UserNav/>
-              </div>
-            </>
-          )}
+                <Link to="/home/favorite">
+                        <div className="buttonJob">
+                            <span>Favorites</span>
+                        </div>
+                </Link>
+                
+                <UserNav />
+            </div>
+            
+                
+           
         </>
       )}
     </nav>
