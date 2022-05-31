@@ -23,8 +23,6 @@ const [formValues, handleInputChange, reset] = useForm({
 });
 
 const { email, password } = formValues;
-const { profileType } = useSelector(state => state.conditionalReg)
-const { isLogged } = useSelector(state => state.auth)
 
 
 const navigate = useNavigate()
@@ -46,9 +44,15 @@ const loginUser = async() => {
       })
       // const isLogged = true
 
-      
+      const user=res.data
       dispatch(authActions.getNewUser(res.data))
-      navigate('/home')
+      localStorage.setItem("user",JSON.stringify(user))
+     
+      res.data.profileType==="develop" ? navigate('/home') : navigate("/company")
+      
+        
+     
+      
     }else{
       Swal.fire({
         icon: 'error',

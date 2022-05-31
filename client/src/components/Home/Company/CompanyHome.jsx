@@ -2,16 +2,21 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Navbar } from "../../navbar/Navbar";
+import CreateJob from './CreateJob/CreateJob'
 
 function  CompanyHome() {
   const dispatch = useDispatch()
-  const jobs = useSelector(state => state.job)
+  const jobs = useSelector(state => state.jobs.jobs)
   
     return (
     <div>
+         
+        <Navbar/>
+       
         <h1> Published Jobs </h1>
         {/* <CompanySerchBar /> */}
-        {/* <div>
+        <div>
             {jobs.map( j => (
                 <div>
                     <Link>
@@ -20,7 +25,7 @@ function  CompanyHome() {
                     </Link>
                 </div>
             ))}
-        </div> */}
+        </div>
     </div>
   )
 }

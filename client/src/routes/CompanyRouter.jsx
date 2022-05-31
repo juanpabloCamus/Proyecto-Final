@@ -1,6 +1,7 @@
 import React from 'react'
 import {Routes,Route} from "react-router-dom"
 import CompanyHome  from '../components/Home/Company/CompanyHome'
+import CreateJob from '../components/Home/Company/CreateJob/CreateJob'
 export const CompanyRouter = () => {
   return (
     <div>
@@ -9,6 +10,7 @@ export const CompanyRouter = () => {
             <Route path='/'element={<CompanyHome/>} /> 
             <Route path='/*' element={ <CompanyHome/> } />
             <Route path='*' element={ <CompanyHome /> } />
+            <Route path='/createjob' element={ <CreateJob /> } />
         </Routes>
           
   
