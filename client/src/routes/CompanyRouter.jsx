@@ -13,9 +13,11 @@ export const CompanyRouter = () => {
             <Route path='/' element={<CompanyHome/>} /> 
             <Route path='/*' element={ <CompanyHome/> } />
             <Route path='*' element={ <CompanyHome /> } />
+            <Route path={'/:id'}element={<CompanyHome/>} /> 
             <Route path='/profile' element={ <ComProfile /> } />
             <Route path='/createjob' element={ <CreateJob /> } />
             <Route path={'post/:id'} />
+            
         </Routes>
           
   

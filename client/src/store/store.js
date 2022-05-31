@@ -7,6 +7,7 @@ import jobsSlice  from '../redux/jobs/jobs'
 import techsSlice  from '../redux/techs/techs'
 import jobDetailSlice  from '../redux/jobs/jobDetail'
 import authSlice from '../redux/auth/authSlice'
+import CompanyPSlice from '../redux/Profile/profileData'
 
 
 
@@ -22,7 +23,7 @@ export const store = configureStore({
         jobs:jobsSlice,
         techs:techsSlice,
         jobDetail: jobDetailSlice,
-       
+        companyProfile: CompanyPSlice
     }
 })
 

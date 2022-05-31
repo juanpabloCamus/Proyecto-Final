@@ -5,17 +5,26 @@ import { Navbar } from "../../navbar/Navbar";
 import {fetchUsers} from "../../../redux/users/users"
 import Post from "./Post/Post";
 import styles from "./CompanyHome.module.css"
+import { fetchCompanyProfile } from '../../../redux/Profile/profileData'
+import { useParams } from "react-router";
+
+
 function  CompanyHome() {
   const dispatch = useDispatch()
   const jobs = useSelector(state => state.jobs.jobs)
   const users = useSelector(state => state.users.users)
   const userLocalStorage = JSON.parse(localStorage.getItem("user"));
-  const id = userLocalStorage.id;
+  // const id = userLocalStorage.id;
   const company=useSelector(state=>state.company)
+  const profile = useSelector(state => state.companyProfile)
+  const { id } = useParams()
+  console.log(id)
 
-  useEffect(()=>{
+  useEffect(()=> {
       dispatch(fetchUsers())
-  },[dispatch])
+      dispatch(fetchCompanyProfile(id))
+  },[dispatch, id])
+
     return (
     <div>
          
@@ -54,8 +63,27 @@ function  CompanyHome() {
             
                 
         </div>
-    </div>
+        </div>
+    
   )
 }
+
+{/* <div>
+{<img src={logo} alt="Company logo"></img>}
+</div>
+<div><h2>{name}</h2></div>
+  
+{ data.loggedUser.jobs.map( j => (
+<>
+<div>
+<h3>{j.position}</h3>
+<div>
+<p>{j.salary_range === '10000$'? '+ 10000$': j.salary_range}</p>
+<p>Seniority: {j.seniority}</p>
+<p>Time: {j.time}</p>
+</div>
+</div>
+</>  
+))} */}
 
 export default CompanyHome;
