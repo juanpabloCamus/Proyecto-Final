@@ -75,7 +75,7 @@ function PostDetail() {
             </div>
             <div className={styles.buttonContainer}>
                 <button className={styles.button}>Apply now</button>
-                <button className={styles.button}><img id={styles.heart} src={heart}></img></button>
+                <button className={styles.button}><img id={styles.heart} src={heart} alt=''></img></button>
             </div>
         </div>
     );
