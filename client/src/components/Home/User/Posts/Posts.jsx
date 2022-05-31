@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
-import CreateJob from "../../Company/CreateJob/CreateJob";
+import { authActions } from '../../../../redux/auth/authSlice';
+
 import FilterBar from "../FilterBar/FilterBar";
 import Post from "../Post/Post";
 import styles from "./Posts.module.css";
@@ -12,7 +13,9 @@ export function Posts() {
   const [pagina, setPagina]=useState(0);
   const [render,setRender]= useState([])
   const [newJobs, setNewJobs] = useState([])
+  const isLoggied=useSelector((state)=>state.isLogged.isLogged)
 
+  console.log(isLoggied)
 if(jobs!==newJobs){
   setNewJobs(jobs)
   setRender([])
@@ -20,7 +23,9 @@ if(jobs!==newJobs){
 }
   
 useEffect(() => {
+  dispatch(authActions)
   dispatch(fetchJobs());
+  
 }, [dispatch]);
 
 useEffect(() => {
