@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
             allowNull: false
         },
 
+        profileType:{
+            type:DataTypes.STRING,
+        },
+        
         logo: {
             type: DataTypes.TEXT
         },

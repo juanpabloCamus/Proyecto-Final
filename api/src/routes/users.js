@@ -36,8 +36,8 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {fullName, email, password} = req.body
-
+        const {fullName, email, password, profileType} = req.body
+        
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
@@ -60,7 +60,8 @@ router.post('/register', async (req,res)=>{
                     const newUser = await user_account.create({
                         fullName,
                         email,
-                        password
+                        password,
+                        profileType
                     })
                     let usuario = await user_account.findAll({
                         where: {id: newUser.dataValues.id},
