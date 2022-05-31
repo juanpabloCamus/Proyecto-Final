@@ -34,7 +34,35 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
+router.post('/:idUser/favs/:idJob', async (req,res)=>{
+    try{
+        const {idUser,idJob} = req.params
+        const {state} = req.body
 
+        if(idUser&&idJob&&(state===true||state===false)){
+            const jobid = await job.findAll({
+                where:{id: idJob},
+                include: user_account
+            })
+            if(state===true){
+                let inFav = jobid[0].dataValues.user_accounts.find(u=>u.dataValues.id===parseInt(idUser))
+                if(inFav){
+                    res.send('Ya esta en favoritos')
+                }else{
+                    jobid[0].addUser_account(idUser)
+                    res.send('Agregado a favoritos')
+                }
+            }else{
+                jobid[0].removeUser_account(idUser)
+                res.send('eliminado de favoritos')
+            }
+        }else{
+            res.send('datos invalidos')
+        }
+    }catch(error){
+        console.log(error)
+    }
+})
 
 router.post('/register', async (req,res)=>{
     try{
