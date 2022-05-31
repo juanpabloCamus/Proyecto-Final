@@ -55,7 +55,9 @@ function FilterBar() {
                 <option key={e.id} value={e.name}>C+</option>
                   ): e.name==='Cplusplus'?(
                     <option key={e.id} value={e.name}>C++</option>
-                      ) : (
+                      ) : e.name==='CSharp'? 
+                      <option key={e.id} value={e.name}>C#</option>
+                      : (
                 <option key={e.id} value={e.name}>{e.name}</option>
                   ))}
           </select>

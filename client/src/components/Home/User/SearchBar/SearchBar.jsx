@@ -20,15 +20,15 @@ function SearchBar() {
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-      dispatch(jobsSearchBar(tech==='C+'?'Cplus':tech==='C++'?'Cplusplus':tech))
+      dispatch(jobsSearchBar(tech==='C+'?'Cplus':tech==='C++'?'Cplusplus':tech==='C#'?'CSharp':tech))
     };
     return (
           <div className={style.searchBar}>
             <input
             className={style.searchTerm}
               onChange={(e)=> handleChange(e)}        
-              type="text"
-              placeholder="Search.."
+              type="search"
+              placeholder="Search technology.."
             />
           
               <button
