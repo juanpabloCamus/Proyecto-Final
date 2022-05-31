@@ -7,6 +7,7 @@ import {Routes,Route,BrowserRouter} from "react-router-dom"
 export const LandinPageRoute = () => {
   return (
     <div>
+      
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={ <LandinPage /> } />
