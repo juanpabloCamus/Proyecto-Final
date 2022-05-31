@@ -154,9 +154,7 @@ async function loadDb(){
     await j.addCompany_account(j.dataValues.id)
     
 
-    for (let i = 0; i < company.length; i++) {
-      await j.addUser_account(i)
-    }
+    await j.addUser_account(j.dataValues.id)
 
   })
 
