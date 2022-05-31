@@ -24,8 +24,7 @@
     text-align: center;
     overflow: hidden;
     position: absolute;
-    top: 70px;
-    left: -35px;
+   
     width: 120px;
    
 
@@ -33,7 +32,6 @@
 
 .logged_user_menu span{
     cursor: pointer;
-    padding: 10px;
     display: block;
     justify-content:flex-end;
 }

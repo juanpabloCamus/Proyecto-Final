@@ -75,6 +75,7 @@ export const Navbar = () => {
             </>
           ) : (
             <>
+      
               <div>
                 <Link to="/company/createjob">
                   <div className="buttonJob">
