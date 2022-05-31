@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 import { fetchTechs } from "../../../../redux/techs/techs";
 import styles from './createJob.module.css'
 import axios from 'axios'
-import { Navbar } from '../../../navbar/Navbar'
 
 
 let techId = 0
@@ -110,7 +109,6 @@ export default function CreateJob() {
 
   return (
     <div>
-      <Navbar/>
       <Link to={'/home'}>
         <img className={styles.arrowBack} alt="arrowBack" src={img}></img>
       </Link>

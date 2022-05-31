@@ -1,6 +1,5 @@
 import React from 'react'
 import { Auth } from '../auth/Auth'
-import { Navbar } from '../navbar/Navbar'
 import { useDispatch } from 'react-redux'
 import Acordion from './Acordion'
 
@@ -23,7 +22,6 @@ const handleOpenModal = () =>{
 
   return (
     <div>
-        <Navbar/>
         <Auth/>
         <div className="landing__page-container">
           <div className="landing__page-text animate__animated animate__fadeInUp">

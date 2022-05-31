@@ -11,7 +11,6 @@ const Home = () => {
     //Hacer un if si es usuario se renderiza el developer
     //Sino la compania
     <div>
-      <Navbar />
       <Developer />
       <Company />
     </div>
