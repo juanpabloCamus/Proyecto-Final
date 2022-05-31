@@ -12,7 +12,7 @@ export const LandinPageRoute = () => {
             <Routes>
                 <Route path='/' element={ <LandinPage /> } />
                 <Route path='/home/*' element={ <AppRouter /> } />
-                <Route path='/company/*' element={ <CompanyRouter /> } />
+                {/* <Route path='/company/*' element={ <CompanyRouter /> } /> */}
             </Routes>
         </BrowserRouter>
         

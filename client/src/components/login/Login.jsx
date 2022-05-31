@@ -37,15 +37,13 @@ const dispatch = useDispatch()
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
-
+  console.log(res.data)
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
         text: "Acceso válido"
       })
-      // const isLogged = true
-
-      
+    
       dispatch(authActions.getNewUser(res.data))
       navigate('/home')
     }else{

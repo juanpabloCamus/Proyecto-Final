@@ -5,6 +5,7 @@ export const Company = () => {
   return (
     <div>
         {/* <CreateJob /> */}
+        Company
     </div>
   )
 }
