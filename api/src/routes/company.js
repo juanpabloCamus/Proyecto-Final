@@ -69,7 +69,7 @@ router.post('/register', async (req,res)=>{
                         name,
                         email,
                         password,
-                        profileType
+                        profileType: 'company'
                     })
                     let empresa = await company_account.findAll({
                         include: job,

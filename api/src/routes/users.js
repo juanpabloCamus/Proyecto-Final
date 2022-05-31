@@ -61,7 +61,7 @@ router.post('/register', async (req,res)=>{
                         fullName,
                         email,
                         password,
-                        profileType
+                        profileType: 'develop'
                     })
                     let usuario = await user_account.findAll({
                         where: {id: newUser.dataValues.id},
