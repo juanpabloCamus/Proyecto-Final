@@ -17,6 +17,7 @@ const dispatch = useDispatch()
 
 let ubicacion = window.location.pathname
 
+const sessionStorage = JSON.parse(localStorage.getItem("userData"))
 
 const handleOpenLoginModal = ()  => {
     dispatch(modalActions.setModalValue())
@@ -29,53 +30,49 @@ const handleOpenRegisterModal = ()  => {
     dispatch(modalActions.activateRegisterModal(true))
 }
 
-
+console.log(sessionStorage)
 
   return (
       
     <nav className='nav animate__animated animate__fadeInDownBig'>
-        {ubicacion === '/'?
-            <Link to="/">
-                <div className="logo">
-                    <span>Rocket</span>
-                </div>
-            </Link>:
-            <a href="/home">
-                <div className="logo">
-                    <span>Rocket</span>
-                </div>
-            </a>
-        }
-        {ubicacion === '/' ?
-        <ul className="navbar">
-        
-            <li>
-                <button
-                onClick={ handleOpenLoginModal }
-                className="navbar_button login"
-                >Login</button>
-            </li>
-            <li>
-                <button
-                onClick={ handleOpenRegisterModal }
-                className="navbar_button register"
-                >Sign Up</button>
-            </li>
-        </ul>:
-        <>
-        <div className='searchBar'>
-            <SearchBar />
-        </div>
-            <div className='profileDiv'>
-                <Link to="/home/createjob">
-                    <div className="buttonJob">
-                        <span>Create new job</span>
-                    </div>
-                </Link>
-                <UserNav />
+       
+        <Link to="/">
+            <div className="logo">
+                <span>Rocket</span>
             </div>
-        </>
-        }
+        </Link>
+        
+
+        <ul className="navbar">
+
+        {sessionStorage ?
+
+            <div className='profileDiv'>
+                    <Link to="/home/createjob">
+                        <div className="buttonJob">
+                            <span>Create new job</span>
+                        </div>
+                    </Link>
+                    <UserNav />
+            </div>
+                :
+            <>
+                <li>
+                    <button
+                    onClick={ handleOpenLoginModal }
+                    className="navbar_button login"
+                    >Login</button>
+                </li>
+                <li>
+                    <button
+                    onClick={ handleOpenRegisterModal }
+                    className="navbar_button register"
+                    >Sign Up</button>
+                </li>
+            </>
+            }
+        </ul>
+        
     </nav>
   )
 }

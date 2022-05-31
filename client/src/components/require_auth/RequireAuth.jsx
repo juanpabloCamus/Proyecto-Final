@@ -14,7 +14,7 @@ console.log(allowedRoles)
  
 
   return (
-    isLogged.profileType?.find(item => allowedRoles.includes(item))
+    storage?.profileType?.find(item => allowedRoles.includes(item))
     ?
     <Outlet/>
     :

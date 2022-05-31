@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTechs } from "../../../../redux/techs/techs";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
 import style from "./FilterBar.module.css"
+import SearchBar from "../SearchBar/SearchBar";
 function FilterBar() {
   const techs = useSelector((state) => state.techs.techs);
   const [tech, setTech] = useState("");
@@ -46,7 +47,7 @@ function FilterBar() {
   return (
     <div>  
      <div className={style.filterBar}>   
-      
+      <SearchBar/>
        <div className={style.filterSet}>
 
           <select className={style.filter} onChange={(e) => handleTechs(e)}>
