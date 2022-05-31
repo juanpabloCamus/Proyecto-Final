@@ -10,7 +10,6 @@ import { modalActions } from '../../redux/modal_slice/modalSlice';
 import Swal from 'sweetalert2'
 import './login.css'
 
-
 export const Login = () => {
 
 const [formValues, handleInputChange, reset] = useForm({
@@ -20,6 +19,7 @@ const [formValues, handleInputChange, reset] = useForm({
 
 const { email, password } = formValues;
 const { profileType } = useSelector(state => state.conditionalReg)
+const data = useSelector(state => state.auth)
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
@@ -29,15 +29,20 @@ const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
+    
+
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
         text: "Acceso válido"
       })
+      let rout = "/home"
       const isLogged = true
-      dispatch(authActions.setLogin())
+      dispatch(authActions.setLogin(res.data))
+      //dispatch(Reducer(res.data))
+      if(res.data.name)  rout = '/company'
       
-      navigate('/home')
+      navigate(rout)
     }else{
       Swal.fire({
         icon: 'error',
@@ -68,3 +73,5 @@ const loginUser = async() => {
     </div>
   )
 }
+
+

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import profile_image from '../../../assets/profile_img.jpg'
 import styles from './userNav.module.css'
 
 export const UserNav = () => {

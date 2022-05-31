@@ -3,9 +3,10 @@ import axios from 'axios'
 export const fetchUsers=createAsyncThunk('users/fetchUsers',
 async()=>{
     try {
-        const res=await axios.get(`http://localhost:3001/users/`)
+        const res=await axios.get('http://localhost:3001/users')
         console.log(res)
-        return res.data
+        return res
+        
     } catch (error) {
         console.log(error)
     }
@@ -38,5 +39,5 @@ export const usersSlice=createSlice({
  }
 })
 
-export const fetchActions=fetchUsers.actions
+export const fetchActions=usersSlice.actions
 export default usersSlice.reducer

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Navbar } from '../components/navbar/Navbar'
 import {Routes,Route} from "react-router-dom"
 import CompanyHome  from '../components/Home/Company/CompanyHome'
 export const CompanyRouter = () => {
