@@ -50,7 +50,7 @@ function ComProfile() {
                         </div>
                         <div className={styles.labelContainer}>
                         <img src={web} className={styles.infoAsset}></img>
-                        <a href={user.web_site}>WebSite</a>
+                        <a target="_blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
                     </div>
                 </div>
