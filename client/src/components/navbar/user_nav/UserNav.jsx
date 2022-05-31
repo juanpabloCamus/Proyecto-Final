@@ -30,10 +30,10 @@ export const UserNav = () => {
     <div className={ styles.logged_user_navbar }>
         <Link to={
           profile === "develop" ? "/home" : profile === "company" ? "/company" : "/admin"
-        }>
+        } className={ styles.return_home_link }>
           Home
         </Link>
-        <div onClick={ handleMenu } className={ styles.logged_user_icon }>
+        <div onClick={ handleMenu } className={ styles.logged_user_icon } title={sessionStorage?.fullName || sessionStorage?.name}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>

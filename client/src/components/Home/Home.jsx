@@ -12,7 +12,6 @@ const Home = () => {
     //Sino la compania
     <div>
       <Developer />
-      <Company />
     </div>
   )
 }

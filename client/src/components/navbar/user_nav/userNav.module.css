@@ -2,6 +2,7 @@
     align-items: center;
     display: flex;
     position: relative;
+    gap: 60px;
 }
 
 .logged_user_icon{
@@ -23,7 +24,7 @@
     overflow: hidden;
     position: absolute;
     top: 70px;
-    left: -35px;
+    left: -5px;
     width: 120px;
 }
 
@@ -44,3 +45,8 @@
 .option{
     background: white;
 }
+
+.return_home_link{
+    color: rgb(53, 53, 53);
+}
+

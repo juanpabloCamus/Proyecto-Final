@@ -45,7 +45,7 @@ function FilterBar() {
     
   }, [dispatch, tech, seniority, time, eLevel, salary]);
   return (
-    <div>  
+    <div className="animate__animated animate__fadeIn">  
      <div className={style.filterBar}>   
       <SearchBar/>
        <div className={style.filterSet}>

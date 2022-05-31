@@ -1,21 +1,15 @@
-import React from 'react'
-
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
-import SearchBar from '../Home/User/SearchBar/SearchBar'
+import { UserNav } from './user_nav/UserNav'
 
 import './navbar.css'
-import { UserNav } from './user_nav/UserNav'
 
 export const Navbar = () => {
 
 const dispatch = useDispatch()
 
-//Cambiar cuando este lista la autenticacion
-
-let ubicacion = window.location.pathname
 
 const sessionStorage = JSON.parse(localStorage.getItem("userData"))
 
