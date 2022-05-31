@@ -8,8 +8,7 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
-            include: [{model: company_account},
-            {model: technology}],
+            include: [{model: company_account},{model: technology}],
             order: [
                 ['id', 'DESC']
             ],
