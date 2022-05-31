@@ -62,6 +62,10 @@ module.exports = (sequelize) => {
             type: DataTypes.TEXT
         },
 
+        profileType: {
+            type: DataTypes.ENUM('company')
+        },
+
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
