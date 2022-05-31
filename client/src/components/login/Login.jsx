@@ -45,6 +45,7 @@ const loginUser = async() => {
       })
       // const isLogged = true
 
+      
       dispatch(authActions.getNewUser(res.data))
       navigate('/home')
     }else{
