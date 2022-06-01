@@ -18,6 +18,7 @@ function DevProfile() {
     }, [dispatch, id])
 
     const user = useSelector(state => state.users.user[0])
+    console.log(user);
     if(user === undefined) return <h1>Loading...</h1>
 
     let userTechs = user.technologies.map(t => t.name)
