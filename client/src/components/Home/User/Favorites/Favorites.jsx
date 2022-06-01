@@ -1,14 +1,14 @@
 import { React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchUser } from '../../../../redux/users/users'
-import Post from '../Post/Post'
+import users, { fetchUser } from '../../../../redux/users/users'
+import Fav from './Fav'
 
 function Favorites() {
 
     const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
-    console.log(userLocalStorage)
+    const user=useSelector(state=>state.users.user)
+    console.log(user.jobs)
     const dispatch=useDispatch()
-    const {favorites} = userLocalStorage
     useEffect(()=>
     {
       dispatch(fetchUser(userLocalStorage.id))
@@ -16,12 +16,14 @@ function Favorites() {
   return (
     <div>
     {
-        favorites > 0 ? 
-        favorites.map( e => {
+      user.jobs ?
+       user.jobs.length > 0 ? 
+       user.jobs.map( e => {
             return(
-                <Post 
+                <Fav 
                 key={e.id}
                 id={e.id}
+
                 position={e.position}
                 salary_range={e.salary_range}
                 time={e.time}
@@ -36,6 +38,7 @@ function Favorites() {
         })
         :
         <h3>You don't have any favorite jobs</h3>
+        :<></>
     }
     </div>
   )

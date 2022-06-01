@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import profile_image from '../../../assets/profile_img.jpg'
 import { authActions } from '../../../redux/auth/authSlice'
 import styles from './userNav.module.css'
-
+import {BiHome} from "react-icons/bi"
 export const UserNav = ({id}) => {
 
   const [ toggleMenu, setToggleMenu ] = useState(false)
@@ -32,7 +32,7 @@ export const UserNav = ({id}) => {
         <Link to={
           profile === "develop" ? "/home" : profile === "company" ? "/company" : "/admin"
         } className={ styles.return_home_link }>
-          Home
+          <BiHome/>
         </Link>
         <div onClick={ handleMenu } className={ styles.logged_user_icon } title={sessionStorage?.fullName || sessionStorage?.name}>
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
