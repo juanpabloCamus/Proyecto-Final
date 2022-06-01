@@ -148,7 +148,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description, technologies} = req.body
+        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city} = req.body
 
         let errores = []
 
@@ -169,8 +169,7 @@ router.put('/:id', async (req,res)=>{
             if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(date_birth)){
                 errores.push('fecha de nacimiento')
             }else{
-                await user_account.update(
-                    {
+                await user_account.update({
                         date_birth: date_birth
                     },{
                         where:{id: id}
@@ -226,6 +225,65 @@ router.put('/:id', async (req,res)=>{
                 }else{
                     errores.push('tecnologias')
                 }
+            }
+        }
+        if(stack){
+            await user_account.update(
+                {
+                    stack: stack
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(banner){
+            if(!/(https?:\/\/.*\.)/.test(banner)){
+                errores.push('banner')
+            }else if(/\s/.test(banner)){
+                errores.push('banner')
+            }else{
+                await user_account.update(
+                    {
+                        banner: banner
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(currentJob){
+            await user_account.update(
+                {
+                    currentJob: currentJob
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(country){
+            if(!/^[a-zA-Z\s]+$/.test(country)){
+                errores.push('pais')
+            }else{
+                await user_account.update(
+                    {
+                        country: country
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(city){
+            if(!/^[a-zA-Z\s]+$/.test(city)){
+                errores.push('ciudad')
+            }else{
+                await user_account.update(
+                    {
+                        city: city
+                    },{
+                        where:{id: id}
+                    }
+                )
             }
         }
         let user = await user_account.findAll({
