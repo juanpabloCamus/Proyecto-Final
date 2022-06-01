@@ -14,7 +14,7 @@ function PostDetail() {
     const [state, setState] = useState(true)
     const [check,setCheck] = useState(true)
 
-    const userLocalStorage=JSON.parse(localStorage.getItem("user"))
+    const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
 
     let idUser = userLocalStorage.id
 

@@ -3,7 +3,9 @@ import Posts from './Posts/Posts'
 
 export const Developer = () => {
   return (
-    <div><Posts/></div>
+    <div>
+      <Posts />
+    </div>
   )
 }
 

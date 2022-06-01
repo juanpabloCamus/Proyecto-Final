@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import React from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../redux/modal_slice/modalSlice';
 import { authActions } from '../../redux/auth/authSlice';
 
-
+import { useLocation } from "react-router"
 
 import Swal from 'sweetalert2'
 import './login.css'
+// import { user } from '../../../../api/src/data';
 
 
 
@@ -23,16 +24,15 @@ const [formValues, handleInputChange, reset] = useForm({
 });
 
 const { email, password } = formValues;
-const { profileType } = useSelector(state => state.conditionalReg)
+// const { profileType } = useSelector(state => state.conditionalReg)
 const { isLogged } = useSelector(state => state.auth)
 
-const [select, setSelect] = useState("")
 
 const navigate = useNavigate()
 const dispatch = useDispatch()
 
-
-
+const location = useLocation()
+const from = location.state?.from?.pathname || "/"
 
 const loginUser = async() => {
  try {
@@ -45,14 +45,24 @@ const loginUser = async() => {
         icon: 'success',
         text: "Acceso válido"
       })
-      const user = res.data
-      localStorage.setItem("user",JSON.stringify(user))
+      const userData = res.data
+      userData.profileType = userData.profileType.split(" ") 
+      
+      
 
-      let rout = `/home/${res.data.id}`
-      const isLogged = true
-      dispatch(authActions.getNewUser(res.data))
-      if(res.data.name)  rout = `/company/${res.data.id}`
-      navigate(rout)
+      localStorage.setItem("userData", JSON.stringify(userData))
+      dispatch(authActions.getNewUser(userData))
+
+      if(userData.profileType.includes("develop")){
+        navigate("/home")
+      }else if(userData.profileType.includes("company")){
+        navigate("company")
+      }else if(userData.profileType.includes("admin")){
+        navigate("/admin")
+      }else{
+        navigate("/")
+      }
+      // navigate(from, {replace:true})
     }else{
       Swal.fire({
         icon: 'error',
@@ -74,10 +84,8 @@ const loginUser = async() => {
   return (
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
-
             <label>Email*</label>
             <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
-
             <label>Password*</label>
             <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
             <button type="submit" className='login__button'>Send</button>
