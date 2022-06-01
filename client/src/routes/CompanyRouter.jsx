@@ -10,9 +10,10 @@ export const CompanyRouter = () => {
     <div>
   
           <Routes>
-            <Route path='/'element={<CompanyHome/>} /> 
+            
             <Route path='/*' element={ <CompanyHome/> } />
             <Route path='*' element={ <CompanyHome /> } />
+            <Route path={'/:id'}element={<CompanyHome/>} /> 
             <Route path='/profile' element={ <CompanyProfile /> } />
         </Routes>
           

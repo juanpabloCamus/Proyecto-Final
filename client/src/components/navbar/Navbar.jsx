@@ -72,8 +72,17 @@ const handleOpenRegisterModal = ()  => {
                         <span>Create new job</span>
                     </div>
                 </Link>
+                <Link to="/home/favorite">
+                        <div className="buttonJob">
+                            <span>Favorites</span>
+                        </div>
+                </Link>
+                
                 <UserNav />
             </div>
+            
+                
+           
         </>
         }
     </nav>

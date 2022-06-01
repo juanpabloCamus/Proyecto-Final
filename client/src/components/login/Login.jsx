@@ -38,16 +38,21 @@ const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
+    
+
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
         text: "Acceso válido"
       })
-      // const isLogged = true
+      const user = res.data
+      localStorage.setItem("user",JSON.stringify(user))
 
-      
+      let rout = `/home/${res.data.id}`
+      const isLogged = true
       dispatch(authActions.getNewUser(res.data))
-      navigate('/home')
+      if(res.data.name)  rout = `/company/${res.data.id}`
+      navigate(rout)
     }else{
       Swal.fire({
         icon: 'error',
@@ -80,3 +85,5 @@ const loginUser = async() => {
     </div>
   )
 }
+
+
