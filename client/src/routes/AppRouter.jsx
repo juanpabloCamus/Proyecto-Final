@@ -4,6 +4,7 @@ import {Routes,Route} from "react-router-dom"
 import PostDetail from '../components/Home/User/Post/PostDetail/PostDeatail'
 import CreateJob from '../components/Home/Company/CreateJob/CreateJob.jsx'
 import DevProfile from '../components/Profiles/DevProfile'
+import Favorites from '../components/Home/User/Favorites/Favorites'
 
 export const AppRouter = () => {
   return (
