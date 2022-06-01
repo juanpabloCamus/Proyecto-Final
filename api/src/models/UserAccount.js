@@ -18,9 +18,6 @@ module.exports = (sequelize) => {
             },
             unique:true
         },
-        profileType:{
-            type:DataTypes.STRING,
-        },
         date_birth:{
             type:DataTypes.DATEONLY
         },

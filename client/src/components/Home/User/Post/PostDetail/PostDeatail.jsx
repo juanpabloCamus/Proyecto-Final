@@ -29,7 +29,7 @@ function PostDetail() {
     },[dispatch,id])
 
     let detail = useSelector((state)=> state.jobDetail.jobDetail);
-
+    
     if(detail[0]){
         var {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description,user_accounts} = detail[0]
         if(user_accounts){
