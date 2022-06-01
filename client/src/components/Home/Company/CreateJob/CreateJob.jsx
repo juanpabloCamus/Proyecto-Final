@@ -6,14 +6,14 @@ import Swal from "sweetalert2";
 import img from "../../../../assets/arrow.png";
 import { Link } from "react-router-dom";
 import { fetchTechs } from "../../../../redux/techs/techs";
-import styles from "./createJob.module.css";
-import axios from "axios";
+import styles from './createJob.module.css'
+import axios from 'axios'
 
 let techId = 0;
 
 export default function CreateJob() {
   const techs = useSelector((state) => state.techs.techs);
-  const userLocalStorage = JSON.parse(localStorage.getItem("user"));
+  const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id;
 
   const dispatch = useDispatch();

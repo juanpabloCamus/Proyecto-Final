@@ -44,7 +44,7 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {name, email, password} = req.body
+        const {name, email, password, profileType} = req.body
 
         if(!name||!email||!password){
             res.send('Hay un campo invalido.')
