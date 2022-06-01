@@ -5,12 +5,16 @@ import heart from '../../../../../assets/heart2.png';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
+import { modalActions } from '../../../../../redux/modal_slice/modalSlice';
 import styles from './PostDetail.module.css';
 import axios from 'axios'
 function PostDetail() {
 
     const {id} = useParams();
     const dispatch = useDispatch();
+    //redux para abir y cerrar react portal
+    const { isOpen } = useSelector(state => state.modal)
+
     const [state, setState] = useState(true)
     const [check,setCheck] = useState(true)
 
@@ -62,6 +66,10 @@ function PostDetail() {
             }
         };
     }
+
+    const handleOpenModal = () =>{
+        dispatch(modalActions.setModalValue())
+      }
     
     
 
@@ -122,7 +130,10 @@ function PostDetail() {
                 </div>
             </div>
             <div className={styles.buttonContainer}>
-                <button className={styles.button}>Apply now</button>
+                <button 
+                className={styles.button}
+                onClick={ handleOpenModal }
+                >Apply now</button>
                 <button className={styles.button} onClick={(e)=> handleFavorite(e)}>
                     {
                     isFav ?
