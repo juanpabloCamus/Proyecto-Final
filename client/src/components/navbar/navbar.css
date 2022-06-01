@@ -23,6 +23,7 @@
 .navbar{
     align-items: center;
     display: flex;
+    justify-content: center;
     gap: 60px;
 }
 
@@ -60,7 +61,10 @@
     background-color: rgba(70, 73, 156, 0.9);
 }
 
+
 .profileDiv{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 100px;
 }

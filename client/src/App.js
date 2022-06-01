@@ -36,13 +36,13 @@ function App() {
               <Route path="home" element={<Home />} />
               <Route path="home/post/:id" element={<PostDetail />} />
               <Route path="home/favorites" element={<Favorites/>}/>
-              {/* <Route path="home/profile/:id" element={<DevProfile />} /> */}
+              <Route path="home/profile/:id" element={<DevProfile />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
               <Route path="company" element={<CompanyHome />} />
               <Route path="company/createjob" element={<CreateJob />} />
-              {/* <Route path="company/profile/:id" element={<ComProfile />} /> */}
+              <Route path="company/profile/:id" element={<ComProfile />} />
             </Route>
               
           

@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { UserNav } from "./user_nav/UserNav";
-import {GrFavorite} from "react-icons/gr"
-import {BiHome} from "react-icons/bi"
+
+
 import "./navbar.css";
 
 export const Navbar = () => {
@@ -33,23 +33,9 @@ export const Navbar = () => {
         {sessionStorage ? (
            
           sessionStorage.profileType[0] === "develop" ? (
-            <div className="profileDiv">
-              <Link to="/home/favorites">
-                <div>
-                  <span><GrFavorite/></span>
-                </div>
-              </Link>
               <UserNav />
-            </div>
           ) : (
-            <>
-              <Link to="/company/createjob">
-                <div className="buttonJob">
-                  <span>Create new job</span>
-                </div>
-              </Link>
               <UserNav />
-            </>
 
           )
         )
