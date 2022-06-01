@@ -14,7 +14,7 @@
 
 .logged_user_icon{
     cursor: pointer;
-    width: 60px;
+    width: 40px;
 
 }
 
@@ -58,7 +58,7 @@
 }
 
 .link{
-    color: rgb(0, 0, 0);
+    color: rgb(132, 132, 132);
     background-color: white;
     font-size: 22px;
 }

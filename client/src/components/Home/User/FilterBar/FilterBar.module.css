@@ -9,6 +9,13 @@
 
 .filterSet {
 	display: flex;
+	gap: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+.filterSet_menu{
+    display: flex;
 	gap: 15px;
 	justify-content: center;
 	align-items: center;
@@ -16,7 +23,7 @@
 
 .filter {
     position: relative;
-    margin-top:10px;
+    box-shadow: 2px 2px 5px 1px lightgray;
     margin-right: 8px;
     padding: 8px 24px;
     border: 2px solid #F2F7FB;
