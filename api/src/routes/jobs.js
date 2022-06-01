@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}],
+            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}],
             order: [
                 ['id', 'DESC']
             ],
@@ -121,6 +121,8 @@ router.get('/', async (req,res)=>{
                 }
             }
         }
+        jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
+        jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
 
         if(jobs.length>0){
             let cantPaginas = Math.ceil(jobs.length/10)
@@ -145,12 +147,15 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         const jobId = await job.findAll({
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}], 
+            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}], 
             where:{id: id}
         })
         if(jobId.length<1){
             res.send('No existe oferta laboral')
         }
+        jobId[0].dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password)
+        delete jobId[0].dataValues.company_accounts[0].dataValues.password
+        jobId[0].dataValues.user_accounts.map(u=>delete u.dataValues.password)
         res.send(jobId)
     }catch(error){
         console.log(error)

@@ -8,11 +8,6 @@ module.exports = (sequelize) => {
 
         description:{
             type:DataTypes.TEXT
-        },
-
-        active: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: true
         }
     },{timestamps:false})
 }

@@ -66,8 +66,8 @@ function EditDevProfileForm() {
             <form className={styles.form}>
                 <label>Fullname</label>
                 <input name='fullName' value={currentInfo.fullName} onChange={handleChange}></input>
-                <label>Birth date</label>
-                <input name="date_birth" value={currentInfo.date_birth} type='date' onChange={handleChange} ></input>
+                {/* <label>Birth date</label>
+                <input name="date_birth" value={currentInfo.date_birth} type='date' onChange={handleChange} ></input> */}
                 <label>Country</label>
                 <select value={currentInfo.country} id="country" name="country" onChange={handleChange}>
                 <option value="Afganistan">Afghanistan</option>
