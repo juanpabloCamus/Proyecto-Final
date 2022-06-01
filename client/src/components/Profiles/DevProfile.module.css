@@ -40,3 +40,24 @@
 .technologiesContainer h3{
     text-align: center;
 }
+
+.userTechsContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.userTechsContainer label{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: rgba(239, 245, 250, 0.793);
+    color:#46499c
+  }

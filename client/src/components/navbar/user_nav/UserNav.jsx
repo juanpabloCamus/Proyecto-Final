@@ -25,7 +25,7 @@ export const UserNav = ({id}) => {
     navigate("/")
     setToggleMenu(!toggleMenu)
   }
-  console.log(sessionStorage);
+  
   
   return (
     <div className={ styles.logged_user_navbar }>
@@ -38,13 +38,13 @@ export const UserNav = ({id}) => {
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>
-            <span className={styles.option}> {
-              <Link to={
+            {
+              <Link className={styles.link} to={
               profile === "develop" ? `/home/profile/${sessionStorage.id}` : profile === "company" ? `/company/profile/${sessionStorage.id}` : "/admin"
-              }className={ styles.option }>
+              }>
               Profile
-              </Link>}
-          </span>
+              </Link>
+            }
             <span className={styles.option} onClick={ handleLogout }>Logout</span>
         </div>
     </div>
