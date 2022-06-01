@@ -8,13 +8,13 @@ import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
 import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 import { Navbar } from "./components/navbar/Navbar";
 
-import './App.css'
 import { NotFound } from "./components/not_found/NotFound";
 import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
 import DevProfile from "./components/Profiles/DevProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
 
+import './App.css'
 
 
 function App() {
@@ -49,8 +49,6 @@ function App() {
             <Route element={<RequireAuth allowedRoles={["admin"]} />}>
               <Route path="admin" element={<Admin />} />
             </Route>
-
-            
 
             <Route path="*" element={<NotFound/>}/>
         </Routes>
