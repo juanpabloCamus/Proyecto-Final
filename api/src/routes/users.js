@@ -26,7 +26,7 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id},
-            include: [{model:technology},{model:job, include:company_account},{model:education}]
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education}]
         })
         if(user.length<1){
             res.send('No existe el usuario')
