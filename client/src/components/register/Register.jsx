@@ -12,7 +12,7 @@ import './register.css'
 
 
 export const Register = () => {
- 
+
 const [condition, setCondition] = useState('')
 const [formValues, handleInputChange, reset] = useForm({
     name: '',
@@ -46,10 +46,7 @@ const activeComForm = () => {
 
 const postNewUser = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/users/register', {
-            ...formValues,
-            profileType
-        })
+        const res = await axios.post('http://localhost:3001/users/register', formValues)
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
@@ -74,10 +71,7 @@ const postNewUser = async() => {
 
 const postNewCompany = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/company/register', {
-            ...formValues,
-            profileType
-        })
+        const res = await axios.post('http://localhost:3001/company/register', formValues)
  
         if(res.data.active === true){
             Swal.fire({
@@ -98,6 +92,11 @@ const postNewCompany = async() => {
         console.log(error)
     }
 
+}
+
+const switchForm = () =>{
+    dispatch(modalActions.activateLoginModal(true))
+    dispatch(modalActions.activateRegisterModal(false))
 }
 
 const handleSubmit = (e) => {
@@ -121,15 +120,22 @@ const handleSubmit = (e) => {
 
   return (
     <div>
-        <div className= {`chose_buttons ${showElements ? "active_elements" : null}`}>
-        <button
-            onClick={ activeDevForm }
-        >Developer
-        </button>
-        <button
-            onClick={ activeComForm }
-        >Company
-        </button>
+        <div className= { showElements ? "active_elements" : null}>
+            <div className='chose_buttons'>
+                <button
+                    onClick={ activeDevForm }
+                >Developer
+                </button>
+                <button
+                    onClick={ activeComForm }
+                >Company
+                </button>
+            </div>
+            <div className="switch_form">
+                <p
+                    onClick={ switchForm }
+                >Already registered?</p>
+            </div>
         </div>
     
         <div className={showElements ? null : "active_elements" }>

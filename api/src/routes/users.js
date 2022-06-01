@@ -7,9 +7,13 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll({
-            include: technology
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education}]
         })
-
+        if(users.length>0){
+            for(let i=0;i<users.length;i++){
+                users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
+            }
+        }
         res.send(users)
     }catch(error){
         console.log(error)
@@ -22,11 +26,12 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id},
-            include: technology
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education}]
         })
         if(user.length<1){
             res.send('No existe el usuario')
         }
+        user[0].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
         res.send(user)
 
     }catch(error){
@@ -34,10 +39,70 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
+router.post('/:id/education', async (req,res)=>{
+    try{
+        const {id} = req.params
+        const {title,institution,degree,description,start_date,end_date} = req.body
+    
+        if(title&&institution&&degree){
+            if(!/^[a-zA-Z\s]+$/.test(title)){
+                res.send('El titulo solo debe contener letras y espacios')
+            }else if(!/^[a-zA-Z\s]+$/.test(institution)){
+                res.send('La institucion solo debe contener letras y espacios')
+            }else if(!/^[0-9a-zA-Z\s]+$/.test(title)){
+                res.send('el grado solo debe contener letras, numeros y espacios')
+            }else{
+                let educ = await education.create({
+                    title,
+                    institution,
+                    degree
+                })
+                educ.setUser_account(id)
+                res.send(educ)
+            }
+        }else{
+            res.send('Completar los campos obligatorios')
+        }
+    }catch(error){
+        console.log(error)
+    }
+    
+})
+
+router.post('/:idUser/favs/:idJob', async (req,res)=>{
+    try{
+        const {idUser,idJob} = req.params
+        const {state} = req.body
+        console.log(state)
+        if(idUser&&idJob&&(state===true||state===false)){
+            const jobid = await job.findAll({
+                where:{id: idJob},
+                include: user_account
+            })
+            if(state===true){
+                let inFav = jobid[0].dataValues.user_accounts.find(u=>u.dataValues.id===parseInt(idUser))
+                if(inFav){
+                    res.send('Ya esta en favoritos')
+                }else{
+                    jobid[0].addUser_account(idUser)
+                    res.send('Agregado a favoritos')
+                }
+            }else{
+                jobid[0].removeUser_account(idUser)
+                res.send('eliminado de favoritos')
+            }
+        }else{
+            res.send('datos invalidos')
+        }
+    }catch(error){
+        console.log(error)
+    }
+})
+
 router.post('/register', async (req,res)=>{
     try{
-        const {fullName, email, password} = req.body
-
+        const {fullName, email, password, profileType} = req.body
+        
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{
@@ -83,7 +148,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description, technologies} = req.body
+        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city} = req.body
 
         let errores = []
 
@@ -104,8 +169,7 @@ router.put('/:id', async (req,res)=>{
             if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(date_birth)){
                 errores.push('fecha de nacimiento')
             }else{
-                await user_account.update(
-                    {
+                await user_account.update({
                         date_birth: date_birth
                     },{
                         where:{id: id}
@@ -163,11 +227,74 @@ router.put('/:id', async (req,res)=>{
                 }
             }
         }
+        if(stack){
+            await user_account.update(
+                {
+                    stack: stack
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(banner){
+            if(!/(https?:\/\/.*\.)/.test(banner)){
+                errores.push('banner')
+            }else if(/\s/.test(banner)){
+                errores.push('banner')
+            }else{
+                await user_account.update(
+                    {
+                        banner: banner
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(currentJob){
+            await user_account.update(
+                {
+                    currentJob: currentJob
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(country){
+            if(!/^[a-zA-Z\s]+$/.test(country)){
+                errores.push('pais')
+            }else{
+                await user_account.update(
+                    {
+                        country: country
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(city){
+            if(!/^[a-zA-Z\s]+$/.test(city)){
+                errores.push('ciudad')
+            }else{
+                await user_account.update(
+                    {
+                        city: city
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        let user = await user_account.findAll({
+            where:{id: id}
+        })
+        delete user[0].dataValues.password
         if(errores.length>0){
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
         }
-        res.send('datos actualizados.')
+        res.send(user[0])
     }catch(error){
         console.log(error)
     }
@@ -184,6 +311,18 @@ router.delete('/:id', async (req,res)=>{
         })
 
         res.send('usuario eliminado')
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.delete('/education/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+        await education.destroy({
+            where:{id:id}
+        })
+        res.send('eliminado')
     }catch(error){
         console.log(error)
     }

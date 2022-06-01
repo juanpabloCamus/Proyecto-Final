@@ -1,25 +1,73 @@
 import { Link, useParams } from "react-router-dom";
 import arrow from '../../../../../assets/arrow.png';
-import heart from '../../../../../assets/heart.png';
-import { useEffect } from "react";
+import selectedHeart from '../../../../../assets/heart.png';
+import heart from '../../../../../assets/heart2.png';
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import styles from './PostDetail.module.css';
-
+import axios from 'axios'
 function PostDetail() {
 
     const {id} = useParams();
     const dispatch = useDispatch();
-    
+    const [state, setState] = useState(true)
+    const [check,setCheck] = useState(true)
+
+    const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
+
+    let idUser = userLocalStorage.id
+
+    let idJob = id
+
     useEffect(()=>{
         dispatch(fetchJobDetail(id))
     },[dispatch,id])
 
     let detail = useSelector((state)=> state.jobDetail.jobDetail);
-    if (detail[0] === undefined) return(<h1>Loading...</h1>)
-    let {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description} = detail[0]
-    if (company_accounts === undefined) return(<h1>Loading...</h1>)
+    
+    if(detail[0]){
+        var {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description,user_accounts} = detail[0]
+        if(user_accounts){
+            if(user_accounts.length>0){
+                var isFav = user_accounts.find(u=>u.id===idUser)
+            }
+        }
+    }
+
+    var handleFavorite
+
+    if(isFav){
+        handleFavorite = async (e) => {
+            if(isFav&&check){
+                setCheck(false)
+            }else{
+                if(state === true) {setState(false)
+                }else setState(true)
+            }
+            try {
+                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
+                } catch (error) {
+                console.log(error)
+            }
+        };
+    }else{
+        handleFavorite = async (e) => {
+            if(state === true) {setState(false)
+            }else setState(true)
+            try {
+                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, {state})
+            } catch (error) {
+                console.log(error)
+            }
+        };
+    }
+    
+    
+
     return (
+        detail[0] ?
+        company_accounts ?
         <div className={styles.pageContainer}>
             <div className={styles.back}>
             <Link to={'/home'}>
@@ -75,9 +123,18 @@ function PostDetail() {
             </div>
             <div className={styles.buttonContainer}>
                 <button className={styles.button}>Apply now</button>
-                <button className={styles.button}><img id={styles.heart} src={heart}></img></button>
+                <button className={styles.button} onClick={(e)=> handleFavorite(e)}>
+                    {
+                    isFav ?
+                        check ? <img id={styles.heart} src={selectedHeart} alt=''></img> :
+                        !state ? <img id={styles.heart} src={selectedHeart} alt=''></img>
+                        : <img id={styles.heart} src={heart} alt=''></img>
+                        : state ? <img id={styles.heart} src={heart} alt=''></img>
+                        : <img id={styles.heart} src={selectedHeart} alt=''></img>
+                    }
+                </button>
             </div>
-        </div>
+        </div> : <h1>Loading...</h1> : <h1>Loading...</h1>
     );
 }
 

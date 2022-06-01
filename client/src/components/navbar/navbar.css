@@ -1,6 +1,6 @@
 .nav{
     align-items: center;
-    box-shadow: 1px 1px 5px 1px lightgray;
+    box-shadow: 1px 1px 5px -2px lightgray;
     background-color: white;
     justify-content: space-between;
     display: flex;
@@ -9,7 +9,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    padding: 30px;
+    padding: 30px 70px;
     z-index: 100;
 }
 
@@ -23,7 +23,8 @@
 .navbar{
     align-items: center;
     display: flex;
-    gap: 50px;
+    justify-content: center;
+    gap: 60px;
 }
 
 .nav li{
@@ -32,7 +33,7 @@
 
 .navbar_button{
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
     background-color: transparent;
 }
 
@@ -53,7 +54,6 @@
     color: white;
     border: none;
     font-size: 16px;
-    
     padding: 15px;
 }
 
@@ -61,11 +61,10 @@
     background-color: rgba(70, 73, 156, 0.9);
 }
 
+
 .profileDiv{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 100px;
-}
-
-.searchBar{
-    margin-left: 150px;
 }
