@@ -28,7 +28,7 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let company = await company_account.findAll({
-            include: [{model:job, include:technology}],
+            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
             where:{id:id}
         })
         if(company.length<1){
@@ -72,7 +72,7 @@ router.post('/register', async (req,res)=>{
                         profileType: 'company'
                     })
                     let empresa = await company_account.findAll({
-                        include: job,
+                        include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
                         where: {id: newCompany.dataValues.id}
                     })
                     delete empresa[0].dataValues.password
@@ -229,7 +229,7 @@ router.put('/:id', async (req,res)=>{
             res.send(`No se actualizaron los campos: ${error}.`)
         }
         let empresa = await company_account.findAll({
-            include: job,
+            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
             where:{id:id}
         })
         delete empresa[0].dataValues.password
