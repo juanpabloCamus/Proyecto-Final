@@ -31,17 +31,17 @@ const {company_account, user_account, experience, education, job, applied_job, t
 
 /////////// RELACIONES DE JOBS //////////////
 
-job.belongsToMany(company_account, {through: "company_job"})
-company_account.belongsToMany(job, {through: "company_job"})
+job.belongsToMany(company_account, {through: "company_job", timestamps:false})
+company_account.belongsToMany(job, {through: "company_job", timestamps:false})
 
 // company_account.hasMany(job)
 // job.belongsTo(company_account)
 
-user_account.belongsToMany(job, {through: "user_favorites"})
-job.belongsToMany(user_account, {through: "user_favorites"})
+user_account.belongsToMany(job, {through: "user_favorites", timestamps:false})
+job.belongsToMany(user_account, {through: "user_favorites", timestamps:false})
 
-technology.belongsToMany(job, {through: "technology_job"})
-job.belongsToMany(technology, {through: "technology_job"})
+technology.belongsToMany(job, {through: "technology_job", timestamps:false})
+job.belongsToMany(technology, {through: "technology_job", timestamps:false})
 
 job.hasMany(applied_job)
 applied_job.belongsTo(job)
@@ -51,11 +51,11 @@ applied_job.belongsTo(job)
 user_account.hasMany(applied_job)
 applied_job.belongsTo(user_account)
 
-user_account.belongsToMany(technology, {through: "technology_user"})
-technology.belongsToMany(user_account, {through: "technology_user"})
+user_account.belongsToMany(technology, {through: "technology_user", timestamps:false})
+technology.belongsToMany(user_account, {through: "technology_user", timestamps:false})
 
-language.belongsToMany(user_account, {through: "language_user"})
-user_account.belongsToMany(language, {through: "language_user"})
+language.belongsToMany(user_account, {through: "language_user", timestamps:false})
+user_account.belongsToMany(language, {through: "language_user", timestamps:false})
 
 user_account.hasMany(experience)
 experience.belongsTo(user_account)
@@ -92,6 +92,7 @@ async function loadDb(){
       foundation: u.foundation,
       web_site: u.web_site,
       banner: u.banner,
+      profileType: 'company'
     })
   })
 
@@ -99,23 +100,35 @@ async function loadDb(){
   user.map(async (u) => {
 
     let us
-
+    u.email !== 'admin@admin.com' ?
     us = await user_account.create({
       fullName: u.fullName,
-      last_name: u.last_name,
       email: u.email,
       password: u.password,
       date_birth:u.date_birth,
       profile_pic:u.profile_pic,
       description:u.description,
+      profileType: 'develop',
+      country: u.country,
+      city: u.city,
+      stack: u.stack
+    }) : 
+    us = await user_account.create({
+      fullName: u.fullName,
+      email: u.email,
+      password: u.password,
+      date_birth:u.date_birth,
+      profile_pic:u.profile_pic,
+      description:u.description,
+      profileType: 'admin'
     })
 
     for (let i = 0; i < 5; i++) {
       await us.addLanguage(i)
     }
 
-    for (let i = 0; i < techs.length; i++) {
-      await us.addTechnology(i)
+    for (let i = 0; i < 4; i++) {
+      await us.addTechnology(us.id + i)
     }
   })
 
@@ -144,15 +157,11 @@ async function loadDb(){
     await j.addCompany_account(j.dataValues.id)
     
 
-    for (let i = 0; i < company.length; i++) {
-      await j.addUser_account(i)
-    }
+    await j.addUser_account(j.dataValues.id)
 
   })
 
 }
-
-
 module.exports = {
   ...db.models,
   db,

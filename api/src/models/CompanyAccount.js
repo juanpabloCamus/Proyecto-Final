@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
             allowNull: false
         },
 
+        profileType:{
+            type:DataTypes.STRING,
+        },
+        
         logo: {
             type: DataTypes.TEXT
         },
@@ -60,6 +64,10 @@ module.exports = (sequelize) => {
 
         banner: {
             type: DataTypes.TEXT
+        },
+
+        profileType: {
+            type: DataTypes.ENUM('company')
         },
 
         active: {

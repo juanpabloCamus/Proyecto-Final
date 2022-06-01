@@ -12,6 +12,7 @@ router.post('/', async (req,res)=>{
             where:{
                 email: email,
             },
+            include: [{model:technology},{model:job}]
         })
         if(mailUser.length>0){
             if(mailUser[0].password===password){

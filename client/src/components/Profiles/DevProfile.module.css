@@ -1,0 +1,63 @@
+.profileContainer{
+    margin-top: 60px;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.bannerProfileContainer{
+    text-align: center
+}
+
+#banner{
+    height: 200px;
+    width: 1200px;
+    text-align: center;
+}
+
+.infoContainer{
+    background-color: rgba(201, 221, 238, 0.51);
+    margin-top: 50px;
+}
+
+.mainInfoContainer{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    border-bottom: 1px solid black;
+}
+
+#logo{
+    width: 150px;
+}
+
+.descriptionContainer, .educationContainer, .technologiesContainer, .experienceContainer{
+    padding: 50px;
+}
+
+.technologiesContainer h3{
+    text-align: center;
+}
+
+.userTechsContainer{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.userTechsContainer label{
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: rgba(239, 245, 250, 0.793);
+    color:#46499c
+  }

@@ -78,7 +78,7 @@ const postNewCompany = async() => {
                 icon: 'success',
                 text: "Usuario creado"
               })
-              localStorage.setItem("userType", profileType)
+              
         }else{
 
             Swal.fire({
