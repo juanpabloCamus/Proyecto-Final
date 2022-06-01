@@ -61,3 +61,13 @@
     background-color: rgb(255, 255, 255);
     color:#46499c
   }
+
+  .editProfileButtonContainer{
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-decoration: none;
+    width: 20%;
+  }

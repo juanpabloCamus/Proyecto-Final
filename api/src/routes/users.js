@@ -7,9 +7,13 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll({
-            include: [{model:technology},{model:job}]
+            include: [{model:technology},{model:job, include:company_account},{model:education}]
         })
-
+        if(users.length>0){
+            for(let i=0;i<users.length;i++){
+                users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
+            }
+        }
         res.send(users)
     }catch(error){
         console.log(error)
@@ -22,16 +26,47 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id},
-            include: [{model:technology},{model:job}]
+            include: [{model:technology},{model:job, include:company_account},{model:education}]
         })
         if(user.length<1){
             res.send('No existe el usuario')
         }
+        user[0].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
         res.send(user)
 
     }catch(error){
         console.log(error)
     }
+})
+
+router.post('/:id/education', async (req,res)=>{
+    try{
+        const {id} = req.params
+        const {title,institution,degree,description,start_date,end_date} = req.body
+    
+        if(title&&institution&&degree){
+            if(!/^[a-zA-Z\s]+$/.test(title)){
+                res.send('El titulo solo debe contener letras y espacios')
+            }else if(!/^[a-zA-Z\s]+$/.test(institution)){
+                res.send('La institucion solo debe contener letras y espacios')
+            }else if(!/^[0-9a-zA-Z\s]+$/.test(title)){
+                res.send('el grado solo debe contener letras, numeros y espacios')
+            }else{
+                let educ = await education.create({
+                    title,
+                    institution,
+                    degree
+                })
+                educ.setUser_account(id)
+                res.send(educ)
+            }
+        }else{
+            res.send('Completar los campos obligatorios')
+        }
+    }catch(error){
+        console.log(error)
+    }
+    
 })
 
 router.post('/:idUser/favs/:idJob', async (req,res)=>{
@@ -193,11 +228,15 @@ router.put('/:id', async (req,res)=>{
                 }
             }
         }
+        let user = await user_account.findAll({
+            where:{id: id}
+        })
+        delete user[0].dataValues.password
         if(errores.length>0){
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
         }
-        res.send('datos actualizados.')
+        res.send(user[0])
     }catch(error){
         console.log(error)
     }
@@ -214,6 +253,18 @@ router.delete('/:id', async (req,res)=>{
         })
 
         res.send('usuario eliminado')
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.delete('/education/:id', async (req,res)=>{
+    try{
+        const {id} = req.params
+        await education.destroy({
+            where:{id:id}
+        })
+        res.send('eliminado')
     }catch(error){
         console.log(error)
     }

@@ -19,10 +19,11 @@ function DevProfile() {
     }, [dispatch, id])
 
     const user = useSelector(state => state.users.user[0])
+    
     if(user === undefined) return <h1>Loading...</h1>
 
     let userTechs = user.technologies.map(t => t.name)
-    
+
     return (
         <div className={styles.pageContainer}>
             <div className={styles.profileContainer}>
@@ -38,10 +39,12 @@ function DevProfile() {
                             <label>{user.currentJob}</label>
                         </div>
                     </div>
-                    <div>
+                    <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editdevprofile/${id}`}>Edit Profile</Link>
                     </div>
                     <div className={styles.technologiesContainer}>
+                        {userTechs.length === 0 ? <h3>You can add your techs here, please complete profile</h3> :
+                        <div>
                         <h3>Skills at</h3>
                         <div className={styles.userTechsContainer}>
                         {userTechs.map(t => t ==='Cplus' ?
@@ -52,18 +55,22 @@ function DevProfile() {
                         (<label key={t} >C#</label>) :
                         (<label key={t} >{t}</label>))}
                         </div>
+                        </div>
+                        }
                     </div>
                     <div className={styles.descriptionContainer}>
                         <h3>Description</h3>
+                        {user.description === null ? <p>Not description yet? Please complete your profile</p> :
                         <p>{user.description}</p>
+                        }
                     </div>
                     <div className={styles.experienceContainer}>
                         <h3>Experience</h3>
-                        <p>Experience</p>
+                        <button>Add experience</button>
                     </div>
                     <div className={styles.educationContainer}>
                         <h3>Education</h3>
-                        <p>Education</p>
+                        <button>Add education</button>
                     </div>
                 </div>
             </div>
