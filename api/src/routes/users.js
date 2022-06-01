@@ -7,9 +7,13 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll({
-            include: [{model:technology},{model:job}]
+            include: [{model:technology},{model:job, include:company_account}]
         })
-
+        if(users.length>0){
+            for(let i=0;i<users.length;i++){
+                users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
+            }
+        }
         res.send(users)
     }catch(error){
         console.log(error)
@@ -22,17 +26,23 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id},
-            include: [{model:technology},{model:job}]
+            include: [{model:technology},{model:job, include:company_account}]
         })
         if(user.length<1){
             res.send('No existe el usuario')
         }
+        user[0].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
         res.send(user)
 
     }catch(error){
         console.log(error)
     }
 })
+
+/* router.post('/:id/education', async (req,res)=>{
+    const {id} = req.params
+    const {}
+}) */
 
 router.post('/:idUser/favs/:idJob', async (req,res)=>{
     try{
@@ -193,11 +203,15 @@ router.put('/:id', async (req,res)=>{
                 }
             }
         }
+        let user = await user_account.findAll({
+            where:{id: id}
+        })
+        delete user[0].dataValues.password
         if(errores.length>0){
             const error = errores.join(', ')
             res.send(`No se actualizaron los campos: ${error}.`)
         }
-        res.send('datos actualizados.')
+        res.send(user[0])
     }catch(error){
         console.log(error)
     }
