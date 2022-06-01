@@ -5,6 +5,13 @@
     gap: 60px;
 }
 
+.logged_user_links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
 .logged_user_icon{
     cursor: pointer;
     width: 60px;
@@ -20,15 +27,13 @@
 .logged_user_menu{
     display: none;
     border-radius: 5px;
-    box-shadow: 2px 2px 5px lightgray;
+    box-shadow: 2px 2px 5px 1px rgb(188, 188, 188);
     text-align: center;
     overflow: hidden;
     position: absolute;
     top: 70px;
-    left: -5px;
+    right: 3px;
     width: 120px;
-   
-
 }
 
 .logged_user_menu span{
@@ -48,16 +53,27 @@
 
 .option{
     background: white;
+    color: black;
+    font-size: 16px;
 }
 
 .link{
+    color: rgb(0, 0, 0);
     background-color: white;
-}
-.linkDiv{
-    
+    font-size: 22px;
 }
 
-.return_home_link{
-    color: rgb(53, 53, 53);
+.bell:hover{
+    color: rgb(232, 200, 17);
 }
+
+.heart:hover{
+    color: rgb(254, 97, 123);
+}
+
+.home:hover{
+    color: rgb(38, 135, 66);
+}
+
+
 

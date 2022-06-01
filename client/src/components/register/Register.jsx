@@ -12,7 +12,7 @@ import './register.css'
 
 
 export const Register = () => {
- 
+
 const [condition, setCondition] = useState('')
 const [formValues, handleInputChange, reset] = useForm({
     name: '',
@@ -94,6 +94,11 @@ const postNewCompany = async() => {
 
 }
 
+const switchForm = () =>{
+    dispatch(modalActions.activateLoginModal(true))
+    dispatch(modalActions.activateRegisterModal(false))
+}
+
 const handleSubmit = (e) => {
     e.preventDefault()
     
@@ -115,15 +120,22 @@ const handleSubmit = (e) => {
 
   return (
     <div>
-        <div className= {`chose_buttons ${showElements ? "active_elements" : null}`}>
-        <button
-            onClick={ activeDevForm }
-        >Developer
-        </button>
-        <button
-            onClick={ activeComForm }
-        >Company
-        </button>
+        <div className= { showElements ? "active_elements" : null}>
+            <div className='chose_buttons'>
+                <button
+                    onClick={ activeDevForm }
+                >Developer
+                </button>
+                <button
+                    onClick={ activeComForm }
+                >Company
+                </button>
+            </div>
+            <div className="switch_form">
+                <p
+                    onClick={ switchForm }
+                >Already registered?</p>
+            </div>
         </div>
     
         <div className={showElements ? null : "active_elements" }>
