@@ -38,7 +38,7 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
     try{
         const {idUser,idJob} = req.params
         const {state} = req.body
-
+        console.log(state)
         if(idUser&&idJob&&(state===true||state===false)){
             const jobid = await job.findAll({
                 where:{id: idJob},
@@ -66,8 +66,8 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {fullName, email, password} = req.body
-
+        const {fullName, email, password, profileType} = req.body
+        
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
         }else{

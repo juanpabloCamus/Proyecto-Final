@@ -1,4 +1,8 @@
 .filterBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
     margin: 50px 0;
 }
 
@@ -12,10 +16,11 @@
 
 .filter {
     position: relative;
+    margin-top:10px;
     margin-right: 8px;
     padding: 8px 24px;
     border: 2px solid #F2F7FB;
-    border-radius: 30px;
+    border-radius: 8px;
     font-weight: bold;
     font-size: 16px;
     line-height: 19px;

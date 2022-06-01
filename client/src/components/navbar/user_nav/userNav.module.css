@@ -2,11 +2,13 @@
     align-items: center;
     display: flex;
     position: relative;
+    gap: 60px;
 }
 
 .logged_user_icon{
     cursor: pointer;
     width: 60px;
+
 }
 
 .logged_user_icon img{
@@ -23,14 +25,17 @@
     overflow: hidden;
     position: absolute;
     top: 70px;
-    left: -35px;
+    left: -5px;
     width: 120px;
+   
+
 }
 
 .logged_user_menu span{
     cursor: pointer;
     padding: 10px;
     display: block;
+    justify-content:flex-end;
 }
 
 .logged_user_menu span:hover{
@@ -44,3 +49,15 @@
 .option{
     background: white;
 }
+
+.link{
+    background-color: white;
+}
+.linkDiv{
+    
+}
+
+.return_home_link{
+    color: rgb(53, 53, 53);
+}
+

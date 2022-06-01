@@ -1,26 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from './DevProfile.module.css';
 import { Navbar } from "../navbar/Navbar";
 import location from '../../assets/location.png';
 import size from '../../assets/size.png';
 import web from '../../assets/website.png';
+import { fetchUser } from "../../redux/users/users";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 function DevProfile() {
-    const user = {   
-        fullName: 'Elon Musk',
-        email: 'elon@millonario.com',
-        password: '26465456',
-        date_birth: '2022-05-10',
-        profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        banner: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRew7fCRwBNlC8Lz-_XHqZRF7HokVGXj2EATg&usqp=CAU',
-        stack: 'Front-End Enginner',
-        currentJob: 'CEO at tesla'
-    }
+    
+    const dispatch = useDispatch()
+    const {id} = useParams()
+    
+    useEffect(() => {
+        dispatch(fetchUser(id))
+    }, [dispatch, id])
 
+    const user = useSelector(state => state.users.user[0])
+    if(user === undefined) return <h1>Loading...</h1>
+
+    let userTechs = user.technologies.map(t => t.name)
+    
     return (
         <div className={styles.pageContainer}>
-            <Navbar></Navbar>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     <img id={styles.banner} alt="banner" src={user.banner}></img>
@@ -36,6 +39,15 @@ function DevProfile() {
                     </div>
                     <div className={styles.technologiesContainer}>
                         <h3>Skills at</h3>
+                        <div className={styles.userTechsContainer}>
+                        {userTechs.map(t => t ==='Cplus' ?
+                        (<label key={t} >C+</label>) :
+                        t==='Cplusplus' ?
+                        (<label key={t} >C++</label>) :
+                        t==='CSharp' ?
+                        (<label key={t} >C#</label>) :
+                        (<label key={t} >{t}</label>))}
+                        </div>
                     </div>
                     <div className={styles.descriptionContainer}>
                         <h3>Description</h3>

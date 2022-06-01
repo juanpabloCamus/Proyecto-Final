@@ -1,23 +1,17 @@
-import React from 'react'
-
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { modalActions } from '../../redux/modal_slice/modalSlice'
-import SearchBar from '../Home/User/SearchBar/SearchBar'
+import { UserNav } from './user_nav/UserNav'
 
 import './navbar.css'
-import { UserNav } from './user_nav/UserNav'
 
 export const Navbar = () => {
 
 const dispatch = useDispatch()
 
-//Cambiar cuando este lista la autenticacion
 
-let ubicacion = window.location.pathname
-
-
+const sessionStorage = JSON.parse(localStorage.getItem("userData"))
 
 const handleOpenLoginModal = ()  => {
     dispatch(modalActions.setModalValue())
@@ -35,48 +29,45 @@ const handleOpenRegisterModal = ()  => {
   return (
       
     <nav className='nav animate__animated animate__fadeInDownBig'>
-        {ubicacion === '/'?
-            <Link to="/">
-                <div className="logo">
-                    <span>Rocket</span>
-                </div>
-            </Link>:
-            <a href="/home">
-                <div className="logo">
-                    <span>Rocket</span>
-                </div>
-            </a>
-        }
-        {ubicacion === '/' ?
-        <ul className="navbar">
-            <li>
-                <button
-                onClick={ handleOpenLoginModal }
-                className="navbar_button login"
-                >Login</button>
-            </li>
-            <li>
-                <button
-                onClick={ handleOpenRegisterModal }
-                className="navbar_button register"
-                >Sign Up</button>
-            </li>
-        </ul>:
-        <>
-        <div className='searchBar'>
-            <SearchBar />
-        </div>
-            <div className='profileDiv'>
-                <Link to="/home/createjob">
-                    <div className="buttonJob">
-                        <span>Create new job</span>
-                    </div>
-                </Link>
-                <UserNav />
+       
+        <Link to="/">
+            <div className="logo">
+                <span>Rocket</span>
             </div>
-        </>
-        }
+        </Link>
+        
+
+        <ul className="navbar">
+
+        {sessionStorage ?
+
+            <div className='profileDiv'>
+                    <Link to="/company/createjob">
+                        <div className="buttonJob">
+                            <span>Create new job</span>
+                        </div>
+                    </Link>
+                    <UserNav />
+            </div>
+                :
+            <>
+
+                <li>
+                    <button
+                    onClick={ handleOpenLoginModal }
+                    className="navbar_button login"
+                    >Login</button>
+                </li>
+                <li>
+                    <button
+                    onClick={ handleOpenRegisterModal }
+                    className="navbar_button register"
+                    >Sign Up</button>
+                </li>
+            </>
+            }
+        </ul>
+        
     </nav>
   )
 }
-
