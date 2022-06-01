@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
+
 export const fetchCompany=createAsyncThunk('company/fetchCompany',
 async(id)=>{
     try {
@@ -10,8 +11,23 @@ async(id)=>{
     }
 }
 )
+
+
+export const fetchCompanies=createAsyncThunk('company/fetchCompany',
+async()=>{
+    try {
+        const res=await axios.get('http://localhost:3001/company')
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+)
+
+
 const initialState = {
-    company: []
+    company: [],
+    companies:[]
 }
 
 export const companySlice=createSlice({
@@ -26,6 +42,7 @@ export const companySlice=createSlice({
         },
         [fetchCompany.fulfilled]:(state,{payload})=>
         {
+          state.companies=payload     
           state.company=payload
           state.status="fulfilled"
         },
