@@ -74,6 +74,11 @@ const loginUser = async() => {
  }
 }
 
+const switchForm = () =>{
+  dispatch(modalActions.activateRegisterModal(true))
+  dispatch(modalActions.activateLoginModal(false))
+}
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,6 +94,11 @@ const loginUser = async() => {
             <label>Password*</label>
             <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
             <button type="submit" className='login__button'>Send</button>
+            <div className="switch_form">
+                <p
+                  onClick={ switchForm }
+                >Not have an account yet?</p>
+            </div>
         </form>
     </div>
   )

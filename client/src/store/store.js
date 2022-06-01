@@ -12,7 +12,6 @@ import CompanyPSlice from '../redux/Profile/profileData'
 
 
 
-
 export const store = configureStore({
     reducer:{
         auth: authSlice,
@@ -24,6 +23,7 @@ export const store = configureStore({
         techs:techsSlice,
         jobDetail: jobDetailSlice,
         companyProfile: CompanyPSlice
+       
     }
 })
 
