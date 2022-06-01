@@ -48,6 +48,18 @@
     border: 3px solid #46499c;
 }
 
+.switch_form{
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 30px;
+    letter-spacing: 1px;
+}
+
+.switch_form:hover{
+    text-decoration: underline;
+}
+
 .active_elements{
     display: none;
 }

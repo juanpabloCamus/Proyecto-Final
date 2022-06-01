@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import location from '../../assets/location.png';
 import size from '../../assets/size.png';
 import web from '../../assets/website.png';
-import { fetchCompanyProfile } from "../../redux/Profile/profileData";
+import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
