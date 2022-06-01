@@ -20,6 +20,7 @@ import { NotFound } from "./components/not_found/NotFound";
 import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
 import DevProfile from "./components/Profiles/DevProfile";
+import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
 
 
 // const ROLES ={
@@ -48,6 +49,7 @@ function App() {
               <Route path="home" element={<Home />} />
               <Route path="home/post/:id" element={<PostDetail />} />
               <Route path="home/profile/:id" element={<DevProfile />} />
+              <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>

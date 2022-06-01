@@ -81,7 +81,7 @@ function ComProfile() {
                     <p>{user.description}</p>
                 </div>
                 <div className={styles.jobsContainer}>
-                    <h3>Current job offers in {user.name}</h3>
+                    <h3>Current job offers at {user.name}</h3>
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>

@@ -7,6 +7,7 @@ import web from '../../assets/website.png';
 import { fetchUser } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 function DevProfile() {
     
@@ -36,6 +37,9 @@ function DevProfile() {
                             <h5>{user.stack}</h5>
                             <label>{user.currentJob}</label>
                         </div>
+                    </div>
+                    <div>
+                        <Link to = {`/editdevprofile/${id}`}>Edit Profile</Link>
                     </div>
                     <div className={styles.technologiesContainer}>
                         <h3>Skills at</h3>
