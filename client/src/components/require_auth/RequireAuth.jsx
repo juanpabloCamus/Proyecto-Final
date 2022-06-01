@@ -8,9 +8,7 @@ const storage = JSON.parse(localStorage.getItem("userData"))
 const { isLogged } = useSelector(state => state.auth)
 
 
-console.log(storage)
-console.log(isLogged.profileType)
-console.log(allowedRoles)
+
  
 
   return (

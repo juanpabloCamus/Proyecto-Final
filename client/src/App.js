@@ -8,21 +8,13 @@ import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
 import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 import { Navbar } from "./components/navbar/Navbar";
 
-
-// import { developerRoutes } from "./routes/developerRoutes";
-// import { companyRoutes } from "./routes/companyRoutes"; 
-
 import './App.css'
 import { NotFound } from "./components/not_found/NotFound";
 import CompanyHome from "./components/Home/Company/CompanyHome";
+import ComProfile from "./components/Profiles/ComProfile";
+import DevProfile from "./components/Profiles/DevProfile";
+import Favorites from "./components/Home/User/Favorites/Favorites";
 
-
-
-// const ROLES ={
-//   developer: "develop",
-//   company: "company",
-//   admin: "admin"
-// }
 
 
 function App() {
@@ -33,7 +25,7 @@ function App() {
     <Navbar/>
     <div className="app__container">
         <Routes>
-         
+        
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
@@ -43,11 +35,14 @@ function App() {
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
               <Route path="home" element={<Home />} />
               <Route path="home/post/:id" element={<PostDetail />} />
+              <Route path="home/favorites" element={<Favorites/>}/>
+              {/* <Route path="home/profile/:id" element={<DevProfile />} /> */}
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
               <Route path="company" element={<CompanyHome />} />
-              <Route path="company/createjob" element={<CreateJob />} /> 
+              <Route path="company/createjob" element={<CreateJob />} />
+              {/* <Route path="company/profile/:id" element={<ComProfile />} /> */}
             </Route>
               
           

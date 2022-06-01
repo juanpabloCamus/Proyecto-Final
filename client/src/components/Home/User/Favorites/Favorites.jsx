@@ -1,16 +1,22 @@
 import { React, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchUser } from '../../../../redux/users/users'
 import Post from '../Post/Post'
 
 function Favorites() {
 
-    const userLocalStorage=JSON.parse(localStorage.getItem("user"))
-
+    const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
+    console.log(userLocalStorage)
+    const dispatch=useDispatch()
     const {favorites} = userLocalStorage
-
+    useEffect(()=>
+    {
+      dispatch(fetchUser(userLocalStorage.id))
+    },[dispatch, userLocalStorage.id])
   return (
     <div>
     {
-        favorites.length > 0 ? 
+        favorites > 0 ? 
         favorites.map( e => {
             return(
                 <Post 
