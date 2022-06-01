@@ -19,6 +19,11 @@ function ComProfile() {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])
 
+    //Borrar detalle
+    // useEffect(() => {
+
+    // }, [])
+
     let user = useSelector(state => state.companyProfile.companyProfile[0])
     if(user === undefined) return <h1>Loading</h1>
     let companyTechs = []
