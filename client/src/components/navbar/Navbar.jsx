@@ -24,7 +24,7 @@ const handleOpenRegisterModal = ()  => {
     dispatch(modalActions.activateRegisterModal(true))
 }
 
-console.log(sessionStorage)
+
 
   return (
       

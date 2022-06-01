@@ -31,7 +31,6 @@ function ComProfile() {
     
     return (
         <div className={styles.pageContainer}>
-            <Navbar></Navbar>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     <img id={styles.banner} alt="banner" src={user.banner}></img>
