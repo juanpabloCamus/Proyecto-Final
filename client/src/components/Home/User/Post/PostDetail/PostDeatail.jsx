@@ -23,11 +23,18 @@ function PostDetail() {
   let idJob = id;
 
 
-  useEffect(() => {
-    dispatch(fetchJobDetail(id));
-  }, [dispatch, id]);
-
-  let detail = useSelector((state) => state.jobDetail.jobDetail);
+    let detail = useSelector((state)=> state.jobDetail.jobDetail);
+    
+    if(detail[0]){
+        var {position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description,user_accounts} = detail[0]
+        if(user_accounts){
+            if(user_accounts.length>0){
+                var isFav = user_accounts.find(u=>u.id===idUser)
+            }
+        }
+    }
+    
+    var handleFavorite
 
   if (detail[0]) {
     var {
@@ -47,7 +54,8 @@ function PostDetail() {
         var isFav = user_accounts.find((u) => u.id === idUser);
       }
     }
-  }
+
+    console.log(detail[0])
 
   var handleFavorite;
 
@@ -168,6 +176,7 @@ function PostDetail() {
   ) : (
     <h1>Loading...</h1>
   );
+}
 }
 
 export default PostDetail;

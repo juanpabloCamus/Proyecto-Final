@@ -31,6 +31,7 @@ function ComProfile() {
         }
     }
     
+    if(user.foundation === undefined) return <h1>Loading</h1>
     return (
         <div className={styles.pageContainer}>
             <div className={styles.profileContainer}>
@@ -49,7 +50,9 @@ function ComProfile() {
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
                         <img src={location} className={styles.infoAsset}></img>
-                        <label>{`${user.country}, ${user.city}`}</label>
+                        { user.city === null ? <label>{user.country}</label> :
+                            <label>{`${user.country}, ${user.city}`}</label>
+                        }
                         </div>
                         <div className={styles.labelContainer}>
                         <img src={size} className={styles.infoAsset}></img>
@@ -78,7 +81,7 @@ function ComProfile() {
                     <p>{user.description}</p>
                 </div>
                 <div className={styles.jobsContainer}>
-                    <h3>Current job offers in {user.name}</h3>
+                    <h3>Current job offers at {user.name}</h3>
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>

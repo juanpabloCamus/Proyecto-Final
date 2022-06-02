@@ -19,7 +19,6 @@ function PostJobOffer() {
     setIsVisible(true);
   }, 3000);
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
-	console.log(id)
 	
 	useEffect(()=>{
 		dispatch(fetchJobDetail(id))
