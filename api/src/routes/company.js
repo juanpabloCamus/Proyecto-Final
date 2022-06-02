@@ -7,13 +7,17 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let company = await company_account.findAll({
-            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}]
+            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
+            order: [
+                ['id', 'ASC']
+            ]
         })
         if(company.length<1){
             res.send('No existe la empresa')
         }
         if(company.length>0){
             for(let i=0;i<company.length;i++){
+                company[i].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
                 delete company[i].dataValues.password
             }
         }
@@ -34,6 +38,7 @@ router.get('/:id', async (req,res)=>{
         if(company.length<1){
             res.send('No existe la empresa')
         }
+        company[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
         delete company[0].dataValues.password
         res.send(company)
 
@@ -75,6 +80,9 @@ router.post('/register', async (req,res)=>{
                         include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
                         where: {id: newCompany.dataValues.id}
                     })
+                    if(empresa[0].dataValues.jobs.length>0){
+                        empresa[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
+                    }
                     delete empresa[0].dataValues.password
                     res.send(empresa[0])
                 }else{
@@ -96,7 +104,7 @@ router.put('/:id', async (req,res)=>{
         let errores = []
 
         if(name){
-            if(!/^[a-zA-Z0-9_\-\.\'\!\&\@\$\ ]+$/.test(name)){
+            if(!/^[a-zA-Z0-9\s_\-\.\'\!\&\@\$]+$/.test(name)){
                 errores.push('nombre')
             }else{
                 await company_account.update(
@@ -109,7 +117,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(country){
-            if(!/^[a-zA-Z ]+$/.test(country)){
+            if(!/^[a-zA-Z\s]+$/.test(country)){
                 errores.push('pais')
             }else{
                 await company_account.update(
@@ -122,7 +130,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(city){
-            if(!/^[a-zA-Z ]+$/.test(city)){
+            if(!/^[a-zA-Z\s]+$/.test(city)){
                 errores.push('ciudad')
             }else{
                 await company_account.update(
@@ -232,6 +240,7 @@ router.put('/:id', async (req,res)=>{
             include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
             where:{id:id}
         })
+        empresa[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
         delete empresa[0].dataValues.password
         res.send(empresa[0])
     }catch(error){

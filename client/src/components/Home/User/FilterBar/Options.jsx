@@ -21,14 +21,14 @@ const optionsTech = [{value: "", label:"Technologies"},
 
 
 
-  const optionsTime = [
-  {value:"",label:"Time"},
-  {value:"No Especificado",label:"Not specified"},
-  {value:"Part-Time", label:"Part-Time"},
-  {value:"Full-Time",label:"Full-Time"}
+const optionsTime = [
+   {value:"",label:"Time"},
+   {value:"No Especificado",label:"Not specified"},
+   {value:"Part-Time", label:"Part-Time"},
+   {value:"Full-Time",label:"Full-Time"}
 ]
 
-  const optionsSeniority = [
+const optionsSeniority = [
      {value:"", label:"Seniority"},
      {value: "No Especificado", label: "Not specified"},
      {value: "Senior", label: "Senior"},
@@ -46,12 +46,13 @@ const optionsTech = [{value: "", label:"Technologies"},
    ]
   
   const optionsSalary=[
-  {value:"",label:"Salary"},
-  {value:"No Especificado",label:"Not specified"},
-  {value:"0$ - 1000$",label:"0$ - 1000$"},
-  {value:"1000$ - 3000$",label:"1000$ - 3000$"},
-  {value:"3000$ - 6000$",label:"3000$ - 6000$"},
-  {value:"6000$ - 10000$",label:"6000$ - 10000$"},
-  {value:"+ 10000$", label:"+ 10000$"}]
+      {value:"",label:"Salary"},
+      {value:"No Especificado",label:"Not specified"},
+      {value:"0$ - 1000$",label:"0$ - 1000$"},
+      {value:"1000$ - 3000$",label:"1000$ - 3000$"},
+      {value:"3000$ - 6000$",label:"3000$ - 6000$"},
+      {value:"6000$ - 10000$",label:"6000$ - 10000$"},
+      {value:"+ 10000$", label:"+ 10000$"}
+]
 
   export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}

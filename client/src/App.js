@@ -50,8 +50,6 @@ function App() {
               <Route path="admin" element={<Admin />} />
             </Route>
 
-            
-
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>
