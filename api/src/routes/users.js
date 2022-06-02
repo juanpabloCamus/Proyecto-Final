@@ -49,13 +49,16 @@ router.post('/:id/education', async (req,res)=>{
                 res.send('El titulo solo debe contener letras y espacios')
             }else if(!/^[a-zA-Z\s]+$/.test(institution)){
                 res.send('La institucion solo debe contener letras y espacios')
-            }else if(!/^[0-9a-zA-Z\s]+$/.test(title)){
+            }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
                 res.send('el grado solo debe contener letras, numeros y espacios')
             }else{
                 let educ = await education.create({
                     title,
                     institution,
-                    degree
+                    degree,
+                    description,
+                    start_date,
+                    end_date
                 })
                 educ.setUser_account(id)
                 res.send(educ)
@@ -300,6 +303,97 @@ router.put('/:id', async (req,res)=>{
     }
 })
 
+router.put('/education/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+        const {title,institution,degree,description,start_date,end_date} = req.body
+
+        let errores = []
+
+        if(title){
+            if(/^[a-zA-Z\s]+$/.test(title)){
+                await education.update(
+                    {
+                        title: title
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('titulo')
+            }
+        }
+        if(institution){
+            if(/^[a-zA-Z\s]+$/.test(institution)){
+                await education.update(
+                    {
+                        institution: institution
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('institucion')
+            }
+        }
+        if(degree){
+            if(/^[0-9a-zA-Z\s]+$/.test(degree)){
+                await education.update(
+                    {
+                        degree: degree
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('grado')
+            }
+        }
+        if(description){
+            await education.update(
+                {
+                    description: description
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(start_date){
+            if(/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
+                await education.update(
+                    {
+                        start_date: start_date
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('fecha de inicio')
+            }
+        }
+        if(end_date){
+            if(/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
+                await education.update(
+                    {
+                        end_date: end_date
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('fecha de finalizacion')
+            }
+        }
+        if(errores.length>0){
+            const error = errores.join(', ')
+            res.send(`No se actualizaron los campos: ${error}.`)
+        }
+        res.send('datos actualizados')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.delete('/:id', async (req,res)=>{
     try{
         const {id} = req.params
@@ -315,6 +409,8 @@ router.delete('/:id', async (req,res)=>{
         console.log(error)
     }
 })
+
+
 
 router.delete('/education/:id', async (req,res)=>{
     try{
