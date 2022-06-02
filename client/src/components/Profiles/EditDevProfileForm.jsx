@@ -34,7 +34,6 @@ function EditDevProfileForm() {
             date_birth: user.date_birth,
             country: user.country,
             city: user.city,
-            stack: user.stack,
             currentJob: user.currentJob,
             description: user.description,
             english_level: user.english_level,
@@ -87,7 +86,6 @@ function EditDevProfileForm() {
     };
 
     function handleErrors(e){
-
         if(e.target.name === 'fullName'){
             if (e.target.value.length === 0) setError({...error, fullName:true})
             else setError({...error, fullName:false})
