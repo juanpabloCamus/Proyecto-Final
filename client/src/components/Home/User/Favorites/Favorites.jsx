@@ -7,9 +7,7 @@ function Favorites() {
 
     const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
     const user=useSelector(state=>state.users.user)
-    console.log(user.jobs)
     const dispatch=useDispatch()
-    console.log(user)
     useEffect(()=>
     {
       dispatch(fetchUser(userLocalStorage.id))

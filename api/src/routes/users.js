@@ -212,14 +212,16 @@ router.put('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
+                let usuario = await user_account.findAll({
+                    where:{id:id},
+                    include: technology
+                })
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
                     newtechnologies.push(tecno.dataValues.id)
                 }
-                let usuario = await user_account.findAll({
-                    where:{id:id}
-                })
                 usuario = usuario[0]
+                usuario.dataValues.technologies.map(t=>usuario.removeTechnology(t.dataValues.id))
                 for(let i=0;i<newtechnologies.length;i++){
                     await usuario.addTechnology(newtechnologies[i])
                 }
@@ -290,8 +292,10 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(english_level){
-            if(english_level === 'Not specified' || english_level === 'Basic' || english_level === 'Conversational ' || english_level === 'Advanced or Native'){
-                await user_account.update(
+            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+                errores.push('nivel de ingles')
+            }else{
+                await job.update(
                     {
                         english_level: english_level
                     },{
@@ -299,22 +303,18 @@ router.put('/:id', async (req,res)=>{
                     }
                 )
             }
-            else{
-                errores.push('english level')
-            }
         }
         if(seniority){
-            if(seniority === 'Not specified' || seniority === 'Junior' || seniority === 'Semi-Senior ' || seniority === 'Senior'){
-                await user_account.update(
+            if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!=='Semi-Senior'&&seniority!=='Senior'){
+                errores.push('seniority')
+            }else{
+                await job.update(
                     {
                         seniority: seniority
                     },{
                         where:{id: id}
                     }
                 )
-            }
-            else{
-                errores.push('seniority')
             }
         }
         let user = await user_account.findAll({
