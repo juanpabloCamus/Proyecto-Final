@@ -14,6 +14,7 @@ import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
 import DevProfile from "./components/Profiles/DevProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
+import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
 
 
 
@@ -43,6 +44,8 @@ function App() {
               <Route path="company" element={<CompanyHome />} />
               <Route path="company/createjob" element={<CreateJob />} />
               <Route path="company/profile/:id" element={<ComProfile />} />
+              <Route path="company/offers/:id" element={<PostJobOfferDetail />} />
+
             </Route>
               
           
