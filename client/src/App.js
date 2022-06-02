@@ -49,7 +49,7 @@ function App() {
               <Route path="company/profile/:id" element={<ComProfile />} />
               <Route path="company/offers/:id" element={<PostJobOfferDetail />} />
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
-              <Route path="company/post/:id" element={<PostDetail />} />
+              <Route path="company/companyjob/:id" element={<PostDetail />} />
             </Route>
               
           
