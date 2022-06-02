@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-select": "^5.3.2",
     "sequelize": "^6.3.5"
   }
 }
