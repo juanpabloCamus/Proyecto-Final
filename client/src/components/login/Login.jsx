@@ -38,8 +38,6 @@ const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
-    
-
     if(res.data.active === true){
       Swal.fire({
         icon: 'success',
@@ -62,7 +60,7 @@ const loginUser = async() => {
       }else{
         navigate("/")
       }
-      // navigate(from, {replace:true})
+      
     }else{
       Swal.fire({
         icon: 'error',
@@ -84,6 +82,7 @@ const switchForm = () =>{
     e.preventDefault();
     loginUser();
     dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateLoginModal(false))
   }
 
   return (

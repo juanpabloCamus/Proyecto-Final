@@ -19,6 +19,7 @@ function DevProfile() {
     }, [dispatch, id])
 
     const user = useSelector(state => state.users.user[0])
+    console.log(user)
     
     if(user === undefined) return <h1>Loading...</h1>
 
@@ -26,7 +27,7 @@ function DevProfile() {
 
     return (
         <div className={styles.pageContainer}>
-            <div className={styles.profileContainer}>
+            {/* <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     <img id={styles.banner} alt="banner" src={user.banner}></img>
                 </div>
@@ -73,7 +74,55 @@ function DevProfile() {
                         <button>Add education</button>
                     </div>
                 </div>
-            </div>
+            </div> */}
+
+            <section className={styles.profile_container}>
+                <div className={ styles.top_banner}></div>
+                <div className={ styles.personal_information }>
+                    <div className={styles.profile_photo}>
+                        <img src="" alt="profile pic" />
+                    </div>
+                    <h3>Daniel</h3>
+                    <h5>Full Stack Developer</h5>
+                    <h6>City, Country</h6>
+                </div>
+                <div className={styles.profile_description}>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum veniam voluptate modi ipsa beatae. Aperiam obcaecati quisquam nostrum adipisci, laboriosam vero dicta libero impedit repudiandae soluta magni accusamus amet quidem.</p>
+                </div>
+            </section>
+
+            <section className={styles.profile_container}>
+                <h3>Education</h3>
+                <div className={styles.education_box_item}>
+                    <h5>Title 1</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ut.</p>
+                </div>
+                <div className={styles.education_box_item}>
+                    <h5>Title 2</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ut.</p>
+                </div>
+                <div className={styles.education_box_item}>
+                    <h5>Title 3</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, ut.</p>
+                </div>
+            </section>
+
+            <section className={styles.profile_container}>
+                <div className={styles.skills}>
+                    <h3>Skills</h3>
+                    <h5>Technologies</h5>
+                    <ul className={styles.technologies_container}>
+                        <li>React JS</li>
+                        <li>Node JS</li>
+                        <li>Mongo DB</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>English Level</h3>
+                    <p>Intermediate</p>
+                </div>
+            </section>
+
         </div>
     );
 }

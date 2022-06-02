@@ -1,4 +1,4 @@
-.profileContainer{
+/* .profileContainer{
     margin-top: 60px;
     display: flex;
     height: 100%;
@@ -70,4 +70,9 @@
     background-color: white;
     text-decoration: none;
     width: 20%;
+  } */
+
+
+  .pageContainer{
+      margin: 50px 0;
   }
