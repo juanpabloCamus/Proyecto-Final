@@ -14,12 +14,13 @@ function Favorites() {
   }, [dispatch, userLocalStorage.id]);
   return (
     <div className={styles.favorites}>
-      <h2>Search for new <span>Talent.</span></h2>
+      <h2>My <span>Favorites</span></h2>
       <div className={styles.postsContainer}>
-      {user[0].jobs ? (
+      {user[0] ? (
         user[0].jobs.length > 0 ? (
           user[0].jobs.map((e) => {
             return (
+
               <Post
                 key={e.id}
                 id={e.id}

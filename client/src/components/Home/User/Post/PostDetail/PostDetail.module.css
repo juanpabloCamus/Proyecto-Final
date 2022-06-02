@@ -21,8 +21,11 @@
     border-bottom: 1px solid black;
 }
 
-.back{
+.back button{
     width: 30px;
+    background-color: rgba(239, 245, 250, 0.793);
+    border:none;
+    cursor:pointer;
 }
 
 #heart{

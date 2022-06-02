@@ -85,10 +85,10 @@ function CompanyHome() {
           </div>
           <div className={styles.postsContainer}>
             {users.length > 0 ? (
-              users.map((e, i) => {
+              users.map((e) => {
                 return (
                   <PostU
-                    key={i}
+                    key={e.id}
                     id={e.id}
                     profile_pic={e.profile_pic}
                     fullName={e.fullName}

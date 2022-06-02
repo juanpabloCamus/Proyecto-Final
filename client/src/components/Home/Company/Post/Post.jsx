@@ -10,7 +10,9 @@ function Post({id,profile_pic,fullName,description,email,technologies}) {
       </div>
       <div className={styles.detailsContainer}>
         <p>{fullName}</p>
-        <p>{description}</p>
+      {description===null? <p className={styles.null}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>:
+      
+      <p>{description}</p>} 
         <div  className={styles.techsContainer}>
           {technologies.map((t,i)=>
             <label

@@ -80,8 +80,9 @@ router.post('/register', async (req,res)=>{
                         include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
                         where: {id: newCompany.dataValues.id}
                     })
-                    company[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
+                    empresa[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
                     delete empresa[0].dataValues.password
+                   
                     res.send(empresa[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
