@@ -5,7 +5,7 @@ const { loadDb } = require('./src/db')
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
-  db.sync({ force: false}).then(() => {
+  db.sync({ force: true}).then(() => {
     console.log('Modelos sincronizados');
   })
   .then(async ()=>{await loadDb()})

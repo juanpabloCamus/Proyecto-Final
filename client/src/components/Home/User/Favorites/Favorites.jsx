@@ -13,8 +13,10 @@ function Favorites() {
       dispatch(fetchUser(userLocalStorage.id))
     },[dispatch, userLocalStorage.id])
   return (
-    <div>
-    {
+    <div className={styles.favorites}>
+      <h2>My <span>Favorites</span></h2>
+      <div className={styles.postsContainer}>  
+        {
       user[0] ?
        user[0].jobs.length > 0 ? 
        user[0].jobs.map( e => {
@@ -43,8 +45,8 @@ function Favorites() {
   }
       
   </div>
+</div>
   );
-
 }
 
 export default Favorites;
