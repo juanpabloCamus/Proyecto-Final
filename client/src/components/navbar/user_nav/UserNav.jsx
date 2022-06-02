@@ -54,7 +54,7 @@ export const UserNav = ({id}) => {
       </div>
       <div>
       <div onClick={ handleMenu } className={ styles.logged_user_icon } title={sessionStorage?.fullName || sessionStorage?.name}>
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg" alt="profile img" />
+          {sessionStorage.profileType=="company" ? <img src={sessionStorage.logo}alt="profile img" />:<img src={sessionStorage.profile_pic} alt="profile img"  /> } 
         </div>
         <div className={`${toggleMenu && styles.active} ${styles.logged_user_menu}`}>
             {

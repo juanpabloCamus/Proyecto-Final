@@ -22,7 +22,8 @@ module.exports = (sequelize) => {
             type:DataTypes.DATEONLY
         },
         profile_pic: {
-            type:DataTypes.TEXT
+            type:DataTypes.TEXT,
+            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
         },
         description: {
             type:DataTypes.TEXT

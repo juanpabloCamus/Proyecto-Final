@@ -52,32 +52,42 @@ function CompanyHome() {
           <h2>
             Search for new <span>Talent.</span>
           </h2>
-          <div>
-            <input
-              type="radio"
-              id="developers"
-              name="radio"
-              value={"developers"}
-              checked={radio === "developers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Developers</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="offers"
-              name="radio"
-              value={"offers"}
-              checked={radio === "offers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Job Offers</label>
+          {/* <div class="form-check">
+  <input type="radio" class="form-check-input" id="radio1" name="radio" value="option1" checked/>Option 1
+  <label class="form-check-label" for="radio1"></label>
+</div> */}
+          <div class="container mt-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="developers"
+                name="radio"
+                value={"developers"}
+                checked={radio === "developers"}
+                onChange={(e) => handleCircle(e)}
+              />
+              <label class="form-check-label">Developers</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="offers"
+                name="radio"
+                value={"offers"}
+                checked={radio === "offers"}
+                onChange={(e) => handleCircle(e)}
+              />
+              <label class="form-check-label">Job Offers</label>
+            </div>
           </div>
           <div
             className={styles.createjob_button_container}
             title="New Job Offer"
           >
+            
             <Link to="/company/createjob" className={styles.createjob_button}>
               {/* Create new job */}
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
@@ -85,10 +95,10 @@ function CompanyHome() {
           </div>
           <div className={styles.postsContainer}>
             {users.length > 0 ? (
-              users.map((e, i) => {
+              users.map((e) => {
                 return (
                   <PostU
-                    key={i}
+                    key={e.id}
                     id={e.id}
                     profile_pic={e.profile_pic}
                     fullName={e.fullName}
@@ -108,27 +118,32 @@ function CompanyHome() {
           <h2>
             Search for new <span>Job Offers.</span>
           </h2>
-          <div>
-            <input
-              type="radio"
-              id="developers"
-              name="radio"
-              value={"developers"}
-              checked={radio === "developers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Developers</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="offers"
-              name="radio"
-              value={"offers"}
-              checked={radio === "offers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Job Offers</label>
+          <div class="container mt-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="developers"
+                name="radio"
+                value={"developers"}
+                checked={radio === "developers"}
+                onChange={(e) => handleCircle(e)}
+              />
+              <label class="form-check-label">Developers</label>
+            </div>
+
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                id="offers"
+                name="radio"
+                value={"offers"}
+                checked={radio === "offers"}
+                onChange={(e) => handleCircle(e)}
+              />
+              <label class="form-check-label">Job Offers</label>
+            </div>
           </div>
           <div
             className={styles.createjob_button_container}

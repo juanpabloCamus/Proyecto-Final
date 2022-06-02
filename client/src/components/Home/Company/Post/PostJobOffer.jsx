@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
-export default function PostJobOffer({key, id, position, salary_range, seniority, time, technologies }) {
+export default function PostJobOffer({ id, position, salary_range, seniority, time, technologies }) {
   return (
-    <div key={key}>
+    <div key={id}>
       <Link to={`/company/offers/${id}`}>
         <div className={styles.postCard}>
           {/* <div className={styles.imgContainer}>

@@ -7,16 +7,22 @@ const customStyles = {
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       fontWeight: 'bold',
+      
     }),
-    
+   
+
     indicatorSeparator: provided => ({
         ...provided,
           display: 'none',
+          
+          
     }),
     
     dropdownIndicator: provided =>({
       ...provided,
       color: '#46499C',
+      
+      
     }),
     
     input: provided => ({
@@ -27,6 +33,8 @@ const customStyles = {
       textOverflow: 'ellipsis',
       overflow: 'hidden',
       fontWeight: 'bold',
+      
+      
     }),
     
     option: (provided,state) => ({
@@ -52,6 +60,10 @@ const customStyles = {
     menu: (provided, state) => ({
       ...provided,
       padding: 0,
+      color: '#46499C',
+      background: "rgba(239, 245, 250, 0.793)",
+      
+
     }),
   
     };

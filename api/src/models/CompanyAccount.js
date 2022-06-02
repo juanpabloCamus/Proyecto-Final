@@ -31,7 +31,9 @@ module.exports = (sequelize) => {
         },
         
         logo: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
+
         },
 
         description: {

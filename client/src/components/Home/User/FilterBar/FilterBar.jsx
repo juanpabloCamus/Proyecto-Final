@@ -115,10 +115,9 @@
 
 
 
-import React, {Component, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import Select from 'react-select';
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTechs } from "../../../../redux/techs/techs";
+import { useDispatch } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
 import style from "./FilterBar.module.css"
 import SearchBar from "../SearchBar/SearchBar";
@@ -128,7 +127,6 @@ import {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}
 
 
 function FilterBar() {
-  const techs = useSelector((state) => state.techs.techs);
   const [tech, setTech] = useState("");
   const [seniority, setSeniority] = useState("");
   const [time, setTime] = useState("");
@@ -162,7 +160,6 @@ function FilterBar() {
     setSalary(value)
   }
   useEffect(() => {
-    dispatch(fetchTechs());
    
     dispatch(fetchJobs({tech, seniority, time, eLevel, salary}));
     
