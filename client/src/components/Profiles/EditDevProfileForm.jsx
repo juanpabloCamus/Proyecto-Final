@@ -20,13 +20,14 @@ function EditDevProfileForm() {
     useEffect(() => {
         dispatch(fetchUser(id))
         dispatch(fetchTechs());
+        addCurrentTechs()
     }, [dispatch, id])
     
     const user = useSelector(state => state.users.user[0])
     const techs = useSelector((state) => state.techs.techs);
     
     const [currentInfo, setCurrentInfo] = useState(
-        user === undefined ? 'loading'
+        user === undefined ? dispatch(fetchUser(id))
         :
         {
             fullName: user.fullName,
@@ -50,6 +51,22 @@ function EditDevProfileForm() {
 
     const [addedTechs, setAddedTechs] = useState([]);
 
+    const addCurrentTechs = () => {
+        if(user === undefined) return null
+
+        let currentTechs = user.technologies.map(t => t.name)
+
+        for (let i = 0; i < currentTechs.length; i++) {
+            
+            const techObj = {
+                tech: currentTechs[i],
+                id: techId++,
+            };
+
+            setAddedTechs((value) => [...value, techObj]);
+        }
+    };
+
     const addTechs = (e) => {
 
         for (let i = 0; i < user.technologies.length; i++) {
@@ -60,6 +77,7 @@ function EditDevProfileForm() {
             tech: e.target.value,
             id: techId++,
         };
+
         setAddedTechs((value) => [...value, techObj]);
     };
 
@@ -105,6 +123,7 @@ function EditDevProfileForm() {
     }
     
     if(user === undefined) return <h1>Loading...</h1>
+    
     
     return (
         
