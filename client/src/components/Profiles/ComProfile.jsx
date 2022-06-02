@@ -19,10 +19,7 @@ function ComProfile() {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])
 
-    //Borrar detalle
-    // useEffect(() => {
-
-    // }, [])
+  
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
     if(user === undefined) return <h1>Loading</h1>
@@ -102,7 +99,7 @@ function ComProfile() {
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>
-                            <Link to={`/home/post/${id}`}>
+                            <Link to={`/company/companyjob/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}

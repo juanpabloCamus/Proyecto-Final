@@ -41,8 +41,6 @@ const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
-    
-
     if(res.data.active === true){
       setErrorMessage('')
       setUserError(false)
@@ -64,7 +62,7 @@ const loginUser = async() => {
       }else{
         navigate("/")
       }
-      // navigate(from, {replace:true})
+      
     }else{
       setErrorMessage(res.data)
       setUserError(true)
