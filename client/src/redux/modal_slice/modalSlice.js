@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     isOpen: false,
     activeLoginModal: null,
-    activeRegisterModal: null
+    activeRegisterModal: null,
+    editOffer: null
 }
 
 const modalSlice = createSlice({
@@ -19,6 +20,9 @@ const modalSlice = createSlice({
         },
         activateRegisterModal(state, {payload}){
             state.activeRegisterModal = payload;
+        },
+        activateEdit(state, {payload}){
+            state.editOffer = payload
         }
     }
 })

@@ -44,40 +44,44 @@ function CompanyHome() {
 
   return (
     <div className={styles.company_container}>
-      {/* <CompanySerchBar /> */}
-
       {console.log(radio)}
       {radio === "developers" ? (
         <div>
           <h2>
             Search for new <span>Talent.</span>
           </h2>
-          <div>
-            <input
-              type="radio"
-              id="developers"
-              name="radio"
-              value={"developers"}
-              checked={radio === "developers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Developers</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="offers"
-              name="radio"
-              value={"offers"}
-              checked={radio === "offers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Job Offers</label>
-          </div>
+
           <div
             className={styles.createjob_button_container}
             title="New Job Offer"
           >
+            <div className={styles.container_checkbox}>
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="developers"
+                  name="radio"
+                  value={"developers"}
+                  checked={radio === "developers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Developers</label>
+              </div>
+
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="offers"
+                  name="radio"
+                  value={"offers"}
+                  checked={radio === "offers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Job Offers</label>
+              </div>
+            </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
               {/* Create new job */}
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
@@ -108,32 +112,38 @@ function CompanyHome() {
           <h2>
             Search for new <span>Job Offers.</span>
           </h2>
-          <div>
-            <input
-              type="radio"
-              id="developers"
-              name="radio"
-              value={"developers"}
-              checked={radio === "developers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Developers</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="offers"
-              name="radio"
-              value={"offers"}
-              checked={radio === "offers"}
-              onChange={(e) => handleCircle(e)}
-            />
-            <label>Job Offers</label>
-          </div>
+
           <div
             className={styles.createjob_button_container}
             title="New Job Offer"
           >
+            <div className={styles.container_checkbox}>
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="developers"
+                  name="radio"
+                  value={"developers"}
+                  checked={radio === "developers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Developers</label>
+              </div>
+
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="offers"
+                  name="radio"
+                  value={"offers"}
+                  checked={radio === "offers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Job Offers</label>
+              </div>
+            </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
               {/* Create new job */}
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
