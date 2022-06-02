@@ -48,42 +48,35 @@ function PostDetail() {
       }
     }
   }
+    var handleFavorite
 
-  var handleFavorite;
+    if(isFav){
+        handleFavorite = async (e) => {
+            if(isFav&&check){
+                setCheck(false)
+            }else{
+                if(state === true) {setState(false)
+                }else setState(true)
+            }
+            try {
+                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
+                } catch (error) {
+                console.log(error)
+            }
+        };
+    }else{
+        handleFavorite = async (e) => {
+            if(state === true) {setState(false)
+            }else setState(true)
+            try {
+                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, {state})
+            } catch (error) {
+                console.log(error)
+            }
+        };
+    }
 
-  if (isFav) {
-    handleFavorite = async (e) => {
-      if (isFav && check) {
-        setCheck(false);
-      } else {
-        if (state === true) {
-          setState(false);
-        } else setState(true);
-      }
-      try {
-        await axios.post(
-          `http://localhost:3001/users/${idUser}/favs/${idJob}`,
-          check ? { state: !state } : { state }
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  } else {
-    handleFavorite = async (e) => {
-      if (state === true) {
-        setState(false);
-      } else setState(true);
-      try {
-        await axios.post(
-          `http://localhost:3001/users/${idUser}/favs/${idJob}`,
-          { state }
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
+    console.log(detail[0])
 
   return detail[0] ? (
     company_accounts ? (
