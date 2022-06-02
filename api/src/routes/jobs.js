@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}],
+            include: [{model: company_account},{model: technology},{model:applied_job, include:{model: user_account}}],
             order: [
                 ['id', 'DESC']
             ],
@@ -121,6 +121,7 @@ router.get('/', async (req,res)=>{
                 }
             }
         }
+        jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
 
         if(jobs.length>0){
             let cantPaginas = Math.ceil(jobs.length/10)
@@ -145,12 +146,16 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         const jobId = await job.findAll({
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job}], 
+            include: [{model: company_account},{model: technology},{model:applied_job, include:{model: user_account}}], 
             where:{id: id}
         })
         if(jobId.length<1){
             res.send('No existe oferta laboral')
         }
+        if(jobId[0].dataValues.applied_jobs.length>0){
+            jobId[0].dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password)
+        }
+        delete jobId[0].dataValues.company_accounts[0].dataValues.password
         res.send(jobId)
     }catch(error){
         console.log(error)
@@ -201,6 +206,112 @@ router.post('/:id', async (req,res)=>{
             res.send('Completar todos los campos.')
         }
     }catch(error){
+        console.log(error)
+    }
+})
+
+router.put('/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+        const {position, description, time, salary_range, english_level, requirements, seniority, technologies} = req.body
+
+        let errores = []
+
+        if(position){
+            if(!/^[a-zA-Z\s]+$/.test(position)){
+                errores.push('posicion')
+            }else{
+                await job.update(
+                    {
+                        position: position
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(description){
+            await job.update(
+                {
+                    description: description
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
+            errores.push('tiempo')
+        }else{
+            await job.update(
+                {
+                    time: time
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
+            errores.push('rango salarial')
+        }else{
+            await job.update(
+                {
+                    salary_range: salary_range
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            errores.push('nivel de ingles')
+        }else{
+            await job.update(
+                {
+                    english_level: english_level
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(requirements){
+            await job.update(
+                {
+                    requirements: requirements
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+            errores.push('seniority')
+        }else{
+            await job.update(
+                {
+                    seniority: seniority
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(errores.length>0){
+            const error = errores.join(', ')
+            res.send(`No se actualizaron los campos: ${error}.`)
+        }
+        res.send('datos actualizados')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        await job.update({
+            active: false},{
+            where:{id: id}
+        })
+        res.send('eliminado')
+    } catch (error) {
         console.log(error)
     }
 })
