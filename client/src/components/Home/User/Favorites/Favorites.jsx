@@ -2,24 +2,23 @@ import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../../redux/users/users";
 import Post from "../Post/Post";
-
+import styles from "./Favorites.module.css"
 function Favorites() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const user = useSelector((state) => state.users.user);
   console.log(user)
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(fetchUser(userLocalStorage.id));
   }, [dispatch, userLocalStorage.id]);
-
   return (
-    <div>
-      <h1>My Favorites</h1>
-      <div className="">
-      {user.jobs ? (
-        user.jobs.length > 0 ? (
-          user.jobs.map((e) => {
+    <div className={styles.favorites}>
+      <h2>Search for new <span>Talent.</span></h2>
+      <div className={styles.postsContainer}>
+      {user[0].jobs ? (
+        user[0].jobs.length > 0 ? (
+          user[0].jobs.map((e) => {
             return (
               <Post
                 key={e.id}
@@ -42,7 +41,7 @@ function Favorites() {
       ) : (
         <></>
       )}
-      </div>
+       </div>
     </div>
   );
 }
