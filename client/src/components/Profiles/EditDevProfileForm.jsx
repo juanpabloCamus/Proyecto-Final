@@ -5,6 +5,12 @@ import { useNavigate, useParams } from "react-router";
 import { fetchUser } from "../../redux/users/users";
 import styles from './EditDevProfileForm.module.css'
 import Swal from 'sweetalert2'
+import { MdClose } from "react-icons/md";
+import { fetchTechs } from "../../redux/techs/techs";
+
+
+let techId = 0;
+
 function EditDevProfileForm() {
 
     const dispatch = useDispatch()
@@ -13,9 +19,11 @@ function EditDevProfileForm() {
 
     useEffect(() => {
         dispatch(fetchUser(id))
+        dispatch(fetchTechs());
     }, [dispatch, id])
     
     const user = useSelector(state => state.users.user[0])
+    const techs = useSelector((state) => state.techs.techs);
     
     const [currentInfo, setCurrentInfo] = useState(
         user === undefined ? 'loading'
@@ -40,6 +48,26 @@ function EditDevProfileForm() {
         fullName:false,
     })
 
+    const [addedTechs, setAddedTechs] = useState([]);
+
+    const addTechs = (e) => {
+
+        for (let i = 0; i < user.technologies.length; i++) {
+            if (user.technologies[i].name === e.target.value) return null
+        }
+
+        const techObj = {
+            tech: e.target.value,
+            id: techId++,
+        };
+        setAddedTechs((value) => [...value, techObj]);
+    };
+
+    const handleDelete = (id) => {
+        const deletedTechs = addedTechs.filter((tech) => tech.id !== id);
+        setAddedTechs(deletedTechs);
+    };
+
     function handleErrors(e){
 
         if(e.target.name === 'fullName'){
@@ -56,10 +84,9 @@ function EditDevProfileForm() {
             [e.target.name]:e.target.value
         })
     };
-
+    console.log(addedTechs);
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(currentInfo);
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
         await axios.put(`http://localhost:3001/users/${id}`, currentInfo)
         .then(res => Swal.fire({
@@ -83,9 +110,7 @@ function EditDevProfileForm() {
             <form className={styles.form}>
                 <label>Fullname</label>
                 <input name='fullName' value={currentInfo.fullName} onChange={handleChange}></input>
-                {error.fullName === true ? <label>You cannot delete this field</label> : null}
-                {/* <label>Birth date</label>
-                <input name="date_birth" value={currentInfo.date_birth} type='date' onChange={handleChange} ></input> */}
+                {error.fullName === true ? <label id={styles.error}>You cannot delete this field</label> : null}
                 <label>Country</label>
                 <select value={currentInfo.country} id="country" name="country" onChange={handleChange}>
                 <option value="Afganistan">Afghanistan</option>
@@ -361,6 +386,52 @@ function EditDevProfileForm() {
                 <input name="banner" placeholder="You can add url here" type='url' onChange={handleChange}></input>
                 <label>Description</label>
                 <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
+                <label>Add skills</label>
+                <select className={styles.form_select} onChange={addTechs}>
+                <option selected disabled>
+                    Technologies
+                </option>
+                {techs.map((e) =>
+                    e.name === "Cplus" ? (
+                    <option key={e.id} value={e.name}>
+                        C+
+                    </option>
+                    ) : e.name === "Cplusplus" ? (
+                    <option key={e.id} value={e.name}>
+                        C++
+                    </option>
+                    ) : e.name === "CSharp" ? (
+                    <option key={e.id} value={e.name}>
+                        C#
+                    </option>
+                    ) : (
+                    <option key={e.id} value={e.name}>
+                        {e.name}
+                    </option>
+                    )
+                )}
+                </select>
+
+            <div className={styles.added_techs}>
+                {addedTechs.map((e, i) => (
+                    <div key={i}>
+                    {e.tech === "Cplus" ? (
+                        <p>C+</p>
+                    ) : e.tech === "Cplusplus" ? (
+                        <p>C++</p>
+                    ) : e.tech === "CSharp" ? (
+                        <p>C#</p>
+                    ) : (
+                        <p>{e.tech}</p>
+                    )}
+                    {e.tech === "" ? (
+                        <></>
+                    ) : (
+                        <MdClose onClick={() => handleDelete(e.id)} />
+                    )}
+                    </div>
+                ))}
+            </div>
                 <button type = 'submit' onClick={handleSubmit}>Save changes</button>
             </form>
         </div>

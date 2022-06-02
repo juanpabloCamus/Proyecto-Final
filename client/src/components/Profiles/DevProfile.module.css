@@ -7,13 +7,12 @@
 }
 
 .bannerProfileContainer{
-    text-align: center
+    height: 30%;
+    width: 100%;
 }
 
 #banner{
-    height: 200px;
-    width: 1200px;
-    text-align: center;
+    object-fit: contain;
 }
 
 .infoContainer{

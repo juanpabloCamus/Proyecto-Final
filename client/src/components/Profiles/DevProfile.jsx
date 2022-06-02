@@ -36,6 +36,7 @@ function DevProfile() {
                         <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img>
                         <div className={styles.nameContainer}>
                             <h1>{user.fullName}</h1>
+                            {user.seniority === 'Not specified' ? null : <h4>{user.seniority}</h4>}
                             <h5>{user.stack}</h5>
                             <label>{user.currentJob}</label>
                         </div>

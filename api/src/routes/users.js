@@ -151,7 +151,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level } = req.body
+        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 
         let errores = []
 
@@ -294,6 +294,20 @@ router.put('/:id', async (req,res)=>{
                 await user_account.update(
                     {
                         english_level: english_level
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+            else{
+                errores.push('english level')
+            }
+        }
+        if(seniority){
+            if(seniority === 'Not specified' || seniority === 'Junior' || seniority === 'Semi-Senior ' || seniority === 'Senior'){
+                await user_account.update(
+                    {
+                        seniority: seniority
                     },{
                         where:{id: id}
                     }
