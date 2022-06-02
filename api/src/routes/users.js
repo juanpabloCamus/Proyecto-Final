@@ -51,6 +51,10 @@ router.post('/:id/education', async (req,res)=>{
                 res.send('La institucion solo debe contener letras y espacios')
             }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
                 res.send('el grado solo debe contener letras, numeros y espacios')
+            }if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
+                res.send('fecha de inicio')
+            }if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
+                res.send('fecha de finalizacion')
             }else{
                 let educ = await education.create({
                     title,
@@ -104,7 +108,7 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {fullName, email, password, profileType} = req.body
+        const {fullName, email, password} = req.body
         
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
@@ -205,6 +209,14 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(typeof technologies === 'object'){
+            if(technologies.length<1){
+                let usuario = await user_account.findAll({
+                    where:{id:id},
+                    include: technology
+                })
+                usuario = usuario[0]
+                usuario.dataValues.technologies.map(t=>usuario.removeTechnology(t.dataValues.id))
+            }
             if(technologies.length>0){
                 let newtechnologies = []
                 let techs = await technology.findAll({
@@ -225,6 +237,7 @@ router.put('/:id', async (req,res)=>{
                 for(let i=0;i<newtechnologies.length;i++){
                     await usuario.addTechnology(newtechnologies[i])
                 }
+                console.log('1')
             }else{
                 if(technologies.length<1){
                 }else{
