@@ -59,6 +59,7 @@ function EditDevProfileForm() {
 
     async function handleSubmit(e){
         e.preventDefault();
+        console.log(currentInfo);
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
         await axios.put(`http://localhost:3001/users/${id}`, currentInfo)
         .then(res => Swal.fire({
