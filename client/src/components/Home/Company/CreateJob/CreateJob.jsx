@@ -26,6 +26,7 @@ export default function CreateJob() {
     position: "",
     description: "",
     requirements: "",
+    newTech: ""
   });
 
   const [seniority, setSeniority] = useState("");
@@ -33,8 +34,13 @@ export default function CreateJob() {
   const [english_level, setEnglish_level] = useState("");
   const [salary_range, setSalary_range] = useState("");
   const [addedTechs, setAddedTechs] = useState([]);
+  const [showInput, setShowInput] = useState(false)
 
-  const { position, description, requirements } = formValues;
+
+  const { position, description, requirements, newTech } = formValues;
+
+  const newTechValues = {name:'Others'}
+  const addedTechsModified = [...techs, newTechValues]
 
   const handleSeniorF = (e) => {
     setSeniority(e.target.value);
@@ -52,19 +58,38 @@ export default function CreateJob() {
     setSalary_range(e.target.value);
   };
 
+
+  const addNewTechnologies = () => {
+    const newTechObj = {
+      tech: newTech,
+      id: techId++,
+    };
+    setAddedTechs((value) => [...value, newTechObj])
+  }
+
+  
+
   const addTechs = (e) => {
     const techObj = {
       tech: e.target.value,
       id: techId++,
     };
 
-    setAddedTechs((value) => [...value, techObj]);
+    if(e.target.value === "Others"){
+      setShowInput(true)
+    }
+    else{
+      setAddedTechs((value) => [...value, techObj]);
+    }
   };
 
   const handleDelete = (id) => {
     const deletedTechs = addedTechs.filter((tech) => tech.id !== id);
     setAddedTechs(deletedTechs);
   };
+
+  
+
   const postNewJob = async (id) => {
     try {
       const res = await axios.post(`http://localhost:3001/jobs/${id}`, {
@@ -77,6 +102,8 @@ export default function CreateJob() {
         seniority,
         technologies: addedTechs.map((tech) => tech.tech),
       });
+
+      console.log(addedTechs.map((tech) => tech.tech))
 
       if (res.data === "Oferta laboral creada correctamente.") {
         Swal.fire({
@@ -164,7 +191,7 @@ export default function CreateJob() {
                 <option selected disabled>
                   Technologies
                 </option>
-                {techs.map((e) =>
+                {addedTechsModified.map((e) =>
                   e.name === "Cplus" ? (
                     <option key={e.id} value={e.name}>
                       C+
@@ -185,6 +212,13 @@ export default function CreateJob() {
                 )}
               </select>
 
+
+              <div className={`${styles.addNewTechs} ${showInput ? null : `${styles.hide}`}`}>
+                <input type="text" name="newTech" value={newTech} onChange={handleInputChange}/>
+                <button type="button" onClick={ addNewTechnologies } className={styles.addnewtech_button}>Add</button>
+                <button type="button" onClick={() => setShowInput(false)} className={styles.addnewtech_button}>Cancel</button>
+              </div>
+
               <div className={styles.added_techs}>
                 {addedTechs.map((e, i) => (
                   <div key={i}>
@@ -200,7 +234,7 @@ export default function CreateJob() {
                     {e.tech === "" ? (
                       <></>
                     ) : (
-                      <MdClose onClick={() => handleDelete(e.id)} />
+                      <MdClose onClick={() => handleDelete(e.id)} className={styles.delete_added_tech}/>
                     )}
                   </div>
                 ))}
