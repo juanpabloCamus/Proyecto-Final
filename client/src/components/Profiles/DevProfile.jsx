@@ -64,7 +64,7 @@ function DevProfile() {
                         </div>
                         }
                     </div>
-                    {user.english_level === 'Not specified' ? <label></label> : <label>{user.english_level}</label>}
+                    {user.english_level === 'Not specified' ? <label></label> : <label>English level: {user.english_level}</label>}
                     <div className={styles.descriptionContainer}>
                         <h3>Description</h3>
                         {user.description === null ? <p>Not description yet? Please complete your profile</p> :
