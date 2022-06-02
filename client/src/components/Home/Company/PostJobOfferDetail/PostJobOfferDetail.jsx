@@ -8,6 +8,8 @@ import styles from '../../User/Post/PostDetail/PostDetail.module.css'
 import arrow from '../../../../assets/arrow.png'
 import {IoCreateOutline} from "react-icons/io5"
 import {CgCloseO} from "react-icons/cg"
+import { Edit } from './EditJobOffer/Edit';
+import { modalActions } from '../../../../redux/modal_slice/modalSlice';
 
 function PostJobOffer() {
 	const {id} = useParams();
@@ -25,7 +27,12 @@ function PostJobOffer() {
 		dispatch(fetchJobDetail(id))
 		dispatch(fetchCompany(userLocalStorage.id))
 	},[dispatch,id])
-	
+
+	const handleEditOffer = () => {
+        dispatch(modalActions.setModalValue());
+        dispatch(modalActions.activateEdit(true));
+    };
+
 	let renderJob = company.jobs?.find(e=>e.id==id)
 	console.log(renderJob)
   return (
@@ -38,7 +45,7 @@ function PostJobOffer() {
             <Link to={'/company'}>
                 <img alt="arrowBack" src={arrow}></img>
             </Link>
-            
+            <Edit/>
             </div>
 						<h2 id={styles.position}>{renderJob.position}</h2>
             <div className={styles.detailContainer}>
@@ -93,7 +100,7 @@ function PostJobOffer() {
 					(<h1>Loading...</h1>)
 				:<NotFound/>
 			}
-			{/* {visible && <NotFound/>} */}
+            
 		</div>
   )
 }
