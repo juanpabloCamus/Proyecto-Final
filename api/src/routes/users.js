@@ -151,7 +151,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city} = req.body
+        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 
         let errores = []
 
@@ -287,6 +287,34 @@ router.put('/:id', async (req,res)=>{
                         where:{id: id}
                     }
                 )
+            }
+        }
+        if(english_level){
+            if(english_level === 'Not specified' || english_level === 'Basic' || english_level === 'Conversational ' || english_level === 'Advanced or Native'){
+                await user_account.update(
+                    {
+                        english_level: english_level
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+            else{
+                errores.push('english level')
+            }
+        }
+        if(seniority){
+            if(seniority === 'Not specified' || seniority === 'Junior' || seniority === 'Semi-Senior ' || seniority === 'Senior'){
+                await user_account.update(
+                    {
+                        seniority: seniority
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+            else{
+                errores.push('english level')
             }
         }
         let user = await user_account.findAll({

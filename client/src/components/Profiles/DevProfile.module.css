@@ -7,13 +7,12 @@
 }
 
 .bannerProfileContainer{
-    text-align: center
+    height: 30%;
+    width: 100%;
 }
 
 #banner{
-    height: 200px;
-    width: 1200px;
-    text-align: center;
+    object-fit: contain;
 }
 
 .infoContainer{
@@ -58,6 +57,20 @@
     width: fit-content;
     padding: 8px;
     border-radius: 10px;
-    background-color: rgba(239, 245, 250, 0.793);
+    background-color: rgb(255, 255, 255);
     color:#46499c
   }
+
+  .editProfileButtonContainer{
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-decoration: none;
+    width: 20%;
+  }
+
+  .infoAsset{
+    width: 25px;
+}
