@@ -196,7 +196,9 @@ router.post('/:id', async (req,res)=>{
                 })
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
-                    await newJob.addTechnology(tecno.dataValues.id)
+                    if(tecno){
+                        await newJob.addTechnology(tecno.dataValues.id)
+                    }
                 }
                 await newJob.addCompany_account(id)
 
