@@ -241,38 +241,44 @@ router.put('/:id', async (req,res)=>{
                 }
             )
         }
-        if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
-            errores.push('tiempo')
-        }else{
-            await job.update(
-                {
-                    time: time
-                },{
-                    where:{id: id}
-                }
-            )
+        if(time){
+            if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
+                errores.push('tiempo')
+            }else{
+                await job.update(
+                    {
+                        time: time
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
         }
-        if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
-            errores.push('rango salarial')
-        }else{
-            await job.update(
-                {
-                    salary_range: salary_range
-                },{
-                    where:{id: id}
-                }
-            )
+        if(salary_range){
+            if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
+                errores.push('rango salarial')
+            }else{
+                await job.update(
+                    {
+                        salary_range: salary_range
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
         }
-        if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
-            errores.push('nivel de ingles')
-        }else{
-            await job.update(
-                {
-                    english_level: english_level
-                },{
-                    where:{id: id}
-                }
-            )
+        if(english_level){
+            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+                errores.push('nivel de ingles')
+            }else{
+                await job.update(
+                    {
+                        english_level: english_level
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
         }
         if(requirements){
             await job.update(
@@ -283,17 +289,20 @@ router.put('/:id', async (req,res)=>{
                 }
             )
         }
-        if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
-            errores.push('seniority')
-        }else{
-            await job.update(
-                {
-                    seniority: seniority
-                },{
-                    where:{id: id}
-                }
-            )
+        if(seniority){
+            if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+                errores.push('seniority')
+            }else{
+                await job.update(
+                    {
+                        seniority: seniority
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
         }
+        
         if(technologies){
             let actJob = await job.findAll({
                 include: technology,
