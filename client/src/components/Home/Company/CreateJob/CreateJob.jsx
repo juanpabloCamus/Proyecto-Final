@@ -214,7 +214,7 @@ export default function CreateJob() {
 
 
               <div className={`${styles.addNewTechs} ${showInput ? null : `${styles.hide}`}`}>
-                <input type="text" name="newTech" value={newTech} onChange={handleInputChange}/>
+                <input type="search" name="newTech" value={newTech} onChange={handleInputChange}/>
                 <button type="button" onClick={ addNewTechnologies } className={styles.addnewtech_button}>Add</button>
                 <button type="button" onClick={() => setShowInput(false)} className={styles.addnewtech_button}>Cancel</button>
               </div>
