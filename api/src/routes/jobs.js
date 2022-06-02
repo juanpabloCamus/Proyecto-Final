@@ -196,7 +196,9 @@ router.post('/:id', async (req,res)=>{
                 })
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
-                    await newJob.addTechnology(tecno.dataValues.id)
+                    if(tecno){
+                        await newJob.addTechnology(tecno.dataValues.id)
+                    }
                 }
                 await newJob.addCompany_account(id)
 
@@ -291,6 +293,24 @@ router.put('/:id', async (req,res)=>{
                     where:{id: id}
                 }
             )
+        }
+        if(technologies){
+            let actJob = await job.findAll({
+                include: technology,
+                where:{id: id}
+            })
+            actJob[0].dataValues.technologies.map(t=>actJob[0].removeTechnology(t.dataValues.id))
+            let techs = await technology.findAll({
+                order: [
+                    ['id', 'ASC'] 
+                ]
+            })
+            for(let i=0;i<technologies.length;i++){
+                let tecno = techs.find(t=>t.dataValues.name===technologies[i])
+                if(tecno){
+                    await actJob[0].addTechnology(tecno.dataValues.id)
+                }
+            }
         }
         if(errores.length>0){
             const error = errores.join(', ')
