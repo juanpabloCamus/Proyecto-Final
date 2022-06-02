@@ -20,6 +20,7 @@ function DevProfile() {
     }, [dispatch, id])
 
     const user = useSelector(state => state.users.user[0])
+    console.log(user)
     
     if(user === undefined) return <h1>Loading...</h1>
 
@@ -27,6 +28,7 @@ function DevProfile() {
 
     return (
         <div className={styles.pageContainer}>
+            
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     <img id={styles.banner} alt="banner" src={user.banner}></img>
@@ -82,6 +84,9 @@ function DevProfile() {
                     </div>
                 </div>
             </div>
+
+            
+
         </div>
     );
 }

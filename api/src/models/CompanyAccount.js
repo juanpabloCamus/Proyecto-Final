@@ -32,8 +32,7 @@ module.exports = (sequelize) => {
         
         logo: {
             type: DataTypes.TEXT,
-            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
-
+            defaultValue: 'https://premiumgroup.com.ar/static/images/default-logo.png'
         },
 
         description: {
@@ -61,7 +60,8 @@ module.exports = (sequelize) => {
         },
 
         banner: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue: 'https://leadcoat.com/wp-content/uploads/2019/02/Default-Banner.png'
         },
 
         profileType: {

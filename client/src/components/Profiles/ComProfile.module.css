@@ -168,3 +168,13 @@
       margin-top: 20px;
       margin-bottom: 20px;
   }
+
+  .editProfileButtonContainer{
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-decoration: none;
+    width: 20%;
+  }

@@ -20,27 +20,27 @@ function EditDevProfileForm() {
     useEffect(() => {
         dispatch(fetchUser(id))
         dispatch(fetchTechs());
+        addCurrentTechs()
     }, [dispatch, id])
     
     const user = useSelector(state => state.users.user[0])
     const techs = useSelector((state) => state.techs.techs);
     
     const [currentInfo, setCurrentInfo] = useState(
-        user === undefined ? 'loading'
+        user === undefined ? dispatch(fetchUser(id))
         :
         {
             fullName: user.fullName,
             date_birth: user.date_birth,
             country: user.country,
             city: user.city,
-            stack: user.stack,
             currentJob: user.currentJob,
             description: user.description,
             english_level: user.english_level,
             seniority: user.seniority,
             stack: user.stack,
             profile_pic: user.profile_pic,
-            banner: user.banner
+            banner: user.banner,
         }
     )
 
@@ -49,6 +49,22 @@ function EditDevProfileForm() {
     })
 
     const [addedTechs, setAddedTechs] = useState([]);
+
+    const addCurrentTechs = () => {
+        if(user === undefined) return null
+
+        let currentTechs = user.technologies.map(t => t.name)
+
+        for (let i = 0; i < currentTechs.length; i++) {
+            
+            const techObj = {
+                tech: currentTechs[i],
+                id: techId++,
+            };
+
+            setAddedTechs((value) => [...value, techObj]);
+        }
+    };
 
     const addTechs = (e) => {
 
@@ -60,6 +76,7 @@ function EditDevProfileForm() {
             tech: e.target.value,
             id: techId++,
         };
+
         setAddedTechs((value) => [...value, techObj]);
     };
 
@@ -69,7 +86,6 @@ function EditDevProfileForm() {
     };
 
     function handleErrors(e){
-
         if(e.target.name === 'fullName'){
             if (e.target.value.length === 0) setError({...error, fullName:true})
             else setError({...error, fullName:false})
@@ -84,11 +100,13 @@ function EditDevProfileForm() {
             [e.target.name]:e.target.value
         })
     };
-    console.log(addedTechs);
+    
     async function handleSubmit(e){
         e.preventDefault();
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
-        await axios.put(`http://localhost:3001/users/${id}`, currentInfo)
+        let post = currentInfo
+        post.technologies = addedTechs.map((tech) => tech.tech)
+        await axios.put(`http://localhost:3001/users/${id}`, post)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'
@@ -103,6 +121,7 @@ function EditDevProfileForm() {
     }
     
     if(user === undefined) return <h1>Loading...</h1>
+    
     
     return (
         
