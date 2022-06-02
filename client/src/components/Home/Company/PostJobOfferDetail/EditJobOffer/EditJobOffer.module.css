@@ -1,0 +1,115 @@
+.form_container{
+   
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 50px;
+    
+}
+
+.form{
+    padding: 40px;
+
+}
+
+
+.form_title{
+    color: black;
+    text-align: center;
+}
+
+.form_title h2{
+    font-size: 28px;
+}
+
+.create_job_form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+}
+
+.form_left_column{
+    display: flex;
+    flex-direction: column;
+  
+}
+
+label{
+    font-size: 18px;
+}
+
+.form_select, input{
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    padding: 10px;
+    outline: none;
+}
+
+.form_right_column{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;  
+}
+
+textarea{
+    resize: vertical;
+    overflow: hidden;
+    border-radius: 3px;
+    border: 1px solid lightgrey;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+}
+
+.form_button{
+    text-align: center;
+}
+
+.form_button button{
+    background-color: rgb(70, 73, 156);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 50px;
+    margin-top: 30px;
+}
+
+.form_button button:hover{
+    background-color: rgba(70, 73, 156, .9);
+}
+
+.arrowBack{
+    width: 40px;
+    margin-top: 40px;
+    margin-left: 100px;
+}
+.added_techs{
+
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.added_tech
+{
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    width: fit-content;
+    padding: 8px;
+    border-radius: 10px;
+    background-color: rgba(201, 221, 238, 0.51);
+    color: #46499c;
+    
+}
+.buttonDelete
+{
+display: flex;
+top:20px;
+right: 20px;    
+}
