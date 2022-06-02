@@ -47,6 +47,7 @@ function App() {
               <Route path="company/createjob" element={<CreateJob />} />
               <Route path="company/profile/:id" element={<ComProfile />} />
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
+              <Route path="company/post/:id" element={<PostDetail />} />
             </Route>
               
           

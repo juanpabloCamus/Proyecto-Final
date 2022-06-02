@@ -102,7 +102,7 @@ function ComProfile() {
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>
-                            <Link to={`/home/post/${id}`}>
+                            <Link to={`/company/post/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}
