@@ -54,8 +54,8 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         seniority: {
-            type: DataTypes.ENUM('Not Specified','Junior', 'Semi-Senior', 'Senior'),
-            defaultValue: 'Not Specified'
+            type: DataTypes.ENUM('Not specified','Junior', 'Semi-Senior', 'Senior'),
+            defaultValue: 'Not specified'
         },
         english_level: {
             type: DataTypes.ENUM('Not specified','Basic','Conversational', 'Advanced or Native'),

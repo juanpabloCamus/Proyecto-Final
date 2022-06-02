@@ -9,6 +9,7 @@ function Favorites() {
     const user=useSelector(state=>state.users.user)
     console.log(user.jobs)
     const dispatch=useDispatch()
+    console.log(user)
     useEffect(()=>
     {
       dispatch(fetchUser(userLocalStorage.id))
@@ -16,9 +17,9 @@ function Favorites() {
   return (
     <div>
     {
-      user.jobs ?
-       user.jobs.length > 0 ? 
-       user.jobs.map( e => {
+      user[0] ?
+       user[0].jobs.length > 0 ? 
+       user[0].jobs.map( e => {
             return(
                 <Fav 
                 key={e.id}

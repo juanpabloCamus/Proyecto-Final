@@ -53,7 +53,9 @@ function ComProfile() {
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
                         <img src={location} className={styles.infoAsset}></img>
-                        <label>{`${user.country}, ${user.city}`}</label>
+                        { user.city === null ? <label>{user.country}</label> :
+                            <label>{`${user.country}, ${user.city}`}</label>
+                        }
                         </div>
                         <div className={styles.labelContainer}>
                         <img src={size} className={styles.infoAsset}></img>
