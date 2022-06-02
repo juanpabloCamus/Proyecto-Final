@@ -18,7 +18,7 @@ function EditDevProfileForm() {
     const user = useSelector(state => state.users.user[0])
     
     const [currentInfo, setCurrentInfo] = useState(
-        user === undefined ? null
+        user === undefined ? 'loading'
         :
         {
             fullName: user.fullName,
@@ -30,12 +30,27 @@ function EditDevProfileForm() {
             description: user.description,
             english_level: user.english_level,
             seniority: user.seniority,
-            stack: user.stack
+            stack: user.stack,
+            profile_pic: user.profile_pic,
+            banner: user.banner
         }
     )
+
+    const [error, setError] = useState({
+        fullName:false,
+    })
+
+    function handleErrors(e){
+
+        if(e.target.name === 'fullName'){
+            if (e.target.value.length === 0) setError({...error, fullName:true})
+            else setError({...error, fullName:false})
+        }
+    }
     
     function handleChange(e){
         e.preventDefault();
+        handleErrors(e)
         setCurrentInfo({
             ...currentInfo,
             [e.target.name]:e.target.value
@@ -44,28 +59,30 @@ function EditDevProfileForm() {
 
     async function handleSubmit(e){
         e.preventDefault();
+        if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
         await axios.put(`http://localhost:3001/users/${id}`, currentInfo)
-        // .then(res => setCurrentInfo(res.data))
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'
         }))
         .catch(err => Swal.fire({
             icon: 'error',
-            text: 'An error has occurred',
+            title: 'An error has occurred',
             text: err.data
         }))
         dispatch(fetchUser(id))
         navigate(`/home/profile/${id}`)
     }
-
+    
     if(user === undefined) return <h1>Loading...</h1>
-
+    
     return (
+        
         <div className={styles.formContainer}>
             <form className={styles.form}>
                 <label>Fullname</label>
                 <input name='fullName' value={currentInfo.fullName} onChange={handleChange}></input>
+                {error.fullName === true ? <label>You cannot delete this field</label> : null}
                 {/* <label>Birth date</label>
                 <input name="date_birth" value={currentInfo.date_birth} type='date' onChange={handleChange} ></input> */}
                 <label>Country</label>
@@ -338,9 +355,9 @@ function EditDevProfileForm() {
                     <option value='Advanced or Native'>Advanced or Native</option>
                 </select>
                 <label>Profile pic</label>
-                <input placeholder="You can add url here" type='url'></input>
+                <input name="profile_pic" placeholder="You can add url here" type='url' onChange={handleChange}></input>
                 <label>Banner pic</label>
-                <input placeholder="You can add url here" type='url'></input>
+                <input name="banner" placeholder="You can add url here" type='url' onChange={handleChange}></input>
                 <label>Description</label>
                 <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
                 <button type = 'submit' onClick={handleSubmit}>Save changes</button>

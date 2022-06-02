@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
+
 function DevProfile() {
     
     const dispatch = useDispatch()
@@ -42,6 +43,11 @@ function DevProfile() {
                     <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editdevprofile/${id}`}>Edit Profile</Link>
                     </div>
+                    {user.country === null ? null :
+                    <div>
+                        <img alt="location" src={location} className={styles.infoAsset}></img>
+                        <label>{`${user.country}, ${user.city}`}</label>
+                    </div> }
                     <div className={styles.technologiesContainer}>
                         {userTechs.length === 0 ? <h3>You can add your techs here, please complete profile</h3> :
                         <div>
