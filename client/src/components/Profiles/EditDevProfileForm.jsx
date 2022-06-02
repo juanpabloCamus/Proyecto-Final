@@ -40,7 +40,7 @@ function EditDevProfileForm() {
             seniority: user.seniority,
             stack: user.stack,
             profile_pic: user.profile_pic,
-            banner: user.banner
+            banner: user.banner,
         }
     )
 
@@ -84,11 +84,13 @@ function EditDevProfileForm() {
             [e.target.name]:e.target.value
         })
     };
-    console.log(addedTechs);
+    
     async function handleSubmit(e){
         e.preventDefault();
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
-        await axios.put(`http://localhost:3001/users/${id}`, currentInfo)
+        let post = currentInfo
+        post.technologies = addedTechs.map((tech) => tech.tech)
+        await axios.put(`http://localhost:3001/users/${id}`, post)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'
