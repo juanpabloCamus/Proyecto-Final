@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import arrow from '../../../../../assets/arrow.png';
+import cannot from '../../../../../assets/cannot.png';
 import selectedHeart from '../../../../../assets/heart.png';
 import heart from '../../../../../assets/heart2.png';
 import { useEffect, useState } from "react";
@@ -13,9 +14,8 @@ function PostDetail() {
     const dispatch = useDispatch();
     const [state, setState] = useState(true)
     const [check,setCheck] = useState(true)
-
     const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
-
+    
     let idUser = userLocalStorage.id
 
     let idJob = id
@@ -62,8 +62,17 @@ function PostDetail() {
             }
         };
     }
-
-    console.log(detail[0])
+    
+    if(userLocalStorage.profileType[0] === "company"){
+        if (company_accounts !== undefined) {
+            if (company_accounts[0].id !== userLocalStorage.id) return (
+                <div className={styles.cannot}>
+                    <img alt='warning' src={cannot}></img>
+                    <h1>You can't access here as a company</h1>
+                </div>
+            )
+        }
+    }
 
     return (
         detail[0] ?

@@ -118,3 +118,9 @@
     background-color: rgba(201, 221, 238, 0.51);
     color: #46499c;
 }
+.cannot{
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+}
