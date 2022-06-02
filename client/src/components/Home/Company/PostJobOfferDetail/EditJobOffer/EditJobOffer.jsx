@@ -88,9 +88,17 @@ export const EditJobOffer = () => {
   
   const editOffer = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:3001/jobs/${id}`, formValues);
+      const res = await axios.put(`http://localhost:3001/jobs/${id}`,{
+        position,
+        description,
+        time,
+        salary_range,
+        english_level,
+        requirements,
+        seniority,
+        technologies: addedTechs.map((tech) => tech.tech),
+      });
       
-      console.log(res)
       if(res.data){
         Swal.fire({
           icon: 'success',
