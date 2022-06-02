@@ -4,7 +4,11 @@ import axios from 'axios'
 export const fetchJobDetail=createAsyncThunk('jobs/fetchJobs',
 async(id)=>{
     try {
-        const res= await axios.get(`http://localhost:3001/jobs/${id}`)
+        if(id){
+            var res= await axios.get(`http://localhost:3001/jobs/${id}`)
+        }
+        
+        console.log(res.data)
         return res.data
     } catch (error) {
         console.log(error)

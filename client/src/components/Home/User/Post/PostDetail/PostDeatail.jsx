@@ -34,7 +34,7 @@ function PostDetail() {
             }
         }
     }
-
+    
     var handleFavorite
 
     if(isFav){
@@ -62,8 +62,8 @@ function PostDetail() {
             }
         };
     }
-    
-    
+
+    console.log(detail[0])
 
     return (
         detail[0] ?
