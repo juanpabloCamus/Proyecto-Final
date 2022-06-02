@@ -314,7 +314,7 @@ router.put('/:id', async (req,res)=>{
                 )
             }
             else{
-                errores.push('english level')
+                errores.push('seniority')
             }
         }
         let user = await user_account.findAll({
