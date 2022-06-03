@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const { tech, seniority, time, eLevel, salary, techSearch } = req.query
+        const { tech, seniority, time, eLevel, salary, search } = req.query
 
         let jobs = await job.findAll({
             include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}],

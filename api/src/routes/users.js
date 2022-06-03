@@ -7,7 +7,7 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll({
-            where:{profileType:"develop"},
+            where:{profileType:"develop",active: true},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ]]
         })
@@ -27,7 +27,7 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let user = await user_account.findAll({
-            where:{id:id},
+            where:{id:id,active: true},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
