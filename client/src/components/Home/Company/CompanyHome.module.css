@@ -99,6 +99,7 @@ a:active {
   width: 16px;
   height: 16px;
   font-size: 11px;
+  cursor: pointer;
   color: #31a029;
 }
 .checkbox:checked{
