@@ -22,7 +22,7 @@ export default function Post({id,position,salary_range,time,requirements,company
           {<img id={styles.logo} src={logo} alt="Company logo"></img>}
         </div>
         <div className={styles.detailsContainer}>
-          {/* <h2>{companyName}</h2> */}
+          <h2>{companyName}</h2>
           <h3>{position}</h3>
           <div className={styles.subDetails}>
             <p>{salary_range === '10000$'? '+ 10000$': salary_range}</p>
