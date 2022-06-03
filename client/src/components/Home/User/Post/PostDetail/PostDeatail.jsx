@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import { modalActions } from '../../../../../redux/modal_slice/modalSlice';
+import  {AplayModal}  from '../../Aplay/AplayModal';
 import styles from './PostDetail.module.css';
 import axios from 'axios'
 function PostDetail() {
@@ -69,6 +70,7 @@ function PostDetail() {
 
     const handleOpenModal = () =>{
         dispatch(modalActions.setModalValue())
+        dispatch(modalActions.activeAplayModal(true))
       }
     
     
@@ -77,6 +79,7 @@ function PostDetail() {
         detail[0] ?
         company_accounts ?
         <div className={styles.pageContainer}>
+            <AplayModal/>
             <div className={styles.back}>
             <Link to={'/home'}>
                 <img alt="arrowBack" src={arrow}></img>

@@ -6,7 +6,8 @@ const router = Router();
 
 router.post('/', async (req,res)=>{
     try{
-        const {id_user, id_job, pdf, description} = req.body;
+        const {id_user, id_job, publicID, description} = req.body;
+        console.log(publicID)
 
         const user = await user_account.findAll({
             where: {id: id_user}
@@ -16,14 +17,14 @@ router.post('/', async (req,res)=>{
         })
 
         let postulacion = await applied_job.create({
-            pdf: pdf,
+            pdf: publicID,
             description: description,
         })
 
         await postulacion.setUser_account(user[0])
         await postulacion.setJob(jobs[0])
 
-        res.send(jobApplication);
+        res.send("psted");
 
     }catch(error){
         console.log(error)
