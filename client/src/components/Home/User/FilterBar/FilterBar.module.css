@@ -40,3 +40,37 @@
     background: #F2F7FB;
     outline: none;
 }
+
+.searchBar
+{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.searchBar input{
+   border: none;
+   border-radius: 8px;
+   box-shadow: 2px 2px 5px 1px lightgray;
+   outline: none;
+}
+
+.BtnSearch{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: none;
+   border-radius: 8px;
+   background-color: #F2F7FB;
+   box-shadow: 4px 4px 7px 1px lightgray;
+   color: #46499C;
+   cursor: pointer;
+   font-size: 18px;
+   padding: 0 12px;
+   transition: .2s ease-in-out;
+}
+
+.BtnSearch:hover{
+   background-color: #e4f1fb 
+}
