@@ -7,6 +7,7 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let company = await company_account.findAll({
+            where: {active: true},
             include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
             order: [
                 ['id', 'ASC']
@@ -33,7 +34,7 @@ router.get('/:id', async (req,res)=>{
 
         let company = await company_account.findAll({
             include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
-            where:{id:id}
+            where:{id:id,active: true}
         })
         if(company.length<1){
             res.send('No existe la empresa')

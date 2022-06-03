@@ -8,6 +8,7 @@ router.get('/', async (req,res)=>{
         const { tech, seniority, time, eLevel, salary, techSearch } = req.query
 
         let jobs = await job.findAll({
+            where: {active: true},
             include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}],
             order: [
                 ['id', 'DESC']
@@ -147,7 +148,7 @@ router.get('/:id',async (req,res)=>{
         const {id} = req.params
         const jobId = await job.findAll({
             include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}], 
-            where:{id: id}
+            where:{id: id,active: true}
         })
         if(jobId.length<1){
             res.send('No existe oferta laboral')
