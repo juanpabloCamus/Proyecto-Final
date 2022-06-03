@@ -10,8 +10,8 @@ server.use(cors());
 server.use(express.json());
 
 
-server.use(express.urlencoded({ extended: true, limit: '50mb' }));
-server.use(express.json({ limit: '50mb' }));
+server.use(express.json({limit: '50mb', extended: true, parameterLimit: 50000}));
+server.use(express.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000}));
 server.use(cookieParser());
 server.use(morgan('dev'));
 server.use((req, res, next) => {

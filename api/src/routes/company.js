@@ -142,11 +142,11 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(logo){
-            if(!/(https?:\/\/.*\.)/.test(logo)){
-                errores.push('logo')
-            }else if(/\s/.test(logo)){
-                errores.push('logo')
-            }else{
+            // if(!/(https?:\/\/.*\.)/.test(logo)){
+            //     errores.push('logo')
+            // }else if(/\s/.test(logo)){
+            //     errores.push('logo')
+            // }else{
                 await company_account.update(
                     {
                         logo: logo
@@ -154,7 +154,7 @@ router.put('/:id', async (req,res)=>{
                         where:{id: id}
                     }
                 )
-            }
+            //}
         }
         if(description){
             await company_account.update(
@@ -218,11 +218,11 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(banner){
-            if(!/(https?:\/\/.*\.)/.test(banner)){
-                errores.push('banner')
-            }else if(/\s/.test(banner)){
-                errores.push('banner')
-            }else{
+            // if(!/(https?:\/\/.*\.)/.test(banner)){
+            //     errores.push('banner')
+            // }else if(/\s/.test(banner)){
+            //     errores.push('banner')
+            // }else{
                 await company_account.update(
                     {
                         banner: banner
@@ -230,7 +230,7 @@ router.put('/:id', async (req,res)=>{
                         where:{id: id}
                     }
                 )
-            }
+            //}
         }
         if(errores.length>0){
             const error = errores.join(', ')
