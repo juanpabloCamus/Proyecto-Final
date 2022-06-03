@@ -24,7 +24,7 @@ function CompanyHome() {
     dispatch(fetchCompany(id));
   }, [dispatch]);
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
-  let [radio, setRadio] = useState(radioStorage || "developers");
+  let [radio, setRadio] = useState(radioStorage || "offers");
   localStorage.setItem("radio", JSON.stringify(radio));
 
   // setRadio(radioStorage)
@@ -60,19 +60,6 @@ function CompanyHome() {
                 <input
                   className={styles.checkbox}
                   type="radio"
-                  id="developers"
-                  name="radio"
-                  value={"developers"}
-                  checked={radio === "developers"}
-                  onChange={(e) => handleCircle(e)}
-                />
-                <label className={styles.label}>Developers</label>
-              </div>
-
-              <div className={styles.div_checkbox_radio}>
-                <input
-                  className={styles.checkbox}
-                  type="radio"
                   id="offers"
                   name="radio"
                   value={"offers"}
@@ -80,6 +67,18 @@ function CompanyHome() {
                   onChange={(e) => handleCircle(e)}
                 />
                 <label className={styles.label}>Job Offers</label>
+              </div>
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="developers"
+                  name="radio"
+                  value={"developers"}
+                  checked={radio === "developers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Developers</label>
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
@@ -122,19 +121,6 @@ function CompanyHome() {
                 <input
                   className={styles.checkbox}
                   type="radio"
-                  id="developers"
-                  name="radio"
-                  value={"developers"}
-                  checked={radio === "developers"}
-                  onChange={(e) => handleCircle(e)}
-                />
-                <label className={styles.label}>Developers</label>
-              </div>
-
-              <div className={styles.div_checkbox_radio}>
-                <input
-                  className={styles.checkbox}
-                  type="radio"
                   id="offers"
                   name="radio"
                   value={"offers"}
@@ -142,6 +128,18 @@ function CompanyHome() {
                   onChange={(e) => handleCircle(e)}
                 />
                 <label className={styles.label}>Job Offers</label>
+              </div>
+              <div className={styles.div_checkbox_radio}>
+                <input
+                  className={styles.checkbox}
+                  type="radio"
+                  id="developers"
+                  name="radio"
+                  value={"developers"}
+                  checked={radio === "developers"}
+                  onChange={(e) => handleCircle(e)}
+                />
+                <label className={styles.label}>Developers</label>
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
