@@ -15,13 +15,11 @@ router.get('/', async (req,res)=>{
     }
 })
 
-router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
+router.post('/', async (req,res)=>{
     try{
-        const {idUser, idJob} = req.params;
-        const { pdf, description } = req.body;
-
-        if(pdf&&description){
-            if(/(https?:\/\/.*\.)/.test(pdf)){
+        const {idUser, idJob, publicID, description} = req.body;
+        // if(publicID&&description){
+        //     if(/(https?:\/\/.*\.)/.test(publicID)){
                 const user = await user_account.findAll({
                     where: {id: idUser},
                     include: applied_job
@@ -33,7 +31,7 @@ router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
                     res.send('ya existe la relacion')
                 }else{
                     let postulacion = await applied_job.create({
-                        pdf: pdf,
+                        pdf: publicID,
                         description: description,
                     })
                     await postulacion.setUser_account(user[0].dataValues.id)
@@ -41,12 +39,12 @@ router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
 
                     res.send('creado');
                 }
-            }else{
-                res.send('link de pdf invalido')
-            }
-        }else{
-            res.send('datos invalidos')
-        }
+            // }else{
+            //     res.send('link de pdf invalido')
+            // }
+        // }else{
+        //     res.send('datos invalidos')
+        // }
     }catch(error){
         console.log(error)
     }
