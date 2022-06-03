@@ -3,7 +3,6 @@ import Select from "react-select";
 import { useDispatch } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
 import style from "./FilterBar.module.css";
-import SearchBar from "../SearchBar/SearchBar";
 import { customStyles } from "./StyleSelect";
 import {
   optionsTech,
@@ -13,7 +12,7 @@ import {
   optionsSalary,
 } from "./Options";
 import { GoSearch } from "react-icons/go";
-
+ 
 
 function FilterBar() {
   const [tech, setTech] = useState("");
@@ -63,7 +62,7 @@ function FilterBar() {
   useEffect(() => {
     dispatch(fetchJobs({ tech, seniority, time, eLevel, salary, search }));
   }, [dispatch, tech, seniority, time, eLevel, salary, search]);
-  
+
   return (
     <div className="animate__animated animate__fadeIn">
       <div className={style.filterBar}>
