@@ -4,14 +4,14 @@ import { fetchUser } from "../../../../redux/users/users";
 import Post from "../Post/Post";
 import styles from "./Favorites.module.css"
 function Favorites() {
+  const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
+  const user = useSelector((state) => state.users.user);
+  console.log(user)
+  const dispatch = useDispatch();
 
-    const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
-    const user=useSelector(state=>state.users.user)
-    const dispatch=useDispatch()
-    useEffect(()=>
-    {
-      dispatch(fetchUser(userLocalStorage.id))
-    },[dispatch, userLocalStorage.id])
+  useEffect(() => {
+    dispatch(fetchUser(userLocalStorage.id));
+  }, [dispatch, userLocalStorage.id]);
   return (
     <div className={styles.favorites}>
       <h2>My <span>Favorites</span></h2>

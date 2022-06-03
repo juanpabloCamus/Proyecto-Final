@@ -53,6 +53,7 @@ module.exports = (sequelize) => {
         city: {
             type: DataTypes.STRING,
         },
+      
         seniority: {
             type: DataTypes.ENUM('Not specified','Junior', 'Semi-Senior', 'Senior'),
             defaultValue: 'Not specified'

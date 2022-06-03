@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { fetchCompany } from "../../../../redux/company/company";
 import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { NotFound } from "../../../not_found/NotFound";
-import styles from "../../User/Post/PostDetail/PostDetail.module.css";
+import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
 import { IoCreateOutline } from "react-icons/io5";
 import { CgCloseO } from "react-icons/cg";
-import { Edit } from "./EditJobOffer/Edit";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
+import { Edit } from './EditJobOffer/Edit'
 
 function PostJobOffer() {
   const { id } = useParams();
+  let navigate = useNavigate();
+
   let dispatch = useDispatch();
   let company = useSelector((state) => state.company.company);
   const [visible, setIsVisible] = React.useState(false);
@@ -21,7 +23,6 @@ function PostJobOffer() {
     setIsVisible(true);
   }, 3000);
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
-  console.log(id);
 
   useEffect(() => {
     dispatch(fetchJobDetail(id));
@@ -34,18 +35,20 @@ function PostJobOffer() {
   };
 
   let renderJob = company.jobs?.find((e) => e.id == id);
-  console.log(renderJob);
   return (
-    <div>
+    
+    <div className={styles.pageContainer}>
+      <Edit/>
       {renderJob ? (
         <>
           <div className={styles.back}>
-            <Link to={"/company"}>
+            <button onClick={() => navigate(-1)}>
               <img alt="arrowBack" src={arrow}></img>
-            </Link>
-            <Edit />
+            </button>
           </div>
-          <h2 id={styles.position}>{renderJob.position}</h2>
+          <div className={styles.companyInfoContainer}>
+            <h2 id={styles.position}>{renderJob.position}</h2>
+          </div>
           <div className={styles.detailContainer}>
             <div className={styles.detailOne}>
               <div className={styles.fields}>
@@ -81,13 +84,21 @@ function PostJobOffer() {
             <div className={styles.techContainer}>
               {renderJob.technologies.map((t) => (
                 <label className={styles.tech} key={t.id}>
-                  {t.name}
+                  {t.name === "Cplus" ||t.tech  === "Cplus"? (
+                      <p>C+</p>
+                    ) : t.name === "Cplusplus"||t.tech  === "Cplusplus" ? (
+                      <p>C++</p>
+                    ) : t.name === "CSharp"||t.tech  === "CSharp" ? (
+                      <p>C#</p>
+                    ) : (
+                      <p>{t.name||t.tech}</p>
+                    )}
                 </label>
               ))}
             </div>
           </div>
           <div className={styles.buttonContainer}>
-            <button className={styles.button}>
+            <button onClick={handleEditOffer} className={styles.button}>
               <IoCreateOutline />
             </button>
             <button className={styles.button}>

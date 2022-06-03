@@ -1,7 +1,8 @@
-import {Link, useParams, useNavigate } from "react-router-dom";
-import arrow from "../../../../../assets/arrow.png";
-import selectedHeart from "../../../../../assets/heart.png";
-import heart from "../../../../../assets/heart2.png";
+import { Link, useParams,useNavigate } from "react-router-dom";
+import arrow from '../../../../../assets/arrow.png';
+import cannot from '../../../../../assets/cannot.png';
+import selectedHeart from '../../../../../assets/heart.png';
+import heart from '../../../../../assets/heart2.png';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
@@ -75,8 +76,17 @@ function PostDetail() {
             }
         };
     }
-
-    console.log(detail[0])
+    
+    if(userLocalStorage.profileType[0] === "company"){
+        if (company_accounts !== undefined) {
+            if (company_accounts[0].id !== userLocalStorage.id) return (
+                <div className={styles.cannot}>
+                    <img alt='warning' src={cannot}></img>
+                    <h1>You can't access here as a company</h1>
+                </div>
+            )
+        }
+    }
 
   return detail[0] ? (
     company_accounts ? (

@@ -216,7 +216,7 @@ router.put('/:id', async (req,res)=>{
     try {
         const {id} = req.params
         const {position, description, time, salary_range, english_level, requirements, seniority, technologies} = req.body
-
+        console.log(id)
         let errores = []
 
         if(position){

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
 
-import "./edit.css";
+import styles from "./edit.module.css";
 import { EditJobOffer } from "./EditJobOffer";
 
 export const Edit = () => {
@@ -22,12 +22,12 @@ export const Edit = () => {
     <>
       {isOpen && (
         <>
-          <div className="overlay__modal"></div>
-          <div className="modal">
-            <div className="close__icon">
+          <div className={styles.overlay__modal}></div>
+          <div className={styles.modal}>
+            <div className={styles.close__icon}>
               <MdClose onClick={handleCloseModal} />
             </div>
-            <div className="form_container">
+            <div className={styles.form_container}>
               {
                  editOffer && <EditJobOffer />}
               {/* 
