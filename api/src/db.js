@@ -6,9 +6,8 @@ const Education = require('./models/Education');
 const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
-const Language = require('./models/Language')
 require('dotenv').config();
-const { user, company, jobs, techs, languages} = require('./data.js')
+const { user, company, jobs, techs} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, PORT,
@@ -25,9 +24,8 @@ Education(db);
 Job(db);
 AppliedJob(db);
 Technology(db);
-Language(db)
 
-const {company_account, user_account, experience, education, job, applied_job, technology, language} = db.models
+const {company_account, user_account, experience, education, job, applied_job, technology} = db.models
 
 /////////// RELACIONES DE JOBS //////////////
 
@@ -51,9 +49,6 @@ applied_job.belongsTo(user_account)
 user_account.belongsToMany(technology, {through: "technology_user", timestamps:false})
 technology.belongsToMany(user_account, {through: "technology_user", timestamps:false})
 
-language.belongsToMany(user_account, {through: "language_user", timestamps:false})
-user_account.belongsToMany(language, {through: "language_user", timestamps:false})
-
 user_account.hasMany(experience)
 experience.belongsTo(user_account)
 
@@ -63,11 +58,9 @@ education.belongsTo(user_account)
 //////////////// LOAD DATABASE ///////////////
 
 async function loadDb(){
-  let langs = await languages
   let users = await user_account.findAll();
   if(users.length > 0) return null
 
-  language.bulkCreate(langs)
 
   techs.map((u) => {
     technology.create({
@@ -119,10 +112,6 @@ async function loadDb(){
       description:u.description,
       profileType: 'admin'
     })
-
-    for (let i = 0; i < 5; i++) {
-      await us.addLanguage(i)
-    }
 
     for (let i = 0; i < 4; i++) {
       await us.addTechnology(us.id + i)
