@@ -209,14 +209,6 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(typeof technologies === 'object'){
-            if(technologies.length<1){
-                let usuario = await user_account.findAll({
-                    where:{id:id},
-                    include: technology
-                })
-                usuario = usuario[0]
-                usuario.dataValues.technologies.map(t=>usuario.removeTechnology(t.dataValues.id))
-            }
             if(technologies.length>0){
                 let newtechnologies = []
                 let techs = await technology.findAll({
@@ -237,7 +229,6 @@ router.put('/:id', async (req,res)=>{
                 for(let i=0;i<newtechnologies.length;i++){
                     await usuario.addTechnology(newtechnologies[i])
                 }
-                console.log('1')
             }else{
                 if(technologies.length<1){
                 }else{
