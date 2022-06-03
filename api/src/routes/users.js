@@ -444,7 +444,7 @@ router.put('/education/:id', async (req,res)=>{
                         where:{id: id}
                     }
                 )
-            }else{
+            }else{ 
                 errores.push('fecha de inicio')
             }
         }
