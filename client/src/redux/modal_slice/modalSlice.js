@@ -5,7 +5,8 @@ const initialState = {
     activeLoginModal: null,
     activeRegisterModal: null,
     activeApplyModal: null,
-    editOffer: null
+    editOffer: null,
+    editDelete: null
 }
 
 const modalSlice = createSlice({
@@ -27,6 +28,9 @@ const modalSlice = createSlice({
         },
         activateEdit(state, {payload}){
             state.editOffer = payload
+        },
+        activateDelete(state, {payload}){
+            state.editDelete = payload
         }
     }
 })

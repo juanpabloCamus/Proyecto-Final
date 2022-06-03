@@ -20,6 +20,7 @@ export const Navbar = () => {
   const handleOpenRegisterModal = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateRegisterModal(true));
+    dispatch(modalActions.activateLoginModal(false));
   };
 
   return (

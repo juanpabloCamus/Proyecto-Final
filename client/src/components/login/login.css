@@ -39,3 +39,9 @@
 .switch_form:hover{
     text-decoration: underline;
 }
+
+.errorMessage{
+    color: red;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
