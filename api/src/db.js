@@ -19,7 +19,7 @@ const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}
 
 CompanyAccount(db);
 UserAccount(db);
-Experience(db);
+Experience(db); 
 Education(db);
 Job(db);
 AppliedJob(db);

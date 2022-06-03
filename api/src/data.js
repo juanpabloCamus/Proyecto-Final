@@ -295,7 +295,7 @@ const techs = [
     },
     {
         name: 'SQL'
-    },
+    }, 
     {
         name: 'Ruby'
     },

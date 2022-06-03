@@ -13,7 +13,7 @@ router.get('/', async (req,res)=>{
         })
         res.send(techs)
     }catch(error){
-        console.log(error)
+        console.log(error) 
     }
 })
 
