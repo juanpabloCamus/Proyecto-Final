@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useForm } from "../../../../../hooks/useForm";
 import { MdClose } from "react-icons/md";
 import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
@@ -10,6 +10,7 @@ import styles from "./EditJobOffer.module.css";
 import { fetchTechs } from "../../../../../redux/techs/techs";
 import Swal from "sweetalert2";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
+import PostJobOffer from "../PostJobOfferDetail";
 
 let techId = 0;
 export const EditJobOffer = () => {
@@ -18,7 +19,7 @@ export const EditJobOffer = () => {
   let detail = useSelector((state) => state.jobDetail.jobDetail);
   console.log(detail[0].seniority);
   const dispatch = useDispatch();
-
+  
   const [formValues, handleInputChange, reset] = useForm({
     position: detail[0].position,
     description: detail[0].description,
@@ -79,8 +80,18 @@ export const EditJobOffer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     editOffer(id);
+    setTimeout(function () {
+        setIsVisible(true);
+      }, 3000);
+      console.log(visible)
+    // while(!visible)
+      
     dispatch(modalActions.setModalValue());
+    window.setTimeout(function(){window.location.reload()},3000)
+    // window.location.reload()
   };
+  const [visible, setIsVisible] = React.useState(false);
+  
 
   const editOffer = async (id) => {
     try {
@@ -94,19 +105,26 @@ export const EditJobOffer = () => {
         seniority,
         technologies: addedTechs.map((tech) => tech.tech||tech.name),
       });
+      
 
       if (res.data) {
         Swal.fire({
           icon: "success",
           text: res.data,
-        });
+          showConfirmButton: false,
+          showCancelButton: false,
+        })
         
+
       } else {
         Swal.fire({
           icon: "error",
           text: res.data,
+          showConfirmButton: false,
+          showCancelButton: false,
         });
       }
+      
     } catch (error) {
       console.log(error);
     }

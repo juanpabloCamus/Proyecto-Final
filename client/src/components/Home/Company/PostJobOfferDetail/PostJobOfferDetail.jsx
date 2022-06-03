@@ -34,6 +34,11 @@ function PostJobOffer() {
     dispatch(modalActions.activateEdit(true));
   };
 
+  const handleDelete = () => {
+    dispatch(modalActions.setModalValue());
+    dispatch(modalActions.activateDelete(true));
+  };
+
   let renderJob = company.jobs?.find((e) => e.id == id);
   return (
     
@@ -101,7 +106,7 @@ function PostJobOffer() {
             <button onClick={handleEditOffer} className={styles.button}>
               <IoCreateOutline />
             </button>
-            <button className={styles.button}>
+            <button onClick={handleDelete} className={styles.button}>
               <CgCloseO />
             </button>
           </div>
