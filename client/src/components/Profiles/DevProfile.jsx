@@ -8,6 +8,7 @@ import { fetchUser } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Image } from 'cloudinary-react'
 
 
 function DevProfile() {
@@ -31,11 +32,25 @@ function DevProfile() {
             
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
-                    <img id={styles.banner} alt="banner" src={user.banner}></img>
+                    {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
+                    <Image
+                        cloudName="dhar2oawa"
+                        publicId={user.banner}
+                        id={styles.banner}
+                        //width="100"
+                        //crop="scale"
+                        />
                 </div>
                 <div className={styles.infoContainer}>
                     <div className={styles.mainInfoContainer}>
-                        <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img>
+                        {/* <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img> */}
+                        <Image
+                        id={styles.logo}
+                        cloudName="dhar2oawa"
+                        publicId={user.profile_pic}
+                        // width="100"
+                        // crop="scale"
+                        />
                         <div className={styles.nameContainer}>
                             <h1>{user.fullName}</h1>
                             {user.seniority === 'Not specified' ? null : <h4>{user.seniority}</h4>}
