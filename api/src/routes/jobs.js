@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const { tech, seniority, time, eLevel, salary, techSearch } = req.query
+        const { tech, seniority, time, eLevel, salary, search } = req.query
 
         let jobs = await job.findAll({
             where: {active: true},
@@ -17,7 +17,7 @@ router.get('/', async (req,res)=>{
 
         let Paginado = []
 
-        if(techSearch){
+        if(search){
             let allTechs = []
             let techs = await technology.findAll({
                 order: [
@@ -41,7 +41,7 @@ router.get('/', async (req,res)=>{
                 return '';
             }
             for(let i=0;i<techs.length;i++){
-                if(techs[i].dataValues.name.toLowerCase()===FindTecno(techs[i].dataValues.name.toLowerCase(),techSearch.toLowerCase())){
+                if(techs[i].dataValues.name.toLowerCase()===FindTecno(techs[i].dataValues.name.toLowerCase(),search.toLowerCase())){
                     let tecno = techs[i].dataValues.name
                     allTechs.push(tecno)
                 }
