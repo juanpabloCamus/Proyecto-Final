@@ -49,13 +49,20 @@ router.post('/:id/education', async (req,res)=>{
                 res.send('El titulo solo debe contener letras y espacios')
             }else if(!/^[a-zA-Z\s]+$/.test(institution)){
                 res.send('La institucion solo debe contener letras y espacios')
-            }else if(!/^[0-9a-zA-Z\s]+$/.test(title)){
+            }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
                 res.send('el grado solo debe contener letras, numeros y espacios')
+            }if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
+                res.send('fecha de inicio')
+            }if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
+                res.send('fecha de finalizacion')
             }else{
                 let educ = await education.create({
                     title,
                     institution,
-                    degree
+                    degree,
+                    description,
+                    start_date,
+                    end_date
                 })
                 educ.setUser_account(id)
                 res.send(educ)
@@ -101,7 +108,7 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {fullName, email, password, profileType} = req.body
+        const {fullName, email, password} = req.body
         
         if(!fullName||!email||!password){
             res.send('Hay un campo invalido.')
@@ -148,7 +155,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city} = req.body
+        const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 
         let errores = []
 
@@ -202,6 +209,14 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(typeof technologies === 'object'){
+            if(technologies.length<1){
+                let usuario = await user_account.findAll({
+                    where:{id:id},
+                    include: technology
+                })
+                usuario = usuario[0]
+                usuario.dataValues.technologies.map(t=>usuario.removeTechnology(t.dataValues.id))
+            }
             if(technologies.length>0){
                 let newtechnologies = []
                 let techs = await technology.findAll({
@@ -209,17 +224,20 @@ router.put('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
+                let usuario = await user_account.findAll({
+                    where:{id:id},
+                    include: technology
+                })
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
                     newtechnologies.push(tecno.dataValues.id)
                 }
-                let usuario = await user_account.findAll({
-                    where:{id:id}
-                })
                 usuario = usuario[0]
+                usuario.dataValues.technologies.map(t=>usuario.removeTechnology(t.dataValues.id))
                 for(let i=0;i<newtechnologies.length;i++){
                     await usuario.addTechnology(newtechnologies[i])
                 }
+                console.log('1')
             }else{
                 if(technologies.length<1){
                 }else{
@@ -286,6 +304,32 @@ router.put('/:id', async (req,res)=>{
                 )
             }
         }
+        if(english_level){
+            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+                errores.push('nivel de ingles')
+            }else{
+                await job.update(
+                    {
+                        english_level: english_level
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
+        if(seniority){
+            if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!=='Semi-Senior'&&seniority!=='Senior'){
+                errores.push('seniority')
+            }else{
+                await job.update(
+                    {
+                        seniority: seniority
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }
+        }
         let user = await user_account.findAll({
             where:{id: id}
         })
@@ -296,6 +340,97 @@ router.put('/:id', async (req,res)=>{
         }
         res.send(user[0])
     }catch(error){
+        console.log(error)
+    }
+})
+
+router.put('/education/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+        const {title,institution,degree,description,start_date,end_date} = req.body
+
+        let errores = []
+
+        if(title){
+            if(/^[a-zA-Z\s]+$/.test(title)){
+                await education.update(
+                    {
+                        title: title
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('titulo')
+            }
+        }
+        if(institution){
+            if(/^[a-zA-Z\s]+$/.test(institution)){
+                await education.update(
+                    {
+                        institution: institution
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('institucion')
+            }
+        }
+        if(degree){
+            if(/^[0-9a-zA-Z\s]+$/.test(degree)){
+                await education.update(
+                    {
+                        degree: degree
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('grado')
+            }
+        }
+        if(description){
+            await education.update(
+                {
+                    description: description
+                },{
+                    where:{id: id}
+                }
+            )
+        }
+        if(start_date){
+            if(/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
+                await education.update(
+                    {
+                        start_date: start_date
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('fecha de inicio')
+            }
+        }
+        if(end_date){
+            if(/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
+                await education.update(
+                    {
+                        end_date: end_date
+                    },{
+                        where:{id: id}
+                    }
+                )
+            }else{
+                errores.push('fecha de finalizacion')
+            }
+        }
+        if(errores.length>0){
+            const error = errores.join(', ')
+            res.send(`No se actualizaron los campos: ${error}.`)
+        }
+        res.send('datos actualizados')
+    } catch (error) {
         console.log(error)
     }
 })
@@ -315,6 +450,8 @@ router.delete('/:id', async (req,res)=>{
         console.log(error)
     }
 })
+
+
 
 router.delete('/education/:id', async (req,res)=>{
     try{

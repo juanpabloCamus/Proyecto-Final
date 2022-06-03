@@ -1,0 +1,42 @@
+.filterBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin: 50px 0;
+}
+
+
+.filterSet {
+	display: flex;
+	gap: 50px;
+	justify-content: center;
+	align-items: center;
+}
+
+.filterSet_menu{
+    display: flex;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+}
+
+.filter {
+    position: relative;
+    box-shadow: 2px 2px 5px 1px lightgray;
+    margin-right: 8px;
+    padding: 8px 24px;
+    border: 2px solid #F2F7FB;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    white-space: nowrap;
+    color: #46499C;
+    cursor: pointer;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #F2F7FB;
+    outline: none;
+}

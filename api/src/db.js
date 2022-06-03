@@ -34,9 +34,6 @@ const {company_account, user_account, experience, education, job, applied_job, t
 job.belongsToMany(company_account, {through: "company_job", timestamps:false})
 company_account.belongsToMany(job, {through: "company_job", timestamps:false})
 
-// company_account.hasMany(job)
-// job.belongsTo(company_account)
-
 user_account.belongsToMany(job, {through: "user_favorites", timestamps:false})
 job.belongsToMany(user_account, {through: "user_favorites", timestamps:false})
 

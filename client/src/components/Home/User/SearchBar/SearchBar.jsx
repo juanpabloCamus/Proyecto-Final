@@ -37,7 +37,7 @@ function SearchBar() {
               >
                 <GoSearch />
               </button>
-            
+
           </div>
       );
 

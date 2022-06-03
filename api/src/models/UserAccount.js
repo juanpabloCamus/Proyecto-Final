@@ -22,7 +22,8 @@ module.exports = (sequelize) => {
             type:DataTypes.DATEONLY
         },
         profile_pic: {
-            type:DataTypes.TEXT
+            type:DataTypes.TEXT,
+            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
         },
         description: {
             type:DataTypes.TEXT
@@ -52,5 +53,14 @@ module.exports = (sequelize) => {
         city: {
             type: DataTypes.STRING,
         },
+      
+        seniority: {
+            type: DataTypes.ENUM('Not specified','Junior', 'Semi-Senior', 'Senior'),
+            defaultValue: 'Not specified'
+        },
+        english_level: {
+            type: DataTypes.ENUM('Not specified','Basic','Conversational', 'Advanced or Native'),
+            defaultValue: 'Not specified'
+        }
     },{timestamps:false})
 }

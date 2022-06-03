@@ -1,0 +1,13 @@
+.formContainer{
+    margin: 50px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#error{
+    color: red;
+}

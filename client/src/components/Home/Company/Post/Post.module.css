@@ -4,7 +4,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    height: 19rem;
+    height: 15rem;
     background-color: white;
     border-radius: 5px;
     padding: 1rem;
@@ -34,7 +34,10 @@
     gap: 5px;
     justify-content: center;
   }
-  
+  .null
+  {
+    color: white;
+  }
   .techsContainer{
     margin-left: auto;
     margin-right: auto;
