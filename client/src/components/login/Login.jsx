@@ -87,12 +87,12 @@ const switchForm = () =>{
   return (
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
+            {userError === true ? <label className='errorMessage'>{errorMessage}</label> : null }
             <label>Email*</label>
             <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
             <label>Password*</label>
             <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
             <button type="submit" className='login__button'>Send</button>
-            {userError === true ? <label>{errorMessage}</label> : null }
             <div className="switch_form">
                 <p
                   onClick={ switchForm }
