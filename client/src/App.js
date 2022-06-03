@@ -13,10 +13,12 @@ import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
 import DevProfile from "./components/Profiles/DevProfile";
 import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
+import EditComProfileForm from "./components/Profiles/EditComProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
+import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
+
 
 import './App.css'
-
 
 function App() {
 
@@ -45,6 +47,9 @@ function App() {
               <Route path="company" element={<CompanyHome />} />
               <Route path="company/createjob" element={<CreateJob />} />
               <Route path="company/profile/:id" element={<ComProfile />} />
+              <Route path="company/offers/:id" element={<PostJobOfferDetail />} />
+              <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
+              <Route path="company/companyjob/:id" element={<PostDetail />} />
             </Route>
               
           

@@ -8,7 +8,6 @@ async(id)=>{
             var res= await axios.get(`http://localhost:3001/jobs/${id}`)
         }
         
-        console.log(res.data)
         return res.data
     } catch (error) {
         console.log(error)

@@ -49,7 +49,7 @@ router.get('/:id', async (req,res)=>{
 
 router.post('/register', async (req,res)=>{
     try{
-        const {name, email, password, profileType} = req.body
+        const {name, email, password} = req.body
 
         if(!name||!email||!password){
             res.send('Hay un campo invalido.')
@@ -80,10 +80,9 @@ router.post('/register', async (req,res)=>{
                         include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
                         where: {id: newCompany.dataValues.id}
                     })
-                    if(empresa[0].dataValues.jobs.length>0){
-                        empresa[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
-                    }
+                    empresa[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
                     delete empresa[0].dataValues.password
+                   
                     res.send(empresa[0])
                 }else{
                     res.send('El email ya se encuentra registrado.')
@@ -99,7 +98,7 @@ router.post('/register', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try{
         const {id}= req.params;
-        const {name,country,city,logo,description,specialty,size,foundation,web_site,banner} = req.body;
+        const {name,country,city,logo,description,speciality,size,foundation,web_site,banner} = req.body;
 
         let errores = []
 
@@ -166,10 +165,11 @@ router.put('/:id', async (req,res)=>{
                 }
             )
         }
-        if(specialty){
+        
+        if(speciality){
             await company_account.update(
                 {
-                    specialty: specialty
+                    speciality: speciality
                 },{
                     where:{id: id}
                 }

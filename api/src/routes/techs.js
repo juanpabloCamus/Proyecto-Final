@@ -8,12 +8,12 @@ router.get('/', async (req,res)=>{
     try{
         let techs = await technology.findAll({
             order: [
-                ['id', 'ASC'] 
+                ['name', 'ASC'] 
             ]
         })
         res.send(techs)
     }catch(error){
-        console.log(error)
+        console.log(error) 
     }
 })
 

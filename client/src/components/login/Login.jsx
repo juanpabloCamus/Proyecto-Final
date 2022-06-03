@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from '../../hooks/useForm'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -34,17 +34,17 @@ const dispatch = useDispatch()
 const location = useLocation()
 const from = location.state?.from?.pathname || "/"
 
+const [userError, setUserError] = useState(false)
+const [errorMessage, setErrorMessage] = useState('')
+
 const loginUser = async() => {
  try {
     const res = await axios.post('http://localhost:3001/login', formValues)
 
-    
-
     if(res.data.active === true){
-      Swal.fire({
-        icon: 'success',
-        text: "Acceso válido"
-      })
+      setErrorMessage('')
+      setUserError(false)
+      dispatch(modalActions.setModalValue())
       const userData = res.data
       userData.profileType = userData.profileType.split(" ") 
       
@@ -62,12 +62,10 @@ const loginUser = async() => {
       }else{
         navigate("/")
       }
-      // navigate(from, {replace:true})
+      
     }else{
-      Swal.fire({
-        icon: 'error',
-        text: res.data
-      })
+      setErrorMessage(res.data)
+      setUserError(true)
     }
  } catch (error) {
    console.log(error);
@@ -83,12 +81,13 @@ const switchForm = () =>{
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
-    dispatch(modalActions.setModalValue())
+    //dispatch(modalActions.setModalValue())
   }
 
   return (
     <div >
         <form onSubmit={ handleSubmit } className="login_form">
+            {userError === true ? <label className='errorMessage'>{errorMessage}</label> : null }
             <label>Email*</label>
             <input type="text" name='email' value={ email } onChange={ handleInputChange } required/>
             <label>Password*</label>

@@ -19,10 +19,7 @@ function ComProfile() {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])
 
-    //Borrar detalle
-    // useEffect(() => {
-
-    // }, [])
+  
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
     if(user === undefined) return <h1>Loading</h1>
@@ -34,7 +31,6 @@ function ComProfile() {
         }
     }
     
-    if(user.foundation === undefined) return <h1>Loading</h1>
     return (
         <div className={styles.pageContainer}>
             <div className={styles.profileContainer}>
@@ -47,26 +43,40 @@ function ComProfile() {
                         <div className={styles.nameContainer}>
                         <h1>{user.name}</h1>
                         <h5>{user.speciality}</h5>
-                        <label>Since {user.foundation.slice(0,4)}</label>
+                        { user.foundation === null ? <label></label> :
+                        <label>Since {user.foundation.slice(0,4)}</label>}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
+                        {user.country === null ? null :
+                        <div>
                         <img src={location} className={styles.infoAsset}></img>
                         { user.city === null ? <label>{user.country}</label> :
                             <label>{`${user.country}, ${user.city}`}</label>
                         }
                         </div>
+                        }
+                        </div>
+                        {user.size === 'Not Specified' ? null :
                         <div className={styles.labelContainer}>
                         <img src={size} className={styles.infoAsset}></img>
                         <label>{user.size}</label>
-                        </div>
+                        </div>}
                         <div className={styles.labelContainer}>
+                        {user.web_site === null ? null :
+                        <div>
                         <img src={web} className={styles.infoAsset}></img>
                         <a target="_blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
+                        }
+                        </div>
                     </div>
                 </div>
+                <div className={styles.editProfileButtonContainer}>
+                        <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
+                </div>
+                {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>
                     <h3>Technologies used at {user.name}</h3>
                     <div className={styles.companyTechsContainer}>
@@ -79,6 +89,7 @@ function ComProfile() {
                         (<label key={t} >{t}</label>))}
                     </div>
                 </div>
+                }
                 <div className={styles.descriptionContainer}>
                     <h3>Description</h3>
                     <p>{user.description}</p>
@@ -88,7 +99,7 @@ function ComProfile() {
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>
-                            <Link to={`/home/post/${id}`}>
+                            <Link to={`/company/companyjob/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}
