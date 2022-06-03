@@ -29,10 +29,10 @@ export default function CreateJob() {
     newTech: ""
   });
 
-  const [seniority, setSeniority] = useState("");
-  const [time, setTime] = useState("");
-  const [english_level, setEnglish_level] = useState("");
-  const [salary_range, setSalary_range] = useState("");
+  const [seniority, setSeniority] = useState("Not Specified");
+  const [time, setTime] = useState("Not Specified");
+  const [english_level, setEnglish_level] = useState("Not required");
+  const [salary_range, setSalary_range] = useState("Not Specified");
   const [addedTechs, setAddedTechs] = useState([]);
   const [showInput, setShowInput] = useState(false)
 
@@ -103,8 +103,6 @@ export default function CreateJob() {
         technologies: addedTechs.map((tech) => tech.tech),
       });
 
-      console.log(addedTechs.map((tech) => tech.tech))
-
       if (res.data === "Oferta laboral creada correctamente.") {
         Swal.fire({
           icon: "success",
@@ -145,41 +143,33 @@ export default function CreateJob() {
                 value={position}
                 onChange={handleInputChange}
               />
-
-              <select className={styles.form_select} onChange={handleSeniorF}>
-                <option value="" default>
-                  Seniority
-                </option>
-                <option value="Not Specified">Not Specified</option>
+              
+              <label>Seniority</label>
+              <select  className={styles.form_select} onChange={handleSeniorF}>
+                <option selected value="Not Specified">Not specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
               </select>
 
+              <label>Time</label>
               <select className={styles.form_select} onChange={handleTimeF}>
-                <option value="" default>
-                  Time
-                </option>
-                <option value="Not Specified">Not Specified</option>
+                <option selected value="Not Specified">Not Specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
 
+              <label>English level</label>
               <select className={styles.form_select} onChange={handleELevelF}>
-                <option value="" default>
-                  English Level
-                </option>
-                <option value="Not required">Not required</option>
+                <option selected value="Not required">Not required</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
               </select>
 
+              <label>Salary</label>
               <select className={styles.form_select} onChange={handleSalaryF}>
-                <option value="" default>
-                  Salary
-                </option>
-                <option value="Not Specified">Not Specified</option>
+                <option selected value="Not Specified">Not specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
@@ -241,20 +231,20 @@ export default function CreateJob() {
               </div>
             </div>
             <div className={styles.form_right_column}>
+            <label>Description</label>
+              <textarea
+                name="description"
+                columns="10"
+                rows="5"
+                value={description}
+                onChange={handleInputChange}
+              ></textarea>
               <label>Requirements</label>
               <textarea
                 name="requirements"
                 columns="10"
                 rows="5"
                 value={requirements}
-                onChange={handleInputChange}
-              ></textarea>
-              <label>Description</label>
-              <textarea
-                name="description"
-                columns="10"
-                rows="5"
-                value={description}
                 onChange={handleInputChange}
               ></textarea>
             </div>
