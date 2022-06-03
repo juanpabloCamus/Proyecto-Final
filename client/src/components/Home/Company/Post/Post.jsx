@@ -14,10 +14,13 @@ function Post({id,profile_pic,fullName,description,email,technologies}) {
       
       <p>{description}</p>} 
         <div  className={styles.techsContainer}>
-          {technologies.map((t,i)=>
-            <label
-              key={i}
-            >{t.name}</label>)}
+          {technologies.map(t => t.name==='Cplus' ?
+            (<label key={t.id} >C+</label>) :
+            t.name==='Cplusplus' ?
+            (<label key={t.id} >C++</label>) :
+            t.name==='CSharp' ?
+            (<label key={t.id} >C#</label>) :
+            (<label key={t.id} >{t.name}</label>))}
         </div>
       </div>
     </div>
