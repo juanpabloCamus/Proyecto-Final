@@ -5,26 +5,20 @@ import { MdUploadFile } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
 
 
-function Aplay() {
+function Apply() {
 
-const [formValues, handleInputChange] = useForm({
-    desc: "",
-})
-const [ fileInputState, setFileInputState] = useState("")
 const [ previewSource, setPreviewSource ] = useState("")
 const [ postData, setPostData ] = useState({
-    publicID: "",
     description: "",
-    id_user: 0,
-    id_job: 0,
-
+    idUser: 0,
+    idJob: 0,
 });
+
+const { description, idUser, idJob } = postData
 
 const { id } = useParams()
 
 const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
-console.log(userLocalStorage.id)
-
 
 const handleFileInputChange = (e) => {
     const file = e.target.files[0]
@@ -36,8 +30,8 @@ const handleDescInputChange = (e) => {
     setPostData({
         ...postData,
         description: e.target.value,
-        id_job: parseInt(id),
-        id_user: userLocalStorage.id
+        idJob: parseInt(id),
+        idUser: userLocalStorage.id
     })
     
 }
@@ -54,36 +48,25 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     if(!previewSource) return;
     if(!postData.description) return;
-    await uploadFile(previewSource);
-    await post(postData)
+    await uploadFile(previewSource, postData);
 }
 
 
-const uploadFile = async (base64EncodeFile) => {
+const uploadFile = async (base64EncodeFile, data) => {
     try {
         const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
 
-    await setPostData({
-        ...postData,
-        publicID: res.data
-    })
+                    await axios.post('http://localhost:3001/appliedJob', {
+                        publicID: res.data,
+                        description,
+                        idUser,
+                        idJob
+                    })
     } catch (err) {
         console.log(err)
     }
-
-
 }
 
-const post = async (data) => {
-    try{
-    const res = await axios.post('http://localhost:3001/appliedJob', data)
-    }catch(err){
-        console.log(err)
-    }
-}
-
-
-const { desc } = formValues
   return (
     <div>
         <form onSubmit={handleSubmit}>
@@ -98,8 +81,6 @@ const { desc } = formValues
             <label>Upload your CV</label>
             <input 
                 type="file"
-                name="image"
-                value={fileInputState}
                 onChange={handleFileInputChange}
             ></input>
             <button type="submit">Send Aplication</button>
@@ -108,4 +89,4 @@ const { desc } = formValues
   )
 }
 
-export default Aplay
+export default Apply

@@ -6,10 +6,6 @@ module.exports = (sequelize) => {
             type:DataTypes.STRING,
             allowNull: false
         },
-        password:{
-            type:DataTypes.STRING,
-            allowNull: false
-        },
         email:{
             type: DataTypes.STRING,
             allowNull: false,
@@ -18,11 +14,16 @@ module.exports = (sequelize) => {
             },
             unique:true
         },
+        password:{
+            type:DataTypes.STRING,
+            allowNull: false
+        },
         date_birth:{
             type:DataTypes.DATEONLY
         },
         profile_pic: {
-            type:DataTypes.TEXT
+            type:DataTypes.TEXT,
+            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
         },
         description: {
             type:DataTypes.TEXT
@@ -52,5 +53,14 @@ module.exports = (sequelize) => {
         city: {
             type: DataTypes.STRING,
         },
+      
+        seniority: {
+            type: DataTypes.ENUM('Not specified','Junior', 'Semi-Senior', 'Senior'),
+            defaultValue: 'Not specified'
+        },
+        english_level: {
+            type: DataTypes.ENUM('Not specified','Basic','Conversational', 'Advanced or Native'),
+            defaultValue: 'Not specified'
+        }
     },{timestamps:false})
 }

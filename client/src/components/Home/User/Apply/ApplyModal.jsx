@@ -4,19 +4,19 @@ import { MdClose } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
-import Aplay from './Aplay';
+import Apply from './Apply';
 
-export const AplayModal = () => {
+export const ApplyModal = () => {
 
 const { isOpen } = useSelector(state => state.modal)
-const { activeAplayModal } = useSelector(state => state.modal)
+const { activeApplyModal } = useSelector(state => state.modal)
 
 
 const dispatch = useDispatch()
 
 const handleCloseModal = ()  =>{
     dispatch(modalActions.setModalValue())
-    dispatch(modalActions.activeAplayModal(false))
+    dispatch(modalActions.activeApplyModal(false))
 
 }
 
@@ -36,7 +36,7 @@ const handleCloseModal = ()  =>{
                     </div>
                     <div className='form_container'>
                     {
-                        activeAplayModal && <Aplay/>
+                        activeApplyModal && <Apply/>
                     }
                     </div>
                 </div>
@@ -44,6 +44,6 @@ const handleCloseModal = ()  =>{
         
     }
     </>,
-    document.getElementById('aplay')
+    document.getElementById('apply')
   )
 }

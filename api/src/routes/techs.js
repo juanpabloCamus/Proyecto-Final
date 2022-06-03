@@ -6,9 +6,44 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        let techs = await technology.findAll()
+        let techs = await technology.findAll({
+            order: [
+                ['name', 'ASC'] 
+            ]
+        })
         res.send(techs)
     }catch(error){
+        console.log(error) 
+    }
+})
+
+router.put('/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+        const {name} = req.body
+
+        await technology.update({
+            name: name
+        },{
+            where: {id: id}
+        })
+
+        res.send('actualizado')
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.delete('/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        technology.destroy({
+            where:{id:id}
+        })
+        res.send('eliminado')
+    } catch (error) {
         console.log(error)
     }
 })

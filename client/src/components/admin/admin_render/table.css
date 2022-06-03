@@ -1,0 +1,42 @@
+.table{
+    border-collapse: collapse;
+    box-shadow: 4px 4px 8px -2px rgb(161, 161, 161);
+    border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.table th,
+.table td{
+    padding: 12px 8px;
+}
+
+.table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table tbody tr:nth-of-type(even){
+    background-color: white;
+}
+
+.table tbody tr:nth-of-type(odd){
+    background-color: rgb(238, 238, 238);
+}
+
+.table_headers tr{
+    background-color: #46499c;
+    color: white;
+    font-size: 18px;
+    text-align: left;
+}
+
+
+.table_headers tr th{
+    padding: 10px 8px;
+}
+
+.delete_button{
+    cursor: pointer;
+    font-size: 18px;
+    color: rgb(189, 11, 11);
+}

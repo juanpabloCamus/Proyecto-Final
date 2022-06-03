@@ -19,7 +19,7 @@ router.post('/', async (req,res)=>{
                 delete mailUser[0].dataValues.password
                 res.send(mailUser[0])
             }else{
-                res.send('Contraseña no valida.')
+                res.send('Your email and password does not match. Please try again.')
             }
         }else{
             let mailCompany = await company_account.findAll({
@@ -33,10 +33,10 @@ router.post('/', async (req,res)=>{
                     delete mailCompany[0].dataValues.password
                     res.send(mailCompany[0])
                 }else{
-                    res.send('Contraseña no valida.')
+                    res.send('Your password does not match. Please try again.')
                 }
             }else{
-                res.send('El mail ingresado no es valido.')
+                res.send('This email is not valid. Please try again.')
             }
         }
     }catch(error){
