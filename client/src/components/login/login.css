@@ -27,3 +27,21 @@
 .login__button:hover{
     background-color: rgba(70, 73, 156, 0.9);
 }
+
+.switch_form{
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+.switch_form:hover{
+    text-decoration: underline;
+}
+
+.errorMessage{
+    color: red;
+    margin-bottom: 15px;
+    font-size: 16px;
+}

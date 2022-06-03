@@ -8,10 +8,7 @@ import techsSlice  from '../redux/techs/techs'
 import jobDetailSlice  from '../redux/jobs/jobDetail'
 import authSlice from '../redux/auth/authSlice'
 import CompanyPSlice from '../redux/Profile/profileData'
-
-
-
-
+import allJobsSlice from '../redux/jobs/allJobs'
 
 export const store = configureStore({
     reducer:{
@@ -20,10 +17,11 @@ export const store = configureStore({
         conditionalReg: conditionalRegisterSlice,
         users:usersSlice,
         company:companySlice,
-        jobs:jobsSlice,
+        companyProfile: CompanyPSlice,
         techs:techsSlice,
         jobDetail: jobDetailSlice,
-        companyProfile: CompanyPSlice
+        jobs:jobsSlice,
+        allJobs: allJobsSlice
     }
 })
 

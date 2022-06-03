@@ -26,15 +26,21 @@ export default function CreateJob() {
     position: "",
     description: "",
     requirements: "",
+    newTech: ""
   });
 
-  const [seniority, setSeniority] = useState("");
-  const [time, setTime] = useState("");
-  const [english_level, setEnglish_level] = useState("");
-  const [salary_range, setSalary_range] = useState("");
+  const [seniority, setSeniority] = useState("Not Specified");
+  const [time, setTime] = useState("Not Specified");
+  const [english_level, setEnglish_level] = useState("Not required");
+  const [salary_range, setSalary_range] = useState("Not Specified");
   const [addedTechs, setAddedTechs] = useState([]);
+  const [showInput, setShowInput] = useState(false)
 
-  const { position, description, requirements } = formValues;
+
+  const { position, description, requirements, newTech } = formValues;
+
+  const newTechValues = {name:'Others'}
+  const addedTechsModified = [...techs, newTechValues]
 
   const handleSeniorF = (e) => {
     setSeniority(e.target.value);
@@ -52,19 +58,38 @@ export default function CreateJob() {
     setSalary_range(e.target.value);
   };
 
+
+  const addNewTechnologies = () => {
+    const newTechObj = {
+      tech: newTech,
+      id: techId++,
+    };
+    setAddedTechs((value) => [...value, newTechObj])
+  }
+
+  
+
   const addTechs = (e) => {
     const techObj = {
       tech: e.target.value,
       id: techId++,
     };
 
-    setAddedTechs((value) => [...value, techObj]);
+    if(e.target.value === "Others"){
+      setShowInput(true)
+    }
+    else{
+      setAddedTechs((value) => [...value, techObj]);
+    }
   };
 
   const handleDelete = (id) => {
     const deletedTechs = addedTechs.filter((tech) => tech.id !== id);
     setAddedTechs(deletedTechs);
   };
+
+  
+
   const postNewJob = async (id) => {
     try {
       const res = await axios.post(`http://localhost:3001/jobs/${id}`, {
@@ -118,41 +143,33 @@ export default function CreateJob() {
                 value={position}
                 onChange={handleInputChange}
               />
-
-              <select className={styles.form_select} onChange={handleSeniorF}>
-                <option value="" default>
-                  Seniority
-                </option>
-                <option value="Not Specified">Not Specified</option>
+              
+              <label>Seniority</label>
+              <select  className={styles.form_select} onChange={handleSeniorF}>
+                <option selected value="Not Specified">Not specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
               </select>
 
+              <label>Time</label>
               <select className={styles.form_select} onChange={handleTimeF}>
-                <option value="" default>
-                  Time
-                </option>
-                <option value="Not Specified">Not Specified</option>
+                <option selected value="Not Specified">Not Specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
 
+              <label>English level</label>
               <select className={styles.form_select} onChange={handleELevelF}>
-                <option value="" default>
-                  English Level
-                </option>
-                <option value="Not required">Not required</option>
+                <option selected value="Not required">Not required</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
               </select>
 
+              <label>Salary</label>
               <select className={styles.form_select} onChange={handleSalaryF}>
-                <option value="" default>
-                  Salary
-                </option>
-                <option value="Not Specified">Not Specified</option>
+                <option selected value="Not Specified">Not specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
@@ -164,7 +181,7 @@ export default function CreateJob() {
                 <option selected disabled>
                   Technologies
                 </option>
-                {techs.map((e) =>
+                {addedTechsModified.map((e) =>
                   e.name === "Cplus" ? (
                     <option key={e.id} value={e.name}>
                       C+
@@ -185,6 +202,13 @@ export default function CreateJob() {
                 )}
               </select>
 
+
+              <div className={`${styles.addNewTechs} ${showInput ? null : `${styles.hide}`}`}>
+                <input type="search" name="newTech" value={newTech} onChange={handleInputChange}/>
+                <button type="button" onClick={ addNewTechnologies } className={styles.addnewtech_button}>Add</button>
+                <button type="button" onClick={() => setShowInput(false)} className={styles.addnewtech_button}>Cancel</button>
+              </div>
+
               <div className={styles.added_techs}>
                 {addedTechs.map((e, i) => (
                   <div key={i}>
@@ -200,27 +224,27 @@ export default function CreateJob() {
                     {e.tech === "" ? (
                       <></>
                     ) : (
-                      <MdClose onClick={() => handleDelete(e.id)} />
+                      <MdClose onClick={() => handleDelete(e.id)} className={styles.delete_added_tech}/>
                     )}
                   </div>
                 ))}
               </div>
             </div>
             <div className={styles.form_right_column}>
+            <label>Description</label>
+              <textarea
+                name="description"
+                columns="10"
+                rows="5"
+                value={description}
+                onChange={handleInputChange}
+              ></textarea>
               <label>Requirements</label>
               <textarea
                 name="requirements"
                 columns="10"
                 rows="5"
                 value={requirements}
-                onChange={handleInputChange}
-              ></textarea>
-              <label>Description</label>
-              <textarea
-                name="description"
-                columns="10"
-                rows="5"
-                value={description}
                 onChange={handleInputChange}
               ></textarea>
             </div>

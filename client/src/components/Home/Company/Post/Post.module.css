@@ -1,18 +1,17 @@
 
-
-
 .postCard{
+  display: flex;
     margin-left: auto;
     margin-right: auto;
     width: 90%;
-    height: 19rem;
+    height: 15rem;
     background-color: white;
     border-radius: 5px;
     padding: 1rem;
     transition: 0.5s;
     color: #46499C;
     gap:40px;
-    flex-wrap: wrap;
+
   }
   
   .postCard:hover{
@@ -20,6 +19,7 @@
     cursor: pointer;
   }
   .imgContainer{
+    border-radius: 50%;
     width:15%;
     text-align: center;
     margin-top: auto;
@@ -34,7 +34,10 @@
     gap: 5px;
     justify-content: center;
   }
-  
+  .null
+  {
+    color: white;
+  }
   .techsContainer{
     margin-left: auto;
     margin-right: auto;
