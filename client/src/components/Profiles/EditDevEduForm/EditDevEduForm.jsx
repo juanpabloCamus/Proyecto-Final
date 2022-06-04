@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './EditDevEduForm.module.css';
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 function EditDevEduForm() {
 
@@ -15,6 +16,24 @@ function EditDevEduForm() {
         description:''
     })
 
+    let [error, setError] = useState({
+        institution: false,
+        institution: false,
+    })
+
+    function handleErrors(e){
+
+        if(e.target.name === 'institution'){
+            if (e.target.value === '') setError({...error, institution:true})
+            else setError({...error, institution:false})
+        }
+
+        if(e.target.name === 'degree'){
+            if (e.target.value === '') setError({...error, degree:true})
+            else setError({...error, degree:false})
+        }
+    }
+
     function handleChange(e){
         setEducation({
             ...education,
@@ -24,9 +43,10 @@ function EditDevEduForm() {
 
     function handleSubmit(e){
         e.preventDefault()
+        if (error.institution === true || error.degree === true) return Swal.fire({icon: 'error', text:'Complete the required fields'})
         axios.post(`http://localhost:3001/users/${id}/education`, education)
         .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+        .catch(err => Swal.fire({icon: 'error', text: err.response.data}))
     }
     
 
@@ -34,7 +54,9 @@ function EditDevEduForm() {
         <div >
             <form className={styles.formContainer}>
                 <input onChange={handleChange} name="institution"></input>
+                {error.institution === true ? <label id={styles.error}>You must complete this field</label> : null}
                 <input onChange={handleChange} name="degree"></input>
+                {error.degree === true ? <label id={styles.error}>You must complete this field</label> : null}
                 <input onChange={handleChange} name='start_date' type='date'></input>
                 <input onChange={handleChange} name='end_date' type='date'></input>
                 <textarea onChange={handleChange} name="description"></textarea>

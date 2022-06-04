@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './EditDevExpForm.module.css';
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 function EditDevExpForm() {
 
@@ -15,7 +16,26 @@ function EditDevExpForm() {
         description:''
     })
 
+    let [error, setError] = useState({
+        company: false,
+        position: false,
+    })
+
+    function handleErrors(e){
+
+        if(e.target.name === 'company'){
+            if (e.target.value === '') setError({...error, company:true})
+            else setError({...error, company:false})
+        }
+
+        if(e.target.name === 'position'){
+            if (e.target.value === '') setError({...error, position:true})
+            else setError({...error, position:false})
+        }
+    }
+
     function handleChange(e){
+        handleErrors(e)
         setExperience({
             ...experience,
             [e.target.name]: e.target.value
@@ -24,9 +44,10 @@ function EditDevExpForm() {
 
     function handleSubmit(e){
         e.preventDefault()
+        if (error.position === true || error.company === true) return Swal.fire({icon: 'error', text:'Complete the required fields'})
         axios.post(`http://localhost:3001/users/${id}/experience`, experience)
         .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+        .catch(err => Swal.fire({icon: 'error', text: err.response.data}))
     }
     
 
@@ -34,7 +55,9 @@ function EditDevExpForm() {
         <div >
             <form className={styles.formContainer}>
                 <input onChange={handleChange} name="company"></input>
+                {error.company === true ? <label id={styles.error}>You must complete this field</label> : null}
                 <input onChange={handleChange} name="position"></input>
+                {error.position === true ? <label id={styles.error}>You must complete this field</label> : null}
                 <input onChange={handleChange} name='start_date' type='date'></input>
                 <input onChange={handleChange} name='end_date' type='date'></input>
                 <textarea onChange={handleChange} name="description"></textarea>
