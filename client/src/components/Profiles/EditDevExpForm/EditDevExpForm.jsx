@@ -54,12 +54,17 @@ function EditDevExpForm() {
     return (
         <div >
             <form className={styles.formContainer}>
+                <label>Company</label>
                 <input onChange={handleChange} name="company"></input>
                 {error.company === true ? <label id={styles.error}>You must complete this field</label> : null}
+                <label>Position</label>
                 <input onChange={handleChange} name="position"></input>
                 {error.position === true ? <label id={styles.error}>You must complete this field</label> : null}
+                <label>Start date</label>
                 <input onChange={handleChange} name='start_date' type='date'></input>
+                <label>End date</label>
                 <input onChange={handleChange} name='end_date' type='date'></input>
+                <label>Description</label>
                 <textarea onChange={handleChange} name="description"></textarea>
                 <button type="submit" onClick={handleSubmit}>Add experience</button>
             </form>
