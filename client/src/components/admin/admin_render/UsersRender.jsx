@@ -2,13 +2,17 @@ import { useSelector } from "react-redux"
 import { FaWindowClose } from 'react-icons/fa'
 
 import './table.css'
+import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 export const UsersRender = () => {
 
    const { users } = useSelector(state => state.users)
 
+   console.log(users)
+
   return (
     <div>
+      {/* <AdminFilterBar /> */}
         <table className="table">
           <thead className="table_headers">
             <tr>
@@ -20,7 +24,7 @@ export const UsersRender = () => {
           </thead>
         <tbody>
         { users.length !== 0 ?
-          users.map((user, i) => (
+          users[0].offers.map((user, i) => (
             <tr key={i}>
               <td>
                 {user.fullName}
