@@ -151,7 +151,7 @@ router.get('/:id',async (req,res)=>{
             where:{id: id,active: true}
         })
         if(jobId.length<1){
-            res.send('No existe oferta laboral')
+            res.send('There is no job offer')
         }
         if(jobId[0].dataValues.applied_jobs.length>0){
             jobId[0].dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password)
@@ -170,15 +170,15 @@ router.post('/:id', async (req,res)=>{
 
         if(position&&description&&time&&salary_range&&english_level&&requirements&&seniority&&technologies){
             if(!/^[a-zA-Z\s]+$/.test(position)){
-                res.send('Pocision invalida')
+                res.send('Invalid position')
             }else if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
-                res.send('Tiempo es invalido')
+                res.send('Time is invalid')
             }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
-                res.send('Rango salarial no valido')
+                res.send('Invalid salary range')
             }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
-                res.send('Nivel de ingles incorrecto')
+                res.send('Invalid english level')
             }else if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
-                res.send('seniority incorrecto')
+                res.send('Invalid seniority')
             }else{
                 const newJob = await job.create({
                     position,
@@ -203,10 +203,10 @@ router.post('/:id', async (req,res)=>{
                 }
                 await newJob.addCompany_account(id)
 
-                res.send('Oferta laboral creada correctamente.')
+                res.send('Job offer created successfully')
             }
         }else{
-            res.send('Completar todos los campos.')
+            res.send('Complete all the fields')
         }
     }catch(error){
         console.log(error)
@@ -222,7 +222,7 @@ router.put('/:id', async (req,res)=>{
 
         if(position){
             if(!/^[a-zA-Z\s]+$/.test(position)){
-                errores.push('posicion')
+                errores.push('position')
             }else{
                 await job.update(
                     {
@@ -244,7 +244,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(time){
             if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
-                errores.push('tiempo')
+                errores.push('time')
             }else{
                 await job.update(
                     {
@@ -257,7 +257,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(salary_range){
             if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
-                errores.push('rango salarial')
+                errores.push('salary range')
             }else{
                 await job.update(
                     {
@@ -270,7 +270,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(english_level){
             if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
-                errores.push('nivel de ingles')
+                errores.push('english level')
             }else{
                 await job.update(
                     {
@@ -324,9 +324,9 @@ router.put('/:id', async (req,res)=>{
         }
         if(errores.length>0){
             const error = errores.join(', ')
-            res.send(`No se actualizaron los campos: ${error}.`)
+            res.send(`Fields were not updated: ${error}.`)
         }
-        res.send('datos actualizados')
+        res.send('Updated data')
     } catch (error) {
         console.log(error)
     }
@@ -340,7 +340,7 @@ router.delete('/:id', async (req,res)=>{
             active: false},{
             where:{id: id}
         })
-        res.send('eliminado')
+        res.send('deleted')
     } catch (error) {
         console.log(error)
     }

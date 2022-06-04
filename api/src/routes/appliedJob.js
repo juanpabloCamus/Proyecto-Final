@@ -28,7 +28,7 @@ router.post('/', async (req,res)=>{
                     where: {id: idJob}
                 })
                 if(user[0].dataValues.applied_jobs.find(j=>j.dataValues.jobId===parseInt(idJob))&&user&&jobs){
-                    res.send('ya existe la relacion')
+                    res.send('The relationship already exists')
                 }else{
                     let postulacion = await applied_job.create({
                         pdf: publicID,
@@ -70,9 +70,9 @@ router.put('/:id', async (req,res)=>{
             })
         }
         if(/(https?:\/\/.*\.)/.test(pdf)||description){
-            res.send('Datos actualizados.')
+            res.send('Updated data')
         }
-        res.send('Datos invalidos')
+        res.send('Invalid data')
 
     } catch (error) {
         console.log(error)
@@ -86,7 +86,7 @@ router.delete('/:idApli', async (req,res)=>{
         await applied_job.destroy({
             where:{id: idApli}
         })
-        res.send('eliminado')
+        res.send('Deleted')
 
     }catch(error){
         console.log(error)
