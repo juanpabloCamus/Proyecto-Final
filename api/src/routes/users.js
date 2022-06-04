@@ -219,19 +219,13 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(profile_pic){
-            //if(!/(https?:\/\/.*\.)/.test(profile_pic)){
-            //    errores.push('imagen')
-            //}else if(/\s/.test(profile_pic)){
-            //    errores.push('imagen')
-            //}else{
-                await user_account.update(
-                    {
-                        profile_pic: profile_pic
-                    },{
-                        where:{id: id}
-                    }
-                )
-            //}
+            await user_account.update(
+                {
+                    profile_pic: profile_pic
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(description){
             await user_account.update(
@@ -288,19 +282,13 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(banner){
-            // if(!/(https?:\/\/.*\.)/.test(banner)){
-            //     errores.push('banner')
-            // }else if(/\s/.test(banner)){
-            //     errores.push('banner')
-            // }else{
-                await user_account.update(
-                    {
-                        banner: banner
-                    },{
-                        where:{id: id}
-                    }
-                )
-            //}
+            await user_account.update(
+                {
+                    banner: banner
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(currentJob){
             await user_account.update(

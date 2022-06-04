@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
-        const { tech, seniority, time, eLevel, salary, techSearch } = req.query
+        const { tech, seniority, time, eLevel, salary, search } = req.query
 
         let jobs = await job.findAll({
             where: {active: true},
@@ -17,55 +17,28 @@ router.get('/', async (req,res)=>{
 
         let Paginado = []
 
-        if(techSearch){
-            let allTechs = []
-            let techs = await technology.findAll({
-                order: [
-                    ['id', 'ASC']
-                ]
-            })
-            function FindTecno (tecno, search) {
-                const length = search.length
+        if(search){
+            let allJobs = []
+            function FindJob (string, busco) {
                 
-                    if(tecno[0]===search[0]){
-                        for(let j=0;j<search.length;j++){
-                            if(tecno[0+j]===search[j]){
-                                if(j===search.length-1){
-                                    return tecno
-                                }
-                            }else{
-                                continue;
+                if(string[0]===busco[0]){
+                    for(let j=0;j<busco.length;j++){
+                        if(string[0+j]===busco[j]){
+                            if(j===busco.length-1){
+                                return string
                             }
-                        }
-                    } 
-                return '';
-            }
-            for(let i=0;i<techs.length;i++){
-                if(techs[i].dataValues.name.toLowerCase()===FindTecno(techs[i].dataValues.name.toLowerCase(),techSearch.toLowerCase())){
-                    let tecno = techs[i].dataValues.name
-                    allTechs.push(tecno)
-                }
-            }
-            let jobsInstacia = []
-            let jobsSearched = []
-            if(allTechs.length>0){
-                for(let i=0;i<allTechs.length;i++){
-                    if(jobs.length>0){
-                        let instancia = jobs.filter(j=>j.dataValues.technologies.find(t=>t.dataValues.name===allTechs[i]))
-                        jobsInstacia.push(instancia)
-                    }
-                }
-                for(let i=0;i<jobsInstacia.length;i++){
-                    for(let j=0;j<jobsInstacia[i].length;j++){
-                        if(!jobsSearched.includes(jobsInstacia[i][j])){
-                            jobsSearched.push(jobsInstacia[i][j])
+                        }else{
+                            continue;
                         }
                     }
                 }
-                jobs = jobsSearched
-            }else{
-                jobs = []
             }
+            for(let i=0;i<jobs.length;i++){
+                if(FindJob(jobs[i].dataValues.position.toLowerCase(),search.toLowerCase())||FindJob(jobs[i].dataValues.company_accounts[0].dataValues.name.toLowerCase(),search.toLowerCase())){
+                    allJobs.push(jobs[i])
+                }
+            }
+            jobs = allJobs
         }
 
         if(tech){
