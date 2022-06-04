@@ -68,7 +68,7 @@ router.post('/:id/education', async (req,res)=>{
                 res.send(educ)
             }
         }else{
-            res.send('Complete the required fields')
+            res.status(400).send('Complete the required fields')
         }
     }catch(error){
         console.log(error)
@@ -102,7 +102,7 @@ router.post('/:id/experience', async (req,res)=>{
                 res.send(exp)
             }
         }else{
-            res.send('Complete the required fields')
+            res.status(400).send('Complete the required fields')
         }
     }catch(error){
         console.log(error)
