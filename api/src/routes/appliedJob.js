@@ -27,7 +27,7 @@ router.post('/', async (req,res)=>{
                     where: {id: idJob}
                 })
                 if(user[0].dataValues.applied_jobs.find(j=>j.dataValues.jobId===parseInt(idJob))&&user&&jobs){
-                    res.send('ya existe la relacion')
+                    res.send('The relationship already exists')
                 }else{
                     let postulacion = await applied_job.create({
                         pdf: publicID,
@@ -36,10 +36,10 @@ router.post('/', async (req,res)=>{
                     await postulacion.setUser_account(user[0].dataValues.id)
                     await postulacion.setJob(jobs[0].dataValues.id)
 
-                    res.send('creado');
+                    res.send('created');
                 }
         }else{
-            res.send('datos invalidos')
+            res.send('invalid data')
         }
     }catch(error){
         console.log(error)
@@ -66,9 +66,9 @@ router.put('/:id', async (req,res)=>{
             })
         }
         if(pdf||description){
-            res.send('Datos actualizados.')
+            res.send('Updated data')
         }
-        res.send('Datos invalidos')
+        res.send('Invalid data')
 
     } catch (error) {
         console.log(error)
@@ -82,7 +82,7 @@ router.delete('/:idApli', async (req,res)=>{
         await applied_job.destroy({
             where:{id: idApli}
         })
-        res.send('eliminado')
+        res.send('Deleted')
 
     }catch(error){
         console.log(error)
