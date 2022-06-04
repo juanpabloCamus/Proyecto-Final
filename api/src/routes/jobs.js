@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db');
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs } = require('../db');
 
 const router = Router();
 
@@ -168,14 +168,10 @@ router.post('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
-                console.log(technologies)
                 for(let i=0;i<technologies.length;i++){
-                    let tecno = techs.find(t=>t.dataValues.name===technologies[i])
+                    let tecno = techs.find(t=>t.dataValues.name.toLowerCase()===technologies[i].toLowerCase())
                     if(tecno){
-                        console.log(tecno.dataValues.name, 'esta')
                         await newJob.addTechnology(tecno.dataValues.id)
-                    }else{
-                        console.log(technologies[i], 'no esta')
                     }
                 }
                 await newJob.addCompany_account(id)
