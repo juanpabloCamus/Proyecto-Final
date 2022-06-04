@@ -13,15 +13,16 @@ import pregunta from "../../../../../assets/pregunta.jpg";
 function DeleteJobOffer() {
   let dispatch = useDispatch;
   const { id } = useParams();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     eliminateOffer(id);
     dispatch(modalActions.setModalValue());
   };
+  
   const handleHide = (e) => {
     e.preventDefault();
-    var w_now = window.self;
-    w_now.close();
+    dispatch(modalActions.setModalValue());
   };
 
   const eliminateOffer = async (id) => {
