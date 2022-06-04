@@ -6,16 +6,20 @@ import heart from '../../../../../assets/heart2.png';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
-import styles from "./PostDetail.module.css";
-import axios from "axios";
-
+import { modalActions } from '../../../../../redux/modal_slice/modalSlice';
+import  {ApplyModal}  from '../../Apply/ApplyModal';
+import styles from './PostDetail.module.css';
+import axios from 'axios'
 function PostDetail() {
 
   let navigate = useNavigate();
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const [state, setState] = useState(true);
-  const [check, setCheck] = useState(true);
+    const {id} = useParams();
+    const dispatch = useDispatch();
+    //redux para abir y cerrar react portal
+    const { isOpen } = useSelector(state => state.modal)
+
+    const [state, setState] = useState(true)
+    const [check,setCheck] = useState(true)
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
@@ -76,6 +80,11 @@ function PostDetail() {
             }
         };
     }
+
+    const handleOpenModal = () =>{
+        dispatch(modalActions.setModalValue())
+        dispatch(modalActions.activeApplyModal(true))
+      }
     
     if(userLocalStorage.profileType[0] === "company"){
         if (company_accounts !== undefined) {
@@ -91,6 +100,7 @@ function PostDetail() {
   return detail[0] ? (
     company_accounts ? (
       <div className={styles.pageContainer}>
+      <ApplyModal/>
         <div className={styles.back}>
           <button onClick={() => navigate(-1)}>
             <img alt="arrowBack" src={arrow}></img>
@@ -147,7 +157,7 @@ function PostDetail() {
           </div>
         </div>
         <div className={styles.buttonContainer}>
-          <button className={styles.button}>Apply now</button>
+          <button className={styles.button} onClick={ handleOpenModal }>Apply now</button>
           <button className={styles.button} onClick={(e) => handleFavorite(e)}>
             {isFav ? (
               check ? (

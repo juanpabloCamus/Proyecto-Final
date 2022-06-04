@@ -7,6 +7,7 @@ const router = Router();
 router.get('/', async (req,res)=>{
     try{
         let users = await user_account.findAll({
+            where:{profileType:"develop",active: true},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ]]
         })
@@ -26,12 +27,12 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let user = await user_account.findAll({
-            where:{id:id},
+            where:{id:id,active: true},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
         if(user.length<1){
-            res.send('No existe el usuario')
+            res.send('User does not exist')
         }
         user[0].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
         res.send(user)
@@ -44,12 +45,10 @@ router.get('/:id', async (req,res)=>{
 router.post('/:id/education', async (req,res)=>{
     try{
         const {id} = req.params
-        const {title,institution,degree,description,start_date,end_date} = req.body
+        const {institution,degree,description,start_date,end_date} = req.body
     
-        if(title&&institution&&degree&&description&&start_date&&end_date){
-            if(!/^[a-zA-Z\s]+$/.test(title)){
-                res.send('El titulo solo debe contener letras y espacios')
-            }else if(!/^[a-zA-Z\s]+$/.test(institution)){
+        if(institution&&degree&&description&&start_date&&end_date){
+            if(!/^[a-zA-Z\s]+$/.test(institution)){
                 res.send('La institucion solo debe contener letras y espacios')
             }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
                 res.send('el grado solo debe contener letras, numeros y espacios')
@@ -59,7 +58,6 @@ router.post('/:id/education', async (req,res)=>{
                 res.send('fecha de finalizacion invalida')
             }else{
                 let educ = await education.create({
-                    title,
                     institution,
                     degree,
                     description,
@@ -70,7 +68,7 @@ router.post('/:id/education', async (req,res)=>{
                 res.send(educ)
             }
         }else{
-            res.send('Completar los campos obligatorios')
+            res.status(400).send('Complete the required fields')
         }
     }catch(error){
         console.log(error)
@@ -85,13 +83,13 @@ router.post('/:id/experience', async (req,res)=>{
     
         if(company&&position&&description&&start_date&&end_date){
             if(!/^[a-zA-Z\s]+$/.test(company)){
-                res.send('El nombre de la empresa solo debe contener letras y espacios')
+                res.send('The company name should only contain letters and spaces')
             }else if(!/^[a-zA-Z\s]+$/.test(position)){
-                res.send('La posicion solo debe contener letras y espacios')
+                res.send('Position must only contain letters and spaces')
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('fecha de inicio invalida')
+                res.send('invalid start date')
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('fecha de finalizacion invalida')
+                res.send('invalid end date')
             }else{
                 let exp = await experience.create({
                     company,
@@ -104,7 +102,7 @@ router.post('/:id/experience', async (req,res)=>{
                 res.send(exp)
             }
         }else{
-            res.send('Completar los campos obligatorios')
+            res.status(400).send('Complete the required fields')
         }
     }catch(error){
         console.log(error)
@@ -125,17 +123,17 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
             if(state===true){
                 let inFav = jobid[0].dataValues.user_accounts.find(u=>u.dataValues.id===parseInt(idUser))
                 if(inFav){
-                    res.send('Ya esta en favoritos')
+                    res.send('Its already in favorites')
                 }else{
                     jobid[0].addUser_account(idUser)
-                    res.send('Agregado a favoritos')
+                    res.send('added to favorites')
                 }
             }else{
                 jobid[0].removeUser_account(idUser)
-                res.send('eliminado de favoritos')
+                res.send('removed from favorites')
             }
         }else{
-            res.send('datos invalidos')
+            res.send('invalid data')
         }
     }catch(error){
         console.log(error)
@@ -147,12 +145,12 @@ router.post('/register', async (req,res)=>{
         const {fullName, email, password} = req.body
         
         if(!fullName||!email||!password){
-            res.send('Hay un campo invalido.')
+            res.send('There is an invalid field.')
         }else{
             if(!/^[a-zA-Z\s]+$/.test(fullName)){
-                res.send('El nombre solo admite letras')
+                res.send('The name only admits letters')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
-                res.send('El mail tiene un formato invalido')
+                res.send('The email has an invalid format')
             }else{
                 let mailUser = await user_account.findAll({
                     where:{
@@ -178,7 +176,7 @@ router.post('/register', async (req,res)=>{
                     delete usuario[0].dataValues.password
                     res.send(usuario[0])
                 }else{
-                    res.send('El email ya se encuentra registrado.')
+                    res.send('The email is already registered.')
                 }
             }
         }
@@ -197,7 +195,7 @@ router.put('/:id', async (req,res)=>{
 
         if(fullName){
             if(!/^[a-zA-Z\s]+$/.test(fullName)){
-                errores.push('nombre')
+                errores.push('name')
             }else{
                 await user_account.update(
                     {
@@ -210,7 +208,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(date_birth){
             if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(date_birth)){
-                errores.push('fecha de nacimiento')
+                errores.push('birth date')
             }else{
                 await user_account.update({
                         date_birth: date_birth
@@ -221,19 +219,13 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(profile_pic){
-            if(!/(https?:\/\/.*\.)/.test(profile_pic)){
-                errores.push('imagen')
-            }else if(/\s/.test(profile_pic)){
-                errores.push('imagen')
-            }else{
-                await user_account.update(
-                    {
-                        profile_pic: profile_pic
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }
+            await user_account.update(
+                {
+                    profile_pic: profile_pic
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(description){
             await user_account.update(
@@ -276,7 +268,7 @@ router.put('/:id', async (req,res)=>{
                         await usuario[0].removeTechnology(usuario[0].dataValues.technologies[i].dataValues.id)
                     }
                 }else{
-                    errores.push('tecnologias')
+                    errores.push('technologies')
                 }
             }
         }
@@ -290,19 +282,13 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(banner){
-            if(!/(https?:\/\/.*\.)/.test(banner)){
-                errores.push('banner')
-            }else if(/\s/.test(banner)){
-                errores.push('banner')
-            }else{
-                await user_account.update(
-                    {
-                        banner: banner
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }
+            await user_account.update(
+                {
+                    banner: banner
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(currentJob){
             await user_account.update(
@@ -315,7 +301,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(country){
             if(!/^[a-zA-Z\s]+$/.test(country)){
-                errores.push('pais')
+                errores.push('country')
             }else{
                 await user_account.update(
                     {
@@ -328,7 +314,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(city){
             if(!/^[a-zA-Z\s]+$/.test(city)){
-                errores.push('ciudad')
+                errores.push('city')
             }else{
                 await user_account.update(
                     {
@@ -341,7 +327,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(english_level){
             if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
-                errores.push('nivel de ingles')
+                errores.push('english level')
             }else{
                 await job.update(
                     {
@@ -372,7 +358,7 @@ router.put('/:id', async (req,res)=>{
         delete user[0].dataValues.password
         if(errores.length>0){
             const error = errores.join(', ')
-            res.send(`No se actualizaron los campos: ${error}.`)
+            res.send(`Fields were not updated: ${error}.`)
         }
         res.send(user[0])
     }catch(error){
@@ -383,23 +369,10 @@ router.put('/:id', async (req,res)=>{
 router.put('/education/:id', async (req,res)=>{
     try {
         const {id} = req.params
-        const {title,institution,degree,description,start_date,end_date} = req.body
+        const {institution,degree,description,start_date,end_date} = req.body
 
         let errores = []
 
-        if(title){
-            if(/^[a-zA-Z\s]+$/.test(title)){
-                await education.update(
-                    {
-                        title: title
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }else{
-                errores.push('titulo')
-            }
-        }
         if(institution){
             if(/^[a-zA-Z\s]+$/.test(institution)){
                 await education.update(
@@ -410,7 +383,7 @@ router.put('/education/:id', async (req,res)=>{
                     }
                 )
             }else{
-                errores.push('institucion')
+                errores.push('institution')
             }
         }
         if(degree){
@@ -423,7 +396,7 @@ router.put('/education/:id', async (req,res)=>{
                     }
                 )
             }else{
-                errores.push('grado')
+                errores.push('degree')
             }
         }
         if(description){
@@ -445,7 +418,7 @@ router.put('/education/:id', async (req,res)=>{
                     }
                 )
             }else{ 
-                errores.push('fecha de inicio')
+                errores.push('start date')
             }
         }
         if(end_date){
@@ -458,14 +431,14 @@ router.put('/education/:id', async (req,res)=>{
                     }
                 )
             }else{
-                errores.push('fecha de finalizacion')
+                errores.push('end date')
             }
         }
         if(errores.length>0){
             const error = errores.join(', ')
-            res.send(`No se actualizaron los campos: ${error}.`)
+            res.send(`Fields were not updated: ${error}.`)
         }
-        res.send('datos actualizados')
+        res.send('Updated data')
     } catch (error) {
         console.log(error)
     }
@@ -541,9 +514,9 @@ router.put('/experience/:id', async (req,res)=>{
         }
         if(errores.length>0){
             const error = errores.join(', ')
-            res.send(`No se actualizaron los campos: ${error}.`)
+            res.send(`Fields were not updated: ${error}.`)
         }
-        res.send('datos actualizados')
+        res.send('updated data')
 
     } catch (error) {
         console.log(error)
@@ -560,7 +533,7 @@ router.delete('/:id', async (req,res)=>{
             where: {id: id}
         })
 
-        res.send('usuario eliminado')
+        res.send('Deleted user')
     }catch(error){
         console.log(error)
     }
@@ -574,7 +547,7 @@ router.delete('/education/:id', async (req,res)=>{
         await education.destroy({
             where:{id:id}
         })
-        res.send('eliminado')
+        res.send('deleted')
     }catch(error){
         console.log(error)
     }
@@ -586,7 +559,7 @@ router.delete('/experience/:id', async (req,res)=>{
         await experience.destroy({
             where:{id:id}
         })
-        res.send('eliminado')
+        res.send('deleted')
     }catch(error){
         console.log(error)
     }

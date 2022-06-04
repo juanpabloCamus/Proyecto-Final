@@ -9,6 +9,7 @@ import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
+import { Image } from 'cloudinary-react'
 
 
 function ComProfile() {
@@ -35,11 +36,25 @@ function ComProfile() {
         <div className={styles.pageContainer}>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
-                    <img id={styles.banner} alt="banner" src={user.banner}></img>
+                    {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
+                    <Image
+                        cloudName="dhar2oawa"
+                        publicId={user.banner}
+                        id={styles.banner}
+                        //width="100"
+                        //crop="scale"
+                        />
                 </div>
                 <div className={styles.infoProfileContainer}>
                     <div className={styles.logoNameContainer}>
-                        <img id={styles.logo} src={user.logo} alt="profile_pic"></img>
+                        {/* <img id={styles.logo} src={user.logo} alt="profile_pic"></img> */}
+                        <Image
+                                id={styles.logo}
+                                cloudName="dhar2oawa"
+                                publicId={user.logo}
+                                // width="100"
+                                // crop="scale"
+                                />
                         <div className={styles.nameContainer}>
                         <h1>{user.name}</h1>
                         <h5>{user.speciality}</h5>
@@ -102,7 +117,14 @@ function ComProfile() {
                             <Link to={`/company/companyjob/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
-                                {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}
+                                {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}
+                                <Image
+                                id={styles.logo}
+                                cloudName="dhar2oawa"
+                                publicId={user.logo}
+                                // width="100"
+                                // crop="scale"
+                                />
                                 </div>
                                 <div className={styles.detailsContainer}>
                                 <h3>{j.position}</h3>

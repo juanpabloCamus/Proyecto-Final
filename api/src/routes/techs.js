@@ -28,7 +28,7 @@ router.put('/:id', async (req,res)=>{
             where: {id: id}
         })
 
-        res.send('actualizado')
+        res.send('updated')
 
     } catch (error) {
         console.log(error)
@@ -42,7 +42,7 @@ router.delete('/:id', async (req,res)=>{
         technology.destroy({
             where:{id:id}
         })
-        res.send('eliminado')
+        res.send('deleted')
     } catch (error) {
         console.log(error)
     }

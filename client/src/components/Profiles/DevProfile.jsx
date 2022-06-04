@@ -8,6 +8,9 @@ import { fetchUser } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
+import { Image } from 'cloudinary-react';
+import { modalActions } from "../../redux/modal_slice/modalSlice";
+import { EditDev } from './EditDev'
 
 
 function DevProfile() {
@@ -20,22 +23,46 @@ function DevProfile() {
     }, [dispatch, id])
 
     const user = useSelector(state => state.users.user[0])
-    console.log(user)
     
     if(user === undefined) return <h1>Loading...</h1>
 
     let userTechs = user.technologies.map(t => t.name)
 
+    function handleEditExp(){
+        dispatch(modalActions.setModalValue());
+        dispatch(modalActions.activateEditDevExp(true));
+    }
+
+    function handleEditEdu(){
+        dispatch(modalActions.setModalValue());
+        dispatch(modalActions.activateEditDevEdu(true));
+    }
+
     return (
         <div className={styles.pageContainer}>
-            
+            <EditDev/>
+            {/* <EditDevEdu/> */}
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
-                    <img id={styles.banner} alt="banner" src={user.banner}></img>
+                    {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
+                    <Image
+                        cloudName="dhar2oawa"
+                        publicId={user.banner}
+                        id={styles.banner}
+                        //width="100"
+                        //crop="scale"
+                        />
                 </div>
                 <div className={styles.infoContainer}>
                     <div className={styles.mainInfoContainer}>
-                        <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img>
+                        {/* <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img> */}
+                        <Image
+                        id={styles.logo}
+                        cloudName="dhar2oawa"
+                        publicId={user.profile_pic}
+                        // width="100"
+                        // crop="scale"
+                        />
                         <div className={styles.nameContainer}>
                             <h1>{user.fullName}</h1>
                             {user.seniority === 'Not specified' ? null : <h4>{user.seniority}</h4>}
@@ -74,11 +101,11 @@ function DevProfile() {
                         <p>{user.description}</p>
                         }
                     </div>
-                    <div className={styles.experienceContainer}>
+                    <div onClick={handleEditExp} className={styles.experienceContainer}>
                         <h3>Experience</h3>
                         <button>Add experience</button>
                     </div>
-                    <div className={styles.educationContainer}>
+                    <div onClick={handleEditEdu} className={styles.educationContainer}>
                         <h3>Education</h3>
                         <button>Add education</button>
                     </div>

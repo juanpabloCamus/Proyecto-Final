@@ -49,6 +49,8 @@ function EditDevProfileForm() {
     })
 
     const [addedTechs, setAddedTechs] = useState([]);
+    const [ previewImage, setPreviewImage ] = useState("")
+    const [ previewBanner, setPreviewBanner ] = useState("")
 
     const addCurrentTechs = () => {
         if(user === undefined) return null
@@ -98,8 +100,67 @@ function EditDevProfileForm() {
         setCurrentInfo({
             ...currentInfo,
             [e.target.name]:e.target.value
-        })
+        }) 
+
     };
+
+    function handleFileInputChange(e){
+        const file = e.target.files[0]
+        previewFile(file)
+        
+        }
+
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewImage(reader.result)
+        }
+    }
+    
+    const uploadImage = (e) => {
+        e.preventDefault()
+        cloudinaryUpload(previewImage, "Image")
+    }
+
+    function handleBannerInputChange(e){
+        const file = e.target.files[0]
+        previewBannerFunction(file)
+        
+        }
+    const previewBannerFunction = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewBanner(reader.result)
+        }
+    }
+
+    const uploadBanner = (e) => {
+        e.preventDefault()
+        cloudinaryUpload(previewBanner, "banner")
+    }
+
+    const cloudinaryUpload = async (base64EncodeFile, file) => {
+        console.log(base64EncodeFile)
+        try {
+            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+    
+        if(file === "Image"){
+            await setCurrentInfo({
+            ...currentInfo,
+            profile_pic: res.data
+            })
+        }else{
+            await setCurrentInfo({
+                ...currentInfo,
+                banner: res.data
+                })
+        }
+        } catch (err) {
+            console.log(err)
+        }
+    }
     
     async function handleSubmit(e){
         e.preventDefault();
@@ -400,9 +461,21 @@ function EditDevProfileForm() {
                     <option value='Advanced or Native'>Advanced or Native</option>
                 </select>
                 <label>Profile pic</label>
-                <input name="profile_pic" placeholder="You can add url here" type='url' onChange={handleChange}></input>
+                <input name="profile_pic" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                {previewImage ?
+                    <div>
+                        <img src={previewImage} alt="perview profile"/> 
+                        <button onClick={uploadImage}>Update Profile pic</button>
+                    </div> 
+                : null }
                 <label>Banner pic</label>
-                <input name="banner" placeholder="You can add url here" type='url' onChange={handleChange}></input>
+                <input name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                {previewBanner ?
+                    <div>
+                        <img src={previewBanner} alt="banner perview"/> 
+                        <button onClick={uploadBanner}>Update Banner</button>
+                    </div> 
+                : null }
                 <label>Description</label>
                 <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
                 <label>Add skills</label>

@@ -34,6 +34,11 @@ function PostJobOffer() {
     dispatch(modalActions.activateEdit(true));
   };
 
+  const handleDelete = () => {
+    dispatch(modalActions.setModalValue());
+    dispatch(modalActions.activateDelete(true));
+  };
+
   let renderJob = company.jobs?.find((e) => e.id == id);
   return (
     
@@ -84,7 +89,15 @@ function PostJobOffer() {
             <div className={styles.techContainer}>
               {renderJob.technologies.map((t) => (
                 <label className={styles.tech} key={t.id}>
-                  {t.name}
+                  {t.name === "Cplus" ||t.tech  === "Cplus"? (
+                      <p>C+</p>
+                    ) : t.name === "Cplusplus"||t.tech  === "Cplusplus" ? (
+                      <p>C++</p>
+                    ) : t.name === "CSharp"||t.tech  === "CSharp" ? (
+                      <p>C#</p>
+                    ) : (
+                      <p>{t.name||t.tech}</p>
+                    )}
                 </label>
               ))}
             </div>
@@ -93,7 +106,7 @@ function PostJobOffer() {
             <button onClick={handleEditOffer} className={styles.button}>
               <IoCreateOutline />
             </button>
-            <button className={styles.button}>
+            <button onClick={handleDelete} className={styles.button}>
               <CgCloseO />
             </button>
           </div>

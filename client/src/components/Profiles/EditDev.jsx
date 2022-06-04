@@ -2,22 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import { modalActions } from "../../redux/modal_slice/modalSlice";
+import styles from "./EditDev.module.css";
+import EditDevExpForm from "./EditDevExpForm/EditDevExpForm";
+import EditDevEduForm from "./EditDevEduForm/EditDevEduForm";
 
-import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
-import DeleteJobOffer from "./DeleteJobOffer";
 
-import styles from "./edit.module.css";
-import { EditJobOffer } from "./EditJobOffer";
 
-export const Edit = () => {
-  const { isOpen, editOffer, editDelete } = useSelector((state) => state.modal);
 
+export const EditDev = () => {
+  const { isOpen, editDevExp, editDevEdu } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     dispatch(modalActions.setModalValue());
-    dispatch(modalActions.activateEdit(false));
-    dispatch(modalActions.activateDelete(false))
+    dispatch(modalActions.activateEditDevExp(false));
+    dispatch(modalActions.activateEditDevEdu(false));
   };
 
   return ReactDOM.createPortal(
@@ -30,14 +30,13 @@ export const Edit = () => {
               <MdClose onClick={handleCloseModal} />
             </div>
             <div className={styles.form_container}>
-              {editOffer && <EditJobOffer />}
-
-              {editDelete && <DeleteJobOffer />}
+              {editDevExp && <EditDevExpForm />}
+              {editDevEdu && <EditDevEduForm />}
             </div>
           </div>
         </>
       )}
     </>,
-    document.getElementById("editPostJobOffer")
+    document.getElementById("editDevExpForm")
   );
 };

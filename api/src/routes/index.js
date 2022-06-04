@@ -5,6 +5,7 @@ const techs = require('./techs')
 const jobs = require('./jobs')
 const appliedJob = require('./appliedJob.js')
 const login = require('./login.js')
+const cloudinary = require('./cloudinary.js')
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/techs', techs)
 router.use('/jobs', jobs)
 router.use('/appliedJob', appliedJob)
 router.use('/login', login)
+router.use('/cloudinary', cloudinary)
 
 module.exports = router;
