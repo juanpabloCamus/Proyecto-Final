@@ -53,12 +53,17 @@ function EditDevEduForm() {
     return (
         <div >
             <form className={styles.formContainer}>
+                <label>Institution</label>
                 <input onChange={handleChange} name="institution"></input>
                 {error.institution === true ? <label id={styles.error}>You must complete this field</label> : null}
+                <label>Degree</label>
                 <input onChange={handleChange} name="degree"></input>
                 {error.degree === true ? <label id={styles.error}>You must complete this field</label> : null}
+                <label>Start date</label>
                 <input onChange={handleChange} name='start_date' type='date'></input>
+                <label>End date</label>
                 <input onChange={handleChange} name='end_date' type='date'></input>
+                <label>Description</label>
                 <textarea onChange={handleChange} name="description"></textarea>
                 <button type="submit" onClick={handleSubmit}>Add education</button>
             </form>
