@@ -18,7 +18,7 @@ function CompanyHome() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
   const company = useSelector((state) => state.company.company);
-  console.log(company);
+  //console.log(company);
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));
@@ -29,10 +29,10 @@ function CompanyHome() {
 
   // setRadio(radioStorage)
   function handleCircle(e) {
-    console.log(document.getElementById(e));
+    //console.log(document.getElementById(e));
     let isChecked = e.target.checked;
     if (isChecked) {
-      console.log(e.target.value);
+      //console.log(e.target.value);
       if (e.target.value === "developers") {
         setRadio("developers");
       } else setRadio("offers");
@@ -44,7 +44,7 @@ function CompanyHome() {
 
   return (
     <div className={styles.company_container}>
-      {console.log(radio)}
+      {/* {console.log(radio)} */}
       {radio === "developers" ? (
         <div>
           <h2>

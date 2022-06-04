@@ -6,6 +6,7 @@ async(id)=>{
     try {
         if(id){
             var res= await axios.get(`http://localhost:3001/jobs/${id}`)
+            
         }
         
         return res.data

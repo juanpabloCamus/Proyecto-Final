@@ -11,13 +11,15 @@ import { fetchTechs } from "../../../../../redux/techs/techs";
 import Swal from "sweetalert2";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import PostJobOffer from "../PostJobOfferDetail";
+import { fetchCompany } from "../../../../../redux/company/company";
 
 let techId = 0;
 export const EditJobOffer = () => {
   const { id } = useParams();
   const techs = useSelector((state) => state.techs.techs);
   let detail = useSelector((state) => state.jobDetail.jobDetail);
-  console.log(detail[0].seniority);
+  let jobsCompanyDetail = useSelector((state) => state.company.company);
+  //console.log(jobsCompanyDetail.jobs.filter(e=>e.id==id));
   const dispatch = useDispatch();
   
   const [formValues, handleInputChange, reset] = useForm({
@@ -36,12 +38,13 @@ export const EditJobOffer = () => {
   const [english_level, setEnglish_level] = useState(detail[0].english_level);
   const [salary_range, setSalary_range] = useState(detail[0].salary_range);
   const [addedTechs, setAddedTechs] = useState(detail[0].technologies);
-  console.log(addedTechs)
+  
   const { position, description, requirements } = formValues;
 
   useEffect(() => {
     dispatch(fetchTechs());
     dispatch(fetchJobDetail(id));
+    dispatch(fetchCompany(id))
   }, [dispatch]);
 
   const handleSeniorF = (e) => {
@@ -61,12 +64,17 @@ export const EditJobOffer = () => {
   };
 
   const addTechs = (e) => {
-    const techObj = {
-      tech: e.target.value,
-      id: techId++,
-    };
-
-    setAddedTechs((value) => [...value, techObj]);
+    console.log(addedTechs)
+    //console.log(addedTechs.map(el=>el.))
+    let repeatedTech = addedTechs.filter(el=>(el.tech===e.target.value)||(el.name===e.target.value))
+    console.log(repeatedTech.length)
+    if(!repeatedTech.length&&addedTechs.length<8){
+      const techObj = {
+        tech: e.target.value,
+        id: techId++,
+      };
+      setAddedTechs((value) => [...value, techObj]);
+    }
   };
 
   const handleDelete = (id) => {

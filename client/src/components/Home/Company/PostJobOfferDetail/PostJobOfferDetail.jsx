@@ -7,7 +7,7 @@ import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
 import {BiHide} from "react-icons/bi" 
-import {GrFormView} from "react-icons/gr"
+import {GrFormView, GrView} from "react-icons/gr"
 import { IoCreateOutline } from "react-icons/io5";
 import { CgCloseO } from "react-icons/cg";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
@@ -19,6 +19,7 @@ function PostJobOffer() {
 
   let dispatch = useDispatch();
   let company = useSelector((state) => state.company.company);
+  console.log('como?',company)
   const [visible, setIsVisible] = React.useState(false);
 
   setTimeout(function () {
@@ -27,8 +28,11 @@ function PostJobOffer() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
+    // console.log('aqui')
+    // console.log(id)
     dispatch(fetchJobDetail(id));
     dispatch(fetchCompany(userLocalStorage.id));
+    
   }, [dispatch, id]);
 
   const handleEditOffer = () => {
@@ -40,8 +44,9 @@ function PostJobOffer() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(true));
   };
-
-  let renderJob = company.jobs?.find((e) => e.id == id);
+  console.log(company)
+  let renderJob = company.jobs?.filter((e) => e.id == id)[0];
+  console.log(renderJob)
   return (
     
     <div className={styles.pageContainer}>
@@ -113,7 +118,7 @@ function PostJobOffer() {
               <BiHide />
             </button>
             <button onClick={handleDelete} className={styles.button1}>
-              <GrFormView />
+              <GrView />
             </button>
             
           </div>
