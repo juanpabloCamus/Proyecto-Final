@@ -11,7 +11,7 @@ import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
 import pregunta from "../../../../../assets/pregunta.jpg";
 
 function DeleteJobOffer() {
-  let dispatch = useDispatch;
+  let dispatch = useDispatch();
   const { id } = useParams();
 
   const handleSubmit = (e) => {
@@ -19,9 +19,8 @@ function DeleteJobOffer() {
     eliminateOffer(id);
     dispatch(modalActions.setModalValue());
   };
-  
-  const handleHide = (e) => {
-    e.preventDefault();
+
+  const handleHide = () => {
     dispatch(modalActions.setModalValue());
   };
 
@@ -51,7 +50,7 @@ function DeleteJobOffer() {
 
   return (
     <div>
-      <form>
+      
         <div className={styles.div}>
           <img className={styles.img} src={pregunta} alt="" />
           <h2 className={styles.h2}>Do you want to disable this offer?</h2>
@@ -67,7 +66,7 @@ function DeleteJobOffer() {
             </button>
           </div>
         </div>
-      </form>
+      
     </div>
   );
 }

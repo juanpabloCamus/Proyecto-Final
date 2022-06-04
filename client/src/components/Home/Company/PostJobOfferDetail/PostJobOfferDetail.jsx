@@ -6,6 +6,8 @@ import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
+import {BiHide} from "react-icons/bi" 
+import {GrFormView} from "react-icons/gr"
 import { IoCreateOutline } from "react-icons/io5";
 import { CgCloseO } from "react-icons/cg";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
@@ -106,9 +108,14 @@ function PostJobOffer() {
             <button onClick={handleEditOffer} className={styles.button}>
               <IoCreateOutline />
             </button>
+
             <button onClick={handleDelete} className={styles.button}>
-              <CgCloseO />
+              <BiHide />
             </button>
+            <button onClick={handleDelete} className={styles.button1}>
+              <GrFormView />
+            </button>
+            
           </div>
         </>
       ) : !visible ? (
