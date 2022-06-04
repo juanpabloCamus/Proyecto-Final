@@ -18,8 +18,7 @@ router.get('/', async (req,res)=>{
 router.post('/', async (req,res)=>{
     try{
         const {idUser, idJob, publicID, description} = req.body;
-        // if(publicID&&description){
-        //     if(/(https?:\/\/.*\.)/.test(publicID)){
+        if(publicID&&description){
                 const user = await user_account.findAll({
                     where: {id: idUser},
                     include: applied_job
@@ -39,12 +38,9 @@ router.post('/', async (req,res)=>{
 
                     res.send('creado');
                 }
-            // }else{
-            //     res.send('link de pdf invalido')
-            // }
-        // }else{
-        //     res.send('datos invalidos')
-        // }
+        }else{
+            res.send('datos invalidos')
+        }
     }catch(error){
         console.log(error)
     }
@@ -53,11 +49,11 @@ router.post('/', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try {
         const {id} = req.params
-        const {pdf, description} = req.body
+        const {publicID, description} = req.body
 
-        if(/(https?:\/\/.*\.)/.test(pdf)){
+        if(publicID){
             applied_job.update({
-                pdf: pdf
+                pdf: publicID
             },{
                 where:{id: id}
             })
@@ -69,7 +65,7 @@ router.put('/:id', async (req,res)=>{
                 where:{id: id}
             })
         }
-        if(/(https?:\/\/.*\.)/.test(pdf)||description){
+        if(pdf||description){
             res.send('Datos actualizados.')
         }
         res.send('Datos invalidos')
