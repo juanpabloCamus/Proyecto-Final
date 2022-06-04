@@ -168,10 +168,14 @@ router.post('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
+                console.log(technologies)
                 for(let i=0;i<technologies.length;i++){
                     let tecno = techs.find(t=>t.dataValues.name===technologies[i])
                     if(tecno){
+                        console.log(tecno.dataValues.name, 'esta')
                         await newJob.addTechnology(tecno.dataValues.id)
+                    }else{
+                        console.log(technologies[i], 'no esta')
                     }
                 }
                 await newJob.addCompany_account(id)
