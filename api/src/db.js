@@ -41,6 +41,9 @@ job.belongsToMany(user_account, {through: "user_favorites", timestamps:false})
 technology.belongsToMany(job, {through: "technology_job", timestamps:false})
 job.belongsToMany(technology, {through: "technology_job", timestamps:false})
 
+otherTechs.belongsToMany(job, {through: "otherTechs_job", timestamps:false})
+job.belongsToMany(otherTechs, {through: "otherTechs_job", timestamps:false})
+
 job.hasMany(applied_job)
 applied_job.belongsTo(job)
 
