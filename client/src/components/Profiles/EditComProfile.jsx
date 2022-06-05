@@ -138,6 +138,7 @@ function EditComProfileForm() {
     
     return (
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Company name</label>
                 <input name='name' value={currentInfo.name} onChange={handleChange}></input>
