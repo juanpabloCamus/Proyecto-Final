@@ -52,7 +52,7 @@ function EditDevExpForm() {
     
 
     return (
-        <div >
+        <div className={styles.container}>
             <form className={styles.formContainer}>
                 <label>Company</label>
                 <input onChange={handleChange} name="company"></input>

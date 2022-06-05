@@ -85,7 +85,7 @@ function DevProfile() {
                                 <label>{user.email}</label>
                             </div>
                             <div className={styles.nameContainer_item}>
-                                <MdLocationOn/>
+                                {user.country !== null && user.city !== null ? <MdLocationOn/> : <div></div>}
                                 <label>{user.country !== null && user.city !== null ? `${user.city}, ${user.country}` : ""}</label>
                             </div>
                         </div>

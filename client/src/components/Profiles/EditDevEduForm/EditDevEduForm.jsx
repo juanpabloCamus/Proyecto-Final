@@ -51,7 +51,7 @@ function EditDevEduForm() {
     
 
     return (
-        <div >
+        <div className={styles.container}>
             <form className={styles.formContainer}>
                 <label>Institution</label>
                 <input onChange={handleChange} name="institution"></input>
