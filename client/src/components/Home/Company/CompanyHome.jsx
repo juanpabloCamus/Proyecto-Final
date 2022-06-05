@@ -95,6 +95,7 @@ function CompanyHome() {
     // }
   }
 
+
   return (
     <div className={styles.company_container}>
       {radio === "developers" ? (
@@ -213,6 +214,7 @@ function CompanyHome() {
                       seniority={e.seniority}
                       time={e.time}
                       technologies={e.technologies}
+                      applications = {e.applied_jobs}
                     />
                   </div>
                 );
