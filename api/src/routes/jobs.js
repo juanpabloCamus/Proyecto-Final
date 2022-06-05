@@ -91,6 +91,7 @@ router.get('/', async (req,res)=>{
         if(jobs.length>0){
             for(let i=0;i<jobs.length;i++){
                 delete jobs[i].dataValues.company_accounts[0].dataValues.password
+                
                 jobs[i].dataValues.technologies = jobs[i].dataValues.technologies.concat(jobs[i].dataValues.otherTechs)
                 delete jobs[i].dataValues.otherTechs
             }
@@ -191,6 +192,7 @@ router.post('/:id', async (req,res)=>{
                                     where:{id: otherTech[0].dataValues.id}
                                 }
                             )
+                            newJob.addOtherTechs(otherTech[0].dataValues.id)
                         }else{
                             let newTech = await otherTechs.create({
                                 name: technologies[i].toLowerCase()
