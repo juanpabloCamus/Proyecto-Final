@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         count:{
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 0
+            defaultValue: 1
         }
     },{timestamps:false})
 }
