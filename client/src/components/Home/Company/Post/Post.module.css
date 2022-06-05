@@ -65,5 +65,9 @@
     width: 200px;
   }
   
-  
-  
+  .applications{
+    padding-top: 60px;
+    padding-right: 100px;
+    text-align: center;
+    font-size: 20px;
+  }
