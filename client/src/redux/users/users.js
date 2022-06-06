@@ -5,7 +5,7 @@ import axios from 'axios'
 export const fetchUser=createAsyncThunk('users/fetchUser',
 async(id)=>{
     try {
-        const res=await axios.get(`http://localhost:3001/users/${id}`)
+        const res=await axios.get(`/users/${id}`)
         return res.data
         
     } catch (error) {
@@ -16,7 +16,7 @@ async(id)=>{
 export const fetchUsers=createAsyncThunk('users/fetchUser',
 async()=>{
     try {
-        const res=await axios.get(`http://localhost:3001/users/`)
+        const res=await axios.get(`/users/`)
         return res.data
         
     } catch (error) {

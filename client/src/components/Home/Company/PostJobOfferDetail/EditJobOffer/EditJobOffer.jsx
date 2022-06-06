@@ -104,7 +104,7 @@ export const EditJobOffer = () => {
 
   const editOffer = async (id) => {
     try {
-      const res = await axios.put(`http://localhost:3001/jobs/${id}`, {
+      const res = await axios.put(`/jobs/${id}`, {
         position,
         description,
         time,

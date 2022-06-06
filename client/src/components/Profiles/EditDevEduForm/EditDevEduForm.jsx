@@ -44,7 +44,7 @@ function EditDevEduForm() {
     function handleSubmit(e){
         e.preventDefault()
         if (error.institution === true || error.degree === true) return Swal.fire({icon: 'error', text:'Complete the required fields'})
-        axios.post(`http://localhost:3001/users/${id}/education`, education)
+        axios.post(`/users/${id}/education`, education)
         .then(res => console.log(res.data))
         .catch(err => Swal.fire({icon: 'error', text: err.response.data}))
     }

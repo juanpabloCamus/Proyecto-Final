@@ -51,7 +51,7 @@ const activeComForm = () => {
 
 const postNewUser = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/users/register', formValues)
+        const res = await axios.post('/users/register', formValues)
         if(res.data.active === true){
             dispatch(modalActions.activateRegisterModal(false))
             dispatch(modalActions.setModalValue())
@@ -74,7 +74,7 @@ const postNewUser = async() => {
 
 const postNewCompany = async() => {
     try {
-        const res = await axios.post('http://localhost:3001/company/register', formValues)
+        const res = await axios.post('/company/register', formValues)
  
         if(res.data.active === true){
             dispatch(modalActions.activateRegisterModal(false))
