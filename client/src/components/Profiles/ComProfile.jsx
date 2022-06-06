@@ -64,25 +64,25 @@ function ComProfile() {
                     </div>
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
-                        {user.country === null ? null :
-                        <div>
-                        <img src={location} className={styles.infoAsset}></img>
-                        { user.city === null ? <label>{user.country}</label> :
-                            <label>{`${user.country}, ${user.city}`}</label>
-                        }
-                        </div>
-                        }
+                            {user.country === null ? null :
+                            <div>
+                            <img src={location} className={styles.infoAsset}></img>
+                            { user.city === null ? <label>{user.country}</label> :
+                                <label>{`${user.country}, ${user.city}`}</label>
+                            }
+                            </div>
+                            }
                         </div>
                         {user.size === 'Not Specified' ? null :
-                        <div className={styles.labelContainer}>
-                        <img src={size} className={styles.infoAsset}></img>
-                        <label>{user.size}</label>
-                        </div>}
-                        <div className={styles.labelContainer}>
+                            <div className={styles.labelContainer}>
+                            <img src={size} className={styles.infoAsset} alt=""></img>
+                            <label>{user.size}</label>
+                            </div>}
+                            <div className={styles.labelContainer}>
                         {user.web_site === null ? null :
                         <div>
-                        <img src={web} className={styles.infoAsset}></img>
-                        <a target="_blank" href={user.web_site.slice()}>WebSite</a>
+                            <img src={web} className={styles.infoAsset} alt=""></img>
+                            <a target="_blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
                         }
                         </div>
