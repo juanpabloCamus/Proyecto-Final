@@ -14,7 +14,7 @@ import PostJobOffer from "./Post/PostJobOffer";
 function CompanyHome() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
-  console.log(users)
+
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
   const company = useSelector((state) => state.company.company);
