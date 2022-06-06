@@ -156,6 +156,7 @@ function PostDetail() {
             ))}
           </div>
         </div>
+        {company_accounts[0].id === userLocalStorage.id && userLocalStorage.profileType[0] === "company" ? null :
         <div className={styles.buttonContainer}>
           <button className={styles.button} onClick={ handleOpenModal }>Apply now</button>
           <button className={styles.button} onClick={(e) => handleFavorite(e)}>
@@ -174,6 +175,7 @@ function PostDetail() {
             )}
           </button>
         </div>
+        }
       </div>
     ) : (
       <h1>Loading...</h1>

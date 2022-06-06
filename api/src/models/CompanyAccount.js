@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         
         logo: {
             type: DataTypes.TEXT,
-            defaultValue: 'https://premiumgroup.com.ar/static/images/default-logo.png'
+            defaultValue: 'https://w7.pngwing.com/pngs/837/779/png-transparent-computer-icons-rocket-launch-launch-pad-icons-purple-violet-spacecraft.png'
         },
 
         description: {

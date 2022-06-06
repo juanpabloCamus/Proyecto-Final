@@ -34,7 +34,7 @@ select{
 }
 
 .edit_form_button{
-    background-color: rgb(31, 31, 31);
+    background-color: #46499c;
     border-radius: 3px;
     border: none;
     cursor: pointer;
@@ -45,7 +45,7 @@ select{
 }
 
 .edit_form_button:hover{
-    background-color: rgb(48, 48, 48);
+    background-color: rgba(70, 73, 156, 0.9);
 }
 
 #error{
