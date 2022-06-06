@@ -9,6 +9,7 @@ import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
+import { Image } from 'cloudinary-react'
 
 
 function ComProfile() {
@@ -35,11 +36,25 @@ function ComProfile() {
         <div className={styles.pageContainer}>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
-                    <img id={styles.banner} alt="banner" src={user.banner}></img>
+                    {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
+                    <Image
+                        cloudName="dhar2oawa"
+                        publicId={user.banner}
+                        id={styles.banner}
+                        //width="100"
+                        //crop="scale"
+                        />
                 </div>
                 <div className={styles.infoProfileContainer}>
                     <div className={styles.logoNameContainer}>
-                        <img id={styles.logo} src={user.logo} alt="profile_pic"></img>
+                        {/* <img id={styles.logo} src={user.logo} alt="profile_pic"></img> */}
+                        <Image
+                                id={styles.logo}
+                                cloudName="dhar2oawa"
+                                publicId={user.logo}
+                                // width="100"
+                                // crop="scale"
+                                />
                         <div className={styles.nameContainer}>
                         <h1>{user.name}</h1>
                         <h5>{user.speciality}</h5>
@@ -49,25 +64,25 @@ function ComProfile() {
                     </div>
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
-                        {user.country === null ? null :
-                        <div>
-                        <img src={location} className={styles.infoAsset}></img>
-                        { user.city === null ? <label>{user.country}</label> :
-                            <label>{`${user.country}, ${user.city}`}</label>
-                        }
-                        </div>
-                        }
+                            {user.country === null ? null :
+                            <div>
+                            <img src={location} className={styles.infoAsset}></img>
+                            { user.city === null ? <label>{user.country}</label> :
+                                <label>{`${user.country}, ${user.city}`}</label>
+                            }
+                            </div>
+                            }
                         </div>
                         {user.size === 'Not Specified' ? null :
-                        <div className={styles.labelContainer}>
-                        <img src={size} className={styles.infoAsset}></img>
-                        <label>{user.size}</label>
-                        </div>}
-                        <div className={styles.labelContainer}>
+                            <div className={styles.labelContainer}>
+                            <img src={size} className={styles.infoAsset} alt=""></img>
+                            <label>{user.size}</label>
+                            </div>}
+                            <div className={styles.labelContainer}>
                         {user.web_site === null ? null :
                         <div>
-                        <img src={web} className={styles.infoAsset}></img>
-                        <a target="_blank" href={user.web_site.slice()}>WebSite</a>
+                            <img src={web} className={styles.infoAsset} alt=""></img>
+                            <a target="_blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
                         }
                         </div>
@@ -102,7 +117,14 @@ function ComProfile() {
                             <Link to={`/company/companyjob/${id}`}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
-                                {<img id={styles.logo} src={user.logo} alt="Company logo"></img>}
+                                {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}
+                                <Image
+                                id={styles.logo}
+                                cloudName="dhar2oawa"
+                                publicId={user.logo}
+                                // width="100"
+                                // crop="scale"
+                                />
                                 </div>
                                 <div className={styles.detailsContainer}>
                                 <h3>{j.position}</h3>

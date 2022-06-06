@@ -21,6 +21,11 @@ const [formValues, handleInputChange, reset] = useForm({
     password: ''
 })
 
+const [error, setError] = useState({
+    error: false,
+    errorMsg:''
+})
+
 const [showElements, setShowelements] = useState(false)
 
 const { name, fullName, email, password } = formValues
@@ -48,6 +53,8 @@ const postNewUser = async() => {
     try {
         const res = await axios.post('http://localhost:3001/users/register', formValues)
         if(res.data.active === true){
+            dispatch(modalActions.activateRegisterModal(false))
+            dispatch(modalActions.setModalValue())
             Swal.fire({
                 icon: 'success',
                 text: 'Usuario creado'
@@ -55,11 +62,7 @@ const postNewUser = async() => {
               localStorage.setItem("userType", profileType)
         }
         else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: res.data
-              })
+            setError({...error, error: true, errorMsg: res.data})
         }
         
     } catch (error) {
@@ -74,18 +77,15 @@ const postNewCompany = async() => {
         const res = await axios.post('http://localhost:3001/company/register', formValues)
  
         if(res.data.active === true){
+            dispatch(modalActions.activateRegisterModal(false))
+            dispatch(modalActions.setModalValue())
             Swal.fire({
                 icon: 'success',
                 text: "Usuario creado"
               })
               
         }else{
-
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: res.data
-              })
+            setError({...error, error: true, errorMsg: res.data})
         }
        
     } catch (error) {
@@ -104,14 +104,12 @@ const handleSubmit = (e) => {
     
     if(profileType === 'dev'){
         postNewUser()
-        dispatch(modalActions.activateRegisterModal(false))
-        dispatch(modalActions.setModalValue())
+
     }
 
     if(profileType === 'com'){
         postNewCompany()
-        dispatch(modalActions.activateRegisterModal(false))
-        dispatch(modalActions.setModalValue())
+
     }
 
     
@@ -152,6 +150,7 @@ const handleSubmit = (e) => {
                 <label>Password*</label>
                 <input type="password" name='password' value={ password } onChange={ handleInputChange } required/>
                 <button type='submit' className='register__button'>Send</button>
+                {error.error ? <label id='error'>{error.errorMsg}</label> : null}
             </form>
         </div>
     </div>

@@ -2,9 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 export const fetchJobs = createAsyncThunk('jobs/fetchJobs',
-async({tech, seniority, time, eLevel, salary})=>{
+async({tech, seniority, time, eLevel, salary, search})=>{
     try {
-        const res=await axios.get(`http://localhost:3001/jobs?tech=${tech}&seniority=${seniority}&time=${time}&eLevel=${eLevel}&salary=${salary}`)
+        console.log(search)
+        const res=await axios.get(`http://localhost:3001/jobs?tech=${tech}&seniority=${seniority}&time=${time}&eLevel=${eLevel}&salary=${salary}&search=${search}`)
         return res.data
     } catch (error) {
         console.log(error)
@@ -12,7 +13,8 @@ async({tech, seniority, time, eLevel, salary})=>{
 })
 
 const initialState = {
-    jobs: []
+    jobs: [],
+    filterJobs: []
     
 }
 
@@ -20,7 +22,11 @@ export const jobsSlice=createSlice({
     name:'jobs',
     initialState,
     reducers:{
-
+        filterJobsOffer(state,{payload}){
+            
+            // state.jobs=state.jobs[0].offers.filter(e => e.active==payload)
+            
+        }
     },
     extraReducers:{
         [fetchJobs.pending]:(state)=>{
@@ -30,6 +36,7 @@ export const jobsSlice=createSlice({
         {
           state.jobs=payload
           state.status="fulfilled"
+          state.filterJobs=payload
         },
         [fetchJobs.rejected]:(state)=>
         {
@@ -38,5 +45,5 @@ export const jobsSlice=createSlice({
  }
 })
 
-export const fetchActions=fetchJobs.actions
+export const fetchActions=jobsSlice.actions
 export default jobsSlice.reducer

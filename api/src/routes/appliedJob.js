@@ -15,13 +15,10 @@ router.get('/', async (req,res)=>{
     }
 })
 
-router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
+router.post('/', async (req,res)=>{
     try{
-        const {idUser, idJob} = req.params;
-        const { pdf, description } = req.body;
-
-        if(pdf&&description){
-            if(/(https?:\/\/.*\.)/.test(pdf)){
+        const {idUser, idJob, publicID, description} = req.body;
+        if(publicID&&description){
                 const user = await user_account.findAll({
                     where: {id: idUser},
                     include: applied_job
@@ -30,22 +27,19 @@ router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
                     where: {id: idJob}
                 })
                 if(user[0].dataValues.applied_jobs.find(j=>j.dataValues.jobId===parseInt(idJob))&&user&&jobs){
-                    res.send('ya existe la relacion')
+                    res.send('The relationship already exists')
                 }else{
                     let postulacion = await applied_job.create({
-                        pdf: pdf,
+                        pdf: publicID,
                         description: description,
                     })
                     await postulacion.setUser_account(user[0].dataValues.id)
                     await postulacion.setJob(jobs[0].dataValues.id)
 
-                    res.send('creado');
+                    res.send('created');
                 }
-            }else{
-                res.send('link de pdf invalido')
-            }
         }else{
-            res.send('datos invalidos')
+            res.send('invalid data')
         }
     }catch(error){
         console.log(error)
@@ -55,11 +49,11 @@ router.post('/:idUser/apliJob/:idJob', async (req,res)=>{
 router.put('/:id', async (req,res)=>{
     try {
         const {id} = req.params
-        const {pdf, description} = req.body
+        const {publicID, description} = req.body
 
-        if(/(https?:\/\/.*\.)/.test(pdf)){
+        if(publicID){
             applied_job.update({
-                pdf: pdf
+                pdf: publicID
             },{
                 where:{id: id}
             })
@@ -71,10 +65,10 @@ router.put('/:id', async (req,res)=>{
                 where:{id: id}
             })
         }
-        if(/(https?:\/\/.*\.)/.test(pdf)||description){
-            res.send('Datos actualizados.')
+        if(pdf||description){
+            res.send('Updated data')
         }
-        res.send('Datos invalidos')
+        res.send('Invalid data')
 
     } catch (error) {
         console.log(error)
@@ -88,7 +82,7 @@ router.delete('/:idApli', async (req,res)=>{
         await applied_job.destroy({
             where:{id: idApli}
         })
-        res.send('eliminado')
+        res.send('Deleted')
 
     }catch(error){
         console.log(error)

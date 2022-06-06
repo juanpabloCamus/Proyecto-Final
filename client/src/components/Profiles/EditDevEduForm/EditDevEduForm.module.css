@@ -1,0 +1,25 @@
+.container{
+    width: 100%;
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formContainer button{
+    background-color: #46499c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    padding: 15px 0;
+    outline: none;
+    margin-top: 10px;
+}
+
+#error{
+    color: red;
+}

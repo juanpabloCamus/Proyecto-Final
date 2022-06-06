@@ -1,24 +1,29 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
 
 const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
         let company = await company_account.findAll({
-            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
+            where: {active: true},
+            include: [{model:job, include:[{model:technology},{model:otherTechs},{model:applied_job},{model:user_account}]}],
             order: [
                 ['id', 'ASC']
             ]
         })
         if(company.length<1){
-            res.send('No existe la empresa')
+            res.send('The company does not exist')
         }
         if(company.length>0){
             for(let i=0;i<company.length;i++){
                 company[i].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
                 delete company[i].dataValues.password
+                for(let j=0;j<company[i].dataValues.jobs.length;j++){
+                    company[i].dataValues.jobs[j].dataValues.technologies = company[i].dataValues.jobs[j].dataValues.technologies.concat(company[i].dataValues.jobs[j].dataValues.otherTechs)
+                    delete company[i].dataValues.jobs[j].dataValues.otherTechs
+                }
             }
         }
         res.send(company)
@@ -32,16 +37,19 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let company = await company_account.findAll({
-            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
-            where:{id:id}
+            include: [{model:job, include:[{model:technology},{model:otherTechs},{model:applied_job},{model:user_account}]}],
+            where:{id:id,active: true}
         })
         if(company.length<1){
-            res.send('No existe la empresa')
+            res.send('The company does not exist')
         }
         company[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
         delete company[0].dataValues.password
+        for(let i=0;i<company[0].dataValues.jobs.length;i++){
+            company[0].dataValues.jobs[i].dataValues.technologies = company[0].dataValues.jobs[i].dataValues.technologies.concat(company[0].dataValues.jobs[i].dataValues.otherTechs)
+            delete company[0].dataValues.jobs[i].dataValues.otherTechs
+        }
         res.send(company)
-
     }catch(error){
         console.log(error)
     }
@@ -52,12 +60,12 @@ router.post('/register', async (req,res)=>{
         const {name, email, password} = req.body
 
         if(!name||!email||!password){
-            res.send('Hay un campo invalido.')
+            res.send('There is an invalid field')
         }else{
             if(!/^[a-zA-Z0-9_\-\.\'\!\&\@\$\ ]+$/.test(name)){
-                res.send('El nombre solo admite letras')
+                res.send('The name only admits letters')
             }else if(!/^[a-zA-Z0-9_\-\.]+@+[a-zA-Z]+.com/.test(email)){
-                res.send('El mail tiene un formato invalido')
+                res.send('The email has an invalid format')
             }else{
                 let mailUser = await user_account.findAll({
                     where:{
@@ -85,7 +93,7 @@ router.post('/register', async (req,res)=>{
                    
                     res.send(empresa[0])
                 }else{
-                    res.send('El email ya se encuentra registrado.')
+                    res.send('The email is already registered.')
                 }
             }
         }
@@ -104,7 +112,7 @@ router.put('/:id', async (req,res)=>{
 
         if(name){
             if(!/^[a-zA-Z0-9\s_\-\.\'\!\&\@\$]+$/.test(name)){
-                errores.push('nombre')
+                errores.push('name')
             }else{
                 await company_account.update(
                     {
@@ -117,7 +125,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(country){
             if(!/^[a-zA-Z\s]+$/.test(country)){
-                errores.push('pais')
+                errores.push('country')
             }else{
                 await company_account.update(
                     {
@@ -130,7 +138,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(city){
             if(!/^[a-zA-Z\s]+$/.test(city)){
-                errores.push('ciudad')
+                errores.push('city')
             }else{
                 await company_account.update(
                     {
@@ -142,19 +150,13 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(logo){
-            if(!/(https?:\/\/.*\.)/.test(logo)){
-                errores.push('logo')
-            }else if(/\s/.test(logo)){
-                errores.push('logo')
-            }else{
-                await company_account.update(
-                    {
-                        logo: logo
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }
+            await company_account.update(
+                {
+                    logo: logo
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(description){
             await company_account.update(
@@ -177,7 +179,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(size){
             if(size!=='Not Specified'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
-                res.send('tamaño')
+                res.send('size')
             }else{
                 await company_account.update(
                     {
@@ -191,7 +193,7 @@ router.put('/:id', async (req,res)=>{
         }
         if(foundation){
             if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(foundation)){
-                errores.push('fundacion')
+                errores.push('foundation')
             }else{
                 await company_account.update(
                     {
@@ -218,23 +220,17 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(banner){
-            if(!/(https?:\/\/.*\.)/.test(banner)){
-                errores.push('banner')
-            }else if(/\s/.test(banner)){
-                errores.push('banner')
-            }else{
-                await company_account.update(
-                    {
-                        banner: banner
-                    },{
-                        where:{id: id}
-                    }
-                )
-            }
+            await company_account.update(
+                {
+                    banner: banner
+                },{
+                    where:{id: id}
+                }
+            )
         }
         if(errores.length>0){
             const error = errores.join(', ')
-            res.send(`No se actualizaron los campos: ${error}.`)
+            res.send(`Fields were not updated: ${error}.`)
         }
         let empresa = await company_account.findAll({
             include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
@@ -258,7 +254,7 @@ router.delete('/:id', async (req,res)=>{
             where: {id: id}
         })
 
-        res.send('Empresa eliminada')
+        res.send('Company eliminated')
     }catch(error){
         console.log()
     }

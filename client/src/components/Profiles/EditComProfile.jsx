@@ -38,6 +38,8 @@ function EditComProfileForm() {
     const [error, setError] = useState({
         name:false,
     })
+    const [ previewImage, setPreviewImage ] = useState("")
+    const [ previewBanner, setPreviewBanner ] = useState("")
 
     function handleErrors(e){
         if(e.target.name === 'name'){
@@ -54,6 +56,66 @@ function EditComProfileForm() {
             [e.target.name]:e.target.value
         })
     };
+
+
+    function handleFileInputChange(e){
+        const file = e.target.files[0]
+        previewFile(file)
+        
+        }
+
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewImage(reader.result)
+        }
+    }
+    
+    const uploadImage = (e) => {
+        e.preventDefault()
+        cloudinaryUpload(previewImage, "Image")
+    }
+
+    function handleBannerInputChange(e){
+        const file = e.target.files[0]
+        previewBannerFunction(file)
+        
+        }
+    const previewBannerFunction = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onloadend = () => {
+            setPreviewBanner(reader.result)
+        }
+    }
+
+    const uploadBanner = (e) => {
+        e.preventDefault()
+        cloudinaryUpload(previewBanner, "banner")
+    }
+
+    const cloudinaryUpload = async (base64EncodeFile, file) => {
+        console.log(base64EncodeFile)
+        try {
+            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+    
+        if(file === "Image"){
+            await setCurrentInfo({
+            ...currentInfo,
+            logo: res.data
+            })
+        }else{
+            await setCurrentInfo({
+                ...currentInfo,
+                banner: res.data
+                })
+        }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     function handleSubmit(e){
         e.preventDefault();
@@ -76,6 +138,7 @@ function EditComProfileForm() {
     
     return (
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Company name</label>
                 <input name='name' value={currentInfo.name} onChange={handleChange}></input>
@@ -348,12 +411,24 @@ function EditComProfileForm() {
                 <label>Web site</label>
                 <input name="web_site" placeholder="You can add url here" type='url' value={currentInfo.web_site} onChange={handleChange}></input>
                 <label>Logo</label>
-                <input name="logo" placeholder="You can add url here" type='url' onChange={handleChange}></input>
+                <input name="logo" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                {previewImage ?
+                    <div>
+                        <img src={previewImage} alt="perview profile"/> 
+                        <button onClick={uploadImage}>Update Profile pic</button>
+                    </div> 
+                : null }
                 <label>Banner pic</label>
-                <input name="banner" placeholder="You can add url here" type='url' onChange={handleChange}></input>
+                <input name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                {previewBanner ?
+                    <div>
+                        <img src={previewBanner} alt="banner perview"/> 
+                        <button onClick={uploadBanner}>Update Banner</button>
+                    </div> 
+                : null }
                 <label>Description</label>
-                <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
-                <button type = 'submit' onClick={handleSubmit}>Save changes</button>
+                <textarea name="description" rows="5" value={currentInfo.description} onChange={handleChange}></textarea>
+                <button type = 'submit' onClick={handleSubmit} className={styles.edit_form_button}>Save changes</button>
             </form>
         </div>
     );
