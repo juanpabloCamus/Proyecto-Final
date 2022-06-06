@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
         profile_pic: {
             type:DataTypes.TEXT,
-            defaultValue:'https://icon-library.com/images/icon-developer/icon-developer-22.jpg'
+            defaultValue:'https://w7.pngwing.com/pngs/837/779/png-transparent-computer-icons-rocket-launch-launch-pad-icons-purple-violet-spacecraft.png'
         },
         description: {
             type:DataTypes.TEXT

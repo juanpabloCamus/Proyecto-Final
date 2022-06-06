@@ -43,18 +43,22 @@ h3{
 
 .userPhoto{
     background-color: white;
-    border: 6px solid black;
+    border: 2px solid black;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding: 10px;
+    padding: 0px;
     top: -90px;
     width: 200px;
     height: 200px;
+    overflow: hidden;
 }
 
+#logo{
+    border-radius: 50%;
+}
 
 .nameContainer{
     display: flex;
@@ -91,7 +95,7 @@ h3{
 .secondaryInfo div button{
     border: none;
     border-radius: 5px;
-    background-color: black;
+    background-color: #46499c;
     cursor: pointer;
     font-size: 14px;
     font-weight: 700;
@@ -129,7 +133,7 @@ h3{
   }
 
   .editProfileButtonContainer > *{
-      background-color: black;
+     background-color: #46499c;
       border-radius: 8px;
       color: white;
       font-size: 18px;
