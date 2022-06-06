@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import profile_image from '../../../assets/profile_img.jpg'
 import { authActions } from '../../../redux/auth/authSlice'
-
+import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
 
 
 import styles from './userNav.module.css'
@@ -22,7 +22,7 @@ export const UserNav = ({id}) => {
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"))
   const profile = sessionStorage.profileType.join(" ")
- 
+  console.log(sessionStorage)
 
   const handleMenu = () => {
     setToggleMenu(!toggleMenu)
@@ -38,9 +38,13 @@ export const UserNav = ({id}) => {
   return (
     <div className={ styles.logged_user_navbar }>
       <div className={styles.logged_user_links}>
-          <Link to="/notifications" className={styles.link}>
+          {/* <Link to="/notifications" className={styles.link}>
               <FiBell className={styles.bell}/>
-          </Link>
+          </Link> */}
+
+            <MagicBell apiKey="aa64c7e916793f3432a40fd41ff5451f57d3e844" userEmail={sessionStorage.email}>
+              {(props) => <FloatingNotificationInbox height={500} {...props} />}
+            </MagicBell>
        
           {profile === "develop" && <Link to="/home/favorites"  className={styles.link}>
               <FiHeart className={styles.heart}/>

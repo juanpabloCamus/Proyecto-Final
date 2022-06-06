@@ -69,6 +69,32 @@ const uploadFile = async (base64EncodeFile, data) => {
     }
 }
 
+
+const headers = {
+    'X-MAGICBELL-API-SECRET': 'aa64c7e916793f3432a40fd41ff5451f57d3e844',
+    'X-MAGICBELL-API-KEY': 'Af/ZLONiQehwgris0JjdE+z3t5R21DPZSlxTU3l0',
+  };
+
+const data = {
+    notification: {
+      title: 'Applied Job!!',
+      content: 'Hello, can you upgrade us to the Startup plan. Thank you.',
+      category: 'Jobs',
+      action_url: 'https://magicbell.com/pricing',
+      recipients: [{ email: 'microsoft@gmail.com' }],
+    },
+  }
+
+
+const sendNotificacion = async() =>{
+    const res = axios.post('https://api.magicbell.com/notifications', data, { headers:{
+        'X-MAGICBELL-API-SECRET': 'aa64c7e916793f3432a40fd41ff5451f57d3e844',
+        'X-MAGICBELL-API-KEY': 'Af/ZLONiQehwgris0JjdE+z3t5R21DPZSlxTU3l0',
+    } });
+    console.log(res.data)
+    console.log("Enviado")
+}
+
   return (
     <div className="apply_form_container">
         <form onSubmit={handleSubmit} className="apply_form">
@@ -85,7 +111,7 @@ const uploadFile = async (base64EncodeFile, data) => {
                 type="file"
                 onChange={handleFileInputChange}
             ></input>
-            <button type="submit" className="apply_button">Send Aplication</button>
+            <button type="submit" className="apply_button" onClick={() => sendNotificacion()}>Send Aplication</button>
         </form>
     </div>
   )
