@@ -70,16 +70,24 @@ export default function CreateJob() {
   
 
   const addTechs = (e) => {
-    const techObj = {
-      tech: e.target.value,
-      id: techId++,
-    };
+    e.preventDefault()
+    console.log(e.target.value)
+    console.log(addedTechs?.map(el=>el.tech).includes(e.target.value))
+    //console.log('hola', addedTechs?.find((el)=>el.tech==e.target.value))
 
-    if(e.target.value === "Others"){
-      setShowInput(true)
-    }
-    else{
-      setAddedTechs((value) => [...value, techObj]);
+    if(!addedTechs?.map(el=>el.tech).includes(e.target.value)&&addedTechs.length<8){
+      const techObj = {
+        tech: e.target.value,
+        id: techId++,
+      };
+  
+      if(e.target.value === "Others"){
+        setShowInput(true)
+      }
+      else{
+        setAddedTechs([...addedTechs, techObj]);
+        console.log(addedTechs)
+      }
     }
   };
 
@@ -145,31 +153,31 @@ export default function CreateJob() {
               />
               
               <label>Seniority</label>
-              <select  className={styles.form_select} onChange={handleSeniorF}>
-                <option selected value="Not Specified">Not specified</option>
+              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleSeniorF}>
+                <option value="Not Specified">Not specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
               </select>
 
               <label>Time</label>
-              <select className={styles.form_select} onChange={handleTimeF}>
-                <option selected value="Not Specified">Not Specified</option>
+              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleTimeF}>
+                <option value="Not Specified">Not Specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
 
               <label>English level</label>
-              <select className={styles.form_select} onChange={handleELevelF}>
-                <option selected value="Not required">Not required</option>
+              <select defaultValue={"Not required"} className={styles.form_select} onChange={handleELevelF}>
+                <option value="Not required">Not required</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
               </select>
 
               <label>Salary</label>
-              <select className={styles.form_select} onChange={handleSalaryF}>
-                <option selected value="Not Specified">Not specified</option>
+              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleSalaryF}>
+                <option value="Not Specified">Not specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
@@ -177,10 +185,9 @@ export default function CreateJob() {
                 <option value="10000$">+ 10000$</option>
               </select>
 
-              <select className={styles.form_select} onChange={addTechs}>
-                <option selected disabled>
-                  Technologies
-                </option>
+              <label>Technologies</label>
+              <select key={'sel5'} defaultValue={""} className={styles.form_select} onChange={addTechs}>
+                <option value=""></option>
                 {addedTechsModified.map((e) =>
                   e.name === "Cplus" ? (
                     <option key={e.id} value={e.name}>
@@ -195,7 +202,7 @@ export default function CreateJob() {
                       C#
                     </option>
                   ) : (
-                    <option key={e.id} value={e.name}>
+                    <option key={e.id||e.name} value={e.name}>
                       {e.name}
                     </option>
                   )

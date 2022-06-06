@@ -61,12 +61,19 @@ export const EditJobOffer = () => {
   };
 
   const addTechs = (e) => {
-    const techObj = {
-      tech: e.target.value,
-      id: techId++,
-    };
-
-    setAddedTechs((value) => [...value, techObj]);
+    //console.log(addedTechs)
+    //console.log(addedTechs.map(el=>el.))
+    let repeatedTech = addedTechs.filter(
+      (el) => el.tech === e.target.value || el.name === e.target.value
+    );
+    //console.log(repeatedTech.length)
+    if (!repeatedTech.length && addedTechs.length < 8) {
+      const techObj = {
+        tech: e.target.value,
+        id: techId++,
+      };
+      setAddedTechs((value) => [...value, techObj]);
+    }
   };
 
   const handleDelete = (id) => {
