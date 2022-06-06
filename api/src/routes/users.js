@@ -61,14 +61,14 @@ router.post('/:id/education', async (req,res)=>{
         const {institution,degree,description,start_date,end_date} = req.body
     
         if(institution&&degree&&description&&start_date&&end_date){
-            if(!/^[a-zA-Z\s]+$/.test(institution)){
-                res.send('La institucion solo debe contener letras y espacios')
+            if(!/^[0-9a-zA-Z\s]+$/.test(institution)){
+                res.send('The institution must only contain etters, numbers and spaces')
             }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
-                res.send('el grado solo debe contener letras, numeros y espacios')
+                res.send('The degree must only contain letters, numbers and spaces')
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('fecha de inicio invalida')
+                res.send('invalid start date')
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('fecha de finalizacion invalida')
+                res.send('invalid end date')
             }else{
                 let educ = await education.create({
                     institution,

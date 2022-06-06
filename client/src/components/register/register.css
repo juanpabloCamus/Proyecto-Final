@@ -63,3 +63,8 @@
 .active_elements{
     display: none;
 }
+
+#error{
+    color: red;
+    margin-top: 20px;
+}
