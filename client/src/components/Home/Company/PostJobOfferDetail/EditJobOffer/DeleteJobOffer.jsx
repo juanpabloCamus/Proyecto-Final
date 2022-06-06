@@ -28,7 +28,7 @@ function DeleteJobOffer() {
 
   const eliminateOffer = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3001/jobs/${id}`);
+      const res = await axios.delete(`/jobs/${id}`);
       console.log(res);
       if (res.data) {
         Swal.fire({
