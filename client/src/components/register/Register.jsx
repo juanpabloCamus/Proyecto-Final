@@ -50,8 +50,8 @@ const postNewUser = async() => {
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: 'Usuario creado'
-              })
+                text: res.data
+                         })
               localStorage.setItem("userType", profileType)
         }
         else{
@@ -76,7 +76,7 @@ const postNewCompany = async() => {
         if(res.data.active === true){
             Swal.fire({
                 icon: 'success',
-                text: "Usuario creado"
+                text: res.data
               })
               
         }else{
