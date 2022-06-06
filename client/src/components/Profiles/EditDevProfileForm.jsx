@@ -466,7 +466,7 @@ function EditDevProfileForm() {
                 {previewImage ?
                     <div>
                         <img src={previewImage} alt="perview profile"/> 
-                        <button onClick={uploadImage}>Update Profile pic</button>
+                        <button className={styles.upload} onClick={uploadImage}>Update Profile pic</button>
                     </div> 
                 : null }
                 <label>Banner pic</label>
@@ -474,7 +474,7 @@ function EditDevProfileForm() {
                 {previewBanner ?
                     <div>
                         <img src={previewBanner} alt="banner perview"/> 
-                        <button onClick={uploadBanner}>Update Banner</button>
+                        <button className={styles.upload} onClick={uploadBanner}>Update Banner</button>
                     </div> 
                 : null }
                 <label>Description</label>

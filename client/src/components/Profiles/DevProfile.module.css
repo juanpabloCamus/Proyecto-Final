@@ -43,13 +43,13 @@ h3{
 
 .userPhoto{
     background-color: white;
-    border: 6px solid black;
+    border: 2px solid black;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    padding: 10px;
+    padding: 0px;
     top: -90px;
     width: 200px;
     height: 200px;
