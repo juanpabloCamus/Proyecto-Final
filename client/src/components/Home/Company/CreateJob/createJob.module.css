@@ -2,13 +2,13 @@
     box-shadow: 2px 2px 5px 1px lightgrey;
     border-radius: 5px;
     overflow: hidden;
-    width: 60%;
+    width: 50%;
     margin: 0 auto;
     margin-top: 50px;
 }
 
 .form{
-    padding: 40px;
+    padding: 20px;
 }
 
 .form_title{
