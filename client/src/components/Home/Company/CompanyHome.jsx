@@ -101,7 +101,7 @@ function CompanyHome() {
       {radio === "developers" ? (
         <div>
           <h2>
-            Search for new <span>Talent.</span>
+            Search for new <span>Talent</span>
           </h2>
 
           <div
@@ -162,7 +162,7 @@ function CompanyHome() {
       ) : (
         <div>
           <h2>
-            Search for new <span>Job Offers.</span>
+            My Job<span> Offers</span>
           </h2>
 
           <div

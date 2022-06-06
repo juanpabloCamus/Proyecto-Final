@@ -11,37 +11,37 @@ import { fetchTechs } from "../../../../../redux/techs/techs";
 import Swal from "sweetalert2";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import PostJobOffer from "../PostJobOfferDetail";
+import { fetchCompany } from "../../../../../redux/company/company";
 
 let techId = 0;
 export const EditJobOffer = () => {
   const { id } = useParams();
   const techs = useSelector((state) => state.techs.techs);
-  let detail = useSelector((state) => state.jobDetail.jobDetail);
-  console.log(detail[0].seniority);
+  let jobsCompanyDetail = useSelector((state) => state.company.company);
+  let detail = jobsCompanyDetail.jobs?.find((e) => e.id == id);
   const dispatch = useDispatch();
-  
+
   const [formValues, handleInputChange, reset] = useForm({
-    position: detail[0].position,
-    description: detail[0].description,
-    time: detail[0].time,
-    salary_range: detail[0].salary_range,
-    english_level: detail[0].english_level,
-    requirements: detail[0].requirements,
-    seniority: detail[0].seniority,
-    technologies: detail[0].technologies,
+    position: detail.position,
+    description: detail.description,
+    time: detail.time,
+    salary_range: detail.salary_range,
+    english_level: detail.english_level,
+    requirements: detail.requirements,
+    seniority: detail.seniority,
+    technologies: detail.technologies,
   });
 
-  const [seniority, setSeniority] = useState(detail[0].seniority);
-  const [time, setTime] = useState(detail[0].time);
-  const [english_level, setEnglish_level] = useState(detail[0].english_level);
-  const [salary_range, setSalary_range] = useState(detail[0].salary_range);
-  const [addedTechs, setAddedTechs] = useState(detail[0].technologies);
-  console.log(addedTechs)
+  const [seniority, setSeniority] = useState(detail.seniority);
+  const [time, setTime] = useState(detail.time);
+  const [english_level, setEnglish_level] = useState(detail.english_level);
+  const [salary_range, setSalary_range] = useState(detail.salary_range);
+  const [addedTechs, setAddedTechs] = useState(detail.technologies);
+
   const { position, description, requirements } = formValues;
 
   useEffect(() => {
     dispatch(fetchTechs());
-    dispatch(fetchJobDetail(id));
   }, [dispatch]);
 
   const handleSeniorF = (e) => {
@@ -61,12 +61,19 @@ export const EditJobOffer = () => {
   };
 
   const addTechs = (e) => {
-    const techObj = {
-      tech: e.target.value,
-      id: techId++,
-    };
-
-    setAddedTechs((value) => [...value, techObj]);
+    //console.log(addedTechs)
+    //console.log(addedTechs.map(el=>el.))
+    let repeatedTech = addedTechs.filter(
+      (el) => el.tech === e.target.value || el.name === e.target.value
+    );
+    //console.log(repeatedTech.length)
+    if (!repeatedTech.length && addedTechs.length < 8) {
+      const techObj = {
+        tech: e.target.value,
+        id: techId++,
+      };
+      setAddedTechs((value) => [...value, techObj]);
+    }
   };
 
   const handleDelete = (id) => {
@@ -78,20 +85,22 @@ export const EditJobOffer = () => {
     dispatch(modalActions.setModalValue());
   };
   const handleSubmit = (e) => {
+    dispatch(modalActions.activateDelete(false))
     e.preventDefault();
     editOffer(id);
     setTimeout(function () {
-        setIsVisible(true);
-      }, 3000);
-      console.log(visible)
+      setIsVisible(true);
+    }, 3000);
+    console.log(visible);
     // while(!visible)
-      
+    
     dispatch(modalActions.setModalValue());
-    window.setTimeout(function(){window.location.reload()},3000)
+    window.setTimeout(function () {
+      window.location.reload();
+    }, 3000);
     // window.location.reload()
   };
   const [visible, setIsVisible] = React.useState(false);
-  
 
   const editOffer = async (id) => {
     try {
@@ -103,9 +112,8 @@ export const EditJobOffer = () => {
         english_level,
         requirements,
         seniority,
-        technologies: addedTechs.map((tech) => tech.tech||tech.name),
+        technologies: addedTechs.map((tech) => tech.tech || tech.name),
       });
-      
 
       if (res.data) {
         Swal.fire({
@@ -113,9 +121,7 @@ export const EditJobOffer = () => {
           text: res.data,
           showConfirmButton: false,
           showCancelButton: false,
-        })
-        
-
+        });
       } else {
         Swal.fire({
           icon: "error",
@@ -124,7 +130,6 @@ export const EditJobOffer = () => {
           showCancelButton: false,
         });
       }
-      
     } catch (error) {
       console.log(error);
     }
@@ -160,7 +165,11 @@ export const EditJobOffer = () => {
               </select>
 
               <label>Time</label>
-              <select value={time} className={styles.form_select} onChange={handleTimeF}>
+              <select
+                value={time}
+                className={styles.form_select}
+                onChange={handleTimeF}
+              >
                 <option value=""></option>
 
                 <option value="Not Specified">Not Specified</option>
@@ -169,7 +178,11 @@ export const EditJobOffer = () => {
               </select>
 
               <label>English Level</label>
-              <select value={english_level} className={styles.form_select} onChange={handleELevelF}>
+              <select
+                value={english_level}
+                className={styles.form_select}
+                onChange={handleELevelF}
+              >
                 <option value=""></option>
 
                 <option value="Not required">Not required</option>
@@ -179,7 +192,11 @@ export const EditJobOffer = () => {
               </select>
 
               <label>Salary Range</label>
-              <select value={salary_range} className={styles.form_select} onChange={handleSalaryF}>
+              <select
+                value={salary_range}
+                className={styles.form_select}
+                onChange={handleSalaryF}
+              >
                 <option value=""></option>
                 <option value="Not Specified">Not Specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
@@ -217,22 +234,24 @@ export const EditJobOffer = () => {
               <div className={styles.added_techs}>
                 {addedTechs.map((e, i) => (
                   <div className={styles.added_tech} key={i}>
-                    {e.name === "Cplus" ||e.tech  === "Cplus"? (
+                    {e.name === "Cplus" || e.tech === "Cplus" ? (
                       <p>C+</p>
-                    ) : e.name === "Cplusplus"||e.tech  === "Cplusplus" ? (
+                    ) : e.name === "Cplusplus" || e.tech === "Cplusplus" ? (
                       <p>C++</p>
-                    ) : e.name === "CSharp"||e.tech  === "CSharp" ? (
+                    ) : e.name === "CSharp" || e.tech === "CSharp" ? (
                       <p>C#</p>
                     ) : (
-                      <p>{e.name||e.tech}</p>
+                      <p>{e.name || e.tech}</p>
                     )}
                     {e.name === "" ? (
                       <></>
-                    ) : (<>
-                      <MdClose
-                        className={styles.buttonDelete}
-                        onClick={() => handleDelete(e.id)}
-                      /></>
+                    ) : (
+                      <>
+                        <MdClose
+                          className={styles.buttonDelete}
+                          onClick={() => handleDelete(e.id)}
+                        />
+                      </>
                     )}
                   </div>
                 ))}
