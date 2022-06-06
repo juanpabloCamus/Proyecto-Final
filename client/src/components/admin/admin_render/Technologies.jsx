@@ -5,7 +5,7 @@ import { FaWindowClose } from 'react-icons/fa'
 export const JobsRender = () => {
 
   const { allJobs } = useSelector(state => state.allJobs)
-  const jobs = allJobs[0]?.offers || []
+  const jobs = /* allJobs[0]?.offers || */ []
 
 
   return (
@@ -13,9 +13,8 @@ export const JobsRender = () => {
       <table className="table">
         <thead className="table_headers">
           <tr>
-            <th>Company</th>
-            <th>Position</th>
-            <th>Seniority</th>
+            <th>Technology</th>
+            <th>Times uses</th>
             <th></th>
           </tr>
         </thead>
@@ -28,9 +27,6 @@ export const JobsRender = () => {
               </td>
               <td>
                 {job.position}
-              </td>
-              <td>
-                {job.seniority}
               </td>
               <td>
                 <FaWindowClose className="delete_button"/>

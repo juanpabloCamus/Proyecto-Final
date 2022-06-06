@@ -30,7 +30,7 @@ export const JobsRender = () => {
                 {job.position}
               </td>
               <td>
-                {job.seniority}
+                {job.active?'Enabled':'Disabled'}
               </td>
               <td>
                 <FaWindowClose className="delete_button"/>
