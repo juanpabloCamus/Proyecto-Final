@@ -39,7 +39,7 @@ const [errorMessage, setErrorMessage] = useState('')
 
 const loginUser = async() => {
  try {
-    const res = await axios.post('http://localhost:3001/login', formValues)
+    const res = await axios.post('/login', formValues)
 
     if(res.data.active === true){
       setErrorMessage('')

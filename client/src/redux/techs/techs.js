@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchTechs=createAsyncThunk('techs/fetchTechs',
 async()=>{
     try {
-        const res=await axios.get('http://localhost:3001/techs')
+        const res=await axios.get('/techs')
         return res.data
     } catch (error) {
         console.log(error)

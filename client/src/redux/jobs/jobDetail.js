@@ -5,7 +5,7 @@ export const fetchJobDetail=createAsyncThunk('jobs/fetchJobs',
 async(id)=>{
     try {
         if(id){
-            var res= await axios.get(`http://localhost:3001/jobs/${id}`)
+            var res= await axios.get(`/jobs/${id}`)
         }
         
         return res.data
