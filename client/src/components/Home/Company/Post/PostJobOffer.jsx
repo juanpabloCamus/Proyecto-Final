@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Post.module.css";
 import { Link } from "react-router-dom";
-export default function PostJobOffer({ id, position, salary_range, seniority, time, technologies }) {
+export default function PostJobOffer({ id, position, salary_range, seniority, time, technologies, applications }) {
+  console.log(applications);
   return (
     <div key={id}>
       <Link to={`/company/offers/${id}`}>
@@ -30,6 +31,10 @@ export default function PostJobOffer({ id, position, salary_range, seniority, ti
                 <label key={t.id}>{t.name}</label>
               )
             )}
+          </div>
+          <div className={styles.applications}>
+              <h3>Applications</h3>
+              <h4>{applications.length}</h4>
           </div>
         </div>
       </Link>

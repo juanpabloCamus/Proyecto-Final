@@ -13,16 +13,69 @@ import PostJobOffer from "./Post/PostJobOffer";
 
 function CompanyHome() {
   const dispatch = useDispatch();
-  //const jobs = useSelector((state) => state.jobs.jobs);
   const users = useSelector((state) => state.users.users);
+  console.log(users)
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
   const company = useSelector((state) => state.company.company);
-  console.log(company);
+  const [pagina, setPagina]=useState(0);
+  const [render,setRender]= useState([])
+  const [newUsers, setNewUsers] = useState([])
+
+  if(users!==newUsers){
+    setNewUsers(users)
+    setRender([])
+    setPagina(0)
+  }
+
+  useEffect(() => {
+    let usersRender = []
+    if(render.length<1){
+      if(users){
+        if(users.length>0){
+          if(users[pagina]){
+            if(users[pagina].offers){
+              if(usersRender.length<pagina+1){
+                for(let i=0;i<users[pagina].offers.length;i++){
+                  usersRender.push(users[pagina].offers[i])
+                }
+                setRender(usersRender)
+              }
+            }
+          }
+        }
+      }
+    }
+    window.onscroll = function (){
+      var scroll = window.scrollY + window.innerHeight > document.documentElement.offsetHeight/100*90
+      if(scroll){
+        if(users.length-1>pagina){
+          setPagina(pagina+1)
+        }
+        if(users){
+          if(users.length>0){
+            if(users[pagina+1]){
+              if(users[pagina+1].offers){
+                if(usersRender.length<pagina+1){
+                  for(let i=0;i<users[pagina+1].offers.length;i++){
+                    usersRender.push(users[pagina+1].offers[i])
+                  }
+                  let instancia = render.concat(usersRender)
+                  setRender(instancia)
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },[users,pagina,render])
+
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch]);
+
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
   let [radio, setRadio] = useState(radioStorage || "offers");
   localStorage.setItem("radio", JSON.stringify(radio));
@@ -42,13 +95,13 @@ function CompanyHome() {
     // }
   }
 
+
   return (
     <div className={styles.company_container}>
-      {console.log(radio)}
       {radio === "developers" ? (
         <div>
           <h2>
-            Search for new <span>Talent.</span>
+            Search for new <span>Talent</span>
           </h2>
 
           <div
@@ -87,8 +140,8 @@ function CompanyHome() {
             </Link>
           </div>
           <div className={styles.postsContainer}>
-            {users.length > 0 ? (
-              users.map((e) => {
+            {render.length > 0 ? (
+              render.map((e) => {
                 return (
                   <PostU
                     key={e.id}
@@ -109,7 +162,7 @@ function CompanyHome() {
       ) : (
         <div>
           <h2>
-            Search for new <span>Job Offers.</span>
+            My Job<span> Offers</span>
           </h2>
 
           <div
@@ -161,6 +214,7 @@ function CompanyHome() {
                       seniority={e.seniority}
                       time={e.time}
                       technologies={e.technologies}
+                      applications = {e.applied_jobs}
                     />
                   </div>
                 );

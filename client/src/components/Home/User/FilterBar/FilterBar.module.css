@@ -8,17 +8,17 @@
 
 
 .filterSet {
-	display: flex;
-	gap: 50px;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
 }
 
 .filterSet_menu{
     display: flex;
-	gap: 15px;
-	justify-content: center;
-	align-items: center;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
 }
 
 .filter {
@@ -39,9 +39,6 @@
     overflow: hidden;
     background: #F2F7FB;
     outline: none;
-<<<<<<< HEAD
-}
-=======
 }
 
 .searchBar
@@ -77,4 +74,3 @@
 .BtnSearch:hover{
    background-color: #e4f1fb 
 }
->>>>>>> 94af2c28ee764ad4b6cc3a5c6ab4445fd9a87c58

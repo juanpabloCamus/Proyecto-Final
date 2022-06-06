@@ -5,19 +5,19 @@ import Post from "../Post/Post";
 import styles from "./Favorites.module.css"
 function Favorites() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
-  const user = useSelector((state) => state.users.user);
-  console.log(user)
+  //console.log(user)
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     dispatch(fetchUser(userLocalStorage.id));
   }, [dispatch, userLocalStorage.id]);
+  const user = useSelector((state) => state.users.user);
   return (
     <div className={styles.favorites}>
       <h2>My <span>Favorites</span></h2>
       <div className={styles.postsContainer}>
       {user[0] ? (
-        user[0].jobs.length > 0 ? (
+        user[0].jobs?.length > 0 ? (
           user[0].jobs.map((e) => {
             return (
 

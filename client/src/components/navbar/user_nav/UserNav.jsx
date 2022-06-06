@@ -42,9 +42,9 @@ export const UserNav = ({id}) => {
               <FiBell className={styles.bell}/>
           </Link>
        
-          <Link to="/home/favorites"  className={styles.link}>
+          {profile === "develop" && <Link to="/home/favorites"  className={styles.link}>
               <FiHeart className={styles.heart}/>
-          </Link>
+          </Link>}
           
           <Link to={
             profile === "develop" ? "/home" : profile === "company" ? "/company" : "/admin"

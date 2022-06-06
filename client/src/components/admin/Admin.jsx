@@ -25,11 +25,17 @@ export const Admin = () => {
     dispatch(fetchAllJobs())
     dispatch(fetchUsers())
     dispatch(fetchCompanies())
-  })
+  }, [dispatch])
 
- 
+ const {users} = useSelector(state => state.users)
+ const {allJobs} = useSelector(state => state.allJobs)
+ const {companies} = useSelector(state => state.company)
 
- 
+if(users[0].offers === undefined) return <p>Loading...</p>
+if(allJobs === undefined) return <p>Loading...</p>
+if(companies === undefined) return <p>Loading...</p>
+
+
 
   return (
     <div className={styles.admin_container}>
@@ -71,7 +77,7 @@ export const Admin = () => {
                 <FaUserAlt className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Users:</h4>
-                  <span>100</span>
+                  <span>{users[0]?.offers === undefined ? <p>Loading...</p> : users[0]?.offers?.length}</span>
                 </div>
             </div>
 
@@ -79,7 +85,7 @@ export const Admin = () => {
                 <RiBuildingFill className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Companies:</h4>
-                  <span>100</span>
+                  <span>{companies === undefined ? <p>Loading...</p> : companies.length}</span>
                 </div>
             </div>
 
@@ -87,7 +93,7 @@ export const Admin = () => {
                 <AiFillProfile className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Job Offers:</h4>
-                  <span>100</span>
+                  <span>{allJobs[0]?.offers === undefined ? <p>Loading...</p> : allJobs[0]?.offers.length}</span>
                 </div>
             </div>
 

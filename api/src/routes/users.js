@@ -11,12 +11,25 @@ router.get('/', async (req,res)=>{
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ]]
         })
+        let paginado = []
         if(users.length>0){
             for(let i=0;i<users.length;i++){
                 users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
             }
         }
-        res.send(users)
+        if(users.length>0){
+            let cantPaginas = Math.ceil(users.length/10)
+            let inicio = 0
+            for(let i=0;i<cantPaginas;i++){
+                let cadaPag = {
+                    page: i+1,
+                    offers: users.slice(inicio,inicio+10)
+                }
+                inicio = inicio+10
+                paginado.push(cadaPag)
+            }
+        }
+        res.send(paginado)
     }catch(error){
         console.log(error)
     }

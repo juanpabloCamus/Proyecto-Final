@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db');
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs } = require('../db');
 
 const router = Router();
 
@@ -9,7 +9,7 @@ router.get('/', async (req,res)=>{
 
         let jobs = await job.findAll({
             where: {active: true},
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}],
+            include: [{model: company_account},{model: technology},{model:otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}],
             order: [
                 ['id', 'DESC']
             ],
@@ -90,9 +90,10 @@ router.get('/', async (req,res)=>{
 
         if(jobs.length>0){
             for(let i=0;i<jobs.length;i++){
-                if(jobs[i].dataValues.company_accounts.length>0){
-                    delete jobs[i].dataValues.company_accounts[0].dataValues.password
-                }
+                delete jobs[i].dataValues.company_accounts[0].dataValues.password
+                
+                jobs[i].dataValues.technologies = jobs[i].dataValues.technologies.concat(jobs[i].dataValues.otherTechs)
+                delete jobs[i].dataValues.otherTechs
             }
         }
         jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
@@ -119,8 +120,8 @@ router.get('/', async (req,res)=>{
 router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
-        const jobId = await job.findAll({
-            include: [{model: company_account},{model: technology},{model:user_account},{model:applied_job, include:{model: user_account}}], 
+        let jobId = await job.findAll({
+            include: [{model: company_account},{model: technology},{model: otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}], 
             where:{id: id,active: true}
         })
         if(jobId.length<1){
@@ -129,6 +130,8 @@ router.get('/:id',async (req,res)=>{
         if(jobId[0].dataValues.applied_jobs.length>0){
             jobId[0].dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password)
         }
+        jobId[0].dataValues.technologies = jobId[0].dataValues.technologies.concat(jobId[0].dataValues.otherTechs)
+        delete jobId[0].dataValues.otherTechs
         delete jobId[0].dataValues.company_accounts[0].dataValues.password
         res.send(jobId)
     }catch(error){
@@ -139,7 +142,8 @@ router.get('/:id',async (req,res)=>{
 router.post('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const {position, description, time, salary_range, english_level, requirements, seniority, technologies} = req.body
+        const {position, description, time, salary_range, english_level, requirements, seniority} = req.body
+        let {technologies} = req.body
 
         if(position&&description&&time&&salary_range&&english_level&&requirements&&seniority&&technologies){
             if(!/^[a-zA-Z\s]+$/.test(position)){
@@ -168,10 +172,33 @@ router.post('/:id', async (req,res)=>{
                         ['id', 'ASC'] 
                     ]
                 })
+                technologies = technologies.map(t=>t.toLowerCase())
+                technologies = technologies.filter((item,index)=>{
+                    return technologies.indexOf(item) === index;
+                })
                 for(let i=0;i<technologies.length;i++){
-                    let tecno = techs.find(t=>t.dataValues.name===technologies[i])
+                    let tecno = techs.find(t=>t.dataValues.name.toLowerCase()===technologies[i].toLowerCase())
                     if(tecno){
                         await newJob.addTechnology(tecno.dataValues.id)
+                    }else{
+                        let otherTech = await otherTechs.findAll({
+                            where: {name: technologies[i].toLowerCase()}
+                        })
+                        if(otherTech[0]){
+                            await otherTechs.update(
+                                {
+                                    count: otherTech[0].dataValues.count+1
+                                },{
+                                    where:{id: otherTech[0].dataValues.id}
+                                }
+                            )
+                            newJob.addOtherTechs(otherTech[0].dataValues.id)
+                        }else{
+                            let newTech = await otherTechs.create({
+                                name: technologies[i].toLowerCase()
+                            })
+                            await newJob.addOtherTechs(newTech.dataValues.id)
+                        }
                     }
                 }
                 await newJob.addCompany_account(id)
