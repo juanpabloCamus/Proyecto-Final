@@ -4,6 +4,8 @@ import axios from 'axios'
 import { MdUploadFile } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
 
+import './ApplyModal.css'
+
 
 function Apply() {
 
@@ -54,9 +56,9 @@ const handleSubmit = async (e) => {
 
 const uploadFile = async (base64EncodeFile, data) => {
     try {
-        const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+        const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
 
-                    await axios.post('http://localhost:3001/appliedJob', {
+                    await axios.post('/appliedJob', {
                         publicID: res.data,
                         description,
                         idUser,
@@ -68,13 +70,13 @@ const uploadFile = async (base64EncodeFile, data) => {
 }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className="apply_form_container">
+        <form onSubmit={handleSubmit} className="apply_form">
          <label>Description</label>
               <textarea
                 name="desc"
                 columns="25"
-                rows="3"
+                rows="5"
                 value={postData.description}
                 onChange={handleDescInputChange}
               ></textarea>
@@ -83,7 +85,7 @@ const uploadFile = async (base64EncodeFile, data) => {
                 type="file"
                 onChange={handleFileInputChange}
             ></input>
-            <button type="submit">Send Aplication</button>
+            <button type="submit" className="apply_button">Send Aplication</button>
         </form>
     </div>
   )

@@ -11,12 +11,41 @@ require('dotenv').config();
 const { user, company, jobs, techs} = require('./data.js')
 
 const {
-    DB_USER, DB_PASSWORD, PORT,
+    DB_USER, DB_PASSWORD, DB_NAME, DB_HOST
 } = process.env
 
-const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${PORT}/proyecto_final_db`, {
-    logging: false,
-});
+// const db = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@localhost:${DB_PORT}/proyecto_final_db`, {
+//     logging: false,
+// });
+
+let db =
+  process.env.NODE_ENV === "production"
+    ? new Sequelize({
+        database: DB_NAME,
+        dialect: "postgres",
+        host: DB_HOST,
+        port: 5432,
+        username: DB_USER,
+        password: DB_PASSWORD,
+        pool: {
+          max: 3,
+          min: 1,
+          idle: 10000,
+        },
+        dialectOptions: {
+          ssl: {
+            require: true,
+            // Ref.: https://github.com/brianc/node-postgres/issues/2009
+            rejectUnauthorized: false,
+          },
+          keepAlive: true,
+        },
+        ssl: true,
+      })
+    : new Sequelize(
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/proyecto_final_db`,
+        { logging: false, native: false }
+      );
 
 CompanyAccount(db);
 UserAccount(db);
@@ -40,6 +69,9 @@ job.belongsToMany(user_account, {through: "user_favorites", timestamps:false})
 
 technology.belongsToMany(job, {through: "technology_job", timestamps:false})
 job.belongsToMany(technology, {through: "technology_job", timestamps:false})
+
+otherTechs.belongsToMany(job, {through: "otherTechs_job", timestamps:false})
+job.belongsToMany(otherTechs, {through: "otherTechs_job", timestamps:false})
 
 job.hasMany(applied_job)
 applied_job.belongsTo(job)

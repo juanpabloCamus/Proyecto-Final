@@ -64,7 +64,7 @@ function PostDetail() {
                 }else setState(true)
             }
             try {
-                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
+                await axios.post(`/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
                 } catch (error) {
                 console.log(error)
             }
@@ -74,7 +74,7 @@ function PostDetail() {
             if(state === true) {setState(false)
             }else setState(true)
             try {
-                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, {state})
+                await axios.post(`/users/${idUser}/favs/${idJob}`, {state})
             } catch (error) {
                 console.log(error)
             }
@@ -156,6 +156,7 @@ function PostDetail() {
             ))}
           </div>
         </div>
+        {company_accounts[0].id === userLocalStorage.id && userLocalStorage.profileType[0] === "company" ? null :
         <div className={styles.buttonContainer}>
           <button className={styles.button} onClick={ handleOpenModal }>Apply now</button>
           <button className={styles.button} onClick={(e) => handleFavorite(e)}>
@@ -174,6 +175,7 @@ function PostDetail() {
             )}
           </button>
         </div>
+        }
       </div>
     ) : (
       <h1>Loading...</h1>

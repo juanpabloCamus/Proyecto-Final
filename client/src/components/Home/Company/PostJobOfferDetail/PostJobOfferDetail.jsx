@@ -6,10 +6,14 @@ import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
+import { BiHide } from "react-icons/bi";
+import { GrFormView, GrView } from "react-icons/gr";
+import { FaEye } from "react-icons/fa"
 import { IoCreateOutline } from "react-icons/io5";
 import { CgCloseO } from "react-icons/cg";
+import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
-import { Edit } from './EditJobOffer/Edit'
+import { Edit } from "./EditJobOffer/Edit";
 
 function PostJobOffer() {
   const { id } = useParams();
@@ -25,6 +29,8 @@ function PostJobOffer() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
   useEffect(() => {
+    // console.log('aqui')
+    // console.log(id)
     dispatch(fetchJobDetail(id));
     dispatch(fetchCompany(userLocalStorage.id));
   }, [dispatch, id]);
@@ -32,18 +38,19 @@ function PostJobOffer() {
   const handleEditOffer = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEdit(true));
+    dispatch(modalActions.activateDelete(false))
   };
 
   const handleDelete = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(true));
+    dispatch(modalActions.activateEdit(false))
   };
+  let renderJob = company.jobs?.filter((e) => e.id == id)[0];
 
-  let renderJob = company.jobs?.find((e) => e.id == id);
   return (
-    
     <div className={styles.pageContainer}>
-      <Edit/>
+      <Edit />
       {renderJob ? (
         <>
           <div className={styles.back}>
@@ -89,26 +96,52 @@ function PostJobOffer() {
             <div className={styles.techContainer}>
               {renderJob.technologies.map((t) => (
                 <label className={styles.tech} key={t.id}>
-                  {t.name === "Cplus" ||t.tech  === "Cplus"? (
-                      <p>C+</p>
-                    ) : t.name === "Cplusplus"||t.tech  === "Cplusplus" ? (
-                      <p>C++</p>
-                    ) : t.name === "CSharp"||t.tech  === "CSharp" ? (
-                      <p>C#</p>
-                    ) : (
-                      <p>{t.name||t.tech}</p>
-                    )}
+                  {t.name === "Cplus" || t.tech === "Cplus" ? (
+                    <p>C+</p>
+                  ) : t.name === "Cplusplus" || t.tech === "Cplusplus" ? (
+                    <p>C++</p>
+                  ) : t.name === "CSharp" || t.tech === "CSharp" ? (
+                    <p>C#</p>
+                  ) : (
+                    <p>{t.name || t.tech}</p>
+                  )}
                 </label>
               ))}
             </div>
           </div>
           <div className={styles.buttonContainer}>
-            <button onClick={handleEditOffer} className={styles.button}>
-              <IoCreateOutline />
-            </button>
-            <button onClick={handleDelete} className={styles.button}>
-              <CgCloseO />
-            </button>
+            <div>
+              <button onClick={handleEditOffer} className={styles.button}>
+                <IoCreateOutline />
+              </button>
+              <span className={styles.field}>
+                <BsInfoCircle />
+                <span className={styles.quote}>Edit your post offer.</span>
+              </span>
+            </div>
+
+            {renderJob.active && (
+              <div>
+                <button onClick={handleDelete} className={styles.button}>
+                  <BiHide />
+                </button>
+                <span className={styles.field}>
+                <BsInfoCircle />
+                <span className={styles.quote}>Disable your post offer.</span>
+                </span>
+              </div>
+            )}
+            {!renderJob.active && (
+              <div>
+                <button className={styles.button1}>
+                  <FaEye />
+                </button>
+                <span className={styles.field}>
+                <BsInfoCircle />
+                <span className={styles.quote}>Show your post offer.</span>
+                </span>
+              </div>
+            )}
           </div>
         </>
       ) : !visible ? (
@@ -116,6 +149,7 @@ function PostJobOffer() {
       ) : (
         <NotFound />
       )}
+      
     </div>
   );
 }

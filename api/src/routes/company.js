@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
 
 const router = Router();
 
@@ -8,7 +8,7 @@ router.get('/', async (req,res)=>{
     try{
         let company = await company_account.findAll({
             where: {active: true},
-            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
+            include: [{model:job, include:[{model:technology},{model:otherTechs},{model:applied_job},{model:user_account}]}],
             order: [
                 ['id', 'ASC']
             ]
@@ -20,6 +20,10 @@ router.get('/', async (req,res)=>{
             for(let i=0;i<company.length;i++){
                 company[i].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
                 delete company[i].dataValues.password
+                for(let j=0;j<company[i].dataValues.jobs.length;j++){
+                    company[i].dataValues.jobs[j].dataValues.technologies = company[i].dataValues.jobs[j].dataValues.technologies.concat(company[i].dataValues.jobs[j].dataValues.otherTechs)
+                    delete company[i].dataValues.jobs[j].dataValues.otherTechs
+                }
             }
         }
         res.send(company)
@@ -33,7 +37,7 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let company = await company_account.findAll({
-            include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
+            include: [{model:job, include:[{model:technology},{model:otherTechs},{model:applied_job},{model:user_account}]}],
             where:{id:id,active: true}
         })
         if(company.length<1){
@@ -41,8 +45,11 @@ router.get('/:id', async (req,res)=>{
         }
         company[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
         delete company[0].dataValues.password
+        for(let i=0;i<company[0].dataValues.jobs.length;i++){
+            company[0].dataValues.jobs[i].dataValues.technologies = company[0].dataValues.jobs[i].dataValues.technologies.concat(company[0].dataValues.jobs[i].dataValues.otherTechs)
+            delete company[0].dataValues.jobs[i].dataValues.otherTechs
+        }
         res.send(company)
-
     }catch(error){
         console.log(error)
     }

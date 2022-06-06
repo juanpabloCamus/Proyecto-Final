@@ -98,7 +98,7 @@ function EditComProfileForm() {
     const cloudinaryUpload = async (base64EncodeFile, file) => {
         console.log(base64EncodeFile)
         try {
-            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+            const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
         if(file === "Image"){
             await setCurrentInfo({
@@ -120,7 +120,7 @@ function EditComProfileForm() {
     function handleSubmit(e){
         e.preventDefault();
         if (error.name === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
-        axios.put(`http://localhost:3001/company/${id}`, currentInfo)
+        axios.put(`/company/${id}`, currentInfo)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'
@@ -138,6 +138,7 @@ function EditComProfileForm() {
     
     return (
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Company name</label>
                 <input name='name' value={currentInfo.name} onChange={handleChange}></input>
@@ -426,8 +427,8 @@ function EditComProfileForm() {
                     </div> 
                 : null }
                 <label>Description</label>
-                <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
-                <button type = 'submit' onClick={handleSubmit}>Save changes</button>
+                <textarea name="description" rows="5" value={currentInfo.description} onChange={handleChange}></textarea>
+                <button type = 'submit' onClick={handleSubmit} className={styles.edit_form_button}>Save changes</button>
             </form>
         </div>
     );

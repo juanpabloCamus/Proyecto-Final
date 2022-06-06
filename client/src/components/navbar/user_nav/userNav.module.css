@@ -14,7 +14,7 @@
 
 .logged_user_icon{
     cursor: pointer;
-    width: 40px;
+    width: 80px;
 
 }
 
@@ -22,6 +22,7 @@
     height: 100%;
     object-fit: contain;
     width: 100%;
+    border-radius: 50%;
 }
 
 .logged_user_menu{

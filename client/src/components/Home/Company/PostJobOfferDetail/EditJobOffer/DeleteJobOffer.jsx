@@ -11,28 +11,30 @@ import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
 import pregunta from "../../../../../assets/pregunta.jpg";
 
 function DeleteJobOffer() {
-  let dispatch = useDispatch;
+  let dispatch = useDispatch();
   const { id } = useParams();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     eliminateOffer(id);
     dispatch(modalActions.setModalValue());
+    dispatch(modalActions.activateDelete(false))
   };
-  const handleHide = (e) => {
-    e.preventDefault();
-    var w_now = window.self;
-    w_now.close();
+
+  const handleHide = () => {
+    dispatch(modalActions.setModalValue());
+    dispatch(modalActions.activateDelete(false))
   };
 
   const eliminateOffer = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3001/jobs/${id}`);
+      const res = await axios.delete(`/jobs/${id}`);
       console.log(res);
       if (res.data) {
         Swal.fire({
           icon: "success",
           text: res.data,
-          showConfirmButton: false,
+          showConfirmButton: true,
           showCancelButton: false,
         });
       } else {
@@ -50,7 +52,7 @@ function DeleteJobOffer() {
 
   return (
     <div>
-      <form>
+      
         <div className={styles.div}>
           <img className={styles.img} src={pregunta} alt="" />
           <h2 className={styles.h2}>Do you want to disable this offer?</h2>
@@ -66,7 +68,7 @@ function DeleteJobOffer() {
             </button>
           </div>
         </div>
-      </form>
+      
     </div>
   );
 }

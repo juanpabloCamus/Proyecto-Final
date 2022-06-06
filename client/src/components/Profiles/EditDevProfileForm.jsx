@@ -144,7 +144,7 @@ function EditDevProfileForm() {
     const cloudinaryUpload = async (base64EncodeFile, file) => {
         console.log(base64EncodeFile)
         try {
-            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+            const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
         if(file === "Image"){
             await setCurrentInfo({
@@ -167,7 +167,7 @@ function EditDevProfileForm() {
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
         let post = currentInfo
         post.technologies = addedTechs.map((tech) => tech.tech)
-        await axios.put(`http://localhost:3001/users/${id}`, post)
+        await axios.put(`/users/${id}`, post)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'
@@ -187,6 +187,7 @@ function EditDevProfileForm() {
     return (
         
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Fullname</label>
                 <input name='fullName' value={currentInfo.fullName} onChange={handleChange}></input>
@@ -465,7 +466,7 @@ function EditDevProfileForm() {
                 {previewImage ?
                     <div>
                         <img src={previewImage} alt="perview profile"/> 
-                        <button onClick={uploadImage}>Update Profile pic</button>
+                        <button className={styles.upload} onClick={uploadImage}>Update Profile pic</button>
                     </div> 
                 : null }
                 <label>Banner pic</label>
@@ -473,11 +474,11 @@ function EditDevProfileForm() {
                 {previewBanner ?
                     <div>
                         <img src={previewBanner} alt="banner perview"/> 
-                        <button onClick={uploadBanner}>Update Banner</button>
+                        <button className={styles.upload} onClick={uploadBanner}>Update Banner</button>
                     </div> 
                 : null }
                 <label>Description</label>
-                <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
+                <textarea name="description" rows="5" value={currentInfo.description} onChange={handleChange}></textarea>
                 <label>Add skills</label>
                 <select className={styles.form_select} onChange={addTechs}>
                 <option selected disabled>
@@ -524,7 +525,7 @@ function EditDevProfileForm() {
                     </div>
                 ))}
             </div>
-                <button type = 'submit' onClick={handleSubmit}>Save changes</button>
+                <button type = 'submit' onClick={handleSubmit} className={styles.edit_form_button}>Save changes</button>
             </form>
         </div>
     );

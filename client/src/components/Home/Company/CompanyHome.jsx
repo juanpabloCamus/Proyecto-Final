@@ -14,7 +14,7 @@ import PostJobOffer from "./Post/PostJobOffer";
 function CompanyHome() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
-  console.log(users)
+
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
   const company = useSelector((state) => state.company.company);
@@ -101,7 +101,7 @@ function CompanyHome() {
       {radio === "developers" ? (
         <div>
           <h2>
-            Search for new <span>Talent.</span>
+            Search for new <span>Talent</span>
           </h2>
 
           <div
@@ -162,7 +162,7 @@ function CompanyHome() {
       ) : (
         <div>
           <h2>
-            Search for new <span>Job Offers.</span>
+            My Job<span> Offers</span>
           </h2>
 
           <div
