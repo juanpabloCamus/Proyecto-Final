@@ -187,6 +187,7 @@ function EditDevProfileForm() {
     return (
         
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Fullname</label>
                 <input name='fullName' value={currentInfo.fullName} onChange={handleChange}></input>
@@ -477,7 +478,7 @@ function EditDevProfileForm() {
                     </div> 
                 : null }
                 <label>Description</label>
-                <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
+                <textarea name="description" rows="5" value={currentInfo.description} onChange={handleChange}></textarea>
                 <label>Add skills</label>
                 <select className={styles.form_select} onChange={addTechs}>
                 <option selected disabled>
@@ -524,7 +525,7 @@ function EditDevProfileForm() {
                     </div>
                 ))}
             </div>
-                <button type = 'submit' onClick={handleSubmit}>Save changes</button>
+                <button type = 'submit' onClick={handleSubmit} className={styles.edit_form_button}>Save changes</button>
             </form>
         </div>
     );

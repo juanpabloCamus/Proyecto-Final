@@ -1,14 +1,17 @@
 .modal{
     background-color: white;
     border-radius: 10px;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 25%;
     z-index: 1000;
+
+
     animation: fadeInAnimation ease 1.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;

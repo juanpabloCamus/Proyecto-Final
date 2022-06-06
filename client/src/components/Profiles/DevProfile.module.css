@@ -1,9 +1,14 @@
+.pageContainer{
+    border-radius: 20px;
+    box-shadow: 0 5px 8px 1px lightgrey;
+    margin: 50px auto;
+    overflow: hidden;
+    width: 75%;
+}
+
 .profileContainer{
-    margin-top: 60px;
     display: flex;
-    height: 100%;
     flex-direction: column;
-    margin-bottom: 50px;
 }
 
 .bannerProfileContainer{
@@ -15,6 +20,12 @@
     object-fit: contain;
 }
 
+h3{
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
 .infoContainer{
     background-color: rgba(201, 221, 238, 0.51);
     margin-top: 50px;
@@ -23,22 +34,72 @@
 .mainInfoContainer{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
     padding: 40px;
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid black;
+    position: relative;
 }
 
-#logo{
-    width: 150px;
+.userPhoto{
+    background-color: white;
+    border: 6px solid black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 10px;
+    top: -90px;
+    width: 200px;
+    height: 200px;
 }
 
-.descriptionContainer, .educationContainer, .technologiesContainer, .experienceContainer{
-    padding: 50px;
+
+.nameContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 100px;
 }
 
-.technologiesContainer h3{
-    text-align: center;
+.nameContainer h2{
+    font-size: 34px;
 }
+
+.nameContainer_item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+
+.secondaryInfo{
+    padding: 40px;
+}
+
+.secondaryInfo div{
+    border-radius: 8px;
+    box-shadow: 0 3px 5px 1px lightgray;
+    background-color: white;
+    margin: 15px 0;
+    padding: 30px;
+}
+
+.secondaryInfo div button{
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    padding: 12px 15px;
+    outline: none;
+}
+
 
 .userTechsContainer{
     margin-top: 20px;
@@ -62,13 +123,19 @@
   }
 
   .editProfileButtonContainer{
-    text-align: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
+   align-self: flex-end;
+    margin: 30px 0px;
     text-decoration: none;
-    width: 20%;
+  }
+
+  .editProfileButtonContainer > *{
+      background-color: black;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 15px 25px;
   }
 
 
