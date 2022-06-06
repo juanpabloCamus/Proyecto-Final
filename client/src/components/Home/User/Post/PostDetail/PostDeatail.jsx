@@ -65,7 +65,7 @@ function PostDetail() {
                 }else setState(true)
             }
             try {
-                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
+                await axios.post(`/users/${idUser}/favs/${idJob}`, check ? {state: !state} : {state})
                 } catch (error) {
                 console.log(error)
             }
@@ -75,7 +75,7 @@ function PostDetail() {
             if(state === true) {setState(false)
             }else setState(true)
             try {
-                await axios.post(`http://localhost:3001/users/${idUser}/favs/${idJob}`, {state})
+                await axios.post(`/users/${idUser}/favs/${idJob}`, {state})
             } catch (error) {
                 console.log(error)
             }

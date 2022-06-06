@@ -144,7 +144,7 @@ function EditDevProfileForm() {
     const cloudinaryUpload = async (base64EncodeFile, file) => {
         console.log(base64EncodeFile)
         try {
-            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+            const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
         if(file === "Image"){
             await setCurrentInfo({
@@ -167,7 +167,7 @@ function EditDevProfileForm() {
         if (error.fullName === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
         let post = currentInfo
         post.technologies = addedTechs.map((tech) => tech.tech)
-        await axios.put(`http://localhost:3001/users/${id}`, post)
+        await axios.put(`/users/${id}`, post)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'

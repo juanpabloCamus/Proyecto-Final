@@ -47,7 +47,7 @@ function PostJobOffer() {
     dispatch(modalActions.activateEdit(false));
   };
   let renderJob = company.jobs?.filter((e) => e.id == id)[0];
-  console.log(renderJob);
+
   return (
     <div>
       <div className={styles.container_checkbox}>
