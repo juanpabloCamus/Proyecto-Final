@@ -98,7 +98,7 @@ function EditComProfileForm() {
     const cloudinaryUpload = async (base64EncodeFile, file) => {
         console.log(base64EncodeFile)
         try {
-            const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+            const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
         if(file === "Image"){
             await setCurrentInfo({
@@ -120,7 +120,7 @@ function EditComProfileForm() {
     function handleSubmit(e){
         e.preventDefault();
         if (error.name === true) return Swal.fire({icon: 'error', text:'Please check the fields'})
-        axios.put(`http://localhost:3001/company/${id}`, currentInfo)
+        axios.put(`/company/${id}`, currentInfo)
         .then(res => Swal.fire({
             icon: 'success',
             text: 'Changes has been saved'

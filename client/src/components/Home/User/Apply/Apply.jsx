@@ -56,9 +56,9 @@ const handleSubmit = async (e) => {
 
 const uploadFile = async (base64EncodeFile, data) => {
     try {
-        const res = await axios.post('http://localhost:3001/cloudinary', { data: base64EncodeFile}) 
+        const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
 
-                    await axios.post('http://localhost:3001/appliedJob', {
+                    await axios.post('/appliedJob', {
                         publicID: res.data,
                         description,
                         idUser,

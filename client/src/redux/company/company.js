@@ -4,7 +4,7 @@ import axios from 'axios'
 export const fetchCompany=createAsyncThunk('company/fetchCompany',
 async(id)=>{
     try {
-        const res=await axios.get(`http://localhost:3001/company/${id}`)
+        const res=await axios.get(`/company/${id}`)
         //console.log(res.data[0])
         return res.data[0]
     } catch (error) {
@@ -17,7 +17,7 @@ async(id)=>{
 export const fetchCompanies=createAsyncThunk('company/fetchCompany',
 async()=>{
     try {
-        const res=await axios.get('http://localhost:3001/company')
+        const res=await axios.get('/company')
         return res.data
     } catch (error) {
         console.log(error)

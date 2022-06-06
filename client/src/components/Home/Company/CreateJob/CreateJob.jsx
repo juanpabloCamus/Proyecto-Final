@@ -100,7 +100,7 @@ export default function CreateJob() {
 
   const postNewJob = async (id) => {
     try {
-      const res = await axios.post(`http://localhost:3001/jobs/${id}`, {
+      const res = await axios.post(`/jobs/${id}`, {
         position,
         description,
         time,
