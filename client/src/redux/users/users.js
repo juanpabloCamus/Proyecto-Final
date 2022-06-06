@@ -17,7 +17,6 @@ export const fetchUsers=createAsyncThunk('users/fetchUser',
 async()=>{
     try {
         const res=await axios.get(`http://localhost:3001/users/`)
-      
         return res.data
         
     } catch (error) {
@@ -35,7 +34,9 @@ export const usersSlice=createSlice({
     name:'users',
     initialState,
     reducers:{
-        
+        // filterByValue(state, {payload}){
+        //     state.users = state.users[0].offers.filter(user => user.fullName.includes(payload))
+        // }
     },
     extraReducers:{
         [fetchUser.pending]:(state)=>{

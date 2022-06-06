@@ -1,9 +1,12 @@
+.pageContainer{
+    border-radius: 20px;
+    margin: 50px auto;
+    width: 75%;
+}
+
 .profileContainer{
-    margin-top: 60px;
     display: flex;
-    height: 100%;
     flex-direction: column;
-    margin-bottom: 50px;
 }
 
 /* .buttons{
@@ -39,7 +42,7 @@
     padding-top: 20px;
     padding-bottom: 20px;
     margin-top: 50px;
-    border-bottom: 1px solid black;
+    border-bottom: 3px solid black;
 }
 
 .logoNameContainer{
@@ -85,6 +88,10 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+.technologiesContainer{
+    border-top: 3px solid black;
 }
 
 .technologiesContainer h3{
@@ -170,11 +177,18 @@
   }
 
   .editProfileButtonContainer{
-    text-align: center;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
+    align-self: center;
+    margin: 30px 0px;
     text-decoration: none;
-    width: 20%;
   }
+
+
+  .editProfileButtonContainer > *{
+    background-color: black;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 15px 25px;
+}

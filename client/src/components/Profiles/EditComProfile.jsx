@@ -138,6 +138,7 @@ function EditComProfileForm() {
     
     return (
         <div className={styles.formContainer}>
+            <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Company name</label>
                 <input name='name' value={currentInfo.name} onChange={handleChange}></input>
@@ -426,8 +427,8 @@ function EditComProfileForm() {
                     </div> 
                 : null }
                 <label>Description</label>
-                <textarea name="description" value={currentInfo.description} onChange={handleChange}></textarea>
-                <button type = 'submit' onClick={handleSubmit}>Save changes</button>
+                <textarea name="description" rows="5" value={currentInfo.description} onChange={handleChange}></textarea>
+                <button type = 'submit' onClick={handleSubmit} className={styles.edit_form_button}>Save changes</button>
             </form>
         </div>
     );
