@@ -30,7 +30,7 @@ function DevProfile() {
     
     if(user === undefined) return <h1>Loading...</h1>
 
-    let userTechs = user.technologies.map(t => t.name)
+    let userTechs = user.technologies?.map(t => t.name)
 
     function handleEditExp(){
         dispatch(modalActions.setModalValue());
@@ -41,8 +41,6 @@ function DevProfile() {
         dispatch(modalActions.setModalValue());
         dispatch(modalActions.activateEditDevEdu(true));
     }
-
-    console.log(user)
 
     return (
         <div className={styles.pageContainer}>
@@ -99,11 +97,11 @@ function DevProfile() {
          
                         <div className={styles.technologiesContainer}>
                             <h3>Tecnologies</h3>
-                            {userTechs.length === 0 ? <p>You can add your techs here, please complete profile</p> :
+                            {userTechs?.length === 0 ? <p>You can add your techs here, please complete profile</p> :
                             <div>
                             <h3>Skills at</h3>
                             <div className={styles.userTechsContainer}>
-                            {userTechs.map(t => t ==='Cplus' ?
+                            {userTechs?.map(t => t ==='Cplus' ?
                             (<label key={t} >C+</label>) :
                             t==='Cplusplus' ?
                             (<label key={t} >C++</label>) :
