@@ -45,7 +45,7 @@ function EditDevExpForm() {
     function handleSubmit(e){
         e.preventDefault()
         if (error.position === true || error.company === true) return Swal.fire({icon: 'error', text:'Complete the required fields'})
-        axios.post(`http://localhost:3001/users/${id}/experience`, experience)
+        axios.post(`/users/${id}/experience`, experience)
         .then(res => console.log(res.data))
         .catch(err => Swal.fire({icon: 'error', text: err.response.data}))
     }
