@@ -111,7 +111,7 @@ export default function CreateJob() {
         technologies: addedTechs.map((tech) => tech.tech),
       });
 
-      if (res.data === "Oferta laboral creada correctamente.") {
+      if (res.data === "Job offer created successfully") {
         Swal.fire({
           icon: "success",
           text: res.data,

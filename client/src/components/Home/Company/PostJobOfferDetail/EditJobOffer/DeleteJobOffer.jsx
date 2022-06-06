@@ -18,10 +18,8 @@ function DeleteJobOffer() {
     eliminateOffer(id);
     dispatch(modalActions.setModalValue());
   };
-  const handleHide = (e) => {
-    e.preventDefault();
-    var w_now = window.self;
-    w_now.close();
+  const handleHide = () => {
+    dispatch(modalActions.setModalValue());
   };
 
   const eliminateOffer = async (id) => {
@@ -50,7 +48,7 @@ function DeleteJobOffer() {
 
   return (
     <div>
-      <form>
+      
         <div className={styles.div}>
           <img className={styles.img} src={pregunta} alt="" />
           <h2 className={styles.h2}>Do you want to disable this offer?</h2>
@@ -66,7 +64,7 @@ function DeleteJobOffer() {
             </button>
           </div>
         </div>
-      </form>
+     
     </div>
   );
 }
