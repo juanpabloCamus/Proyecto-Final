@@ -10,12 +10,9 @@ import { Link } from "react-router-dom";
 
 function DevProfileDetail() {
   let { id_comp, id_dev } = useParams();
-  console.log(id_comp, id_dev);
-  let publicID = "nkiecep5puwwwylpdzvm";
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
-  //console.log(jobDetail[0])
   useEffect(() => {
     dispatch(fetchJobDetail(id_comp));
   }, [dispatch]);
@@ -23,12 +20,11 @@ function DevProfileDetail() {
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
     (e) => e.userAccountId == id_dev
   );
-  console.log(filterUser ? filterUser[0] : null);
   return (
     <div className={styles.pageContainerUser}>
       {filterUser ? (
         <div className={styles.containerMain}>
-          <div className={styles.container}>
+          <div className={styles.container1}>
             <div className={styles.user_icon}>
               <Image
                 cloudName="dhar2oawa"

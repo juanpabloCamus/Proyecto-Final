@@ -19,7 +19,6 @@ import { Image } from "cloudinary-react";
 
 function PostJobOffer() {
   const { id } = useParams();
-  //console.log(id)
   let navigate = useNavigate();
 
   let dispatch = useDispatch();
@@ -35,11 +34,7 @@ function PostJobOffer() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
   
-  console.log(
-    "aqui",
-    jobDetail[0]?.applied_jobs?.map((e) => e.user_account)
-  );
-  console.log(company);
+  
   const handleEditOffer = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEdit(true));
@@ -64,8 +59,6 @@ function PostJobOffer() {
   let [radio1, setRadio1] = useState(radioStorage || "edit");
   localStorage.setItem("radio1", JSON.stringify(radio1));
   useEffect(() => {
-    // console.log('aqui')
-    // console.log(id)
     dispatch(fetchJobDetail(id));
     dispatch(fetchCompany(userLocalStorage.id));
   }, [dispatch, id, estado]);
