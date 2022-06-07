@@ -49,11 +49,9 @@ module.exports = (sequelize) => {
         country: {
             type: DataTypes.STRING,
         },
-
         city: {
             type: DataTypes.STRING,
         },
-      
         seniority: {
             type: DataTypes.ENUM('Not specified','Junior', 'Semi-Senior', 'Senior'),
             defaultValue: 'Not specified'
@@ -61,6 +59,11 @@ module.exports = (sequelize) => {
         english_level: {
             type: DataTypes.ENUM('Not specified','Basic','Conversational', 'Advanced or Native'),
             defaultValue: 'Not specified'
+        },
+        reports:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
         }
     },{timestamps:false})
 }
