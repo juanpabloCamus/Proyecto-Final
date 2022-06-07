@@ -1,30 +1,88 @@
 import { CloudinaryContext } from "cloudinary-react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
+import styles from "./PostJobOfferDetail.module.css";
+import { Image } from "cloudinary-react";
+import { Link } from "react-router-dom";
+//import { Redirect } from "react-router"
 
 function DevProfileDetail() {
-  let {id_comp, id_dev} = useParams()
+  let { id_comp, id_dev } = useParams();
+  console.log(id_comp, id_dev);
   let publicID = "nkiecep5puwwwylpdzvm";
-  let dispatch = useDispatch()
-  let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-  console.log(jobDetail)
+  let dispatch = useDispatch();
+  let navigate = useNavigate();
+
+  //console.log(jobDetail[0])
   useEffect(() => {
     dispatch(fetchJobDetail(id_comp));
-  },[dispatch])
-  //jobDetail.filter(e=>e.)
+  }, [dispatch]);
+  let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
+  let filterUser = jobDetail[0]?.applied_jobs?.filter(
+    (e) => e.userAccountId == id_dev
+  );
+  console.log(filterUser ? filterUser[0] : null);
   return (
-    <div>
-      DevProfileDetail
-      <div>
-        <a
-          href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${publicID}.pdf`}
-          download
-        >
-          descargar pdf
-        </a>
-      </div>
+    <div className={styles.pageContainerUser}>
+      {filterUser ? (
+        <div className={styles.containerMain}>
+          <div className={styles.container}>
+            <div className={styles.user_icon}>
+              <Image
+                cloudName="dhar2oawa"
+                publicId={filterUser[0].user_account.profile_pic}
+                id={styles.imgU}
+                //width="10"
+                //crop="scale"
+              />
+            </div>
+            <div>
+              {/* <Navigate to={`company/user/${id_dev}`}> */}
+              <button onClick={() => navigate(`/company/user/${id_dev}`)}>
+                More Info
+              </button>
+              {/* </Navigate> */}
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <div>
+                <div>
+                  <h3>Nombre</h3>
+                  <span>{filterUser[0].user_account.fullName}</span>
+                </div>
+                <div>
+                  <h3>Description</h3>
+                  <span>{filterUser[0].description}</span>
+                </div>
+              </div>
+
+              <div>
+                <button>
+                  <a
+                    className={styles.a}
+                    href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
+                    target="_blank"
+                  >
+                    Download PDF
+                  </a>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <button>
+                <span>Send</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
