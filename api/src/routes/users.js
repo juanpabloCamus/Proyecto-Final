@@ -457,6 +457,31 @@ router.put('/education/:id', async (req,res)=>{
     }
 })
 
+router.put('/report/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let user = await user_account.findAll({
+            where:{id: id}
+        })
+
+        if(user.length>0){
+            await user_account.update(
+                {
+                    reports: user[0].dataValues.reports+1
+                },{
+                    where:{id: id}
+                }
+            )
+            res.send('User reported')
+        }else{
+            res.send('User not exist')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.put('/experience/:id', async (req,res)=>{
     try {
         const {id} = req.params

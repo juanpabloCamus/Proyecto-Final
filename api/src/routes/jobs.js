@@ -213,6 +213,31 @@ router.post('/:id', async (req,res)=>{
     }
 })
 
+router.put('/report/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let jobs = await job.findAll({
+            where:{id: id}
+        })
+
+        if(jobs.length>0){
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1
+                },{
+                    where:{id: id}
+                }
+            )
+            res.send('Job reported')
+        }else{
+            res.send('Job not exist')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.put('/:id', async (req,res)=>{
     try {
         const {id} = req.params

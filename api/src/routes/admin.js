@@ -6,18 +6,23 @@ const router = Router();
 
 router.get('/users', async (req,res)=>{
     let users = await user_account.findAll({
-        where:{profileType:'develop'}
+        where:{profileType:'develop'},
+        order:[['reports','desc']]
     })
     res.send(users)
 })
 
 router.get('/company', async (req,res)=>{
-    let company = await company_account.findAll()
+    let company = await company_account.findAll({
+        order:[['reports','desc']]})
     res.send(company)
 })
 
 router.get('/jobs', async (req,res)=>{
-    let jobs = await job.findAll({include:company_account})
+    let jobs = await job.findAll({
+        include:company_account,
+        order:[['reports','desc']]
+    })
     res.send(jobs)
 })
 
