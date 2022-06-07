@@ -21,6 +21,7 @@
     "nodemon": "^2.0.16",
     "passport": "^0.6.0",
     "pg": "^8.7.3",
-    "sequelize": "^6.3.5"
+    "sequelize": "^6.3.5",
+    "stripe": "^9.6.0"
   }
 }
