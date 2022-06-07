@@ -14,6 +14,7 @@ import { RiBuildingFill } from 'react-icons/ri'
 import styles from './admin.module.css'
 import { fetchCompanies } from '../../redux/company/company'
 import { CompaniesRender } from './admin_render/CompaniesRender'
+import {GiTechnoHeart} from 'react-icons/gi'
 
 export const Admin = () => {
 
@@ -30,8 +31,8 @@ export const Admin = () => {
  const {users} = useSelector(state => state.users)
  const {allJobs} = useSelector(state => state.allJobs)
  const {companies} = useSelector(state => state.company)
-
-if(users[0].offers === undefined) return <p>Loading...</p>
+console.log(users)
+if(users[0] === undefined) return <p>Loading...</p>
 if(allJobs === undefined) return <p>Loading...</p>
 if(companies === undefined) return <p>Loading...</p>
 
@@ -66,6 +67,14 @@ if(companies === undefined) return <p>Loading...</p>
             <MdWork/>
             <span>Jobs Offers</span>  
           </li>
+
+          <li className={styles.side_bar_item}
+              onClick={ () => setSelectOption("technologies") }
+          >
+            <GiTechnoHeart />
+            <span>Technologies</span>
+          </li>
+
         </ul>
         
       </aside>
@@ -77,7 +86,7 @@ if(companies === undefined) return <p>Loading...</p>
                 <FaUserAlt className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Users:</h4>
-                  <span>{users[0]?.offers === undefined ? <p>Loading...</p> : users[0]?.offers?.length}</span>
+                  <span>{users[0]?.offers === undefined ? <p>Loading...</p> : (users.length-1)*10+users[users.length-1].offers.length}</span>
                 </div>
             </div>
 
@@ -93,12 +102,12 @@ if(companies === undefined) return <p>Loading...</p>
                 <AiFillProfile className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Job Offers:</h4>
-                  <span>{allJobs[0]?.offers === undefined ? <p>Loading...</p> : allJobs[0]?.offers.length}</span>
+                  <span>{allJobs[0]?.offers === undefined ? <p>Loading...</p> : (allJobs.length-1)*10+allJobs[allJobs.length-1].offers.length}</span>
                 </div>
             </div>
 
           </div>
-          <div className={styles.table_section}>
+          {<div className={styles.table_section}>
             {
               selectOption === "users" && <UsersRender />
             }
@@ -108,8 +117,10 @@ if(companies === undefined) return <p>Loading...</p>
             {
               selectOption === "companies" && <CompaniesRender />
             }
-
-          </div>
+            {
+              selectOption === "technologies" && <CompaniesRender />
+            }
+          </div>}
       </main>
     </div>
   )

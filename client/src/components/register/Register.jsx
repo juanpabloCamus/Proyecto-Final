@@ -57,7 +57,7 @@ const postNewUser = async() => {
             dispatch(modalActions.setModalValue())
             Swal.fire({
                 icon: 'success',
-                text: 'Usuario creado'
+                text: 'User created'
               })
               localStorage.setItem("userType", profileType)
         }
@@ -81,7 +81,7 @@ const postNewCompany = async() => {
             dispatch(modalActions.setModalValue())
             Swal.fire({
                 icon: 'success',
-                text: "Usuario creado"
+                text: "Company created"
               })
               
         }else{
