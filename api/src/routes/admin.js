@@ -27,10 +27,10 @@ router.get('/jobs', async (req,res)=>{
 })
 
 router.get('/others', async (req,res)=>{
-    let otherTechs = await otherT.findAll({
+    let otherT = await otherTechs.findAll({
         order: [['count','desc']]
     })
-    res.send(otherTechs)
+    res.send(otherT)
 })
 
 module.exports = router;
