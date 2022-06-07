@@ -10,6 +10,7 @@ import { modalActions } from '../../../../../redux/modal_slice/modalSlice';
 import  {ApplyModal}  from '../../Apply/ApplyModal';
 import styles from './PostDetail.module.css';
 import axios from 'axios'
+import Loading from "../../../../Loading/Loading";
 function PostDetail() {
 
   let navigate = useNavigate();
@@ -178,10 +179,10 @@ function PostDetail() {
         }
       </div>
     ) : (
-      <h1>Loading...</h1>
+      <Loading></Loading>
     )
   ) : (
-    <h1>Loading...</h1>
+    <Loading></Loading>
   );
 }
 

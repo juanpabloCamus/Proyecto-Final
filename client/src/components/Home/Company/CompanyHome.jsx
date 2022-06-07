@@ -220,7 +220,7 @@ function CompanyHome() {
                 );
               })
             ) : (
-              <p>No hay usuarios</p>
+              <p>There are no published users yet</p>
             )}
           </div>
         </div>
