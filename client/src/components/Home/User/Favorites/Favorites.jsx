@@ -33,6 +33,7 @@ function Favorites() {
                 technologies={e.technologies}
                 description={e.description}
                 english_level={e.english_level}
+                active={e.active}
               />
             );
           })

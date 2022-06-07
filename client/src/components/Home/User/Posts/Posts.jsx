@@ -100,7 +100,7 @@ useEffect(() => {
             );
           }):<></>
         ) : (
-          <p>No hay Oferta</p>
+          <p>There are no offers published yet</p>
         ):<></>}      
       </div>
     </div>

@@ -7,6 +7,7 @@ import styles from './EditDevProfileForm.module.css'
 import Swal from 'sweetalert2'
 import { MdClose } from "react-icons/md";
 import { fetchTechs } from "../../redux/techs/techs";
+import Loading from "../Loading/Loading";
 
 
 let techId = 0;
@@ -178,10 +179,14 @@ function EditDevProfileForm() {
             text: err.data
         }))
         dispatch(fetchUser(id))
+        const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+        sessionStorage.profile_pic = user.profile_pic
+        localStorage.setItem("userData", JSON.stringify(sessionStorage))
+        //console.log()
         navigate(`/home/profile/${id}`)
     }
     
-    if(user === undefined) return <h1>Loading...</h1>
+    if(user === undefined) return <Loading></Loading>
     
     
     return (
