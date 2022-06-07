@@ -1,14 +1,36 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchAdminUsers } from "../../../redux/admin/adminUsersSlice"
+import axios from "axios"
+
 import { FaWindowClose } from 'react-icons/fa'
+import { MdDoneOutline } from 'react-icons/md'
+import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 import './table.css'
-import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 export const UsersRender = () => {
 
   const {users} = useSelector(state => state.adminUsers)
 
-   console.log(users)
+  const dispatch = useDispatch()
+
+  useEffect(() =>{
+    dispatch(fetchAdminUsers())
+  },[dispatch])
+
+  console.log(users)
+
+  const handleToggleButton = async(id) =>{
+    try {
+      await axios.delete(`http://localhost:3001/users/${id}`)
+      dispatch(fetchAdminUsers())
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
 
   return (
     <div>
@@ -20,6 +42,7 @@ export const UsersRender = () => {
               <th>Email</th>
               <th>Status</th>
               <th></th>
+              <th>Reports</th>
             </tr>
           </thead>
         <tbody>
@@ -36,8 +59,15 @@ export const UsersRender = () => {
                 {user.active?'Enabled':'Disabled'}
               </td>
               <td>
-                <FaWindowClose className="delete_button"/>
+                {
+                  user.active ? 
+                  (<FaWindowClose className="disable_button" onClick={() => handleToggleButton(user.id)} title="Disable"/>) 
+                  : 
+                  (<MdDoneOutline className="enable_button" onClick={() => handleToggleButton(user.id)} title="Enable"/>)
+                }
+    
               </td>
+              <td></td>
             </tr>
           ))
           : 

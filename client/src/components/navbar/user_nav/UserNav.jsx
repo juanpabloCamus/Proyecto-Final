@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
-import profile_image from '../../../assets/profile_img.jpg'
-import { authActions } from '../../../redux/auth/authSlice'
-import MagicBell, { FloatingNotificationInbox } from '@magicbell/magicbell-react';
-=======
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
@@ -22,7 +13,6 @@ import { FiBell } from "react-icons/fi";
 import { fetchUser } from "../../../redux/users/users";
 import { fetchCompany } from "../../../redux/company/company";
 import { fetchCompanyProfile } from "../../../redux/Profile/profileData";
->>>>>>> 39e18f9aab06b61a088428884823c464af1b8bbd
 
 export const UserNav = () => {
   
@@ -54,24 +44,6 @@ export const UserNav = () => {
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
-<<<<<<< HEAD
-          {/* <Link to="/notifications" className={styles.link}>
-              <FiBell className={styles.bell}/>
-          </Link> */}
-
-            <MagicBell apiKey="aa64c7e916793f3432a40fd41ff5451f57d3e844" userEmail={sessionStorage.email}>
-              {(props) => <FloatingNotificationInbox height={500} {...props} />}
-            </MagicBell>
-       
-          {profile === "develop" && <Link to="/home/favorites"  className={styles.link}>
-              <FiHeart className={styles.heart}/>
-          </Link>}
-          
-          <Link to={
-            profile === "develop" ? "/home" : profile === "company" ? "/company" : "/admin"
-          }  className={styles.link}>
-              <BiHome className={styles.home}/>
-=======
         <Link to="/notifications" className={styles.link}>
           <FiBell className={styles.bell} />
         </Link>
@@ -79,7 +51,6 @@ export const UserNav = () => {
         {profile === "develop" && (
           <Link to="/home/favorites" className={styles.link}>
             <FiHeart className={styles.heart} />
->>>>>>> 39e18f9aab06b61a088428884823c464af1b8bbd
           </Link>
         )}
 

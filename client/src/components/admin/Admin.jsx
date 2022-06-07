@@ -22,6 +22,7 @@ import {GiTechnoHeart} from 'react-icons/gi'
 
 
 import styles from './admin.module.css'
+import { Others } from './admin_render/Others'
 
 
 export const Admin = () => {
@@ -128,7 +129,7 @@ if(others === undefined) return <p>Loading...</p>
               selectOption === "companies" && <CompaniesRender />
             }
             {
-              selectOption === "technologies" && <CompaniesRender />
+              selectOption === "technologies" && <Others />
             }
           </div>}
       </main>

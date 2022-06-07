@@ -8,7 +8,6 @@ export const fetchAdminUsers = createAsyncThunk('adminUsersSlice/fetchAdminUsers
     async()=>{
         try {
             const res = await axios.get('/admin/users')
-            console.log(res.data)
             return res.data
         } catch (error) {
             console.log(error)

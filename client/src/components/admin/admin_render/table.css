@@ -35,8 +35,14 @@
     padding: 10px 8px;
 }
 
-.delete_button{
+.disable_button{
     cursor: pointer;
     font-size: 18px;
     color: rgb(189, 11, 11);
+}
+
+.enable_button{
+    color: green;
+    cursor: pointer;
+    font-size: 18px;
 }

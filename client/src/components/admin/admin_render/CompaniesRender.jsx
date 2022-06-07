@@ -1,10 +1,33 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { fetchAdminCompanies } from "../../../redux/admin/adminCompanySlice"
+import axios from "axios"
+
 import { FaWindowClose } from "react-icons/fa"
+import { MdDoneOutline } from 'react-icons/md'
+
 
 export const CompaniesRender = () => {
 
   const {companies} = useSelector(state => state.adminCompany)
+  
+  const dispatch = useDispatch()
+  
+  useEffect(() =>{
+    dispatch(fetchAdminCompanies())
+  },[dispatch])
+
+
+  const handleToggleButton = async(id) =>{
+    try {
+      await axios.delete(`http://localhost:3001/company/${id}`)
+      dispatch(fetchAdminCompanies())
+    } catch (error) {
+      console.log(error)
+    }
    
+  }
+
 
   return (
     <div>
@@ -13,8 +36,9 @@ export const CompaniesRender = () => {
                 <tr>
                     <th>Company Name</th>
                     <th>Email</th>
-                    <th>Stack</th>
+                    <th>Status</th>
                     <th></th>
+                    <th>Reports </th>
                 </tr>
              </thead>
         <tbody>
@@ -31,8 +55,14 @@ export const CompaniesRender = () => {
                 {company.active?'Enabled':'Disabled'}
               </td>
               <td>
-                <FaWindowClose className="delete_button"/>
+              {
+                  company.active ? 
+                  (<FaWindowClose className="disable_button" onClick={() => handleToggleButton(company.id)} title="Disable"/>) 
+                  : 
+                  (<MdDoneOutline className="enable_button" onClick={() => handleToggleButton(company.id)} title="Enable"/>)
+                }
               </td>
+              <td></td>
             </tr>
           ))
           : 
