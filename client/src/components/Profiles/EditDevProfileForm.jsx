@@ -7,6 +7,7 @@ import styles from './EditDevProfileForm.module.css'
 import Swal from 'sweetalert2'
 import { MdClose } from "react-icons/md";
 import { fetchTechs } from "../../redux/techs/techs";
+import Loading from "../Loading/Loading";
 
 
 let techId = 0;
@@ -181,7 +182,7 @@ function EditDevProfileForm() {
         navigate(`/home/profile/${id}`)
     }
     
-    if(user === undefined) return <h1>Loading...</h1>
+    if(user === undefined) return <Loading></Loading>
     
     
     return (
