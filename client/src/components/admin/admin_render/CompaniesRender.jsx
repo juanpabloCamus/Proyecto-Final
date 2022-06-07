@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { fetchAdminCompanies } from "../../../redux/admin/adminCompanySlice"
+import { adminCompanyActions, fetchAdminCompanies } from "../../../redux/admin/adminCompanySlice"
 import axios from "axios"
 
 import { FaWindowClose } from "react-icons/fa"
 import { MdDoneOutline } from 'react-icons/md'
+import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 
 export const CompaniesRender = () => {
@@ -20,23 +21,24 @@ export const CompaniesRender = () => {
 
   const handleToggleButton = async(id) =>{
     try {
-      await axios.delete(`http://localhost:3001/company/${id}`)
+      await axios.delete(`/company/${id}`)
       dispatch(fetchAdminCompanies())
     } catch (error) {
       console.log(error)
     }
-   
   }
 
 
   return (
     <div>
+      <AdminFilterBar action={ adminCompanyActions }/>
          <table className="table">
              <thead className="table_headers">
                 <tr>
                     <th>Company Name</th>
                     <th>Email</th>
                     <th>Status</th>
+                    <th></th>
                     <th></th>
                     <th>Reports </th>
                 </tr>
@@ -63,10 +65,11 @@ export const CompaniesRender = () => {
                 }
               </td>
               <td></td>
+              <td>{company.reports}</td>
             </tr>
           ))
           : 
-          <p>Loading...</p>
+          <p className="no_results">There are no results for your search</p>
         }
         </tbody>
       </table>

@@ -1,7 +1,5 @@
 import {React, useState} from 'react';
-import { useForm } from '../../../../hooks/useForm.js';
 import axios from 'axios'
-import { MdUploadFile } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
 
 import './ApplyModal.css'
@@ -70,26 +68,6 @@ const uploadFile = async (base64EncodeFile, data) => {
 }
 
 
-const headers = {
-    'X-MAGICBELL-API-KEY': 'c96eae5e30c793d17315ce13033abc734f4ef490',
-    'X-MAGICBELL-API-SECRET': 'FKOZoWjSNvnlNGLflrjM/jcFt6AJaAeRHBObQpeg',
-  };
-    
-  const data = {
-    notification: {
-      title: "We're processing your order",
-    },
-  };
-
-
-const sendNotificacion = async() =>{
-    const res = axios.post('https://api.magicbell.com/notifications', data, headers).catch((error) => {
-        console.log(error)
-      });
-    console.log(res.data)
-    console.log("Enviado")
-}
-
   return (
     <div className="apply_form_container">
         <form onSubmit={handleSubmit} className="apply_form">
@@ -106,7 +84,7 @@ const sendNotificacion = async() =>{
                 type="file"
                 onChange={handleFileInputChange}
             ></input>
-            <button type="submit" className="apply_button" onClick={() => sendNotificacion()}>Send Aplication</button>
+            <button type="submit" className="apply_button">Send Aplication</button>
         </form>
     </div>
   )

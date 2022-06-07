@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAdminUsers } from "../../../redux/admin/adminUsersSlice"
+import { adminUsersActions, fetchAdminUsers } from "../../../redux/admin/adminUsersSlice"
 import axios from "axios"
 
 import { FaWindowClose } from 'react-icons/fa'
@@ -12,18 +12,18 @@ import './table.css'
 export const UsersRender = () => {
 
   const {users} = useSelector(state => state.adminUsers)
-
+   
   const dispatch = useDispatch()
+  
 
   useEffect(() =>{
     dispatch(fetchAdminUsers())
   },[dispatch])
 
-  console.log(users)
 
   const handleToggleButton = async(id) =>{
     try {
-      await axios.delete(`http://localhost:3001/users/${id}`)
+      await axios.delete(`/users/${id}`)
       dispatch(fetchAdminUsers())
     } catch (error) {
       console.log(error)
@@ -32,15 +32,17 @@ export const UsersRender = () => {
   }
 
 
+
   return (
     <div>
-      {/* <AdminFilterBar /> */}
+      <AdminFilterBar action={ adminUsersActions }/>
         <table className="table">
           <thead className="table_headers">
             <tr>
               <th>Full Name</th>
               <th>Email</th>
               <th>Status</th>
+              <th></th>
               <th></th>
               <th>Reports</th>
             </tr>
@@ -68,10 +70,11 @@ export const UsersRender = () => {
     
               </td>
               <td></td>
+              <td>{user.reports}</td>
             </tr>
           ))
           : 
-          <p>Loading...</p>
+          <p className="no_results">There are no results for your search</p>
         }
       </tbody>
       </table>

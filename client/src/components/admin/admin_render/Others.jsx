@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux"
-import { FaWindowClose } from 'react-icons/fa'
+import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 import './table.css'
+import { adminOtherActions } from "../../../redux/admin/adminOtherSlice"
 
 export const Others = () => {   
   
@@ -10,39 +11,31 @@ export const Others = () => {
 
   return (
     <div>
-
-<table className="table">
+      <AdminFilterBar action={adminOtherActions}/>
+      <table className="table">
           <thead className="table_headers">
             <tr>
-              <th>Full Name</th>
-              <th>Email</th>
-              <th>Status</th>
-              <th></th>
+              <th>Name</th>
+              <th>Times Requested</th>
             </tr>
           </thead>
         <tbody>
-        {/* { others.length !== 0 ?
-          others.map((user, i) => (
+        { others.length !== 0 ?
+          others.map((other, i) => (
             <tr key={i}>
               <td>
-                {user.fullName}
+                {other.name}
               </td>
               <td>
-                {user.email}
-              </td>
-              <td>
-                {user.active?'Enabled':'Disabled'}
-              </td>
-              <td>
-                <FaWindowClose className="delete_button"/>
+                {other.count}
               </td>
             </tr>
           ))
           : 
-          <p>Loading...</p>
-        } */}
+          <p className="no_results">There are no results for your search</p>
+        }
       </tbody>
-      </table>
+    </table>
 
     </div>
   )

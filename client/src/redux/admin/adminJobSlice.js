@@ -15,14 +15,18 @@ export const fetchAdminJobs = createAsyncThunk('adminJobSlice/fetchAdminJobs',
 
 
 const initialState = {
-    jobs:[]
+    jobs:[],
+    jobsCopy:[],
+    jobsLength:[]
 }
 
 const adminJobSlice = createSlice({
     name: "jobs",
     initialState,
     reducers:{
-
+        filterByValue(state, {payload}){
+            state.jobs=state.jobsCopy.filter(job => job.company_accounts[0].name.toLowerCase().includes(payload.toLowerCase()) || job.position.toLowerCase().includes(payload.toLowerCase()))
+        }
     },
     extraReducers:{
         [fetchAdminJobs.pending]:(state)=>{
@@ -31,6 +35,8 @@ const adminJobSlice = createSlice({
         [fetchAdminJobs.fulfilled]:(state,{payload})=>
         {
           state.jobs=payload
+          state.jobsCopy=payload
+          state.jobsLength=payload.length
           state.status="fulfilled"
         },
         [fetchAdminJobs.rejected]:(state)=>

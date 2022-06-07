@@ -15,14 +15,18 @@ export const fetchAdminOthers = createAsyncThunk('adminOtherSlice/fetchAdminOthe
 
 
 const initialState = {
-    others:[]
+    others:[],
+    othersCopy:[],
+    othersLength:[]
 }
 
 const adminOtherSlice = createSlice({
     name: "others",
     initialState,
     reducers:{
-
+        filterByValue(state, {payload}){
+            state.others = state.othersCopy.filter(other => other.name.toLowerCase().includes(payload.toLowerCase()))
+        }
     },
     extraReducers:{
         [fetchAdminOthers.pending]:(state)=>{
@@ -31,6 +35,8 @@ const adminOtherSlice = createSlice({
         [fetchAdminOthers.fulfilled]:(state,{payload})=>
         {
           state.others=payload
+          state.othersCopy=payload
+          state.othersLength=payload.length
           state.status="fulfilled"
         },
         [fetchAdminOthers.rejected]:(state)=>
@@ -41,5 +47,5 @@ const adminOtherSlice = createSlice({
 })
 
 
-export const adminJobActions = adminOtherSlice.actions;
+export const adminOtherActions = adminOtherSlice.actions;
 export default adminOtherSlice.reducer

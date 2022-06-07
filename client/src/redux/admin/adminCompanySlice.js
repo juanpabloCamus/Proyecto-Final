@@ -15,14 +15,18 @@ export const fetchAdminCompanies = createAsyncThunk('adminCompanySlice/fetchAdmi
 
 
 const initialState = {
-    companies:[]
+    companies:[],
+    copyCompanies:[],
+    companiesLength:[]
 }
 
 const adminCompanySlice = createSlice({
     name: "companies",
     initialState,
     reducers:{
-
+        filterByValue(state, {payload}){
+            state.companies = state.copyCompanies.filter(company => company.name.toLowerCase().includes(payload.toLowerCase()))
+        }
     },
     extraReducers:{
         [fetchAdminCompanies.pending]:(state)=>{
@@ -31,6 +35,8 @@ const adminCompanySlice = createSlice({
         [fetchAdminCompanies.fulfilled]:(state,{payload})=>
         {
           state.companies=payload
+          state.copyCompanies=payload
+          state.companiesLength=payload.length
           state.status="fulfilled"
         },
         [fetchAdminCompanies.rejected]:(state)=>

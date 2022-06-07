@@ -18,6 +18,7 @@ import { AiFillProfile } from 'react-icons/ai'
 import { FaBuilding } from 'react-icons/fa'
 import { RiBuildingFill } from 'react-icons/ri'
 import {GiTechnoHeart} from 'react-icons/gi'
+import { RiCodeSSlashFill } from 'react-icons/ri'
 
 
 
@@ -38,15 +39,16 @@ export const Admin = () => {
     dispatch(fetchAdminOthers())
   }, [dispatch])
 
- const {users} = useSelector(state => state.adminUsers)
- const {companies} = useSelector(state => state.adminCompany)
- const {jobs} = useSelector(state => state.adminJob)
- const {others} = useSelector(state => state.adminOther)
+ const {usersLength} = useSelector(state => state.adminUsers)
+ const {companiesLength} = useSelector(state => state.adminCompany)
+ const {jobsLength} = useSelector(state => state.adminJob)
+ const {othersLength} = useSelector(state => state.adminOther)
 
-if(users === undefined) return <p>Loading...</p>
-if(companies === undefined) return <p>Loading...</p>
-if(jobs === undefined) return <p>Loading...</p>
-if(others === undefined) return <p>Loading...</p>
+ if(usersLength === 0) return <p>Loading...</p>
+ if(companiesLength === 0) return <p>Loading...</p>
+ if(jobsLength === 0) return <p>Loading...</p>
+ if(othersLength === 0) return <p>Loading...</p>
+
 
 
   return (
@@ -97,7 +99,7 @@ if(others === undefined) return <p>Loading...</p>
                 <FaUserAlt className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Users:</h4>
-                  <span>{users === undefined ? <p>Loading...</p> : users.length}</span>
+                  <span>{usersLength === 0 ? <p>Loading...</p> : usersLength}</span>
                 </div>
             </div>
 
@@ -105,7 +107,7 @@ if(others === undefined) return <p>Loading...</p>
                 <RiBuildingFill className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Companies:</h4>
-                  <span>{companies === undefined ? <p>Loading...</p> : companies.length}</span>
+                  <span>{companiesLength === 0 ? <p>Loading...</p> : companiesLength}</span>
                 </div>
             </div>
 
@@ -113,7 +115,15 @@ if(others === undefined) return <p>Loading...</p>
                 <AiFillProfile className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Job Offers:</h4>
-                  <span>{jobs === undefined ? <p>Loading...</p> : jobs.length}</span>
+                  <span>{jobsLength === 0 ? <p>Loading...</p> : jobsLength}</span>
+                </div>
+            </div>
+
+            <div className={styles.statistics_box}>
+                <RiCodeSSlashFill className={styles.statistics_box_icon}/>
+                <div className={styles.statistics_box_info}>
+                  <h4>Other Techs:</h4>
+                  <span>{othersLength === 0 ? <p>Loading...</p> : othersLength}</span>
                 </div>
             </div>
 
