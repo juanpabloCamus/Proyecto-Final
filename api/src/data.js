@@ -25,8 +25,8 @@ const user = [
     },
     {   
         fullName: 'Alberto Ortolani',
-        email: 'betitorompehuevos@uruguayprovincia.com',
-        password: 'sfee45454',
+        email: 'beto@gmail.com',
+        password: 'beto123',
         date_birth: '2000-11-02',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -47,14 +47,14 @@ const user = [
     },
     {   
         fullName: 'Agustin Banegas',
-        email: 'agus@notevoyadecir.com',
-        password: '2abc6465456',
+        email: 'agus@gmail.com',
+        password: 'agus',
         date_birth: '1995-12-28',
         profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Front End Developer'
+        stack: 'Back End Developer'
     },
     {   
         fullName: 'Paloma Vaira',
@@ -77,6 +77,36 @@ const user = [
         country: 'Argentina',
         city: 'Buenos Aires',
         stack: 'Software Enginer'
+    },{   
+        fullName: 'Carolina Leoni',
+        email: 'caro@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Cañada de Gomez',
+        stack: 'Front End Developer'
+    },{   
+        fullName: 'Joan Alexander Quispe Cusi',
+        email: 'jaqc@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Peru',
+        city: 'Lima',
+        stack: 'Front End Developer'
+    },{   
+        fullName: 'Cristian Villalba',
+        email: 'csv@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        profile_pic: 'https://www.trecebits.com/wp-content/uploads/2011/09/IMAGEN-DE-PERFIL-FACEBOOK.jpg',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        country: 'Argentina',
+        city: 'Chaco',
+        stack: 'Front End Developer'
     },
     {
         fullName: 'Admin',
