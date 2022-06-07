@@ -361,11 +361,24 @@ router.delete('/:id', async (req,res)=>{
     try {
         const {id} = req.params
 
-        await job.update({
-            active: false},{
-            where:{id: id}
+        let jobs = await job.findAll({
+            where: {id: id}
         })
-        res.send('deleted')
+
+        if(jobs.length>0){
+            await job.update({
+                active: !jobs[0].dataValues.active
+            },{
+                where:{id: id}
+            })
+            if(jobs[0].dataValues.active){
+                res.send('Job disabled')
+            }else{
+                res.send('Job enabled')
+            }
+        }else{
+            res.send("Job not exist")
+        }
     } catch (error) {
         console.log(error)
     }
