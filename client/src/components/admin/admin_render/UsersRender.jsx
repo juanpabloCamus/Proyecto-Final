@@ -18,7 +18,7 @@ export const UsersRender = () => {
             <tr>
               <th>Full Name</th>
               <th>Email</th>
-              <th>Stack</th>
+              <th>Status</th>
               <th></th>
             </tr>
           </thead>
@@ -33,7 +33,7 @@ export const UsersRender = () => {
                 {user.email}
               </td>
               <td>
-                {user.stack}
+                {user.active?'Enabled':'Disabled'}
               </td>
               <td>
                 <FaWindowClose className="delete_button"/>

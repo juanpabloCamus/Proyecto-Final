@@ -11,7 +11,7 @@ export const CompaniesRender = () => {
          <table className="table">
              <thead className="table_headers">
                 <tr>
-                    <th>Full Name</th>
+                    <th>Company Name</th>
                     <th>Email</th>
                     <th>Stack</th>
                     <th></th>
@@ -28,7 +28,7 @@ export const CompaniesRender = () => {
                 {company.email}
               </td>
               <td>
-                {company.country}
+                {company.active?'Enabled':'Disabled'}
               </td>
               <td>
                 <FaWindowClose className="delete_button"/>
