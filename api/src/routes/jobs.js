@@ -9,7 +9,7 @@ router.get('/', async (req,res)=>{
 
         let jobs = await job.findAll({
             where: {active: true},
-            include: [{model: company_account},{model: technology},{model:otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}],
+            include: [{model: company_account},{model: technology},{model:otherTechs},{model:user_account},{model:applied_job, include:{model: user_account,include:{model:technology}}}],
             order: [
                 ['id', 'DESC']
             ],
@@ -121,7 +121,7 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         let jobId = await job.findAll({
-            include: [{model: company_account},{model: technology},{model: otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}], 
+            include: [{model: company_account},{model: technology},{model: otherTechs},{model:user_account},{model:applied_job, include:{model: user_account,include:{model:technology}}}], 
             where:{id: id,active: true}
         })
         if(jobId.length<1){
@@ -332,6 +332,7 @@ router.put('/:id', async (req,res)=>{
         if(technologies){
             let actJob = await job.findAll({
                 include: technology,
+                include: otherTechs,
                 where:{id: id}
             })
             actJob[0].dataValues.technologies.map(t=>actJob[0].removeTechnology(t.dataValues.id))

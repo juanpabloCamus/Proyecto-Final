@@ -44,5 +44,5 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0
         }
-    },{timestamps:false})
+    },{updatedAt:false})
     }
