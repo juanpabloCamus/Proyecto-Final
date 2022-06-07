@@ -47,7 +47,7 @@ export const Admin = () => {
  if(usersLength === 0) return <p>Loading...</p>
  if(companiesLength === 0) return <p>Loading...</p>
  if(jobsLength === 0) return <p>Loading...</p>
- if(othersLength === 0) return <p>Loading...</p>
+//  if(othersLength === 0) return <p>Loading...</p>
 
 
 
@@ -99,7 +99,7 @@ export const Admin = () => {
                 <FaUserAlt className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Users:</h4>
-                  <span>{usersLength === 0 ? <p>Loading...</p> : usersLength}</span>
+                  <span>{usersLength}</span>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@ export const Admin = () => {
                 <RiBuildingFill className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Companies:</h4>
-                  <span>{companiesLength === 0 ? <p>Loading...</p> : companiesLength}</span>
+                  <span>{companiesLength}</span>
                 </div>
             </div>
 
@@ -115,7 +115,7 @@ export const Admin = () => {
                 <AiFillProfile className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Job Offers:</h4>
-                  <span>{jobsLength === 0 ? <p>Loading...</p> : jobsLength}</span>
+                  <span>{jobsLength}</span>
                 </div>
             </div>
 
@@ -123,7 +123,7 @@ export const Admin = () => {
                 <RiCodeSSlashFill className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Other Techs:</h4>
-                  <span>{othersLength === 0 ? <p>Loading...</p> : othersLength}</span>
+                  <span>{othersLength}</span>
                 </div>
             </div>
 
