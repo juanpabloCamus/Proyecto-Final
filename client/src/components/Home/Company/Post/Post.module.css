@@ -1,3 +1,16 @@
+.postsContainer {
+  margin: 1rem;
+  border-radius: 10px;
+  background-color: rgba(239, 245, 250, 0.793);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 .postCard {
   display: flex;
   margin-left: auto;

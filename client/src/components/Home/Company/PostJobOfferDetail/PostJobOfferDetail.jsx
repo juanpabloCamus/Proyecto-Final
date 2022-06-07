@@ -5,6 +5,7 @@ import { fetchCompany } from "../../../../redux/company/company";
 import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
+import styles1 from "../Post/Post.module.css";
 import arrow from "../../../../assets/arrow.png";
 import { BiHide } from "react-icons/bi";
 import { GrFormView, GrView } from "react-icons/gr";
@@ -14,13 +15,17 @@ import { CgCloseO } from "react-icons/cg";
 import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
+import { Image } from "cloudinary-react";
+//import PostU from "../Post/Post";
 
 function PostJobOffer() {
   const { id } = useParams();
+  //console.log(id)
   let navigate = useNavigate();
 
   let dispatch = useDispatch();
   let company = useSelector((state) => state.company.company);
+  let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   const [visible, setIsVisible] = React.useState(false);
 
   setTimeout(function () {
@@ -34,7 +39,11 @@ function PostJobOffer() {
     dispatch(fetchJobDetail(id));
     dispatch(fetchCompany(userLocalStorage.id));
   }, [dispatch, id]);
-
+  console.log(
+    "aqui",
+    jobDetail[0]?.applied_jobs?.map((e) => e.user_account)
+  );
+  console.log(company);
   const handleEditOffer = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEdit(true));
@@ -180,6 +189,56 @@ function PostJobOffer() {
           <NotFound />
         )}
       </div>
+      {
+        jobDetail[0]?.applied_jobs
+          ?.map((e) => e.user_account)
+          ?.map((el) => {
+            return (
+              <div className={styles1.postsContainer}>
+                <Link to={`/company/post/${el.id}`}>
+                  <div className={styles1.postCard}>
+                    <div className={styles1.imgContainer}>
+                      {/* <img src={profile_pic} alt="profile user"/> */}
+                      <Image
+                        cloudName="dhar2oawa"
+                        publicId={el.profile_pic}
+                        //id={styles.banner}
+                        //width="100"
+                        //crop="scale"
+                      />
+                    </div>
+                    <div className={styles1.detailsContainer}>
+                      <p>{el.fullName}</p>
+                      {el.description === null ? (
+                        <p className={styles1.null}>
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua.
+                        </p>
+                      ) : (
+                        <p>{el.description}</p>
+                      )}
+                      <div className={styles1.techsContainer}>
+                        {el.technologies?.map((t) =>
+                          t.name === "Cplus" ? (
+                            <label key={t.id}>C+</label>
+                          ) : t.name === "Cplusplus" ? (
+                            <label key={t.id}>C++</label>
+                          ) : t.name === "CSharp" ? (
+                            <label key={t.id}>C#</label>
+                          ) : (
+                            <label key={t.id}>{t.name}</label>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            );
+          })
+        //jobDetail[0]?.applied_jobs?.map(e=>e.user_account)?.map(e=>e.fullName))
+      }
     </div>
   );
 }
