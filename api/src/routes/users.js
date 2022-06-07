@@ -565,13 +565,27 @@ router.delete('/:id', async (req,res)=>{
     try{
         const {id} = req.params
 
-        await user_account.update({
-            active: false
-        },{
-            where: {id: id}
+        let user = await user_account.findAll({
+            where:{id: id}
         })
 
-        res.send('Deleted user')
+        if(user.length>0){
+            await user_account.update({
+                active: !user[0].dataValues.active
+            },{
+                where: {id: id}
+            })
+            if(user[0].dataValues.active){
+                res.send('User disabled')
+            }else{
+                res.send('User enabled')
+            }
+        }else{
+            res.send('user not exists')
+        }
+
+
+        
     }catch(error){
         console.log(error)
     }
