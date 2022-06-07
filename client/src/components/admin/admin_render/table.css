@@ -1,15 +1,20 @@
+
 .table{
     border-collapse: collapse;
     box-shadow: 4px 4px 8px -2px rgb(161, 161, 161);
     border-radius: 8px;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
+    height: 150px;
+    overflow-y: scroll;
 }
 
 .table th,
 .table td{
     padding: 12px 8px;
 }
+
+
 
 .table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -35,8 +40,19 @@
     padding: 10px 8px;
 }
 
-.delete_button{
+.disable_button{
     cursor: pointer;
     font-size: 18px;
     color: rgb(189, 11, 11);
+}
+
+.enable_button{
+    color: green;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.no_results{
+  padding-top: 15px;
+  padding-left: 5px;
 }

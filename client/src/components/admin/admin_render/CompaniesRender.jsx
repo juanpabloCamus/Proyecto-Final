@@ -1,20 +1,46 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { adminCompanyActions, fetchAdminCompanies } from "../../../redux/admin/adminCompanySlice"
+import axios from "axios"
+
 import { FaWindowClose } from "react-icons/fa"
+import { MdDoneOutline } from 'react-icons/md'
+import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
+
 
 export const CompaniesRender = () => {
 
-  const {companies} = useSelector(state => state.company)
-   
+  const {companies} = useSelector(state => state.adminCompany)
+  
+  const dispatch = useDispatch()
+  
+  useEffect(() =>{
+    dispatch(fetchAdminCompanies())
+  },[dispatch])
+
+
+  const handleToggleButton = async(id) =>{
+    try {
+      await axios.delete(`/company/${id}`)
+      dispatch(fetchAdminCompanies())
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
     <div>
+      <AdminFilterBar action={ adminCompanyActions }/>
          <table className="table">
              <thead className="table_headers">
                 <tr>
                     <th>Company Name</th>
                     <th>Email</th>
-                    <th>Stack</th>
+                    <th>Status</th>
                     <th></th>
+                    <th></th>
+                    <th>Reports </th>
                 </tr>
              </thead>
         <tbody>
@@ -31,12 +57,19 @@ export const CompaniesRender = () => {
                 {company.active?'Enabled':'Disabled'}
               </td>
               <td>
-                <FaWindowClose className="delete_button"/>
+              {
+                  company.active ? 
+                  (<FaWindowClose className="disable_button" onClick={() => handleToggleButton(company.id)} title="Disable"/>) 
+                  : 
+                  (<MdDoneOutline className="enable_button" onClick={() => handleToggleButton(company.id)} title="Enable"/>)
+                }
               </td>
+              <td></td>
+              <td>{company.reports}</td>
             </tr>
           ))
           : 
-          <p>Loading...</p>
+          <p className="no_results">There are no results for your search</p>
         }
         </tbody>
       </table>
