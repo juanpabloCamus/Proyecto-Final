@@ -8,9 +8,10 @@ import DeleteJobOffer from "./DeleteJobOffer";
 
 import styles from "./edit.module.css";
 import { EditJobOffer } from "./EditJobOffer";
+import  ReactiveJobOffer  from "./ReactiveJobOffer";
 
 export const Edit = () => {
-  const { isOpen, editOffer, editDelete } = useSelector((state) => state.modal);
+  const { isOpen, editOffer, editDelete, editReactive } = useSelector((state) => state.modal);
 
   const dispatch = useDispatch();
 
@@ -18,6 +19,7 @@ export const Edit = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEdit(false));
     dispatch(modalActions.activateDelete(false))
+    dispatch(modalActions.activateReactive(false))
   };
 
   return ReactDOM.createPortal(
@@ -31,8 +33,8 @@ export const Edit = () => {
             </div>
             <div className={styles.form_container}>
               {editOffer && <EditJobOffer />}
-
               {editDelete && <DeleteJobOffer />}
+              {editReactive && <ReactiveJobOffer />}
             </div>
           </div>
         </>
