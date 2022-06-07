@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './Post.module.css'
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 
-export default function Post({id,position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description}) {
+export default function Post({id,position,salary_range,time,requirements,company_accounts,technologies,seniority,english_level,description, active=true}) {
   let companyName
   let logo
   
@@ -16,10 +17,19 @@ export default function Post({id,position,salary_range,time,requirements,company
   
   let techs = technologies
   return (
+    <>
+    {active?
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          {<img id={styles.logo} src={logo} alt="Company logo"></img>}
+          {/* {<img id={styles.logo} src={logo} alt="Company logo"></img>} */}
+          <Image
+              cloudName="dhar2oawa"
+              publicId={logo}
+              id={styles.logo}
+              //width="100"
+              //crop="scale"
+            />
         </div>
         <div className={styles.detailsContainer}>
           <h2>{companyName}</h2>
@@ -41,5 +51,8 @@ export default function Post({id,position,salary_range,time,requirements,company
         </div>
       </div>
     </Link>
+    :<></>
+    }
+    </>
   )
 }
