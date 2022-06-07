@@ -10,7 +10,8 @@ const initialState = {
     editReactive: null,
     estado: false,
     editDevExp: null,
-    editDevEdu: null
+    editDevEdu: null,
+    premiumModal: null
 }
 
 const modalSlice = createSlice({
@@ -47,6 +48,9 @@ const modalSlice = createSlice({
         },
         activateEditDevEdu(state, {payload}){
             state.editDevEdu = payload
+        },
+        activatePremium(state, {payload}){
+            state.premiumModal = payload
         }
     }
 })
