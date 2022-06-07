@@ -71,26 +71,21 @@ const uploadFile = async (base64EncodeFile, data) => {
 
 
 const headers = {
-    'X-MAGICBELL-API-SECRET': 'aa64c7e916793f3432a40fd41ff5451f57d3e844',
-    'X-MAGICBELL-API-KEY': 'Af/ZLONiQehwgris0JjdE+z3t5R21DPZSlxTU3l0',
+    'X-MAGICBELL-API-KEY': 'c96eae5e30c793d17315ce13033abc734f4ef490',
+    'X-MAGICBELL-API-SECRET': 'FKOZoWjSNvnlNGLflrjM/jcFt6AJaAeRHBObQpeg',
   };
-
-const data = {
+    
+  const data = {
     notification: {
-      title: 'Applied Job!!',
-      content: 'Hello, can you upgrade us to the Startup plan. Thank you.',
-      category: 'Jobs',
-      action_url: 'https://magicbell.com/pricing',
-      recipients: [{ email: 'microsoft@gmail.com' }],
+      title: "We're processing your order",
     },
-  }
+  };
 
 
 const sendNotificacion = async() =>{
-    const res = axios.post('https://api.magicbell.com/notifications', data, { headers:{
-        'X-MAGICBELL-API-SECRET': 'aa64c7e916793f3432a40fd41ff5451f57d3e844',
-        'X-MAGICBELL-API-KEY': 'Af/ZLONiQehwgris0JjdE+z3t5R21DPZSlxTU3l0',
-    } });
+    const res = axios.post('https://api.magicbell.com/notifications', data, headers).catch((error) => {
+        console.log(error)
+      });
     console.log(res.data)
     console.log("Enviado")
 }
