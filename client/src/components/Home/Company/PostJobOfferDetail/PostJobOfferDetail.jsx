@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { fetchCompany } from "../../../../redux/company/company";
@@ -56,19 +56,35 @@ function PostJobOffer() {
     dispatch(modalActions.activateEdit(false));
   };
   let renderJob = company.jobs?.filter((e) => e.id == id)[0];
+  const radioStorage = JSON.parse(localStorage.getItem("radio1"));
+  let [radio1, setRadio1] = useState(radioStorage || "edit");
+  localStorage.setItem("radio1", JSON.stringify(radio1));
+
+  function handleCircle(e) {
+    let isChecked = e.target.checked;
+    if (isChecked) {
+      if (e.target.value === "developers") {
+        setRadio1("developers");
+      } else setRadio1("edit");
+    }
+    // if (!isChecked) {
+    //   setRadio("developers")
+    // }
+  }
 
   return (
     <div>
+  {radio1 === "edit" ? (    <div>
       <div className={styles.container_checkbox}>
         <div className={styles.div_checkbox_radio}>
           <input
             className={styles.checkbox}
             type="radio"
-            id="offers"
+            id="edit"
             name="radio"
-            value={"offers"}
-            //checked={radio === "offers"}
-            //onChange={(e) => handleCircle(e)}
+            value={"edit"}
+            checked={radio1 === "edit"}
+            onChange={(e) => handleCircle(e)}
           />
           <label className={styles.label}>Edit Detail</label>
         </div>
@@ -79,8 +95,8 @@ function PostJobOffer() {
             id="developers"
             name="radio"
             value={"developers"}
-            //checked={radio === "developers"}
-            //onChange={(e) => handleCircle(e)}
+            checked={radio1 === "developers"}
+            onChange={(e) => handleCircle(e)}
           />
           <label className={styles.label}>Developers</label>
         </div>
@@ -189,6 +205,34 @@ function PostJobOffer() {
           <NotFound />
         )}
       </div>
+      </div>
+      ):(<div>
+<div className={styles.container_checkbox}>
+        <div className={styles.div_checkbox_radio}>
+          <input
+            className={styles.checkbox}
+            type="radio"
+            id="edite"
+            name="radio"
+            value={"edit"}
+            checked={radio1 === "edit"}
+            onChange={(e) => handleCircle(e)}
+          />
+          <label className={styles.label}>Edit Detail</label>
+        </div>
+        <div className={styles.div_checkbox_radio}>
+          <input
+            className={styles.checkbox}
+            type="radio"
+            id="developers"
+            name="radio"
+            value={"developers"}
+            checked={radio1 === "developers"}
+            onChange={(e) => handleCircle(e)}
+          />
+          <label className={styles.label}>Developers</label>
+        </div>
+      </div>
       {
         jobDetail[0]?.applied_jobs
           ?.map((e) => e.user_account)
@@ -238,8 +282,8 @@ function PostJobOffer() {
             );
           })
         //jobDetail[0]?.applied_jobs?.map(e=>e.user_account)?.map(e=>e.fullName))
-      }
-    </div>
+      }</div>)
+  }</div>
   );
 }
 

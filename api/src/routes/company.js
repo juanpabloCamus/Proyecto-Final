@@ -273,11 +273,26 @@ router.delete('/:id', async (req,res)=>{
     try{
         const {id} = req.params
 
-        await company_account.update({
-            active: false
-        },{
-            where: {id: id}
+        let company = await company_account.findAll({
+            where:{id: id}
         })
+
+        if(company.length>0){
+            await company_account.update({
+                active: !company[0].dataValues.active
+            },{
+                where: {id: id}
+            })
+            if(company[0].dataValues.active){
+                res.send('Company disabled')
+            }else{
+                res.send('company enabled')
+            }
+        }else{
+            res.send('Company not exist')
+        }
+
+        
 
         res.send('Company eliminated')
     }catch(error){
