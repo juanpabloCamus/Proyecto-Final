@@ -239,7 +239,7 @@ function PostJobOffer() {
           ?.map((el) => {
             return (
               <div className={styles1.postsContainer}>
-                <Link to={`/company/post/${el.id}`}>
+                <Link to={`/company/post/users/${el.id}`}>
                   <div className={styles1.postCard}>
                     <div className={styles1.imgContainer}>
                       {/* <img src={profile_pic} alt="profile user"/> */}
