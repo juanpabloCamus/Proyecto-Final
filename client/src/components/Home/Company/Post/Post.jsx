@@ -6,7 +6,7 @@ import { Image } from 'cloudinary-react';
 
 function Post({id,profile_pic,fullName,description,email,technologies}) {
   return (
-    <Link to={`/company/post/${id}`}>
+    <Link to={`/company/user/${id}`}>
     <div className={styles.postCard}>
       <div className={styles.imgContainer}>
       {/* <img src={profile_pic} alt="profile user"/> */}
