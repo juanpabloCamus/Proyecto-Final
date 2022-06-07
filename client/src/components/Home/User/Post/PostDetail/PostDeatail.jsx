@@ -11,6 +11,7 @@ import  {ApplyModal}  from '../../Apply/ApplyModal';
 import styles from './PostDetail.module.css';
 import axios from 'axios'
 import { Image } from 'cloudinary-react';
+import Loading from "../../../../Loading/Loading";
 function PostDetail() {
 
   let navigate = useNavigate();
@@ -186,10 +187,10 @@ function PostDetail() {
         }
       </div>
     ) : (
-      <h1>Loading...</h1>
+      <Loading></Loading>
     )
   ) : (
-    <h1>Loading...</h1>
+    <Loading></Loading>
   );
 }
 

@@ -51,12 +51,7 @@ function FilterBar() {
 
   const handleChange = (e) => {
     e.preventDefault();
-    //let { value } = e;
     setSearch(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    search = e.target.value;
   };
 
   useEffect(() => {
@@ -68,12 +63,12 @@ function FilterBar() {
       <div className={style.filterBar}>
         <div className={style.filterSet}>
           <div className={style.searchBar}>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form>
               <input
                 className={style.searchTerm}
                 onChange={(e) => handleChange(e)}
                 type="search"
-                placeholder="Search..."
+                placeholder="Search company or position.."
               />
             </form>
           </div>

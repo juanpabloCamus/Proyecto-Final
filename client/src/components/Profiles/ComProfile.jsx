@@ -10,6 +10,8 @@ import { useParams } from "react-router";
 import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
 import { Image } from 'cloudinary-react'
+import Loading from "../Loading/Loading";
+
 
 
 function ComProfile() {
@@ -23,7 +25,7 @@ function ComProfile() {
   
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
-    if(user === undefined) return <h1>Loading</h1>
+    if(user === undefined) return <Loading></Loading>
     let companyTechs = []
     for (let i = 0; i < user.jobs.length; i++) {
         let aux = user.jobs[i].technologies

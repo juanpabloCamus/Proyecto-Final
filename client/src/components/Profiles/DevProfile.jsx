@@ -16,6 +16,7 @@ import { EditDev } from './EditDev'
 import { MdLocationOn } from 'react-icons/md'
 import {MdEmail} from 'react-icons/md'
 import {MdWork} from 'react-icons/md'
+import Loading from "../Loading/Loading";
 
 function DevProfile() {
     
@@ -28,7 +29,7 @@ function DevProfile() {
 
     const user = useSelector(state => state.users.user[0])
     
-    if(user === undefined) return <h1>Loading...</h1>
+    if(user === undefined) return <Loading></Loading>
 
     let userTechs = user.technologies?.map(t => t.name)
 
