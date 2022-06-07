@@ -44,7 +44,7 @@ function DevProfile() {
     }
     const sessionStorage = JSON.parse(localStorage.getItem("userData"));
     const profileType=sessionStorage.profileType
-    console.log(profileType)
+    
     return (
         <div>
           { profileType=="develop"
