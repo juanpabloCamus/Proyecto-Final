@@ -1,0 +1,11 @@
+.admin_filterbar{
+    margin-bottom: 25px;
+    /* text-align: center; */
+}
+
+.admin_filterbar input{
+    border-radius: 5px;
+    border: none;
+    box-shadow: 4px 4px 8px 1px rgb(192, 192, 192);
+    outline: none;
+}

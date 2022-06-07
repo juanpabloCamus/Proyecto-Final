@@ -1,7 +1,5 @@
 import {React, useState} from 'react';
-import { useForm } from '../../../../hooks/useForm.js';
 import axios from 'axios'
-import { MdUploadFile } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
 
 import './ApplyModal.css'
@@ -68,6 +66,7 @@ const uploadFile = async (base64EncodeFile, data) => {
         console.log(err)
     }
 }
+
 
   return (
     <div className="apply_form_container">
