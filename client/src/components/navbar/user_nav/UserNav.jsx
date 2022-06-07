@@ -22,7 +22,7 @@ export const UserNav = ({id}) => {
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"))
   const profile = sessionStorage.profileType.join(" ")
-  console.log(sessionStorage)
+ 
 
   const handleMenu = () => {
     setToggleMenu(!toggleMenu)

@@ -4,9 +4,9 @@ import { FaWindowClose } from 'react-icons/fa'
 
 export const JobsRender = () => {
 
-  const { allJobs } = useSelector(state => state.allJobs)
-  const jobs = allJobs[0]?.offers || []
+  const { jobs } = useSelector(state => state.adminJob)
 
+  console.log(jobs)
 
   return (
     <div>

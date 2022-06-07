@@ -3,7 +3,7 @@ import { FaWindowClose } from "react-icons/fa"
 
 export const CompaniesRender = () => {
 
-  const {companies} = useSelector(state => state.company)
+  const {companies} = useSelector(state => state.adminCompany)
    
 
   return (

@@ -6,7 +6,7 @@ import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
 
 export const UsersRender = () => {
 
-   const { users } = useSelector(state => state.users)
+  const {users} = useSelector(state => state.adminUsers)
 
    console.log(users)
 
@@ -24,7 +24,7 @@ export const UsersRender = () => {
           </thead>
         <tbody>
         { users.length !== 0 ?
-          users[0].offers.map((user, i) => (
+          users.map((user, i) => (
             <tr key={i}>
               <td>
                 {user.fullName}
