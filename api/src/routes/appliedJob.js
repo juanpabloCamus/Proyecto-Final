@@ -18,7 +18,7 @@ router.get('/', async (req,res)=>{
 router.post('/', async (req,res)=>{
     try{
         const {idUser, idJob, timeRange, publicID, description} = req.body;
-        if(publicID&&description&&(timeRange==='Any time'||timeRange==='8hs - 12hs'||timeRange==='12hs - 16hs'||timeRange==='16hs - 20hs')){
+        if(publicID&&description/* &&(timeRange==='Any time'||timeRange==='8hs - 12hs'||timeRange==='12hs - 16hs'||timeRange==='16hs - 20hs') */){
                 const user = await user_account.findAll({
                     where: {id: idUser},
                     include: applied_job
@@ -31,7 +31,7 @@ router.post('/', async (req,res)=>{
                 }else{
                     let postulacion = await applied_job.create({
                         pdf: publicID,
-                        timeRange: timeRange,
+                        /* timeRange: timeRange, */
                         description: description,
                     })
                     await postulacion.setUser_account(user[0].dataValues.id)
