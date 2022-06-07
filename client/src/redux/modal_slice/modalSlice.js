@@ -7,6 +7,8 @@ const initialState = {
     activeApplyModal: null,
     editOffer: null,
     editDelete: null,
+    editReactive: null,
+    estado: false,
     editDevExp: null,
     editDevEdu: null
 }
@@ -33,6 +35,12 @@ const modalSlice = createSlice({
         },
         activateDelete(state, {payload}){
             state.editDelete = payload
+        },
+        activateReactive(state, {payload}){
+            state.editReactive = payload
+        },
+        setEstado(state){
+            state.estado = !state.estado
         },
         activateEditDevExp(state, {payload}){
             state.editDevExp = payload
