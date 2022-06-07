@@ -179,6 +179,10 @@ function EditDevProfileForm() {
             text: err.data
         }))
         dispatch(fetchUser(id))
+        const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+        sessionStorage.profile_pic = user.profile_pic
+        localStorage.setItem("userData", JSON.stringify(sessionStorage))
+        //console.log()
         navigate(`/home/profile/${id}`)
     }
     

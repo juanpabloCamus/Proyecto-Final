@@ -197,3 +197,32 @@
     position: absolute;
     display: block;
 }
+
+.container_checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.div_checkbox_radio {
+  margin: 1rem;
+  background-color: #46499c;
+  border-radius: 5px;
+  padding: 10px 20px;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #31a029;
+}
+
+.label {
+  padding-left: 0.6rem;
+  font-size: 1.3rem;
+  color: #f2f7fb;
+  font-weight: bold;
+}
