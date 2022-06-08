@@ -25,7 +25,6 @@ function PostJobOffer() {
   let company = useSelector((state) => state.company.company);
   let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   const { estado } = useSelector((state) => state.modal);
-  //let [estado, setEstado] = useState(false)
   const [visible, setIsVisible] = React.useState(false);
 
   setTimeout(function () {
@@ -46,13 +45,12 @@ function PostJobOffer() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(true));
     dispatch(modalActions.activateReactive(false));
-    //setEstado(!estado)
+    
   };
   const handleActivate = () =>{
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(false));
     dispatch(modalActions.activateReactive(true));
-    //setEstado(!estado)
   }
   let renderJob = company.jobs?.filter((e) => e.id == id)[0];
   const radioStorage = JSON.parse(localStorage.getItem("radio1"));

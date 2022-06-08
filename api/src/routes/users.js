@@ -200,7 +200,7 @@ router.post('/register', async (req,res)=>{
 })
 
 router.put('/:id', async (req,res)=>{
-    try{
+    try{ 
         const {id} = req.params
         const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 

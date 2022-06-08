@@ -61,3 +61,7 @@
 .apply_button:hover{
     background-color: #3f428a;
 }
+#error{
+    color: red;
+    margin-top: 20px;
+}

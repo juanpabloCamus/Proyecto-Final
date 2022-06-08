@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 import { Image } from "cloudinary-react";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { EditDev } from "./EditDev";
-
+import {MdReportGmailerrorred} from "react-icons/md"
 import { MdLocationOn } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
-
+import axios from "axios"
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -40,36 +40,45 @@ function DevProfile() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevEdu(true));
   }
+  const  handleReport=async (id)=>{
+
+    try{
+
+       const res=await axios.put(`users/report/${id}`)
+
+    }catch(error)
+    {
+      console.log(error)
+    }
+  }
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profileType = sessionStorage.profileType;
-  console.log(profileType);
+
   return (
     <div>
         
       <div className={styles.pageContainer}>
         <EditDev />
-        {/* <EditDevEdu/> */}
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
-            {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
+
             <Image
               cloudName="dhar2oawa"
               publicId={user.banner}
               id={styles.banner}
-              //width="100"
-              //crop="scale"
-            />
+              
+              />
           </div>
           <div className={styles.infoContainer}>
+              <div className={styles.reportaje}>
+              {profileType == "company" && <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>}</div>
             <div className={styles.mainInfoContainer}>
-              {/* <img id={styles.logo} src={user.profile_pic} alt="profile_pic"></img> */}
               <div className={styles.userPhoto}>
                 <Image
                   id={styles.logo}
                   cloudName="dhar2oawa"
                   publicId={user.profile_pic}
-                  // width="100"
-                  // crop="scale"
+           
                 />
               </div>
               <div className={styles.nameContainer}>
