@@ -1,8 +1,7 @@
-import React from 'react'
-import styles from './notificationCard.module.css'
 
-export const NotificationCard = () => {
+import styles from './notificationDevCard.module.css'
 
+export const NotificationDevCard = () => {
 
 
   return (
@@ -15,7 +14,7 @@ export const NotificationCard = () => {
         <p className={styles.notification_message}>Hi dear developer, as a company which wants to offers the best software solution services, we are contantly looking for new talents, so because of that we are interest in your profile. We would lik to know if you are avalible for an short meeting via Jitsi<br/> If you are interested please select one of the following schedules to arrange the meeting</p>
 
         <select className={styles.notification_select}>
-            <option value="" selected disabled>Select schedule</option>
+            <option value="" disabled>Select schedule</option>
             <option value="">8am - 9am</option>
             <option value="">11am - 12am</option>
             <option value="">2pm - 3pm</option>

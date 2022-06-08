@@ -1,4 +1,6 @@
-import { NotificationCard } from './notification_card/NotificationCard'
+import { NotificationDevCard } from './notification_dev_card/NotificationDevCard'
+import { NotificationComCard } from './notification_com_card/NotificationComCard'
+
 import { AiFillNotification } from 'react-icons/ai'
 
 import styles from './notifications.module.css'
@@ -8,7 +10,8 @@ export const Notifications = () => {
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
-  const { fullName } = userLocalStorage
+  const { fullName, profileType } = userLocalStorage
+  
 
   return (
     <div className={styles.notifications}>
@@ -18,9 +21,24 @@ export const Notifications = () => {
           <h4>Your Notifications</h4>
           <AiFillNotification />
         </div>
-        <NotificationCard />
-        <NotificationCard />
-        <NotificationCard />
+        {
+          profileType[0] === "develop" && (
+            <div>
+              <NotificationDevCard />
+              <NotificationDevCard />
+            </div>
+          )
+        }
+
+        {
+          profileType[0] === "company" && (
+            <div>
+              <NotificationComCard/>
+            </div>
+          )
+        }
+        
+
       </div>
     </div>
   )

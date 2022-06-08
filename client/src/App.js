@@ -16,6 +16,8 @@ import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
 import EditComProfileForm from "./components/Profiles/EditComProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
+
+
 import { Notifications } from "./components/notifications/Notifications";
 
 
@@ -47,7 +49,7 @@ function App() {
               <Route path="home/favorites" element={<Favorites/>}/>
               <Route path="home/profile/:id" element={<DevProfile />} />
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
-              <Route path="notifications" element={<Notifications />} />
+              <Route path="home/notifications" element={<Notifications />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
@@ -59,7 +61,7 @@ function App() {
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
               <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
-              <Route path="notifications" element={<Notifications />} />
+              <Route path="company/notifications" element={<Notifications />} />
             </Route>
               
           
