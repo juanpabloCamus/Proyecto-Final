@@ -35,11 +35,26 @@
 }
 .back button{
    
+    
     width: 30px;
-    background-color: rgba(239, 245, 250, 0.793);
+    background-color: #F2F7FB;
     border:none;
     cursor:pointer;
+    
 }
+.reportaje button{
+    color: black;
+    font-size: 40px;
+    
+    background-color: #F2F7FB;
+    border: none;
+    cursor: pointer;
+}
+
+.reportaje button:hover{
+    color:red
+}
+
 
 #heart{
     width: 30px;

@@ -88,13 +88,12 @@ export const EditJobOffer = () => {
     setTimeout(function () {
       setIsVisible(true);
     }, 3000);
-    // while(!visible)
     
     dispatch(modalActions.setModalValue());
     window.setTimeout(function () {
       window.location.reload();
     }, 3000);
-    // window.location.reload()
+  
   };
   const [visible, setIsVisible] = React.useState(false);
 

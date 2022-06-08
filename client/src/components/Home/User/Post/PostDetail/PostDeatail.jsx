@@ -120,7 +120,9 @@ function PostDetail() {
           <button onClick={() => navigate(-1)}>
             <img alt="arrowBack" src={arrow}></img>
           </button>
-            <button onClick={()=>handleReport(id)}className={styles.reportaje}><MdReportGmailerrorred/></button>
+           <div className={styles.reportaje}>
+           <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>
+             </div>
         </div>
         <div className={styles.companyInfoContainer}>
           <div className={styles.logoContainer}>

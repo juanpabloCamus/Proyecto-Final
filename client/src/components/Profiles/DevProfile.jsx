@@ -69,8 +69,9 @@ function DevProfile() {
               
               />
           </div>
-              {profileType == "company" && <button onClick={()=>handleReport(id)}className={styles.reportaje}><MdReportGmailerrorred/></button>}
           <div className={styles.infoContainer}>
+              <div className={styles.reportaje}>
+              {profileType == "company" && <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>}</div>
             <div className={styles.mainInfoContainer}>
               <div className={styles.userPhoto}>
                 <Image
