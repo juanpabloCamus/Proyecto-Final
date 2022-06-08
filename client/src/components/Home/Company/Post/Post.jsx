@@ -1,12 +1,22 @@
 import React from 'react'
 import styles from "./Post.module.css"
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
+
+
 function Post({id,profile_pic,fullName,description,email,technologies}) {
   return (
-    <Link to={`/company/post/${id}`}>
+    <Link to={`/company/user/${id}`}>
     <div className={styles.postCard}>
       <div className={styles.imgContainer}>
-      <img src={profile_pic} alt="profile user"/>
+      {/* <img src={profile_pic} alt="profile user"/> */}
+      <Image
+              cloudName="dhar2oawa"
+              publicId={profile_pic}
+              //id={styles.banner}
+              //width="100"
+              //crop="scale"
+            />
       </div>
       <div className={styles.detailsContainer}>
         <p>{fullName}</p>

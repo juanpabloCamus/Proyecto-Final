@@ -8,7 +8,14 @@ import techsSlice  from '../redux/techs/techs'
 import jobDetailSlice  from '../redux/jobs/jobDetail'
 import authSlice from '../redux/auth/authSlice'
 import CompanyPSlice from '../redux/Profile/profileData'
-import allJobsSlice from '../redux/jobs/allJobs'
+
+//Admin Slices
+
+import adminUsersSlice from '../redux/admin/adminUsersSlice'
+import adminCompanySlice from '../redux/admin/adminCompanySlice'
+import adminOtherSlice from '../redux/admin/adminOtherSlice'
+import adminJobSlice from '../redux/admin/adminJobSlice'
+
 
 export const store = configureStore({
     reducer:{
@@ -21,7 +28,13 @@ export const store = configureStore({
         techs:techsSlice,
         jobDetail: jobDetailSlice,
         jobs:jobsSlice,
-        allJobs: allJobsSlice
+      
+
+        //admin Slices
+        adminUsers: adminUsersSlice,
+        adminCompany: adminCompanySlice,
+        adminJob:adminJobSlice,
+        adminOther:adminOtherSlice
     }
 })
 

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import styles from './EditComProfileForm.module.css';
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import Swal from 'sweetalert2'
+import Loading from "../Loading/Loading";
 
 function EditComProfileForm() {
 
@@ -134,7 +135,7 @@ function EditComProfileForm() {
         navigate(`/company/profile/${id}`)
     }
 
-    if(user === undefined) return <h1>Loading...</h1>
+    if(user === undefined) return <Loading></Loading>
     
     return (
         <div className={styles.formContainer}>
