@@ -139,7 +139,7 @@ function PostJobOffer() {
                   <div className={styles.detailTwo}>
                     <div id={styles.description} className={styles.fields}>
                       <h4>Description:</h4>
-                      <label>{renderJob.description}</label>
+                      <label>{renderJob.description} </label>
                     </div>
                     <div id={styles.requirements} className={styles.fields}>
                       <h4>Requirements:</h4>
@@ -270,7 +270,7 @@ function PostJobOffer() {
                           ) : (
                             <p>{el.description}</p>
                           )}
-                          {/* <div className={styles1.techsContainer}>
+                          {/* <div className={styles.techsContainer}>
                             {el.technologies?.map((t) =>
                               t.name === "Cplus" ? (
                                 <label key={t.id}>C+</label>
