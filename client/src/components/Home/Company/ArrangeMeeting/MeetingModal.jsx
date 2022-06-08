@@ -4,12 +4,12 @@ import { MdClose } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
-import ArrangeMeeting from './ArrangeMeeting';
+import ArrangeMeeting from './ArrangeMeeting.jsx';
 
-export const ApplyModal = () => {
+export const MeetingModal = () => {
 
 const { isOpen } = useSelector(state => state.modal)
-const { activeApplyModal } = useSelector(state => state.modal)
+const { arrangeMeeting } = useSelector(state => state.modal)
 
 
 const dispatch = useDispatch()
@@ -36,7 +36,7 @@ const handleCloseModal = ()  =>{
                     </div>
                     <div className='form_container'>
                     {
-                        activeApplyModal && <ArrangeMeeting/>
+                        arrangeMeeting && <ArrangeMeeting/>
                     }
                     </div>
                 </div>

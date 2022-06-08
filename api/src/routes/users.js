@@ -41,7 +41,7 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id,active: true},
-            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model: applied_job, include: {model:job, include: {model:company_account}}},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
         if(user.length<1){
@@ -200,7 +200,7 @@ router.post('/register', async (req,res)=>{
 })
 
 router.put('/:id', async (req,res)=>{
-    try{
+    try{ 
         const {id} = req.params
         const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 

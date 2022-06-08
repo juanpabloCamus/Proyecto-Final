@@ -78,7 +78,7 @@ export const UserNav = () => {
             <Image
               cloudName="dhar2oawa"
               publicId={companyProfile?.logo}
-              id={styles.banner}
+              //id={styles.banner}
               //width="100"
               //crop="scale"
             />

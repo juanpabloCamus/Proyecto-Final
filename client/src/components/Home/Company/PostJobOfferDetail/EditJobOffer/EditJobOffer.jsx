@@ -61,12 +61,9 @@ export const EditJobOffer = () => {
   };
 
   const addTechs = (e) => {
-    //console.log(addedTechs)
-    //console.log(addedTechs.map(el=>el.))
     let repeatedTech = addedTechs.filter(
       (el) => el.tech === e.target.value || el.name === e.target.value
     );
-    //console.log(repeatedTech.length)
     if (!repeatedTech.length && addedTechs.length < 8) {
       const techObj = {
         tech: e.target.value,
@@ -91,14 +88,12 @@ export const EditJobOffer = () => {
     setTimeout(function () {
       setIsVisible(true);
     }, 3000);
-    console.log(visible);
-    // while(!visible)
     
     dispatch(modalActions.setModalValue());
     window.setTimeout(function () {
       window.location.reload();
     }, 3000);
-    // window.location.reload()
+  
   };
   const [visible, setIsVisible] = React.useState(false);
 

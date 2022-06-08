@@ -1,17 +1,24 @@
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import styles from './adminFilterBar.module.css'
 
+export const AdminFilterBar = ({action}) => {
 
-export const AdminFilterBar = () => {
+const [value, setValue] = useState("")
+const dispatch = useDispatch()
 
 const handleInputChange = ({target}) => {
     const value = target.value
+    setValue(value)
+    dispatch(action.filterByValue(value))
     
 }
 
   return (
-    <div>
+    <div className={styles.admin_filterbar}>
         <div className={styles.searchbar_container}>
-            <input type="text"  onChange={handleInputChange} placeholder='Search...'/>
+            <input type="search"  value={value} onChange={handleInputChange} placeholder='Search...'/>
         </div>
     </div>
   )
