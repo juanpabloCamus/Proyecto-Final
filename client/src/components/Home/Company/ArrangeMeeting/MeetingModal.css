@@ -1,0 +1,63 @@
+.modal{
+    background-color: rgb(245, 245, 245);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 70px;
+    width: 450px;
+    z-index: 1000;
+
+
+    animation: fadeInAnimation ease 1.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/* .form_container{
+    padding: 20px;
+} */
+
+.overlay__modal{
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom:0;
+    z-index: 1000;
+}
+
+
+.apply_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.apply_form label{
+    font-size: 22px;
+    color: rgb(55, 55, 55);
+}
+
+
+
+.apply_button{
+    background-color: #46499c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    padding: 15px 0;
+    outline: none;
+    margin-top: 20px;
+}
+
+.apply_button:hover{
+    background-color: #3f428a;
+}
