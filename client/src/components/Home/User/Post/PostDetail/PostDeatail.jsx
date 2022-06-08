@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
 import { modalActions } from '../../../../../redux/modal_slice/modalSlice';
 import  {ApplyModal}  from '../../Apply/ApplyModal';
+import {MdReportGmailerrorred} from "react-icons/md"
 import styles from './PostDetail.module.css';
 import axios from 'axios'
 import { Image } from 'cloudinary-react';
 import Loading from "../../../../Loading/Loading";
+
 function PostDetail() {
 
   let navigate = useNavigate();
@@ -34,6 +36,17 @@ function PostDetail() {
     dispatch(fetchJobDetail(id));
   }, [dispatch, id]);
 
+   const  handleReport=async (id)=>{
+
+    try{
+
+       const res=await axios.put(`jobs/report/${id}`)
+
+    }catch(error)
+    {
+      console.log(error)
+    }
+  }
   let detail = useSelector((state) => state.jobDetail.jobDetail);
 
   if (detail[0]) {
@@ -107,6 +120,9 @@ function PostDetail() {
           <button onClick={() => navigate(-1)}>
             <img alt="arrowBack" src={arrow}></img>
           </button>
+           <div className={styles.reportaje}>
+           <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>
+             </div>
         </div>
         <div className={styles.companyInfoContainer}>
           <div className={styles.logoContainer}>
@@ -118,6 +134,7 @@ function PostDetail() {
               //width="100"
               //crop="scale"
             />
+           
           </div>
           <div className={styles.nameContainer}>
             <h1>{company_accounts[0].name}</h1>
