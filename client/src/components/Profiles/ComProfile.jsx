@@ -10,6 +10,10 @@ import { useParams } from "react-router";
 import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
 import { Image } from 'cloudinary-react'
+import Loading from "../Loading/Loading";
+import { modalActions } from "../../redux/modal_slice/modalSlice";
+import { Premium } from "./CompanyPremium/Premium";
+
 
 
 function ComProfile() {
@@ -23,7 +27,9 @@ function ComProfile() {
   
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
-    if(user === undefined) return <h1>Loading</h1>
+
+    if(user === undefined) return <Loading></Loading>
+
     let companyTechs = []
     for (let i = 0; i < user.jobs.length; i++) {
         let aux = user.jobs[i].technologies
@@ -31,9 +37,15 @@ function ComProfile() {
             if(!(companyTechs.includes(aux[i].name)))companyTechs.push(aux[i].name)
         }
     }
+
+    function handlePremium(){
+        dispatch(modalActions.setModalValue());
+        dispatch(modalActions.activatePremium(true));
+    }
     
     return (
         <div className={styles.pageContainer}>
+            <Premium></Premium>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
@@ -90,6 +102,7 @@ function ComProfile() {
                 </div>
                 <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
+                        <button id={styles.premium} onClick={handlePremium}>Be premium</button>
                 </div>
                 {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>

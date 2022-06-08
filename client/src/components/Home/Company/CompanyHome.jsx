@@ -14,7 +14,6 @@ import PostJobOffer from "./Post/PostJobOffer";
 function CompanyHome() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
-
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
   const company = useSelector((state) => state.company.company);
@@ -80,12 +79,9 @@ function CompanyHome() {
   let [radio, setRadio] = useState(radioStorage || "offers");
   localStorage.setItem("radio", JSON.stringify(radio));
 
-  // setRadio(radioStorage)
   function handleCircle(e) {
-    console.log(document.getElementById(e));
     let isChecked = e.target.checked;
     if (isChecked) {
-      console.log(e.target.value);
       if (e.target.value === "developers") {
         setRadio("developers");
       } else setRadio("offers");
@@ -215,12 +211,13 @@ function CompanyHome() {
                       time={e.time}
                       technologies={e.technologies}
                       applications = {e.applied_jobs}
+                      active={e.active}
                     />
                   </div>
                 );
               })
             ) : (
-              <p>No hay usuarios</p>
+              <p>There are no published users yet</p>
             )}
           </div>
         </div>

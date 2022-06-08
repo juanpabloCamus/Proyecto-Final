@@ -9,7 +9,7 @@ router.get('/', async (req,res)=>{
 
         let jobs = await job.findAll({
             where: {active: true},
-            include: [{model: company_account},{model: technology},{model:otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}],
+            include: [{model: company_account},{model: technology},{model:otherTechs},{model:user_account},{model:applied_job, include:{model: user_account,include:{model:technology}}}],
             order: [
                 ['id', 'DESC']
             ],
@@ -121,7 +121,7 @@ router.get('/:id',async (req,res)=>{
     try{
         const {id} = req.params
         let jobId = await job.findAll({
-            include: [{model: company_account},{model: technology},{model: otherTechs},{model:user_account},{model:applied_job, include:{model: user_account}}], 
+            include: [{model: company_account},{model: technology},{model: otherTechs},{model:user_account},{model:applied_job, include:{model: user_account,include:{model:technology}}}], 
             where:{id: id,active: true}
         })
         if(jobId.length<1){
@@ -209,6 +209,31 @@ router.post('/:id', async (req,res)=>{
             res.send('Complete all the fields')
         }
     }catch(error){
+        console.log(error)
+    }
+})
+
+router.put('/report/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let jobs = await job.findAll({
+            where:{id: id}
+        })
+
+        if(jobs.length>0){
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1
+                },{
+                    where:{id: id}
+                }
+            )
+            res.send('Job reported')
+        }else{
+            res.send('Job not exist')
+        }
+    } catch (error) {
         console.log(error)
     }
 })
@@ -307,6 +332,7 @@ router.put('/:id', async (req,res)=>{
         if(technologies){
             let actJob = await job.findAll({
                 include: technology,
+                include: otherTechs,
                 where:{id: id}
             })
             actJob[0].dataValues.technologies.map(t=>actJob[0].removeTechnology(t.dataValues.id))
@@ -336,11 +362,24 @@ router.delete('/:id', async (req,res)=>{
     try {
         const {id} = req.params
 
-        await job.update({
-            active: false},{
-            where:{id: id}
+        let jobs = await job.findAll({
+            where: {id: id}
         })
-        res.send('deleted')
+
+        if(jobs.length>0){
+            await job.update({
+                active: !jobs[0].dataValues.active
+            },{
+                where:{id: id}
+            })
+            if(jobs[0].dataValues.active){
+                res.send('Job disabled')
+            }else{
+                res.send('Job enabled')
+            }
+        }else{
+            res.send("Job not exist")
+        }
     } catch (error) {
         console.log(error)
     }

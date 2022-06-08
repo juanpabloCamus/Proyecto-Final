@@ -10,6 +10,14 @@
     margin-bottom: 100px;
 }
 
+.reportaje 
+{
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+    font-size: 30px;
+  
+}
 .detailContainer{
     padding: 20px;
     margin-left: auto;
@@ -21,14 +29,32 @@
     gap: 50px;
     border-bottom: 1px solid black;
 }
-
+.back{
+    display: flex;
+    justify-content: space-between;
+}
 .back button{
    
+    
     width: 30px;
-    background-color: rgba(239, 245, 250, 0.793);
+    background-color: #F2F7FB;
     border:none;
     cursor:pointer;
+    
 }
+.reportaje button{
+    color: black;
+    font-size: 40px;
+    
+    background-color: #F2F7FB;
+    border: none;
+    cursor: pointer;
+}
+
+.reportaje button:hover{
+    color:red
+}
+
 
 #heart{
     width: 30px;

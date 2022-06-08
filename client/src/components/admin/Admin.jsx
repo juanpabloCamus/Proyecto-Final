@@ -1,19 +1,30 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { fetchAdminUsers } from '../../redux/admin/adminUsersSlice'
+import { fetchAdminCompanies } from '../../redux/admin/adminCompanySlice'
+import { fetchAdminJobs } from '../../redux/admin/adminJobSlice'
+import { fetchAdminOthers } from '../../redux/admin/adminOtherSlice'
+
+//Render Components
+import { UsersRender } from './admin_render/UsersRender'
+import { CompaniesRender } from './admin_render/CompaniesRender'
+import { JobsRender } from './admin_render/JobsRender'
+
+//Icons
 import { FaUsers } from 'react-icons/fa'
 import {FaUserAlt} from 'react-icons/fa'
 import { MdWork } from 'react-icons/md'
 import { AiFillProfile } from 'react-icons/ai'
-import { UsersRender } from './admin_render/UsersRender'
-import { JobsRender } from './admin_render/JobsRender'
-import { fetchAllJobs } from '../../redux/jobs/allJobs'
-import { fetchUsers } from '../../redux/users/users'
 import { FaBuilding } from 'react-icons/fa'
 import { RiBuildingFill } from 'react-icons/ri'
+import {GiTechnoHeart} from 'react-icons/gi'
+import { RiCodeSSlashFill } from 'react-icons/ri'
+
+
 
 import styles from './admin.module.css'
-import { fetchCompanies } from '../../redux/company/company'
-import { CompaniesRender } from './admin_render/CompaniesRender'
+import { Others } from './admin_render/Others'
+
 
 export const Admin = () => {
 
@@ -22,18 +33,21 @@ export const Admin = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchAllJobs())
-    dispatch(fetchUsers())
-    dispatch(fetchCompanies())
+    dispatch(fetchAdminUsers())
+    dispatch(fetchAdminCompanies())
+    dispatch(fetchAdminJobs())
+    dispatch(fetchAdminOthers())
   }, [dispatch])
 
- const {users} = useSelector(state => state.users)
- const {allJobs} = useSelector(state => state.allJobs)
- const {companies} = useSelector(state => state.company)
+ const {usersLength} = useSelector(state => state.adminUsers)
+ const {companiesLength} = useSelector(state => state.adminCompany)
+ const {jobsLength} = useSelector(state => state.adminJob)
+ const {othersLength} = useSelector(state => state.adminOther)
 
-if(users[0].offers === undefined) return <p>Loading...</p>
-if(allJobs === undefined) return <p>Loading...</p>
-if(companies === undefined) return <p>Loading...</p>
+ if(usersLength === 0) return <p>Loading...</p>
+ if(companiesLength === 0) return <p>Loading...</p>
+ if(jobsLength === 0) return <p>Loading...</p>
+//  if(othersLength === 0) return <p>Loading...</p>
 
 
 
@@ -66,6 +80,14 @@ if(companies === undefined) return <p>Loading...</p>
             <MdWork/>
             <span>Jobs Offers</span>  
           </li>
+
+          <li className={styles.side_bar_item}
+              onClick={ () => setSelectOption("technologies") }
+          >
+            <GiTechnoHeart />
+            <span>Technologies</span>
+          </li>
+
         </ul>
         
       </aside>
@@ -77,7 +99,7 @@ if(companies === undefined) return <p>Loading...</p>
                 <FaUserAlt className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Users:</h4>
-                  <span>{users[0]?.offers === undefined ? <p>Loading...</p> : users[0]?.offers?.length}</span>
+                  <span>{usersLength}</span>
                 </div>
             </div>
 
@@ -85,7 +107,7 @@ if(companies === undefined) return <p>Loading...</p>
                 <RiBuildingFill className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Companies:</h4>
-                  <span>{companies === undefined ? <p>Loading...</p> : companies.length}</span>
+                  <span>{companiesLength}</span>
                 </div>
             </div>
 
@@ -93,12 +115,20 @@ if(companies === undefined) return <p>Loading...</p>
                 <AiFillProfile className={styles.statistics_box_icon}/>
                 <div className={styles.statistics_box_info}>
                   <h4>Job Offers:</h4>
-                  <span>{allJobs[0]?.offers === undefined ? <p>Loading...</p> : allJobs[0]?.offers.length}</span>
+                  <span>{jobsLength}</span>
+                </div>
+            </div>
+
+            <div className={styles.statistics_box}>
+                <RiCodeSSlashFill className={styles.statistics_box_icon}/>
+                <div className={styles.statistics_box_info}>
+                  <h4>Other Techs:</h4>
+                  <span>{othersLength}</span>
                 </div>
             </div>
 
           </div>
-          <div className={styles.table_section}>
+          {<div className={styles.table_section}>
             {
               selectOption === "users" && <UsersRender />
             }
@@ -108,8 +138,10 @@ if(companies === undefined) return <p>Loading...</p>
             {
               selectOption === "companies" && <CompaniesRender />
             }
-
-          </div>
+            {
+              selectOption === "technologies" && <Others />
+            }
+          </div>}
       </main>
     </div>
   )

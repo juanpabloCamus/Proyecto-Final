@@ -41,7 +41,7 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id,active: true},
-            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model: applied_job, include: {model:job, include: {model:company_account}}},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
         if(user.length<1){
@@ -200,7 +200,7 @@ router.post('/register', async (req,res)=>{
 })
 
 router.put('/:id', async (req,res)=>{
-    try{
+    try{ 
         const {id} = req.params
         const {fullName, date_birth, profile_pic, description, technologies, stack, banner, currentJob, country, city, english_level, seniority } = req.body
 
@@ -457,6 +457,31 @@ router.put('/education/:id', async (req,res)=>{
     }
 })
 
+router.put('/report/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let user = await user_account.findAll({
+            where:{id: id}
+        })
+
+        if(user.length>0){
+            await user_account.update(
+                {
+                    reports: user[0].dataValues.reports+1
+                },{
+                    where:{id: id}
+                }
+            )
+            res.send('User reported')
+        }else{
+            res.send('User not exist')
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 router.put('/experience/:id', async (req,res)=>{
     try {
         const {id} = req.params
@@ -540,13 +565,27 @@ router.delete('/:id', async (req,res)=>{
     try{
         const {id} = req.params
 
-        await user_account.update({
-            active: false
-        },{
-            where: {id: id}
+        let user = await user_account.findAll({
+            where:{id: id}
         })
 
-        res.send('Deleted user')
+        if(user.length>0){
+            await user_account.update({
+                active: !user[0].dataValues.active
+            },{
+                where: {id: id}
+            })
+            if(user[0].dataValues.active){
+                res.send('User disabled')
+            }else{
+                res.send('User enabled')
+            }
+        }else{
+            res.send('user not exists')
+        }
+
+
+        
     }catch(error){
         console.log(error)
     }

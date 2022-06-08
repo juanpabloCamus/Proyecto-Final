@@ -19,6 +19,7 @@ function DeleteJobOffer() {
     eliminateOffer(id);
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(false))
+    dispatch(modalActions.setEstado())
   };
 
   const handleHide = () => {
@@ -29,7 +30,6 @@ function DeleteJobOffer() {
   const eliminateOffer = async (id) => {
     try {
       const res = await axios.delete(`/jobs/${id}`);
-      console.log(res);
       if (res.data) {
         Swal.fire({
           icon: "success",
@@ -55,11 +55,11 @@ function DeleteJobOffer() {
       
         <div className={styles.div}>
           <img className={styles.img} src={pregunta} alt="" />
-          <h2 className={styles.h2}>Do you want to disable this offer?</h2>
+          <h2 className={styles.h2}>Do you want to reactive this offer?</h2>
           {/* <p>You won't be able to revert this</p> */}
           <div>
             <button onClick={handleSubmit} type="submit">
-              Yes, disable it!
+              Yes, reactive it!
             </button>
           </div>
           <div>

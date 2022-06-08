@@ -71,6 +71,18 @@ module.exports = (sequelize) => {
         active: {
             type: DataTypes.BOOLEAN,
             defaultValue: true
+        },
+        reports:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        premium:{
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        premiumDate:{
+            type: DataTypes.DATE,
         }
 
     },{timestamps:false})

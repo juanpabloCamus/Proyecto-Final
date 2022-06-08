@@ -1,9 +1,7 @@
 import {React, useState} from 'react';
-import { useForm } from '../../../../hooks/useForm.js';
 import axios from 'axios'
-import { MdUploadFile } from 'react-icons/md';
 import { useParams } from 'react-router-dom'
-
+import { CloudinaryContext, Image, Transformation } from 'cloudinary-react'
 import './ApplyModal.css'
 
 
@@ -11,12 +9,14 @@ function Apply() {
 
 const [ previewSource, setPreviewSource ] = useState("")
 const [ postData, setPostData ] = useState({
+    publicID: "",
     description: "",
     idUser: 0,
     idJob: 0,
+    timeRange: ""
 });
 
-const { description, idUser, idJob } = postData
+const { description, idUser, idJob, timeRange } = postData
 
 const { id } = useParams()
 
@@ -34,8 +34,15 @@ const handleDescInputChange = (e) => {
         description: e.target.value,
         idJob: parseInt(id),
         idUser: userLocalStorage.id
+    })      
+}
+
+const handleSelect = (e) => {
+    e.preventDefault();
+    setPostData({
+        ...postData,
+        timeRange: e.target.value
     })
-    
 }
 
 const previewFile = (file) => {
@@ -62,16 +69,27 @@ const uploadFile = async (base64EncodeFile, data) => {
                         publicID: res.data,
                         description,
                         idUser,
-                        idJob
+                        idJob,
+                        timeRange
                     })
+                     
     } catch (err) {
         console.log(err)
     }
 }
 
+
   return (
     <div className="apply_form_container">
         <form onSubmit={handleSubmit} className="apply_form">
+        <label>Schedule availability for possible meeting:</label>
+        <select onChange={handleSelect}>
+            <option value="Any Time">Any Time</option>
+            <option value="8hs - 12hs">8hs - 12hs</option>
+            <option value="12hs - 16hs">12hs - 16hs</option>
+            <option value="16hs - 20hs">16hs - 20hs</option>
+        </select>
+            <p>Remember that the more flexible your schedule is, the more chances you have to get a meeting.</p>
          <label>Description</label>
               <textarea
                 name="desc"
