@@ -19,6 +19,7 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 
 import './App.css'
+import Meeting from "./components/Meeting/Meeting";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
+            <Route path="/meet" element={ <Meeting /> } />
 
             {/* Private Routes */}
             
