@@ -24,12 +24,9 @@ import { Notifications } from "./components/notifications/Notifications";
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
-<<<<<<< HEAD
 import Applications from "./components/Home/User/UserApplications/Applications";
-=======
 import { Footer } from "./components/footer/Footer";
 
->>>>>>> 50eeb74cdf3ce7c539f1ba6ae0573cb1b97561e8
 
 function App() {
 
