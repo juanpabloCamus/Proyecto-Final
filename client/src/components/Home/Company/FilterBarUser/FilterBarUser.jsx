@@ -1,52 +1,40 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import { fetchJobs } from "../../../../redux/jobs/jobs";
-import style from "./FilterBar.module.css";
-import { customStyles } from "./StyleSelect";
+import style from "../../User/FilterBar/FilterBar.module.css";
+import { customStyles } from "../../User/FilterBar/StyleSelect";
 import {
-  optionsTech,
-  optionsTime,
   optionsSeniority,
   optionsLevel,
-  optionsSalary,
-} from "./Options";
+  optionsStack
+} from "../../User/FilterBar/Options";
  
 
 function FilterBar() {
-  const [tech, setTech] = useState("");
+
+ const [stack, setStack] = useState("");
   const [seniority, setSeniority] = useState("");
-  const [time, setTime] = useState("");
   const [eLevel, setELevel] = useState("");
-  const [salary, setSalary] = useState("");
   const [search, setSearch] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleChangeSelectTech = (e) => {
+  const handleChangeStack = (e) => {
     let { value } = e;
-    setTech(value);
+    setStack(value);
   };
-
   const handleChangeSeniority = (e) => {
     let { value } = e;
     setSeniority(value);
   };
 
-  const handleChangeTime = (e) => {
-    let { value } = e;
-    setTime(value);
-  };
+
 
   const handleChangeLevel = (e) => {
     let { value } = e;
     setELevel(value);
   };
 
-  const handleChangeSalary = (e) => {
-    let { value } = e;
-    setSalary(value);
-  };
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -54,8 +42,8 @@ function FilterBar() {
   };
 
   useEffect(() => {
-    dispatch(fetchJobs({ tech, seniority, time, eLevel, salary, search }));
-  }, [dispatch, tech, seniority, time, eLevel, salary, search]);
+    // dispatch(fetchJobs({stack, seniority, time, eLevel, search }));
+  }, [dispatch, stack,seniority, eLevel, search]);
 
   return (
     <div className="animate__animated animate__fadeIn">
@@ -67,32 +55,26 @@ function FilterBar() {
                 className={style.searchTerm}
                 onChange={(e) => handleChange(e)}
                 type="search"
-                placeholder="Search company or position.."
+                placeholder="Search developers.."
               />
             </form>
           </div>
 
           <div className={style.filterSet_menu}>
-            <Select
+ 
+          <Select
               styles={customStyles}
-              options={optionsTech}
-              defaultValue={optionsTech[0]}
-              onChange={handleChangeSelectTech}
+              options={optionsStack}
+              defaultValue={optionsStack[0]}
+              onChange={handleChangeStack}
             />
-
             <Select
               styles={customStyles}
               options={optionsSeniority}
               defaultValue={optionsSeniority[0]}
               onChange={handleChangeSeniority}
             />
-
-            <Select
-              styles={customStyles}
-              options={optionsTime}
-              defaultValue={optionsTime[0]}
-              onChange={handleChangeTime}
-            />
+            
 
             <Select
               styles={customStyles}
@@ -101,12 +83,6 @@ function FilterBar() {
               onChange={handleChangeLevel}
             />
 
-            <Select
-              styles={customStyles}
-              options={optionsSalary}
-              defaultValue={optionsSalary[0]}
-              onChange={handleChangeSalary}
-            />
           </div>
         </div>
       </div>

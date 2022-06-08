@@ -141,13 +141,10 @@ function PostDetail() {
         </div>
         <div className={styles.companyInfoContainer}>
           <div className={styles.logoContainer}>
-            {/* <img id={styles.logo} src={company_accounts[0].logo} alt=""></img> */}
             <Image
               cloudName="dhar2oawa"
               publicId={company_accounts[0].logo}
               id={styles.logo}
-              //width="100"
-              //crop="scale"
             />
           </div>
           <div className={styles.nameContainer}>
