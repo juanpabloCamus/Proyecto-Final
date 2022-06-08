@@ -106,7 +106,6 @@ export const Login = () => {
           <p onClick={switchForm}>Not have an account yet?</p>
         </div>
         <div className="switch_form">
-          <p >Forgotten password? <Link to="/forgottenpassword"></Link></p>
         </div>
       </form>
     </div>

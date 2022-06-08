@@ -17,7 +17,6 @@ import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
-import ForgottenPassword from "./components/ForgottenPassword/ForgottenPassword";
 import './App.css'
 function App() {
 
@@ -32,7 +31,6 @@ function App() {
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
             <Route path="/meet" element={ <Meeting /> } />
-            <Route path="/forgottenpassword" element={<ForgottenPassword/>}/>
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
