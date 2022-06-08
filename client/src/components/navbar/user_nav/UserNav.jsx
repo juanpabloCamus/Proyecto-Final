@@ -44,7 +44,13 @@ export const UserNav = () => {
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
-        <Link to="/notifications" className={styles.link}>
+        <Link to={
+            profile === "develop" ? 
+            "/home/notifications"
+              : 
+            "/company/notifications"
+          }
+          className={styles.link}>
           <FiBell className={styles.bell} />
         </Link>
 
