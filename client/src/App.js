@@ -21,6 +21,7 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
+import Applications from "./components/Home/User/UserApplications/Applications";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
               <Route path="home/favorites" element={<Favorites/>}/>
               <Route path="home/profile/:id" element={<DevProfile />} />
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
+              <Route path="home/myapplications/:id" element={<Applications />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
