@@ -1,0 +1,41 @@
+.notification_card{
+    box-shadow: 0px 4px 8px 1px lightgray;
+    padding: 30px;
+}
+
+.notification_text{
+    margin-bottom: 20px;
+}
+
+.notification_message{
+    margin: 20px 0;
+    text-align: justify;
+}
+
+.notification_select{
+    margin-bottom: 50px;
+}
+
+.notification_buttons{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.notification_buttons button{
+    border: none;
+    box-shadow: 0px 4px 8px 1px lightgray;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 15px 25px;
+}
+
+.notification_accept_button{
+    background-color: rgb(61, 66, 152);
+}
+
+.notification_decline_button{
+    background-color: rgb(249, 72, 72);
+}

@@ -35,10 +35,6 @@ const handleOpenModal = () =>{
           </div>
         </div>
         <Acordion></Acordion>
-
-        <footer>
-          
-        </footer>
     </div>
   )
 }
