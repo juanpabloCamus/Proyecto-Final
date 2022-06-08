@@ -13,7 +13,7 @@ const [ postData, setPostData ] = useState({
     description: "",
     idUser: 0,
     idJob: 0,
-    timeRange: ""
+    timeRange: "Any time"
 });
 
 const { description, idUser, idJob, timeRange } = postData
@@ -84,7 +84,7 @@ const uploadFile = async (base64EncodeFile, data) => {
         <form onSubmit={handleSubmit} className="apply_form">
         <label>Schedule availability for possible meeting:</label>
         <select onChange={handleSelect}>
-            <option value="Any Time">Any Time</option>
+            <option value="Any time">Any Time</option>
             <option value="8hs - 12hs">8hs - 12hs</option>
             <option value="12hs - 16hs">12hs - 16hs</option>
             <option value="16hs - 20hs">16hs - 20hs</option>

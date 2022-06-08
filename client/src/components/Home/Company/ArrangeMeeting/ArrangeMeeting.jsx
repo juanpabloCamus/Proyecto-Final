@@ -15,7 +15,8 @@ function ArrangeMeeting() {
     const { dateTime, messege } = formValues
 
     const handleSubmit = async() => {
-        const res = await axios.post('/arrangeMeeting', {
+        console.log(dateTime,messege,id_comp,id_dev)
+        await axios.post('/meeting/arrangeMeeting', {
             dateTime,
             messege,
             id_comp,
@@ -31,7 +32,7 @@ function ArrangeMeeting() {
     <form onSubmit={handleSubmit}>
         <label>Set date and time of the meeting:</label>
         <input 
-            name="date" 
+            name="dateTime" 
             type='datetime-local'
             onChange={handleInputChange}
         ></input>
