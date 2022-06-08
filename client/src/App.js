@@ -18,9 +18,14 @@ import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
 
 
+import { Notifications } from "./components/notifications/Notifications";
+
+
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
+import { Footer } from "./components/footer/Footer";
+
 
 function App() {
 
@@ -44,6 +49,7 @@ function App() {
               <Route path="home/favorites" element={<Favorites/>}/>
               <Route path="home/profile/:id" element={<DevProfile />} />
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
+              <Route path="home/notifications" element={<Notifications />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
@@ -55,6 +61,7 @@ function App() {
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
               <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
+              <Route path="company/notifications" element={<Notifications />} />
             </Route>
               
           
@@ -65,7 +72,7 @@ function App() {
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     </div>
-    
+    <Footer />
     </div>
 }
 

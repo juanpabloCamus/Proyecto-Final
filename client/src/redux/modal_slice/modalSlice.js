@@ -11,6 +11,7 @@ const initialState = {
     estado: false,
     editDevExp: null,
     editDevEdu: null,
+    arrangeMeeting: null,
     premiumModal: null
 }
 
@@ -48,6 +49,9 @@ const modalSlice = createSlice({
         },
         activateEditDevEdu(state, {payload}){
             state.editDevEdu = payload
+        },
+        activateArrangeMeeting(state, {payload}){
+            state.arrangeMeeting = payload
         },
         activatePremium(state, {payload}){
             state.premiumModal = payload

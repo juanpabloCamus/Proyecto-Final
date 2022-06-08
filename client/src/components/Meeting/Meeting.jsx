@@ -7,7 +7,17 @@ function Meeting() {
 
     const navigate = useNavigate()
 
+    /* let permiso = false
+    let tiempo = Date()
+    let horario = tiempo.slice(4,24)
+    if(horario>"Jun 08 2022 11:10:00"){
+        permiso = true
+    }else{
+        permiso = false
+    } */
+
     return (
+        /* permiso? */
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
@@ -16,6 +26,10 @@ function Meeting() {
             onReadyToClose = {() => {navigate('/')}}          
             />
         </div>
+        /* :
+        <div>
+            <h2>No es horario de la reunion</h2>
+        </div> */
     );
 }
 
