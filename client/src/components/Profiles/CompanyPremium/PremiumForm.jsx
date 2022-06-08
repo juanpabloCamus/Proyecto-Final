@@ -68,7 +68,7 @@ function CheckoutForm() {
         <div className={styles.divFormContainer}>
             <form className={styles.formContainer}>
                 <div>
-                <label id={styles.label}>Credit card</label>
+                <label id={styles.label}>Credit or debit card</label>
                 <CardElement className={styles.cardElement}/>
                 </div>
                 <button id={styles.button} onClick={handleSubmit} disabled={!stripe}>

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
 const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
+const nodemailer = require('nodemailer');
 
 const router = Router();
 
@@ -84,6 +85,40 @@ router.post('/register', async (req,res)=>{
                         password,
                         profileType: 'company'
                     })
+
+                    //------------------NODEMAILER-----------------------//
+                    
+                    const trasnsporter = nodemailer.createTransport({
+                        host:'smtp.gmail.com',
+                        port: 465,
+                        secure: true,
+                        auth:{
+                            user:'rocketdreamjob@gmail.com',
+                            pass:'ygpiqhwomytsdkch'
+                        }
+                    });
+
+                    const mail = {
+                        from: '"Rocket 🚀" <rocketdreamjob@gmail.com>',
+                        to: `${email}`,
+                        subject: 'Welcome to Rocket',
+                        html: ` 
+                            <span style="color:#46499c; font-size: 45px; font-weight: 700; font-style: italic;" >Rocket</span>
+                            <h2>Welcome ${name}!</h2>
+                            <p>We can't wait for you to find the best developers for your company</p>
+                            <p>And you? What are you waiting for, you can now use Rocket and explore all our services</p>
+                            <h5>Thank you very much for trusting us, we hope that ${name} can grow quickly with us, good luck using Rocket!</h5>
+                            <a href=https://proyecto-final-nu.vercel.app/>Start now!</a>
+                        `
+                    }
+
+                    trasnsporter.sendMail(mail, (error, info) => {
+                        if (error) console.log('Error con email de bienvenida');
+                        else console.log('Email enviado')
+                    })
+
+                    //---------------------------------------------------//
+                    
                     let empresa = await company_account.findAll({
                         include: [{model:job, include:[{model:technology},{model:applied_job},{model:user_account}]}],
                         where: {id: newCompany.dataValues.id}
