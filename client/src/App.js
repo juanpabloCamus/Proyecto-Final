@@ -19,6 +19,7 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 
 import './App.css'
+import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
+            <Route path="/meet" element={ <Meeting /> } />
 
             {/* Private Routes */}
             
