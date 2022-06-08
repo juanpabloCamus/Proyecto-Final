@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@auth0/auth0-react": "^1.10.1",
+    "@jitsi/react-sdk": "^1.0.1",
     "@reduxjs/toolkit": "^1.8.1",
     "@stripe/react-stripe-js": "^1.8.1",
     "@stripe/stripe-js": "^1.31.0",
