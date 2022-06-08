@@ -20,6 +20,7 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
+import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
+              <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
             </Route>
               
           
