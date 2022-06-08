@@ -17,6 +17,7 @@ import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import axios from "axios"
+import Swal from "sweetalert2";
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -24,9 +25,11 @@ function DevProfile() {
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);
-
+  
   const user = useSelector((state) => state.users.user[0]);
-
+  const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+  const profileType = sessionStorage.profileType;
+  const idCom=sessionStorage.id
   if (user === undefined) return <Loading></Loading>;
 
   let userTechs = user.technologies?.map((t) => t.name);
@@ -44,15 +47,25 @@ function DevProfile() {
 
     try{
 
-       const res=await axios.put(`users/report/${id}`)
+      const res = await Swal.fire({
+        input: "textarea",
+        inputLabel: "Why do you want to report?",
+        inputPlaceholder: "Type your message here...",
+        inputAttributes: {
+          "aria-label": "Type your message here",
+        },
+        showCancelButton: true,
+      });
 
+      if (res.isConfirmed) {
+        await axios.put(`users/report/${id}`, res.value, idCom, profileType);
+      }
     }catch(error)
     {
       console.log(error)
     }
   }
-  const sessionStorage = JSON.parse(localStorage.getItem("userData"));
-  const profileType = sessionStorage.profileType;
+
 
   return (
     <div>
