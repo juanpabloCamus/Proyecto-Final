@@ -15,7 +15,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
 import { Image } from "cloudinary-react";
-//import PostU from "../Post/Post";
+import FilterBarUser from "../FilterBarUser/FilterBarUser";
 
 function PostJobOffer() {
   const { id } = useParams();
@@ -32,26 +32,23 @@ function PostJobOffer() {
   }, 3000);
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
-  
-  
   const handleEditOffer = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEdit(true));
     dispatch(modalActions.activateDelete(false));
-    dispatch(modalActions.activateReactive(false))
+    dispatch(modalActions.activateReactive(false));
   };
 
   const handleDelete = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(true));
     dispatch(modalActions.activateReactive(false));
-    
   };
-  const handleActivate = () =>{
+  const handleActivate = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateDelete(false));
     dispatch(modalActions.activateReactive(true));
-  }
+  };
   let renderJob = company.jobs?.filter((e) => e.id == id)[0];
   const radioStorage = JSON.parse(localStorage.getItem("radio1"));
   let [radio1, setRadio1] = useState(radioStorage || "edit");
@@ -67,9 +64,6 @@ function PostJobOffer() {
         setRadio1("developers");
       } else setRadio1("edit");
     }
-    // if (!isChecked) {
-    //   setRadio("developers")
-    // }
   }
 
   return (
@@ -191,7 +185,10 @@ function PostJobOffer() {
                   )}
                   {!estado && (
                     <div>
-                      <button onClick={handleActivate} className={styles.button1}>
+                      <button
+                        onClick={handleActivate}
+                        className={styles.button1}
+                      >
                         <FaEye />
                       </button>
                       <span className={styles.field}>
@@ -239,56 +236,60 @@ function PostJobOffer() {
               <label className={styles.label}>Developers</label>
             </div>
           </div>
-          {
-            jobDetail[0]?.applied_jobs
-              ?.map((e) => e.user_account)
-              ?.map((el) => {
-                return (
-                  <div className={styles.postsContainer}>
-                    <Link to={`/company/offers/${id}/dev/${el.id}`}>
-                      <div className={styles.postCard}>
-                        <div className={styles.imgContainer}>
-                          {/* <img src={profile_pic} alt="profile user"/> */}
-                          <Image
-                            cloudName="dhar2oawa"
-                            publicId={el.profile_pic}
-                            id={styles.banner}
-                            width="100"
-                            //crop="scale"
-                          />
+          <FilterBarUser />
+          {jobDetail[0]?.applied_jobs
+            ?.map((e) => e.user_account)
+            ?.map((el) => {
+              return (
+                <div className={styles.postsContainer}>
+                  <Link to={`/company/offers/${id}/dev/${el.id}`}>
+                    <div className={styles.postCard}>
+                      <div className={styles.imgContainer}>
+                        <Image
+                          cloudName="dhar2oawa"
+                          publicId={el.profile_pic}
+                          id={styles.banner}
+                          width="100"
+                        />
+                      </div>
+                      <div className={styles.detailsContainer}>
+                        <p>{el.fullName}</p>
+                        <p>{el.stack}</p>
+                        {el.description === null ? (
+                          <p className={styles.null}>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua.
+                          </p>
+                        ) : (
+                          <p>{el.description}</p>
+                        )}
+
+                        <div className={styles.subDetails}>
+                          <p>English Level: {el.english_level}</p>
+                          <p>Seniority: {el.seniority}</p>
+                          {/* <p>Time: {el.time}</p> */}
                         </div>
-                        <div className={styles.detailsContainer}>
-                          <p>{el.fullName}</p>
-                          {el.description === null ? (
-                            <p className={styles.null}>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit, sed do eiusmod tempor incididunt ut labore
-                              et dolore magna aliqua.
-                            </p>
-                          ) : (
-                            <p>{el.description}</p>
+
+                        <div className={styles.techsContainer}>
+                          {el.technologies?.map((t) =>
+                            t.name === "Cplus" ? (
+                              <label key={t.id}>C+</label>
+                            ) : t.name === "Cplusplus" ? (
+                              <label key={t.id}>C++</label>
+                            ) : t.name === "CSharp" ? (
+                              <label key={t.id}>C#</label>
+                            ) : (
+                              <label key={t.id}>{t.name}</label>
+                            )
                           )}
-                          {/* <div className={styles1.techsContainer}>
-                            {el.technologies?.map((t) =>
-                              t.name === "Cplus" ? (
-                                <label key={t.id}>C+</label>
-                              ) : t.name === "Cplusplus" ? (
-                                <label key={t.id}>C++</label>
-                              ) : t.name === "CSharp" ? (
-                                <label key={t.id}>C#</label>
-                              ) : (
-                                <label key={t.id}>{t.name}</label>
-                              )
-                            )}
-                          </div> */}
                         </div>
                       </div>
-                    </Link>
-                  </div>
-                );
-              })
-            //jobDetail[0]?.applied_jobs?.map(e=>e.user_account)?.map(e=>e.fullName))
-          }
+                    </div>
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       )}
     </div>

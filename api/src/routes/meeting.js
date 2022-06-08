@@ -6,7 +6,8 @@ const router = Router();
 
 router.post('/arrangeMeeting', async (req,res)=>{
     try {
-        const {dateTime,messege,id_comp,id_dev} = req.body
+        const {messege,id_comp,id_dev} = req.body
+        let {dateTime} = req.body
 
         if(dateTime){
             let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
