@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -67,11 +67,15 @@ export const Login = () => {
     dispatch(modalActions.activateLoginModal(false));
   };
 
+  const ResetPassword = () => {
+    
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
-    //dispatch(modalActions.setModalValue())
   };
+
+
 
   return (
     <div>
@@ -100,6 +104,9 @@ export const Login = () => {
         </button>
         <div className="switch_form">
           <p onClick={switchForm}>Not have an account yet?</p>
+        </div>
+        <div className="switch_form">
+          <p >Forgotten password? <Link to="/forgottenpassword"></Link></p>
         </div>
       </form>
     </div>

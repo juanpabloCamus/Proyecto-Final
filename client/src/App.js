@@ -7,7 +7,6 @@ import Home from "./components/Home/Home";
 import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
 import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 import { Navbar } from "./components/navbar/Navbar";
-
 import { NotFound } from "./components/not_found/NotFound";
 import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
@@ -16,12 +15,10 @@ import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
 import EditComProfileForm from "./components/Profiles/EditComProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
-
-
-import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
-
+import ForgottenPassword from "./components/ForgottenPassword/ForgottenPassword";
+import './App.css'
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)
@@ -35,7 +32,7 @@ function App() {
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
             <Route path="/meet" element={ <Meeting /> } />
-
+            <Route path="/forgottenpassword" element={<ForgottenPassword/>}/>
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
