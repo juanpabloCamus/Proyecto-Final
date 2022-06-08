@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom'
 
 import {BsFillSuitHeartFill} from 'react-icons/bs'
 import {IoIosRocket} from 'react-icons/io'
+import { BsFacebook } from 'react-icons/bs'
+import { BsTwitter } from 'react-icons/bs'
+import { ImLinkedin } from 'react-icons/im'
+
 
 import styles from './footer.module.css'
-import { Auth } from '../auth/Auth'
 
 
 const handleFooterlogin = () =>{
@@ -21,8 +24,13 @@ export const Footer = () => {
                 <IoIosRocket className={styles.logo_icon}/>
             </div>
             <div className={styles.contact_us}>
-              <h3>Want to know more?</h3>
-              <button className={styles.footer_button} onClick={handleFooterlogin}>Join us</button>
+              <h3>Want to know more about us?</h3>
+              {/* <button className={styles.footer_button} onClick={handleFooterlogin}>Join us</button> */}
+              <div className={styles.social_media}>
+                <BsFacebook />
+                <BsTwitter />
+                <ImLinkedin />
+              </div>
             </div>
           </div>
         </div>
@@ -31,7 +39,7 @@ export const Footer = () => {
                 <p>Made with <BsFillSuitHeartFill className={styles.footer_icon}/> by Henry students</p>
             </div>
          </div>
-          <Auth />
+        
     </div>
   )
 }

@@ -36,3 +36,57 @@
     padding: 15px 30px;
     margin-top: 10px;
 }
+
+.landing__page_first_section{
+    display: flex;
+    flex-direction: column;
+    margin: 220px 0;
+    align-items: center;
+    position: relative;
+}
+
+.landing__page_first_section h2{
+    font-size: 43px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.landing__page_first_section_text{
+    border-left: 5px solid black;
+    padding-left: 15px;
+}
+
+.landing__page_first_section_text p{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.span_2{
+    color: orangered;
+}
+
+.span_3{
+    color: rgb(70, 73, 156);
+}
+
+.rocket_image{
+    position: absolute;
+    width: 350px;
+    top: 130px;
+    left: 30px;
+
+    animation: floating 4s ease-in-out infinite;
+}
+
+
+@keyframes floating{
+    0%{
+        transform: translatey(0px);
+    }
+    50%{
+        transform: translatey(-20px);
+    }
+    100%{
+        transform: translatey(0px);
+    }
+}

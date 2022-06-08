@@ -10,12 +10,12 @@ export const Notifications = () => {
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
-  const { fullName, profileType } = userLocalStorage
+  const { fullName, name, profileType } = userLocalStorage
   
 
   return (
     <div className={styles.notifications}>
-      <h2>Hi, {fullName}</h2>
+      <h2>Hi, {fullName ? fullName : name}</h2>
       <div className={styles.notifications_container}>
         <div className={styles.notifications_container_title}>
           <h4>Your Notifications</h4>

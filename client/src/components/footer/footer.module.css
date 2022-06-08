@@ -17,6 +17,11 @@
     outline: none;}
 
 
+.logo_container{
+    display: flex;
+    align-items: center;
+}
+
 .logo_icon{
     margin-left: 15px;
 }
@@ -25,7 +30,25 @@
     letter-spacing: 1.1px;
     border-bottom: 2px solid white;
     align-self: center;
+    font-size: 20px;
 }
+
+.social_media{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 28px;
+}
+
+.social_media > *{
+    cursor: pointer;
+}
+
+.social_media:hover{
+    color: rgb(227, 227, 227);
+}
+
 
 
 .footer_button{
@@ -67,3 +90,4 @@
 .footer_icon{
     color: rgb(138, 40, 243);
 }
+
