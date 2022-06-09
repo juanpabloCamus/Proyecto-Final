@@ -17,8 +17,10 @@ function EditDevExpForm() {
     })
 
     let [error, setError] = useState({
-        company: false,
-        position: false,
+        company: true,
+        position: true,
+        start_date: true,
+        end_date:true
     })
 
     function handleErrors(e){
@@ -32,6 +34,16 @@ function EditDevExpForm() {
             if (e.target.value === '') setError({...error, position:true})
             else setError({...error, position:false})
         }
+
+        if(e.target.name === 'start_date'){
+            if (e.target.value === '') setError({...error, start_date:true})
+            else setError({...error, start_date:false})
+        }
+
+        if(e.target.name === 'end_date'){
+            if (e.target.value === '') setError({...error, end_date:true})
+            else setError({...error, end_date:false})
+        }
     }
 
     function handleChange(e){
@@ -44,28 +56,36 @@ function EditDevExpForm() {
 
     function handleSubmit(e){
         e.preventDefault()
-        if (error.position === true || error.company === true) return Swal.fire({icon: 'error', text:'Complete the required fields'})
+        if (error.company || error.position || error.start_date || error.end_date) return 
         axios.post(`/users/${id}/experience`, experience)
-        .then(res => console.log(res.data))
-        .catch(err => Swal.fire({icon: 'error', text: err.response.data}))
+        .then(res =>{Swal.fire({icon: 'success', text: res.data})})
+        .catch(err => {Swal.fire({icon: 'error', text: err.response.data})})
+    }
+
+    const [check, setCheck] = useState(false)
+    function handleCheck(){
+        check ? setCheck(false) : setCheck(true)
     }
     
 
     return (
         <div className={styles.container}>
             <form className={styles.formContainer}>
-                <label>Company</label>
+                <label>Company*</label>
                 <input onChange={handleChange} name="company"></input>
-                {error.company === true ? <label id={styles.error}>You must complete this field</label> : null}
-                <label>Position</label>
+                <label>Position*</label>
                 <input onChange={handleChange} name="position"></input>
-                {error.position === true ? <label id={styles.error}>You must complete this field</label> : null}
-                <label>Start date</label>
+                <label>Start date*</label>
                 <input onChange={handleChange} name='start_date' type='date'></input>
-                <label>End date</label>
-                <input onChange={handleChange} name='end_date' type='date'></input>
+                <label>End date*</label>
+                {check ? null : <input onChange={handleChange} name='end_date' type='date'></input>}
+                <div className={styles.checkbox}>
+                    <input checked={check} onClick={handleCheck} onChange={handleChange} name='end_date' value='1800-12-12' type='checkbox'></input>
+                    <label>I am working here currently</label>
+                </div>
                 <label>Description</label>
                 <textarea onChange={handleChange} name="description"></textarea>
+                {error.company || error.position || error.start_date || error.end_date ? <label id={styles.error}>You must complete company, postion and dates fields</label> : null}
                 <button type="submit" onClick={handleSubmit}>Add experience</button>
             </form>
         </div>
