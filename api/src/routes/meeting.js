@@ -1,15 +1,13 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
 
 const router = Router();
 
 router.post('/arrangeMeeting', async (req,res)=>{
     try {
-        const {messege,id_comp,id_dev} = req.body
+        const {messege,id_comp,id_dev,id_job} = req.body
         let {dateTime} = req.body
-
-        console.log({"dateTime": dateTime, "messege":messege,"id_comp": id_comp,"id_dev": id_dev})
 
         if(dateTime){
             let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -21,11 +19,17 @@ router.post('/arrangeMeeting', async (req,res)=>{
             array = [array[1],array[2],array[0],array[3]]
             dateTime = array.join(' ')
         }
-        if(dateTime&&messege&&id_comp&&id_dev){
+        if(dateTime&&messege&&id_comp&&id_dev&&id_job){
             let meet = await meeting.create({
                 dateTime: dateTime,
                 messege: messege,
             })
+            let notiUser = await usernotis.create({
+                codeNoti: 1
+            })
+            notiUser.setUser_account(id_dev)
+            notiUser.setMeeting(meet.dataValues.id)
+            meet.setJob(id_job)
             meet.setUser_account(id_dev)
             meet.setCompany_account(id_comp)
             res.send('meeting created')

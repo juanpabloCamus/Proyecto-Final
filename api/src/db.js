@@ -83,6 +83,12 @@ job.belongsToMany(otherTechs, {through: "otherTechs_job", timestamps:false})
 job.hasMany(applied_job)
 applied_job.belongsTo(job)
 
+job.hasMany(meeting)
+meeting.belongsTo(job)
+
+meeting.hasMany(usernotis)
+usernotis.belongsTo(meeting)
+
 ///////////RELACIONES DE USER ACCOUNT//////////////
 
 user_account.hasMany(applied_job)

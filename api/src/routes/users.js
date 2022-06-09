@@ -56,16 +56,28 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
-router.get('/allnoti/:id',async (req,res)=>{
+router.get('/notis/:id',async (req,res)=>{
     try {
         const {id} = req.params
-        res.send('en desarrollo xd')
+
+        let notis = await usernotis.findAll({
+            where:{userAccountId:id},
+            include: {model: meeting, include:{model:job,include:company_account}}
+        })
+        for(let i=0;i<notis.length;i++){
+            notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name
+            notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
+            delete notis[i].dataValues.meeting.dataValues.job
+        }
+        
+        res.send(notis)
     } catch (error) {
         console.log(error)
     }
 })
 
-router.get('/onenoti/:id', async (req,res)=>{
+/* router.get('/onenoti/:id', async (req,res)=>{
     try {
         const {id} = req.params
 
@@ -83,7 +95,7 @@ router.get('/onenoti/:id', async (req,res)=>{
     } catch (error) {
         console.log(error)
     }
-})
+}) */
 
 router.post('/:id/education', async (req,res)=>{
     try{

@@ -1,8 +1,37 @@
-
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './notificationDevCard.module.css'
+import { fetchNotifications } from '../../../redux/notifications/notifications'
+import axios from 'axios'
 
 export const NotificationDevCard = () => {
 
+  const {notifications} = useSelector( state => state.notifications)
+
+  const dispatch = useDispatch()
+
+  //const [ state, setState ] = useState(null)
+
+  const handleAcceptClick = () => {
+    acceptOrDecline(true)
+  }
+
+  const handleDeclineClick = () => {
+    acceptOrDecline(false)
+  }
+  
+  const acceptOrDecline = async(status, id) => {
+    try {
+      const res = await axios.put(`/meeting/statusDev/${id}`, {status})
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    dispatch(fetchNotifications())
+  },[dispatch])
+  console.log(notifications)
 
   return (
     <div className={styles.notification_card}>
@@ -20,8 +49,8 @@ export const NotificationDevCard = () => {
             <option value="">2pm - 3pm</option>
         </select>
         <div className={styles.notification_buttons}>
-            <button className={styles.notification_accept_button}>Accept</button>
-            <button className={styles.notification_decline_button}>Decline</button>
+            <button className={styles.notification_accept_button} onClick={handleAcceptClick}>Accept</button>
+            <button className={styles.notification_decline_button} onClick={handleDeclineClick}>Decline</button>
         </div>
     </div>
   )
