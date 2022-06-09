@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { useForm } from '../../../../hooks/useForm'
 import { useParams } from 'react-router-dom' 
 import { useSelector } from 'react-redux'
 import Swal from "sweetalert2"
@@ -8,26 +7,19 @@ import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 function ArrangeMeeting() {
     
-  const { id } = JSON.parse(localStorage.getItem("userData"))
-  console.log(id)
-  let id_comp = id
+    const { id } = JSON.parse(localStorage.getItem("userData"))
+    let id_comp = id
 
-    let { id_jobOffer, id_dev } = useParams();
+    let { id_job, id_dev } = useParams();
     const dispatch=useDispatch()
     
     const [dateTime,setDateTime]=useState("")
     const [messege, setMessege]=useState("")
 
     let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-  let filterUser = jobDetail[0]?.applied_jobs?.find(
-    (e) => e.userAccountId == id_dev
-  )
-console.log(filterUser.timeRange)
-    const [formValues, handleInputChange] = useForm({
-        dateTime: "",
-        messege: ""
-    }) 
-
+    let filterUser = jobDetail[0]?.applied_jobs?.find(
+      (e) => e.userAccountId === id_dev
+    )
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
@@ -43,7 +35,7 @@ console.log(filterUser.timeRange)
                 messege,
                 id_comp,
                 id_dev,
-                id_jobOffer
+                id_job
             })
     
           if (res.data) {
