@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology,meeting,usernotis,compnotis} = require('../db')
+const nodemailer = require('nodemailer');
 
 const router = Router();
 
@@ -41,7 +42,7 @@ router.get('/:id', async (req,res)=>{
 
         let user = await user_account.findAll({
             where:{id:id,active: true},
-            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model: applied_job, include: {model:job, include: {model:company_account}}},{model:education},{model:experience}],
+            include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model: applied_job, include: {model:job, include: [{model:company_account},{model:technology}]}},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
         if(user.length<1){
@@ -55,20 +56,61 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
+router.get('/notis/:id',async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let notis = await usernotis.findAll({
+            where:{userAccountId:id},
+            include: {model: meeting, include:{model:job,include:company_account}}
+        })
+        for(let i=0;i<notis.length;i++){
+            notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name
+            notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
+            delete notis[i].dataValues.meeting.dataValues.job
+        }
+        
+        res.send(notis)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+/* router.get('/onenoti/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let meet = await meeting.findAll({
+            where:{id:id},
+            include: company_account
+        })
+        meet[0].dataValues.companyName = meet[0].dataValues.company_account.name
+        delete meet[0].dataValues.company_account
+        delete meet[0].dataValues.idMeeting
+        delete meet[0].dataValues.userAccountId
+        delete meet[0].dataValues.companyAccountId
+        
+        res.send(meet)
+    } catch (error) {
+        console.log(error)
+    }
+}) */
+
 router.post('/:id/education', async (req,res)=>{
     try{
         const {id} = req.params
         const {institution,degree,description,start_date,end_date} = req.body
     
-        if(institution&&degree&&description&&start_date&&end_date){
+        if(institution&&degree&&start_date&&end_date){
             if(!/^[0-9a-zA-Z\s]+$/.test(institution)){
-                res.send('The institution must only contain etters, numbers and spaces')
+                res.status(400).send('The institution must only contain etters, numbers and spaces')
             }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
-                res.send('The degree must only contain letters, numbers and spaces')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('invalid start date')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('invalid end date')
+                res.status(400).send('The degree must only contain letters, numbers and spaces')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date) || start_date === ''){
+                res.status(400).send('invalid start date')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date) || end_date === ''){
+                res.status(400).send('invalid end date')
             }else{
                 let educ = await education.create({
                     institution,
@@ -78,7 +120,7 @@ router.post('/:id/education', async (req,res)=>{
                     end_date
                 })
                 educ.setUser_account(id)
-                res.send(educ)
+                res.send(`Your education in ${institution} was successfully added`)
             }
         }else{
             res.status(400).send('Complete the required fields')
@@ -93,16 +135,16 @@ router.post('/:id/experience', async (req,res)=>{
     try{
         const {id} = req.params
         const {company,position,description,start_date,end_date} = req.body
-    
-        if(company&&position&&description&&start_date&&end_date){
+        console.log(req.body);
+        if(company&&position){
             if(!/^[a-zA-Z\s]+$/.test(company)){
-                res.send('The company name should only contain letters and spaces')
+                res.status(400).send('The company name should only contain letters and spaces')
             }else if(!/^[a-zA-Z\s]+$/.test(position)){
-                res.send('Position must only contain letters and spaces')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('invalid start date')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('invalid end date')
+                res.status(400).send('Position must only contain letters and spaces')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date) || start_date === '' ){
+                res.status(400).send('Invalid start date')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date) || end_date === ''){
+                res.status(400).send('Invalid end date')
             }else{
                 let exp = await experience.create({
                     company,
@@ -112,7 +154,7 @@ router.post('/:id/experience', async (req,res)=>{
                     end_date
                 })
                 exp.setUser_account(id)
-                res.send(exp)
+                res.send(`Your experience in ${company} was successfully added`)
             }
         }else{
             res.status(400).send('Complete the required fields')
@@ -182,6 +224,40 @@ router.post('/register', async (req,res)=>{
                         password,
                         profileType: 'develop'
                     })
+
+                    //------------------NODEMAILER-----------------------//
+                    
+                    const trasnsporter = nodemailer.createTransport({
+                        host:'smtp.gmail.com',
+                        port: 465,
+                        secure: true,
+                        auth:{
+                            user:'rocketdreamjob@gmail.com',
+                            pass:'ygpiqhwomytsdkch'
+                        }
+                    });
+
+                    const mail = {
+                        from: '"Rocket 🚀" <rocketdreamjob@gmail.com>',
+                        to: `${email}`,
+                        subject: 'Welcome to Rocket',
+                        html: ` 
+                            <span style="color:#46499c; font-size: 45px; font-weight: 700; font-style: italic;" >Rocket</span>
+                            <h2>Welcome ${fullName}!</h2>
+                            <p>We can't wait for you to start looking for your dream job</p>
+                            <p>And you? What are you waiting for, you can now use Rocket and explore all our services</p>
+                            <h5>Thank you very much for trusting us, we hope you get hired soon for the job of your dreams</h5>
+                            <a href=https://proyecto-final-nu.vercel.app/>Start now!</a>
+                        `
+                    }
+
+                    trasnsporter.sendMail(mail, (error, info) => {
+                        if (error) console.log('Error con email de bienvenida');
+                        else console.log('Email enviado')
+                    })
+
+                    //---------------------------------------------------//
+
                     let usuario = await user_account.findAll({
                         where: {id: newUser.dataValues.id},
                         include: technology
@@ -599,8 +675,9 @@ router.delete('/education/:id', async (req,res)=>{
         await education.destroy({
             where:{id:id}
         })
-        res.send('deleted')
+        res.send('Sucesfully deleted')
     }catch(error){
+        res.status(400).send(error)
         console.log(error)
     }
 })
@@ -611,8 +688,9 @@ router.delete('/experience/:id', async (req,res)=>{
         await experience.destroy({
             where:{id:id}
         })
-        res.send('deleted')
+        res.send('Sucesfully deleted')
     }catch(error){
+        res.status(400).send(error)
         console.log(error)
     }
 })

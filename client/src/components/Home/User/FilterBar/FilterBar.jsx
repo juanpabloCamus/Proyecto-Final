@@ -11,7 +11,6 @@ import {
   optionsLevel,
   optionsSalary,
 } from "./Options";
-import { GoSearch } from "react-icons/go";
  
 
 function FilterBar() {
