@@ -10,10 +10,10 @@ function Loading() {
           <div className={styles.body}></div>
           <div className={styles.fin} id={styles.finLeft}></div>
           <div className={styles.fin} id={styles.finRight}></div>
-          <div clasName={styles.window}></div>
+          <div className={styles.window}></div>
         </div>
         <div className={styles.exhaustFlame}></div>
-        <ul clasNames={styles.exhaustFumes}>
+        <ul className={styles.exhaustFumes}>
           <li></li>
           <li></li>
           <li></li>
