@@ -15,6 +15,8 @@ import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { Premium } from "./CompanyPremium/Premium";
 
 
+import { FaMedal } from 'react-icons/fa'
+
 
 function ComProfile() {
     const dispatch = useDispatch()
@@ -60,13 +62,15 @@ function ComProfile() {
                 <div className={styles.infoProfileContainer}>
                     <div className={styles.logoNameContainer}>
                         {/* <img id={styles.logo} src={user.logo} alt="profile_pic"></img> */}
-                        <Image
-                                id={styles.logo}
-                                cloudName="dhar2oawa"
-                                publicId={user.logo}
-                                // width="100"
-                                // crop="scale"
-                                />
+                        <div className={styles.userPhoto}>
+                            <Image
+                                    id={styles.logo}
+                                    cloudName="dhar2oawa"
+                                    publicId={user.logo}
+                                    // width="100"
+                                    // crop="scale"
+                                    />
+                        </div>
                         <div className={styles.nameContainer}>
                         <h1>{user.name}</h1>
                         <h5>{user.speciality}</h5>
@@ -78,7 +82,7 @@ function ComProfile() {
                         <div className={styles.labelContainer}>
                             {user.country === null ? null :
                             <div>
-                            <img src={location} className={styles.infoAsset}></img>
+                            <img src={location} className={styles.infoAsset} alt=""></img>
                             { user.city === null ? <label>{user.country}</label> :
                                 <label>{`${user.country}, ${user.city}`}</label>
                             }
@@ -102,7 +106,7 @@ function ComProfile() {
                 </div>
                 <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
-                        <button id={styles.premium} onClick={handlePremium}>Be premium</button>
+                        <button id={styles.premium} onClick={handlePremium}>Be premium <FaMedal/></button>
                 </div>
                 {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>
