@@ -4,9 +4,8 @@
     box-shadow: 4px 4px 8px -2px rgb(161, 161, 161);
     border-radius: 8px;
     width: 100%;
-    /* overflow: hidden; */
-    height: 150px;
-    overflow-y: scroll;
+    overflow: hidden;
+ 
 }
 
 .table th,

@@ -41,7 +41,7 @@ export default function Post({id,position,salary_range,time,requirements,company
           </div>
         </div>
         <div className={styles.techsContainer}>
-          {techs.map(t => t.name==='Cplus' ?
+          {techs?.map(t => t.name==='Cplus' ?
             (<label key={t.id} >C+</label>) :
             t.name==='Cplusplus' ?
             (<label key={t.id} >C++</label>) :
