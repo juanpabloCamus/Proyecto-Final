@@ -69,7 +69,7 @@ function ArrangeMeeting() {
       <>
       <h1>Arrange Meeting</h1>
     <form onSubmit={handleSubmit}>
-        <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange}`}:</label>
+        <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`} :</label>
         <input 
             name="dateTime" 
             type='datetime-local'

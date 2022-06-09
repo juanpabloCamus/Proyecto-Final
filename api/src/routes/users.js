@@ -51,7 +51,7 @@ router.get('/:id', async (req,res)=>{
         user[0].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
         res.send(user)
 
-    }catch(error){
+    }catch(error){  
         console.log(error)
     }
 })
@@ -68,7 +68,7 @@ router.get('/notis/:id',async (req,res)=>{
             notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name
             notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
             notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
-            delete notis[i].dataValues.meeting.dataValues.job
+            delete notis[i].dataValues.meeting.dataValues.job 
         }
         
         res.send(notis)
@@ -90,7 +90,7 @@ router.post('/:id/education', async (req,res)=>{
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date) || start_date === ''){
                 res.status(400).send('invalid start date')
             }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date) || end_date === ''){
-                res.status(400).send('invalid end date')
+                res.status(400).send('invalid end date') 
             }else{
                 let educ = await education.create({
                     institution,
