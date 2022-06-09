@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
 
 const router = Router();
 
@@ -26,6 +26,10 @@ router.post('/arrangeMeeting', async (req,res)=>{
                 dateTime: dateTime,
                 messege: messege,
             })
+            let notiUser = await usernotis.create({
+                codeNoti: 1
+            })
+            notiUser.setUser_account(id_dev)
             meet.setUser_account(id_dev)
             meet.setCompany_account(id_comp)
             res.send('meeting created')

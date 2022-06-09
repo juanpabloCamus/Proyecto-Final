@@ -56,16 +56,21 @@ router.get('/:id', async (req,res)=>{
     }
 })
 
-router.get('/allnoti/:id',async (req,res)=>{
+router.get('/notis/:id',async (req,res)=>{
     try {
         const {id} = req.params
-        res.send('en desarrollo xd')
+
+        let notis = await usernotis.findAll({
+            where:{userAccountId:id}
+        })
+
+        res.send(notis)
     } catch (error) {
         console.log(error)
     }
 })
 
-router.get('/onenoti/:id', async (req,res)=>{
+/* router.get('/onenoti/:id', async (req,res)=>{
     try {
         const {id} = req.params
 
@@ -83,7 +88,7 @@ router.get('/onenoti/:id', async (req,res)=>{
     } catch (error) {
         console.log(error)
     }
-})
+}) */
 
 router.post('/:id/education', async (req,res)=>{
     try{
