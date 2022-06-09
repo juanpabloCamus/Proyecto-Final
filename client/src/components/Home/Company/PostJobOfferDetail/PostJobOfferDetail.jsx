@@ -253,8 +253,8 @@ function PostJobOffer() {
                         />
                       </div>
                       <div className={styles.detailsContainer}>
-                        <p>{el.fullName}</p>
-                        <p>{el.stack}</p>
+                        <p ><b>{el.fullName}</b></p>
+                        <p ><b>{el.stack}</b></p>
                         {el.description === null ? (
                           <p className={styles.null}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -266,8 +266,8 @@ function PostJobOffer() {
                         )}
 
                         <div className={styles.subDetails}>
-                          <p>English Level: {el.english_level}</p>
-                          <p>Seniority: {el.seniority}</p>
+                          <p><b>English Level:</b> {el.english_level}</p>
+                          <p><b>Seniority: </b>{el.seniority}</p>
                           {/* <p>Time: {el.time}</p> */}
                         </div>
 

@@ -15,23 +15,13 @@ import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
 import EditComProfileForm from "./components/Profiles/EditComProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
-<<<<<<< HEAD
-import Meeting from "./components/Meeting/Meeting";
-import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
-import './App.css'
-=======
-
-
 import { Notifications } from "./components/notifications/Notifications";
-
-
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 import { Footer } from "./components/footer/Footer";
 
 
->>>>>>> 50eeb74cdf3ce7c539f1ba6ae0573cb1b97561e8
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)

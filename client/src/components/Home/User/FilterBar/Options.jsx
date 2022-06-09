@@ -55,19 +55,5 @@ const optionsSeniority = [
       {value:"+ 10000$", label:"+ 10000$"}
 ]
 
-const optionsStack=[
-    {value:"",label:"Stack"},
-    {value:"Back End Enginer",label:"Back End Enginer"},
-    {value:"Back End Developer",label:"Back End Developer"},
-    {value:"Front End Developer",label:"Front End Developer"},
-    {value:"Software Enginer",label:"Software Enginer"},
-    {value:"Mobile Developer",label:"Mobile Developer"},
 
-
-
-
-
-
-
-]
-  export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary,optionsStack}
+  export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}

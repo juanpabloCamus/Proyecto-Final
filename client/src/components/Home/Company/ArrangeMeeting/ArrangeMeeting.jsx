@@ -24,7 +24,7 @@ function ArrangeMeeting() {
     }
     const send = async () => {
         try {
-            const res= await axios.post('metting/arrangeMeeting', {
+            const res= await axios.post('meeting/arrangeMeeting', {
                 dateTime,
                 messege,
                 id_comp,
