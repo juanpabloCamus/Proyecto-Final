@@ -1,16 +1,26 @@
+import { useEffect } from 'react'
 import { NotificationDevCard } from './notification_dev_card/NotificationDevCard'
 import { NotificationComCard } from './notification_com_card/NotificationComCard'
-
+import { fetchNotifications } from '../../redux/notifications/notifications'
 import { AiFillNotification } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './notifications.module.css'
 
 
 export const Notifications = () => {
 
+  const {notifications} = useSelector( state => state.notifications)
+
+  const dispatch = useDispatch()
+
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
   const { fullName, name, profileType } = userLocalStorage
+
+  useEffect(() => {
+    dispatch(fetchNotifications())
+  },[dispatch])
   
 
   return (
@@ -24,7 +34,13 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
             <div>
-              <NotificationDevCard />
+              { !notifications ? <p>loading</p> :
+              notifications.map(n => (
+                <NotificationDevCard 
+                {...n}
+                />
+              ))}
+              
               <NotificationDevCard />
             </div>
           )
