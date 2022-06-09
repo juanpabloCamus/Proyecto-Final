@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
         profile_pic: {
             type:DataTypes.TEXT,
-            defaultValue:'https://w7.pngwing.com/pngs/837/779/png-transparent-computer-icons-rocket-launch-launch-pad-icons-purple-violet-spacecraft.png'
+            defaultValue:'http://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
         description: {
             type:DataTypes.TEXT
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
         },
         banner: {
             type: DataTypes.TEXT,
-            defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/User_page_banner.png'
+            defaultValue: 'https://community.khoros.com/t5/image/serverpage/image-id/164425iE641E9340947FE57/image-size/large/is-moderation-mode/true?v=v2&px=999'
         },
         currentJob: {
             type: DataTypes.STRING,
