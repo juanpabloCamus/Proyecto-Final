@@ -22,7 +22,6 @@ function Applications() {
     const user = useSelector((state) => state.users.user[0]);
     if(user === undefined) return <Loading></Loading>
     const { applied_jobs } = user 
-    console.log(applied_jobs);
     
     return (
         <div className={styles.pageContainer}>

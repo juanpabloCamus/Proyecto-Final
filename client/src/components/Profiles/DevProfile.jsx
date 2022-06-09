@@ -122,8 +122,7 @@ function DevProfile() {
             
 
             <div className={styles.secondaryInfo}>
-              <div className={styles.technologiesContainer}>
-                <h3>Tecnologies</h3>
+              
                 {userTechs?.length === 0 ? (
                   <p>You can add your techs here, please complete profile</p>
                 ) : (
@@ -144,7 +143,7 @@ function DevProfile() {
                     </div>
                   </div>
                 )}
-              </div>
+              
               {user.english_level === "Not specified" ? (
                 <label></label>
               ) : (

@@ -27,7 +27,7 @@ router.post('/', async (req,res)=>{
                     where: {id: idJob}
                 })
                 if(user[0].dataValues.applied_jobs.find(j=>j.dataValues.jobId===parseInt(idJob))&&user&&jobs){
-                    res.send('The relationship already exists')
+                    res.status(400).send('You have already applied for this job.')
                 }else{
                     let postulacion = await applied_job.create({
                         pdf: publicID,
@@ -37,10 +37,10 @@ router.post('/', async (req,res)=>{
                     await postulacion.setUser_account(user[0].dataValues.id)
                     await postulacion.setJob(jobs[0].dataValues.id)
 
-                    res.send('created');
+                    res.send('You applied to this job successfully! We hope you will get an answer soon.');
                 }
         }else{
-            res.send('invalid data')
+            res.status(400).send('Invalid data')
         }
     }catch(error){
         console.log(error)

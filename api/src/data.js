@@ -122,7 +122,7 @@ const company = [
         password:'micro',
         country:'United States',
         city:'California',
-        logo:"https://www.insights.la/wp-content/uploads/2015/04/Microsoft-logo-m-box-880x660.png",
+        logo:"https://developer.microsoft.com/es-es/media/ms-logo.png",
         description:'A software company',
         speciality: 'OS & Software',
         size: '+50000',
