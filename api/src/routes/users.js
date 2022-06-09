@@ -102,15 +102,15 @@ router.post('/:id/education', async (req,res)=>{
         const {id} = req.params
         const {institution,degree,description,start_date,end_date} = req.body
     
-        if(institution&&degree&&description&&start_date&&end_date){
+        if(institution&&degree&&start_date&&end_date){
             if(!/^[0-9a-zA-Z\s]+$/.test(institution)){
-                res.send('The institution must only contain etters, numbers and spaces')
+                res.status(400).send('The institution must only contain etters, numbers and spaces')
             }else if(!/^[0-9a-zA-Z\s]+$/.test(degree)){
-                res.send('The degree must only contain letters, numbers and spaces')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('invalid start date')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('invalid end date')
+                res.status(400).send('The degree must only contain letters, numbers and spaces')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date) || start_date === ''){
+                res.status(400).send('invalid start date')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date) || end_date === ''){
+                res.status(400).send('invalid end date')
             }else{
                 let educ = await education.create({
                     institution,
@@ -120,7 +120,7 @@ router.post('/:id/education', async (req,res)=>{
                     end_date
                 })
                 educ.setUser_account(id)
-                res.send(educ)
+                res.send(`Your education in ${institution} was successfully added`)
             }
         }else{
             res.status(400).send('Complete the required fields')
@@ -135,16 +135,16 @@ router.post('/:id/experience', async (req,res)=>{
     try{
         const {id} = req.params
         const {company,position,description,start_date,end_date} = req.body
-    
-        if(company&&position&&description&&start_date&&end_date){
+        console.log(req.body);
+        if(company&&position){
             if(!/^[a-zA-Z\s]+$/.test(company)){
-                res.send('The company name should only contain letters and spaces')
+                res.status(400).send('The company name should only contain letters and spaces')
             }else if(!/^[a-zA-Z\s]+$/.test(position)){
-                res.send('Position must only contain letters and spaces')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date)){
-                res.send('invalid start date')
-            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date)){
-                res.send('invalid end date')
+                res.status(400).send('Position must only contain letters and spaces')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(start_date) || start_date === '' ){
+                res.status(400).send('Invalid start date')
+            }else if(!/^([0-9]){4}-([0-9]){2}-([0-9]){2}$/.test(end_date) || end_date === ''){
+                res.status(400).send('Invalid end date')
             }else{
                 let exp = await experience.create({
                     company,
@@ -154,7 +154,7 @@ router.post('/:id/experience', async (req,res)=>{
                     end_date
                 })
                 exp.setUser_account(id)
-                res.send(exp)
+                res.send(`Your experience in ${company} was successfully added`)
             }
         }else{
             res.status(400).send('Complete the required fields')
@@ -675,8 +675,9 @@ router.delete('/education/:id', async (req,res)=>{
         await education.destroy({
             where:{id:id}
         })
-        res.send('deleted')
+        res.send('Sucesfully deleted')
     }catch(error){
+        res.status(400).send(error)
         console.log(error)
     }
 })
@@ -687,8 +688,9 @@ router.delete('/experience/:id', async (req,res)=>{
         await experience.destroy({
             where:{id:id}
         })
-        res.send('deleted')
+        res.send('Sucesfully deleted')
     }catch(error){
+        res.status(400).send(error)
         console.log(error)
     }
 })
