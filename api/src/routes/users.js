@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology,meeting,usernotis,compnotis} = require('../db')
 const nodemailer = require('nodemailer');
 
 const router = Router();
@@ -52,6 +52,35 @@ router.get('/:id', async (req,res)=>{
         res.send(user)
 
     }catch(error){
+        console.log(error)
+    }
+})
+
+router.get('/allnoti/:id',async (req,res)=>{
+    try {
+        const {id} = req.params
+        res.send('en desarrollo xd')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.get('/onenoti/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let meet = await meeting.findAll({
+            where:{id:id},
+            include: company_account
+        })
+        meet[0].dataValues.companyName = meet[0].dataValues.company_account.name
+        delete meet[0].dataValues.company_account
+        delete meet[0].dataValues.idMeeting
+        delete meet[0].dataValues.userAccountId
+        delete meet[0].dataValues.companyAccountId
+        
+        res.send(meet)
+    } catch (error) {
         console.log(error)
     }
 })
