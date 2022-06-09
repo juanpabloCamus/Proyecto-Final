@@ -75,7 +75,7 @@ function DevProfileDetail() {
 
             <div>
               <button onClick={handleOpenModal}>
-                <span>Send</span>
+                <span>Arrange Meeting</span>
               </button>
             </div>
           </div>
