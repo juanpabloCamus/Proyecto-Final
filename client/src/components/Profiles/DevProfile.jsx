@@ -89,16 +89,19 @@ function DevProfile() {
   const  handleReport=async (id)=>{
 
     try{
-
       const res = await Swal.fire({
-        input: "textarea",
-        inputLabel: "Why do you want to report?",
-        inputPlaceholder: "Type your message here...",
-        inputAttributes: {
-          "aria-label": "Type your message here",
-        },
-        showCancelButton: true,
-      });
+        input: 'select',
+           inputOptions: {
+          'spam': 'Spam',
+          'inappropiate lenguaje': 'Inappropiate Lenguaje',
+          'false information': 'False Information',
+          'inappropriate content':'Inappropriate Content'
+
+           },
+       inputPlaceholder: 'Select reports',
+       showCancelButton: true,
+
+     })
 
       if (res.isConfirmed) {
         await axios.put(`users/report/${id}`, res.value, idCom, profileType);

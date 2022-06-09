@@ -22,13 +22,11 @@ export default function Post({id,position,salary_range,time,requirements,company
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          {/* {<img id={styles.logo} src={logo} alt="Company logo"></img>} */}
           <Image
               cloudName="dhar2oawa"
               publicId={logo}
               id={styles.logo}
-              //width="100"
-              //crop="scale"
+       
             />
         </div>
         <div className={styles.detailsContainer}>

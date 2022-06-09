@@ -18,8 +18,6 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 
 import { Notifications } from "./components/notifications/Notifications";
-
-
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
@@ -60,7 +58,7 @@ function App() {
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
-              <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
+              <Route path="company/offers/:id_job/dev/:id_dev" element={<DevProfileDetail/>}/>
               <Route path="company/notifications" element={<Notifications />} />
             </Route>
               

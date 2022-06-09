@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import { useDispatch } from "react-redux";
-import style from "../../User/FilterBar/FilterBar.module.css";
+import style from "../FilterBarUser/FilterBarUser.module.css";
 import { customStyles } from "../../User/FilterBar/StyleSelect";
 import {
   optionsSeniority,
   optionsLevel,
-  optionsStack
 } from "../../User/FilterBar/Options";
  
 
 function FilterBar() {
 
- const [stack, setStack] = useState("");
   const [seniority, setSeniority] = useState("");
   const [eLevel, setELevel] = useState("");
   const [search, setSearch] = useState("");
 
   const dispatch = useDispatch();
 
-  const handleChangeStack = (e) => {
-    let { value } = e;
-    setStack(value);
-  };
   const handleChangeSeniority = (e) => {
     let { value } = e;
     setSeniority(value);
@@ -43,7 +37,7 @@ function FilterBar() {
 
   useEffect(() => {
     // dispatch(fetchJobs({stack, seniority, time, eLevel, search }));
-  }, [dispatch, stack,seniority, eLevel, search]);
+  }, [dispatch, seniority, eLevel, search]);
 
   return (
     <div className="animate__animated animate__fadeIn">
@@ -62,12 +56,6 @@ function FilterBar() {
 
           <div className={style.filterSet_menu}>
  
-          <Select
-              styles={customStyles}
-              options={optionsStack}
-              defaultValue={optionsStack[0]}
-              onChange={handleChangeStack}
-            />
             <Select
               styles={customStyles}
               options={optionsSeniority}
