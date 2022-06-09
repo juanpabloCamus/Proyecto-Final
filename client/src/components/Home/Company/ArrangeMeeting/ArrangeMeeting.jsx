@@ -17,9 +17,9 @@ function ArrangeMeeting() {
     const [messege, setMessege]=useState("")
 
     let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-    let filterUser = jobDetail[0]?.applied_jobs?.find(
-      (e) => e.userAccountId == id_dev
-    )
+    /* let filterUser = jobDetail[0]?.applied_jobs?.find(
+      (e) => e.userAccountId === id_dev
+    ) */
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
@@ -64,12 +64,12 @@ function ArrangeMeeting() {
       send()
     }
 
-console.log(filterUser)
+// console.log(filterUser)
   return (
       <>
       <h1>Arrange Meeting</h1>
     <form onSubmit={handleSubmit}>
-        {/* <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`}:</label> */}
+        {/* <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`} :</label> */}
         <input 
             name="dateTime" 
             type='datetime-local'
