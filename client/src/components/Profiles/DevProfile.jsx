@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { Image } from "cloudinary-react";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { EditDev } from "./EditDev";
-import {MdReportGmailerrorred} from "react-icons/md"
+import { MdReportGmailerrorred } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
@@ -69,29 +69,30 @@ function DevProfile() {
 
   return (
     <div>
-        
       <div className={styles.pageContainer}>
         <EditDev />
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
-
             <Image
               cloudName="dhar2oawa"
               publicId={user.banner}
               id={styles.banner}
-              
-              />
+            />
           </div>
           <div className={styles.infoContainer}>
-              <div className={styles.reportaje}>
-              {profileType == "company" && <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>}</div>
+            <div className={styles.reportaje}>
+              {profileType == "company" && (
+                <button onClick={() => handleReport(id)}>
+                  <MdReportGmailerrorred />
+                </button>
+              )}
+            </div>
             <div className={styles.mainInfoContainer}>
               <div className={styles.userPhoto}>
                 <Image
                   id={styles.logo}
                   cloudName="dhar2oawa"
                   publicId={user.profile_pic}
-           
                 />
               </div>
               <div className={styles.nameContainer}>
@@ -121,18 +122,16 @@ function DevProfile() {
                   </label>
                 </div>
               </div>
-              {profileType == "develop"? (
+              {profileType == "develop" ? (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
-                  </div>
-              ):(
+                </div>
+              ) : (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Send</Link>
-                  </div>
-              )
-              }
-              </div>
-            
+                </div>
+              )}
+            </div>
 
             <div className={styles.secondaryInfo}>
               <div className={styles.technologiesContainer}>

@@ -7,10 +7,8 @@ import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
 import { BiHide } from "react-icons/bi";
-import { GrFormView, GrView } from "react-icons/gr";
 import { FaEye } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
-import { CgCloseO } from "react-icons/cg";
 import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
@@ -131,7 +129,7 @@ function PostJobOffer() {
                   <div className={styles.detailTwo}>
                     <div id={styles.description} className={styles.fields}>
                       <h4>Description:</h4>
-                      <label>{renderJob.description}</label>
+                      <label>{renderJob.description} </label>
                     </div>
                     <div id={styles.requirements} className={styles.fields}>
                       <h4>Requirements:</h4>

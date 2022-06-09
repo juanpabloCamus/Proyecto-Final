@@ -15,7 +15,9 @@
 .logged_user_icon{
     cursor: pointer;
     width: 80px;
-
+}
+.icon_bell{
+    cursor: pointer;
 }
 
 .logged_user_icon img{
@@ -37,11 +39,68 @@
     width: 120px;
 }
 
+.contenedor_notifies{
+    display: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 1px rgb(188, 188, 188);
+    text-align: center;
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+    right: 270px;
+    width: 300px;
+    height: 300px;
+	border: 1px solid #f8f8ff;
+	background: #f1f1f1;
+	overflow-y: scroll;
+}
+
+.contenedor_notifies::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+   /* Estilos barra (thumb) de scroll */
+  .contenedor_notifies::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+  }
+  
+  .contenedor_notifies::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+  }
+  
+  .contenedor_notifies::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+   /* Estilos track de scroll */
+  .contenedor_notifies::-webkit-scrollbar-track {
+    background: #e1e1e1;
+    border-radius: 4px;
+  }
+  
+  .contenedor_notifies::-webkit-scrollbar-track:hover, 
+  .contenedor_notifies::-webkit-scrollbar-track:active {
+    background: #d4d4d4;
+  }
+  
+
+.contenedor_notifies span{
+    cursor: pointer;
+    display: block;
+    justify-content:flex-end;
+}
+
 .logged_user_menu span{
     cursor: pointer;
     padding: 10px;
     display: block;
     justify-content:flex-end;
+}
+
+.contenedor_notifies span:hover{
+    background-color: #eaeaea;
 }
 
 .logged_user_menu span:hover{
@@ -64,6 +123,12 @@
     font-size: 22px;
 }
 
+.bell{
+    color: rgb(132, 132, 132);
+    background-color: white;
+    font-size: 22px;
+}
+
 .bell:hover{
     color: rgb(232, 200, 17);
 }
@@ -76,5 +141,19 @@
     color: rgb(38, 135, 66);
 }
 
+.headNoti{
+    padding: 0px 2px 0px 2px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+}
 
+.div_dir{
+    cursor: pointer;
+}
+
+.div_dir:hover{
+    text-decoration: underline;
+}
 

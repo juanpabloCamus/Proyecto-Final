@@ -15,10 +15,13 @@ import EditDevProfileForm from "./components/Profiles/EditDevProfileForm";
 import EditComProfileForm from "./components/Profiles/EditComProfile";
 import Favorites from "./components/Home/User/Favorites/Favorites";
 import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/PostJobOfferDetail";
+
+
 import { Notifications } from "./components/notifications/Notifications";
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
+import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
 
 
@@ -43,6 +46,7 @@ function App() {
               <Route path="home/favorites" element={<Favorites/>}/>
               <Route path="home/profile/:id" element={<DevProfile />} />
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
+              <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
             </Route>
 

@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {  useParams, useNavigate } from "react-router-dom";
 import arrow from "../../../../../assets/arrow.png";
 import cannot from "../../../../../assets/cannot.png";
 import selectedHeart from "../../../../../assets/heart.png";
@@ -20,7 +20,6 @@ function PostDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   //redux para abir y cerrar react portal
-  const { isOpen } = useSelector((state) => state.modal);
 
   const [state, setState] = useState(true);
   const [check, setCheck] = useState(true);
