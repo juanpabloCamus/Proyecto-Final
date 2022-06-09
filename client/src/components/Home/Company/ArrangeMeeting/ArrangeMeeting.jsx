@@ -2,11 +2,17 @@ import axios from 'axios'
 import React from 'react'
 import { useForm } from '../../../../hooks/useForm'
 import { useParams } from 'react-router-dom' 
+import { useSelector } from 'react-redux'
 
 function ArrangeMeeting() {
     
     let { id_comp, id_dev } = useParams();
 
+    let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
+  let filterUser = jobDetail[0]?.applied_jobs?.find(
+    (e) => e.userAccountId == id_dev
+  )
+console.log(filterUser.timeRange)
     const [formValues, handleInputChange] = useForm({
         dateTime: "",
         messege: ""
@@ -23,13 +29,12 @@ function ArrangeMeeting() {
         })
     }
 
-    
 
   return (
       <>
       <h1>Arrange Meeting</h1>
     <form onSubmit={handleSubmit}>
-        <label>Set date and time of the meeting:</label>
+        <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`}:</label>
         <input 
             name="date" 
             type='datetime-local'
