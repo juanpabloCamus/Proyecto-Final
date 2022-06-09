@@ -1,18 +1,25 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom' 
+import { useSelector } from 'react-redux'
 import Swal from "sweetalert2"
 import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 function ArrangeMeeting() {
     
-    let { id_comp, id_dev } = useParams();
-    const dispatch = useDispatch()
+    const { id } = JSON.parse(localStorage.getItem("userData"))
+    let id_comp = id
+
+    let { id_job, id_dev } = useParams();
+    const dispatch=useDispatch()
     
     const [dateTime,setDateTime]=useState("")
     const [messege, setMessege]=useState("")
 
-
+    let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
+    let filterUser = jobDetail[0]?.applied_jobs?.find(
+      (e) => e.userAccountId === id_dev
+    )
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
@@ -27,7 +34,8 @@ function ArrangeMeeting() {
                 dateTime,
                 messege,
                 id_comp,
-                id_dev
+                id_dev,
+                id_job
             })
     
           if (res.data) {
@@ -56,13 +64,12 @@ function ArrangeMeeting() {
       dispatch(modalActions.activateArrangeMeeting(false))
     }
 
-    
 
   return (
       <>
       <h1>Arrange Meeting</h1>
     <form onSubmit={handleSubmit}>
-        <label>Set date and time of the meeting:</label>
+        <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`}:</label>
         <input 
             name="dateTime" 
             type='datetime-local'
