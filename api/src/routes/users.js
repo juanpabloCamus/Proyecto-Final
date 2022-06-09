@@ -77,25 +77,6 @@ router.get('/notis/:id',async (req,res)=>{
     }
 })
 
-/* router.get('/onenoti/:id', async (req,res)=>{
-    try {
-        const {id} = req.params
-
-        let meet = await meeting.findAll({
-            where:{id:id},
-            include: company_account
-        })
-        meet[0].dataValues.companyName = meet[0].dataValues.company_account.name
-        delete meet[0].dataValues.company_account
-        delete meet[0].dataValues.idMeeting
-        delete meet[0].dataValues.userAccountId
-        delete meet[0].dataValues.companyAccountId
-        
-        res.send(meet)
-    } catch (error) {
-        console.log(error)
-    }
-}) */
 
 router.post('/:id/education', async (req,res)=>{
     try{

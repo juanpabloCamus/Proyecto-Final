@@ -18,7 +18,7 @@ function ArrangeMeeting() {
 
     let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
     let filterUser = jobDetail[0]?.applied_jobs?.find(
-      (e) => e.userAccountId === id_dev
+      (e) => e.userAccountId == id_dev
     )
 
     const handledateTime=(e)=>{
@@ -60,11 +60,11 @@ function ArrangeMeeting() {
      
     const handleSubmit = () => {
 
-      send()
       dispatch(modalActions.activateArrangeMeeting(false))
+      send()
     }
 
-
+console.log(filterUser)
   return (
       <>
       <h1>Arrange Meeting</h1>

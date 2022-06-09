@@ -37,14 +37,19 @@ function PostDetail() {
   const handleReport = async (id) => {
     try {
       const res = await Swal.fire({
-        input: "textarea",
-        inputLabel: "Why do you want to report?",
-        inputPlaceholder: "Type your message here...",
-        inputAttributes: {
-          "aria-label": "Type your message here",
-        },
-        showCancelButton: true,
-      });
+        input: 'select',
+           inputOptions: {
+          'spam': 'Spam',
+          'inappropiate lenguaje': 'Inappropiate Lenguaje',
+          'false information': 'False Information',
+          'inappropriate content':'Inappropriate Content'
+
+           },
+       inputPlaceholder: 'Select reports',
+       showCancelButton: true,
+
+     })
+        console.log(res.value)
 
       if (res.isConfirmed) {
         await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);
