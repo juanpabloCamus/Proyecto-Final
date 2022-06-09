@@ -113,6 +113,7 @@ export const UserNav = () => {
                   ? `/company/profile/${sessionStorage.id}`
                   : "/admin"
               }
+              onClick={() => setToggleMenu(!toggleMenu)}
             >
               <span className={styles.option}>Profile</span>
             </Link>

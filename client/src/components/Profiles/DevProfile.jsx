@@ -17,6 +17,8 @@ import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import axios from "axios"
+
+
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -73,41 +75,47 @@ function DevProfile() {
               <div className={styles.reportaje}>
               {profileType == "company" && <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>}</div>
             <div className={styles.mainInfoContainer}>
-              <div className={styles.userPhoto}>
-                <Image
-                  id={styles.logo}
-                  cloudName="dhar2oawa"
-                  publicId={user.profile_pic}
-           
-                />
+
+              <div className={styles.mainInfoBox}>
+
+                    <div className={styles.userPhoto}>
+                      <Image
+                        id={styles.logo}
+                        cloudName="dhar2oawa"
+                        publicId={user.profile_pic}
+                
+                      />
+                    </div>
+                    <div className={styles.nameContainer}>
+                      <h2>{user.fullName}</h2>
+                      {user.seniority === "Not specified" ? null : (
+                        <h4>{user.seniority}</h4>
+                      )}
+                      <label>{user.stack}</label>
+                      <div className={styles.nameContainer_item}>
+                        <MdWork />
+                        <label>{user.currentJob}</label>
+                      </div>
+                      <div className={styles.nameContainer_item}>
+                        <MdEmail />
+                        <label>{user.email}</label>
+                      </div>
+                      <div className={styles.nameContainer_item}>
+                        {user.country !== null && user.city !== null ? (
+                          <MdLocationOn />
+                        ) : (
+                          <div></div>
+                        )}
+                        <label>
+                          {user.country !== null && user.city !== null
+                            ? `${user.city}, ${user.country}`
+                            : ""}
+                        </label>
+                      </div>
+                    </div>
+
               </div>
-              <div className={styles.nameContainer}>
-                <h2>{user.fullName}</h2>
-                {user.seniority === "Not specified" ? null : (
-                  <h4>{user.seniority}</h4>
-                )}
-                <h5>{user.stack}</h5>
-                <div className={styles.nameContainer_item}>
-                  <MdWork />
-                  <label>{user.currentJob}</label>
-                </div>
-                <div className={styles.nameContainer_item}>
-                  <MdEmail />
-                  <label>{user.email}</label>
-                </div>
-                <div className={styles.nameContainer_item}>
-                  {user.country !== null && user.city !== null ? (
-                    <MdLocationOn />
-                  ) : (
-                    <div></div>
-                  )}
-                  <label>
-                    {user.country !== null && user.city !== null
-                      ? `${user.city}, ${user.country}`
-                      : ""}
-                  </label>
-                </div>
-              </div>
+              
               {profileType == "develop"? (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
@@ -122,13 +130,12 @@ function DevProfile() {
             
 
             <div className={styles.secondaryInfo}>
-              <div className={styles.technologiesContainer}>
+              <div className={styles.secondaryInfoContainer}>
                 <h3>Tecnologies</h3>
                 {userTechs?.length === 0 ? (
                   <p>You can add your techs here, please complete profile</p>
                 ) : (
                   <div>
-                    <h3>Skills at</h3>
                     <div className={styles.userTechsContainer}>
                       {userTechs?.map((t) =>
                         t === "Cplus" ? (
@@ -150,7 +157,7 @@ function DevProfile() {
               ) : (
                 <label>English level: {user.english_level}</label>
               )}
-              <div className={styles.descriptionContainer}>
+              <div className={styles.secondaryInfoContainer}>
                 <h3>About</h3>
                 {user.description === null ? (
                   <p>Not description yet? Please complete your profile</p>
@@ -160,14 +167,14 @@ function DevProfile() {
               </div>
               <div
                 onClick={handleEditExp}
-                className={styles.experienceContainer}
+                className={styles.secondaryInfoContainer}
               >
                 <h3>Experience</h3>
                 {profileType == "develop" && <button>Add experience</button>}
               </div>
               <div
                 onClick={handleEditEdu}
-                className={styles.educationContainer}
+                className={styles.secondaryInfoContainer}
               >
                 <h3>Education</h3>
                 {profileType == "develop" && <button>Add education</button>}
