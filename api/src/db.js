@@ -7,6 +7,7 @@ const Job = require('./models/Job')
 const AppliedJob = require('./models/AppliedJob')
 const Technology = require('./models/Technology')
 const OtherTechs = require('./models/OtherTechs')
+const Meeting = require('./models/Meeting')
 require('dotenv').config();
 const { user, company, jobs, techs} = require('./data.js')
 
@@ -55,8 +56,9 @@ Job(db);
 AppliedJob(db);
 Technology(db);
 OtherTechs(db);
+Meeting(db);
 
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = db.models
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting} = db.models
 
 
 /////////// RELACIONES DE JOBS //////////////
@@ -89,6 +91,12 @@ experience.belongsTo(user_account)
 
 user_account.hasMany(education)
 education.belongsTo(user_account)
+
+user_account.hasMany(meeting)
+meeting.belongsTo(user_account)
+
+company_account.hasMany(meeting)
+meeting.belongsTo(company_account)
 
 //////////////// LOAD DATABASE ///////////////
 

@@ -31,6 +31,13 @@
   gap: 50px;
   border-bottom: 1px solid black;
 }
+.imgContainer {
+  border-radius: 50%;
+  width: 15%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
 .back button {
   width: 30px;

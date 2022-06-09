@@ -19,9 +19,7 @@ export default function PostJobOffer({
       {
         <Link to={`/company/offers/${id}`}>
           <div className={styles.postCard}>
-            {/* <div className={styles.imgContainer}>
-                        {<img id={styles.logo} src={logo} alt="Company logo"></img>}
-                      </div> */}
+           
             <div className={styles.detailsContainer}>
               <h3>{position}</h3>
               <p>Salary Range:</p>
