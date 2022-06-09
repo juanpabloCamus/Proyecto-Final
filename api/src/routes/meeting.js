@@ -50,12 +50,22 @@ router.put('/statusDev/:id', async (req,res)=>{
         if(status){
             let idMeet = Math.random()*100000000000000000+'rocket'
 
+            let meet = await meeting.findAll({
+                where: {id:id}
+            })
+
             await meeting.update({
                 status: status,
                 idMeeting: idMeet
             },{
                 where: {id: id}
             })
+            let notiUser = await usernotis.create({
+                codeNoti:2
+            })
+            notiUser.setUser_account(meet[0].dataValues.userAccountId)
+            notiUser.setMeeting(id)
+
         }else{
             await meeting.update({
                 status: status
