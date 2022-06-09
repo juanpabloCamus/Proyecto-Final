@@ -23,13 +23,11 @@ import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
-// import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { useState } from "react";
+
 
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)
-
 
   return <div className="app">
     <Navbar/>
