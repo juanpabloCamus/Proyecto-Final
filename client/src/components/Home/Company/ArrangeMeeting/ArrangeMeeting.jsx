@@ -8,7 +8,11 @@ import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 function ArrangeMeeting() {
     
-    let { id_comp, id_dev } = useParams();
+  const { id } = JSON.parse(localStorage.getItem("userData"))
+  console.log(id)
+  let id_comp = id
+
+    let { id_jobOffer, id_dev } = useParams();
     const dispatch=useDispatch()
     
     const [dateTime,setDateTime]=useState("")
@@ -38,7 +42,8 @@ console.log(filterUser.timeRange)
                 dateTime,
                 messege,
                 id_comp,
-                id_dev
+                id_dev,
+                id_jobOffer
             })
     
           if (res.data) {
