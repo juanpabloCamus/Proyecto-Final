@@ -3,9 +3,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
+import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 import styles from "./PostJobOfferDetail.module.css";
 import { Image } from "cloudinary-react";
-
+import { Link } from "react-router-dom";
+//import Meeting from "../../../Meeting/Meeting";
+//import { Redirect } from "react-router"
+import { MeetingModal } from "../../Company/ArrangeMeeting/MeetingModal"
 
 function DevProfileDetail() {
   let { id_comp, id_dev } = useParams();
@@ -19,8 +23,15 @@ function DevProfileDetail() {
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
     (e) => e.userAccountId == id_dev
   );
+
+  const handleOpenModal = () =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateArrangeMeeting(true))
+  }
+
   return (
     <div className={styles.pageContainerUser}>
+      <MeetingModal/>
       {filterUser ? (
         <div className={styles.containerMain}>
           <div className={styles.container1}>
@@ -68,8 +79,8 @@ function DevProfileDetail() {
               </div>
             </div>
 
-            <div className={styles.container8}>
-              <button className={styles.buttonU}>
+            <div>
+              <button onClick={handleOpenModal}>
                 <span>Send</span>
               </button>
             </div>

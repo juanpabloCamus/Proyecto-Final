@@ -171,6 +171,10 @@ export const UserNav = () => {
               <span className={styles.option}>Profile</span>
             </Link>
           }
+          {
+            profile === "develop" ?
+            <Link to={`/home/myapplications/${sessionStorage.id}`}><span className={styles.option}>Applications</span></Link> : null
+          }
           <span className={styles.option} onClick={handleLogout}>
             Logout
           </span>
