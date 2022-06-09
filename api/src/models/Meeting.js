@@ -15,5 +15,5 @@ module.exports = (sequelize) => {
         idMeeting:{
             type: DataTypes.STRING
         }
-    },{timestamps:false})
+    },{updatedAt:false})
 }
