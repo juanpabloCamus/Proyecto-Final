@@ -331,11 +331,11 @@ router.put('/:id', async (req,res)=>{
         
         if(technologies){
             let actJob = await job.findAll({
-                include: technology,
-                include: otherTechs,
+                include: [{model:technology},{model:otherTechs}],
                 where:{id: id}
             })
             actJob[0].dataValues.technologies.map(t=>actJob[0].removeTechnology(t.dataValues.id))
+            actJob[0].dataValues.otherTechs.map(t=>actJob[0].removeOtherTechs(t.dataValues.id))
             let techs = await technology.findAll({
                 order: [
                     ['id', 'ASC'] 

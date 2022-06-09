@@ -39,43 +39,43 @@ function DevProfileDetail() {
               <Image
                 cloudName="dhar2oawa"
                 publicId={filterUser[0].user_account.profile_pic}
-                id={styles.imgU}
+                className={styles.imgU}
                 //width="10"
                 //crop="scale"
               />
             </div>
             <div>
               {/* <Navigate to={`company/user/${id_dev}`}> */}
-              <button onClick={() => navigate(`/company/user/${id_dev}`)}>
+              <button
+                onClick={() => navigate(`/company/user/${id_dev}`)}
+                className={styles.buttonU}
+              >
                 More Info
               </button>
               {/* </Navigate> */}
             </div>
           </div>
 
-          <div>
-            <div>
-              <div>
-                <div>
-                  <h3>Nombre</h3>
-                  <span>{filterUser[0].user_account.fullName}</span>
+          <div className={styles.container2}>
+            <div className={styles.container3}>
+              <div className={styles.container4}>
+                <div className={styles.container5}>
+                  <h3>{filterUser[0].user_account.fullName}</h3>
                 </div>
-                <div>
-                  <h3>Description</h3>
-                  <span>{filterUser[0].description}</span>
+                <div className={styles.container6}> 
+                  <h4>Description:</h4>
+                  <h4>{filterUser[0].description} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, eius tenetur? Fugit repellat dolore ipsam sint adipisci molestiae vero asperiores architecto dolorem minima eos, quisquam accusantium error suscipit placeat reiciendis.</h4>
                 </div>
               </div>
 
-              <div>
-                <button>
-                  <a
-                    className={styles.a}
-                    href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
-                    target="_blank"
-                  >
-                    Download PDF
-                  </a>
-                </button>
+              <div className={styles.container7}>
+                <a
+                  className={styles.a}
+                  href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
+                  target="_blank"
+                >
+                  <button className={styles.buttonU}>Download PDF</button>
+                </a>
               </div>
             </div>
 

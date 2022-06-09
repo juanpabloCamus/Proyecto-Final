@@ -1,17 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { useForm } from "../../../../../hooks/useForm";
 import { MdClose } from "react-icons/md";
 import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
 import styles from "./EditJobOffer.module.css";
 import { fetchTechs } from "../../../../../redux/techs/techs";
 import Swal from "sweetalert2";
-import { fetchJobDetail } from "../../../../../redux/jobs/jobDetail";
-import PostJobOffer from "../PostJobOfferDetail";
-import { fetchCompany } from "../../../../../redux/company/company";
 
 let techId = 0;
 export const EditJobOffer = () => {

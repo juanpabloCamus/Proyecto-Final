@@ -10,7 +10,7 @@ html{
 
 
 img{
-  object-fit: cover;
+  object-fit: contain;
   height: auto;
   width: 100%;
 }
