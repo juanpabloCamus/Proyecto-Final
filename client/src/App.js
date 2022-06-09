@@ -58,7 +58,7 @@ function App() {
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
-              <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
+              <Route path="company/offers/:id_job/dev/:id_dev" element={<DevProfileDetail/>}/>
               <Route path="company/notifications" element={<Notifications />} />
             </Route>
               

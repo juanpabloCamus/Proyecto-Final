@@ -7,8 +7,9 @@ const router = Router();
 router.post('/arrangeMeeting', async (req,res)=>{
     try {
         const {messege,id_comp,id_dev,id_job} = req.body
+        
         let {dateTime} = req.body
-
+   console.log(messege,id_comp,id_dev,id_job,dateTime)
         if(dateTime){
             let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             let array = dateTime.split('-')

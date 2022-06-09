@@ -17,9 +17,9 @@ function ArrangeMeeting() {
     const [messege, setMessege]=useState("")
 
     let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-    /* let filterUser = jobDetail[0]?.applied_jobs?.find(
-      (e) => e.userAccountId === id_dev
-    ) */
+    //  let filterUser = jobDetail[0]?.applied_jobs?.find(
+    //   (e) => e.userAccountId == id_dev
+    // ) 
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)

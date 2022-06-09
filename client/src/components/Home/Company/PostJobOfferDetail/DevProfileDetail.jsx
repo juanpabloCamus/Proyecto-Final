@@ -9,12 +9,12 @@ import { Image } from "cloudinary-react";
 import { MeetingModal } from "../../Company/ArrangeMeeting/MeetingModal"
 
 function DevProfileDetail() {
-  let { id_comp, id_dev } = useParams();
+  let { id_job, id_dev } = useParams();
   let dispatch = useDispatch();
   let navigate = useNavigate();
-
+console.log(useParams())
   useEffect(() => {
-    dispatch(fetchJobDetail(id_comp));
+    dispatch(fetchJobDetail(id_job));
   }, [dispatch]);
   let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
