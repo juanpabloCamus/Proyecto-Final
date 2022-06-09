@@ -59,7 +59,9 @@
 .fields {
   margin: 10px;
 }
-
+.negrita p{
+  font-weight: bold;
+}
 .detailTwo {
   height: 10rem;
   display: flex;
