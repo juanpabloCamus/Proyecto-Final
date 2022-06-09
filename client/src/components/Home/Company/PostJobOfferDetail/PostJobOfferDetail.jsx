@@ -131,7 +131,7 @@ function PostJobOffer() {
                   <div className={styles.detailTwo}>
                     <div id={styles.description} className={styles.fields}>
                       <h4>Description:</h4>
-                      <label>{renderJob.description}</label>
+                      <label>{renderJob.description} </label>
                     </div>
                     <div id={styles.requirements} className={styles.fields}>
                       <h4>Requirements:</h4>
