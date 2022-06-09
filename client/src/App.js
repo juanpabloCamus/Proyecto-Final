@@ -7,7 +7,6 @@ import Home from "./components/Home/Home";
 import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
 import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 import { Navbar } from "./components/navbar/Navbar";
-
 import { NotFound } from "./components/not_found/NotFound";
 import CompanyHome from "./components/Home/Company/CompanyHome";
 import ComProfile from "./components/Profiles/ComProfile";
@@ -24,6 +23,7 @@ import { Notifications } from "./components/notifications/Notifications";
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
+import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
 
 
@@ -40,7 +40,6 @@ function App() {
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
             <Route path="/meet" element={ <Meeting /> } />
-
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
@@ -49,6 +48,7 @@ function App() {
               <Route path="home/favorites" element={<Favorites/>}/>
               <Route path="home/profile/:id" element={<DevProfile />} />
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
+              <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
             </Route>
 

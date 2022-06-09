@@ -11,14 +11,18 @@ import { Link } from "react-router-dom";
 import { Image } from "cloudinary-react";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { EditDev } from "./EditDev";
-import {MdReportGmailerrorred} from "react-icons/md"
+import { MdReportGmailerrorred } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import axios from "axios"
+<<<<<<< HEAD
 
 
+=======
+import Swal from "sweetalert2";
+>>>>>>> 89cfbc9e9bc96eabda609efd3c0c208c4c3fc2d7
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -26,9 +30,11 @@ function DevProfile() {
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);
-
+  
   const user = useSelector((state) => state.users.user[0]);
-
+  const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+  const profileType = sessionStorage.profileType;
+  const idCom=sessionStorage.id
   if (user === undefined) return <Loading></Loading>;
 
   let userTechs = user.technologies?.map((t) => t.name);
@@ -46,35 +52,48 @@ function DevProfile() {
 
     try{
 
-       const res=await axios.put(`users/report/${id}`)
+      const res = await Swal.fire({
+        input: "textarea",
+        inputLabel: "Why do you want to report?",
+        inputPlaceholder: "Type your message here...",
+        inputAttributes: {
+          "aria-label": "Type your message here",
+        },
+        showCancelButton: true,
+      });
 
+      if (res.isConfirmed) {
+        await axios.put(`users/report/${id}`, res.value, idCom, profileType);
+      }
     }catch(error)
     {
       console.log(error)
     }
   }
-  const sessionStorage = JSON.parse(localStorage.getItem("userData"));
-  const profileType = sessionStorage.profileType;
+
 
   return (
     <div>
-        
       <div className={styles.pageContainer}>
         <EditDev />
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
-
             <Image
               cloudName="dhar2oawa"
               publicId={user.banner}
               id={styles.banner}
-              
-              />
+            />
           </div>
           <div className={styles.infoContainer}>
-              <div className={styles.reportaje}>
-              {profileType == "company" && <button onClick={()=>handleReport(id)}><MdReportGmailerrorred/></button>}</div>
+            <div className={styles.reportaje}>
+              {profileType == "company" && (
+                <button onClick={() => handleReport(id)}>
+                  <MdReportGmailerrorred />
+                </button>
+              )}
+            </div>
             <div className={styles.mainInfoContainer}>
+<<<<<<< HEAD
 
               <div className={styles.mainInfoBox}>
 
@@ -117,17 +136,52 @@ function DevProfile() {
               </div>
               
               {profileType == "develop"? (
+=======
+              <div className={styles.userPhoto}>
+                <Image
+                  id={styles.logo}
+                  cloudName="dhar2oawa"
+                  publicId={user.profile_pic}
+                />
+              </div>
+              <div className={styles.nameContainer}>
+                <h2>{user.fullName}</h2>
+                {user.seniority === "Not specified" ? null : (
+                  <h4>{user.seniority}</h4>
+                )}
+                <h5>{user.stack}</h5>
+                <div className={styles.nameContainer_item}>
+                  <MdWork />
+                  <label>{user.currentJob}</label>
+                </div>
+                <div className={styles.nameContainer_item}>
+                  <MdEmail />
+                  <label>{user.email}</label>
+                </div>
+                <div className={styles.nameContainer_item}>
+                  {user.country !== null && user.city !== null ? (
+                    <MdLocationOn />
+                  ) : (
+                    <div></div>
+                  )}
+                  <label>
+                    {user.country !== null && user.city !== null
+                      ? `${user.city}, ${user.country}`
+                      : ""}
+                  </label>
+                </div>
+              </div>
+              {profileType == "develop" ? (
+>>>>>>> 89cfbc9e9bc96eabda609efd3c0c208c4c3fc2d7
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
-                  </div>
-              ):(
+                </div>
+              ) : (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Send</Link>
-                  </div>
-              )
-              }
-              </div>
-            
+                </div>
+              )}
+            </div>
 
             <div className={styles.secondaryInfo}>
               <div className={styles.secondaryInfoContainer}>

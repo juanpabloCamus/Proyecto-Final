@@ -8,6 +8,7 @@ const login = require('./login.js')
 const cloudinary = require('./cloudinary.js')
 const admin = require('./admin.js')
 const stripe = require('./stripe.js')
+const meeting = require('./meeting.js')
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.use('/login', login)
 router.use('/cloudinary', cloudinary)
 router.use('/admin', admin)
 router.use('/stripe', stripe)
+router.use('/meeting', meeting)
 
 module.exports = router;
