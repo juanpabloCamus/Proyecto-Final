@@ -17,12 +17,7 @@ import { MdEmail } from "react-icons/md";
 import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import axios from "axios"
-<<<<<<< HEAD
-
-
-=======
 import Swal from "sweetalert2";
->>>>>>> 89cfbc9e9bc96eabda609efd3c0c208c4c3fc2d7
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -93,7 +88,6 @@ function DevProfile() {
               )}
             </div>
             <div className={styles.mainInfoContainer}>
-<<<<<<< HEAD
 
               <div className={styles.mainInfoBox}>
 
@@ -136,43 +130,6 @@ function DevProfile() {
               </div>
               
               {profileType == "develop"? (
-=======
-              <div className={styles.userPhoto}>
-                <Image
-                  id={styles.logo}
-                  cloudName="dhar2oawa"
-                  publicId={user.profile_pic}
-                />
-              </div>
-              <div className={styles.nameContainer}>
-                <h2>{user.fullName}</h2>
-                {user.seniority === "Not specified" ? null : (
-                  <h4>{user.seniority}</h4>
-                )}
-                <h5>{user.stack}</h5>
-                <div className={styles.nameContainer_item}>
-                  <MdWork />
-                  <label>{user.currentJob}</label>
-                </div>
-                <div className={styles.nameContainer_item}>
-                  <MdEmail />
-                  <label>{user.email}</label>
-                </div>
-                <div className={styles.nameContainer_item}>
-                  {user.country !== null && user.city !== null ? (
-                    <MdLocationOn />
-                  ) : (
-                    <div></div>
-                  )}
-                  <label>
-                    {user.country !== null && user.city !== null
-                      ? `${user.city}, ${user.country}`
-                      : ""}
-                  </label>
-                </div>
-              </div>
-              {profileType == "develop" ? (
->>>>>>> 89cfbc9e9bc96eabda609efd3c0c208c4c3fc2d7
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
                 </div>
