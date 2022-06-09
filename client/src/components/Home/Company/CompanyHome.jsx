@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { BsFileEarmarkPlusFill } from "react-icons/bs";
 import { fetchCompany } from "../../../redux/company/company";
 import PostJobOffer from "./Post/PostJobOffer";
+import FilterBarUser from "./FilterBarUser/FilterBarUser";
 
 function CompanyHome() {
   const dispatch = useDispatch();
@@ -135,6 +136,7 @@ function CompanyHome() {
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
+            <FilterBarUser/>
           <div className={styles.postsContainer}>
             {render.length > 0 ? (
               render.map((e) => {
@@ -146,7 +148,11 @@ function CompanyHome() {
                     fullName={e.fullName}
                     email={e.email}
                     description={e.description}
+                    seniority={e.seniority}
+                    english_level={e.english_level}
+                    stack={e.stack}
                     technologies={e.technologies}
+                    // time={e.time}
                   ></PostU>
                 );
               })
