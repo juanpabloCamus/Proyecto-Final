@@ -68,7 +68,11 @@ router.get('/notis/:id',async (req,res)=>{
             notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name
             notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
             notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
-            delete notis[i].dataValues.meeting.dataValues.job 
+            delete notis[i].dataValues.meeting.dataValues.job
+            if(notis[i].codeNoti===1){
+                delete notis[i].dataValues.meeting.dataValues.status
+                delete notis[i].dataValues.meeting.dataValues.idMeeting 
+            }
         }
         
         res.send(notis)
