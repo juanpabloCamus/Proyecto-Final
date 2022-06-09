@@ -3,7 +3,7 @@ import styles from "./DevProfile.module.css";
 import { Navbar } from "../navbar/Navbar";
 import location from "../../assets/location.png";
 import size from "../../assets/size.png";
-import web from "../../assets/website.png";
+import cannot from "../../assets/cannot.png";
 import { fetchUser } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -66,6 +66,12 @@ function DevProfile() {
     }
   }
 
+  if (profileType[0] === 'develop' && sessionStorage.id !== user.id) return (
+    <div className={styles.cannot}>
+    <img alt="warning" src={cannot}></img>
+    <h1>You can't access here</h1>
+  </div>
+  )
 
   return (
     <div>

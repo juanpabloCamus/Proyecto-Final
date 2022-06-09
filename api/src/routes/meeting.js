@@ -9,6 +9,8 @@ router.post('/arrangeMeeting', async (req,res)=>{
         const {messege,id_comp,id_dev} = req.body
         let {dateTime} = req.body
 
+        console.log({"dateTime": dateTime, "messege":messege,"id_comp": id_comp,"id_dev": id_dev})
+
         if(dateTime){
             let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             let array = dateTime.split('-')
@@ -19,7 +21,6 @@ router.post('/arrangeMeeting', async (req,res)=>{
             array = [array[1],array[2],array[0],array[3]]
             dateTime = array.join(' ')
         }
-
         if(dateTime&&messege&&id_comp&&id_dev){
             let meet = await meeting.create({
                 dateTime: dateTime,
@@ -31,11 +32,39 @@ router.post('/arrangeMeeting', async (req,res)=>{
         }else{
             res.send('invalid data')
         }
-
     } catch (error) {
         console.log(error)
     }
     
+})
+
+router.put('/statusDev/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+        const {status} = req.body
+
+        if(status){
+            let idMeet = Math.random()*100000000000000000+'rocket'
+
+            await meeting.update({
+                status: status,
+                idMeeting: idMeet
+            },{
+                where: {id: id}
+            })
+        }else{
+            await meeting.update({
+                status: status
+            },{
+                where: {id: id}
+            })
+        }
+
+        res.send(status?'offer accepted':'offer declined')
+
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 
