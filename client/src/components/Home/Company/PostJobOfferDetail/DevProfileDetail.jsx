@@ -15,7 +15,7 @@ function DevProfileDetail() {
 console.log(useParams())
   useEffect(() => {
     dispatch(fetchJobDetail(id_job));
-  }, [dispatch]);
+  }, [dispatch, id_job]);
   let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
     (e) => e.userAccountId == id_dev
