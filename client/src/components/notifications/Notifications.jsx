@@ -14,6 +14,9 @@ export const Notifications = () => {
 
   const {notifications} = useSelector( state => state.notifications)
 
+
+
+
   const dispatch = useDispatch()
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
@@ -24,7 +27,6 @@ export const Notifications = () => {
     dispatch(fetchNotifications(id))
   },[dispatch, id])
 
-  console.log(notifications)
 
   return (
     <div className={styles.notifications}>
@@ -37,7 +39,7 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
           
-              !notifications ? <p>loading</p> :
+              !notifications ? <p>You do not have any notifications yet</p> :
                 notifications.map((n,i) => (
                 
                   <NotificationDevCard
