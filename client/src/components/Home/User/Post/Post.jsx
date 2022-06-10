@@ -30,7 +30,7 @@ export default function Post({id,position,salary_range,time,requirements,company
             />
         </div>
         <div className={styles.detailsContainer}>
-          <h2>{companyName}</h2>
+          <Link to={`/home/company/${company_accounts[0].id}`}><h2 id={styles.companyName}>{companyName}</h2></Link>
           <h3>{position}</h3>
           <div className={styles.subDetails}>
             <p>{salary_range === '10000$'? '+ 10000$': salary_range}</p>

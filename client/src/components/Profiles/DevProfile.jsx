@@ -129,7 +129,6 @@ function DevProfile() {
     <div>
       <div className={styles.pageContainer}>
         <EditDev />
-        <MeetingModal/>
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image

@@ -7,12 +7,13 @@ import styles from "./EditDev.module.css";
 import EditDevExpForm from "./EditDevExpForm/EditDevExpForm";
 import EditDevEduForm from "./EditDevEduForm/EditDevEduForm";
 import { fetchUser } from "../../redux/users/users";
+import { MeetingModal } from "../Home/Company/ArrangeMeeting/MeetingModal";
 
 
 
 
 export const EditDev = () => {
-  const { isOpen, editDevExp, editDevEdu } = useSelector((state) => state.modal);
+  const { isOpen, editDevExp, editDevEdu, arrangeMeeting } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const { id } = userLocalStorage
@@ -36,6 +37,7 @@ export const EditDev = () => {
             <div className={styles.form_container}>
               {editDevExp && <EditDevExpForm />}
               {editDevEdu && <EditDevEduForm />}
+              {arrangeMeeting && <MeetingModal/>}
             </div>
           </div>
         </>

@@ -19,11 +19,14 @@ import { MdWork } from "react-icons/md";
 import {BiBuilding} from 'react-icons/bi'
 import {HiChip} from 'react-icons/hi'
 import {TiStarFullOutline} from 'react-icons/ti'
+import cannot from "../../assets/cannot.png";
 
 
 function ComProfile() {
     const dispatch = useDispatch()
     const {id} = useParams()
+    const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+    const profileType = sessionStorage.profileType;
     
     useEffect(()=> {
         dispatch(fetchCompanyProfile(id))
@@ -48,7 +51,12 @@ function ComProfile() {
         dispatch(modalActions.activatePremium(true));
     }
 
-    console.log(user);
+    if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (
+        <div className={styles.cannot}>
+        <img alt="warning" src={cannot}></img>
+        <h1>You can't access here</h1>
+      </div>
+      )
     
     return (
         <div className={styles.pageContainer}>
@@ -110,12 +118,14 @@ function ComProfile() {
                         </div>
                     </div>
                 </div>
+                {profileType[0] === 'develop' ? null :
                 <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
                         {user.premium ? null : 
                         <button id={styles.premium} onClick={handlePremium}>Be premium <FaMedal/></button>
                         }
                 </div>
+                }
                 {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>
                     <h3>Technologies used at {user.name} <GiTechnoHeart></GiTechnoHeart></h3>
@@ -139,7 +149,11 @@ function ComProfile() {
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>
-                            <Link to={`/company/companyjob/${id}`}>
+                            <Link to={
+                                profileType[0] === 'develop' ?
+                                `/home/post/${id}` :
+                                `/company/offers/${id}`
+                                }>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}
