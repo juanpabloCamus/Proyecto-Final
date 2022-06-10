@@ -6,6 +6,7 @@ import { AiFillNotification } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './notifications.module.css'
+import { fetchCompanyNotifications } from '../../redux/notifications/companyNotifications'
 
 
 export const Notifications = () => {
@@ -13,7 +14,7 @@ export const Notifications = () => {
   const { id } = JSON.parse(localStorage.getItem("userData"))
 
   const {notifications} = useSelector( state => state.notifications)
-
+  const {companyNotifications} = useSelector( state => state.companyNotifications)
 
 
 
@@ -25,7 +26,9 @@ export const Notifications = () => {
 
   useEffect(() => {
     dispatch(fetchNotifications(id))
+    dispatch(fetchCompanyNotifications(id))
   },[dispatch, id])
+
 
 
   return (
@@ -39,7 +42,7 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
           
-              !notifications ? <p>You do not have any notifications yet</p> :
+              !notifications ? <p>loading</p> :
                 notifications.map((n,i) => (
                 
                   <NotificationDevCard
@@ -55,7 +58,17 @@ export const Notifications = () => {
         {
           profileType[0] === "company" && (
             <div>
-              <NotificationComCard/>
+              {
+                !companyNotifications ? <p>loading</p> :
+                companyNotifications.map((n,i) => (
+
+                    <NotificationComCard
+                      key={i}
+                      {...n}
+                    />
+
+                ))
+              }
             </div>
           )
         }

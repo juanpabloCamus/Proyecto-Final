@@ -2,15 +2,18 @@ import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchNotifications } from '../../../redux/notifications/notifications'
 import { useNavigate } from 'react-router'
+import Swal from 'sweetalert2'
 
 import { RiDeleteBinFill } from 'react-icons/ri'
 
 import styles from './notificationDevCard.module.css'
+import { useState } from 'react'
 
 export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
 
+const [ disableButtons, setDisableButtons ] = useState(false)
+
 const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
-const {notifications} = useSelector(state => state.notifications)
 
 const user_id = userLocalStorage.id
 const dispatch = useDispatch()
@@ -22,24 +25,45 @@ let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(
 const { companyName,
   dateTime,
   messege,
+  jobPosition,
   id} = meeting
 
-  console.log(meeting)
+  
 
   const handleAcceptClick = () => {
     acceptOrDecline(true, id)
     dispatch(fetchNotifications(user_id))
+    Swal.fire({
+      icon:"success",
+      title:"You accept the meeting"
+    })
+    setDisableButtons(true)
   }
 
   const handleDeclineClick = () => {
     acceptOrDecline(false, id)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, decline it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'The meeting has been declined',
+        )
+        setDisableButtons(true)
+      }
+    })
+    
   }
   
   const acceptOrDecline = async(status, id) => {
-    console.log(status, id)
     try {
       const res = await axios.put(`/meeting/statusDev/${id}`, {status})
-      console.log(res.data)
     } catch (err) {
       console.log(err)
     }
@@ -57,14 +81,23 @@ const { companyName,
               <div className={styles.notification_text}>
                 <p >From: {companyName}</p>
                 <p>Sent: {dateOfSend}</p>
+                <p>Job position: {jobPosition}</p>
               </div>
               <hr />
               <p className={styles.notification_message}>Hi dear developer,</p>
               <p className={styles.notification_message}>{messege}</p>
               <p>The Company arrange a meeting to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
-              <div className={styles.notification_buttons}>
-                  <button className={styles.notification_accept_button} onClick={handleAcceptClick}>Accept</button>
-                  <button className={styles.notification_decline_button} onClick={handleDeclineClick}>Decline</button>
+
+              <div className={styles.notification_buttons} >
+                  <button 
+                  className={`${styles.notification_accept_button} ${disableButtons ? styles.disable : ""}`} 
+                  onClick={handleAcceptClick}
+                  disabled={disableButtons ? true : false}
+                  >Accept</button>
+                  <button className={`${styles.notification_decline_button} ${disableButtons ? styles.disable : ""}`} 
+                  onClick={handleDeclineClick}
+                  disabled={disableButtons ? true : false}
+                  >Decline</button>
               </div>
           </>
         }

@@ -61,3 +61,7 @@
 .delete_notification:hover{
     color: rgb(199, 15, 15);
 }
+
+.disable{
+    background-color: rgb(223, 223, 223);
+}
