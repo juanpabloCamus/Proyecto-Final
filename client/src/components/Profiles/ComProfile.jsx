@@ -19,11 +19,15 @@ import { MdWork } from "react-icons/md";
 import {BiBuilding} from 'react-icons/bi'
 import {HiChip} from 'react-icons/hi'
 import {TiStarFullOutline} from 'react-icons/ti'
+import cannot from "../../assets/cannot.png";
+import Swal from "sweetalert2";
 
 
 function ComProfile() {
     const dispatch = useDispatch()
     const {id} = useParams()
+    const sessionStorage = JSON.parse(localStorage.getItem("userData"));
+    const profileType = sessionStorage.profileType;
     
     useEffect(()=> {
         dispatch(fetchCompanyProfile(id))
@@ -48,8 +52,17 @@ function ComProfile() {
         dispatch(modalActions.activatePremium(true));
     }
 
-    console.log(user);
-    
+    function handlePremiumInfo(){
+        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to ${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}`})
+    }
+
+    if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (
+        <div className={styles.cannot}>
+        <img alt="warning" src={cannot}></img>
+        <h1>You can't access here</h1>
+      </div>
+      )
+      console.log(user);
     return (
         <div className={styles.pageContainer}>
             <Premium></Premium>
@@ -81,7 +94,7 @@ function ComProfile() {
                         <h5>{user.speciality}</h5>
                         { user.foundation === null ? <label></label> :
                         <label>Since {user.foundation.slice(0,4)}</label>}
-                        {user.premium ? <label id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
+                        {user.premium ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>
@@ -110,12 +123,14 @@ function ComProfile() {
                         </div>
                     </div>
                 </div>
+                {profileType[0] === 'develop' ? null :
                 <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
                         {user.premium ? null : 
                         <button id={styles.premium} onClick={handlePremium}>Be premium <FaMedal/></button>
                         }
                 </div>
+                }
                 {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>
                     <h3>Technologies used at {user.name} <GiTechnoHeart></GiTechnoHeart></h3>
@@ -139,7 +154,11 @@ function ComProfile() {
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>
-                            <Link to={`/company/companyjob/${id}`}>
+                            <Link to={
+                                profileType[0] === 'develop' ?
+                                `/home/post/${id}` :
+                                `/company/offers/${id}`
+                                }>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}

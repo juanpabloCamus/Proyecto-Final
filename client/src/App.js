@@ -48,6 +48,7 @@ function App() {
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
               <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
+              <Route path="home/company/:id" element={<ComProfile />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>

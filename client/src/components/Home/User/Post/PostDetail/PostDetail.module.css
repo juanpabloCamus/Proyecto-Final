@@ -8,6 +8,7 @@
     flex-direction: column;
     margin-top: 100px;
     margin-bottom: 100px;
+    box-shadow: 0 3px 5px 1px lightgray;
 }
 
 .reportaje 
@@ -28,6 +29,7 @@
     align-items: center;
     gap: 50px;
     border-bottom: 1px solid black;
+    
 }
 .back{
     display: flex;
@@ -105,6 +107,15 @@
 .nameContainer{
     margin-top: auto;
     margin-bottom: auto;
+}
+
+#companyName{
+    color: black;
+    text-decoration: underline;
+    cursor: pointer;
+    
+    padding: 5px;
+    border-radius: 10px;
 }
 
 #logo{
