@@ -1,7 +1,6 @@
 import {React, useState} from 'react';
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import { CloudinaryContext, Image, Transformation } from 'cloudinary-react'
 import './ApplyModal.css'
 import Swal from 'sweetalert2';
 

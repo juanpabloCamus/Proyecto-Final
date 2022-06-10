@@ -7,7 +7,7 @@
 }
 
 .profileContainer {
-  background-color: rgba(227, 227, 227, 0.51);
+  background-color: rgba(234, 234, 239, 0.629);
   display: flex;
   flex-direction: column;
 }
@@ -100,10 +100,11 @@ h3 {
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
+  justify-content: center;
 }
 
 .userTechsContainer label {
-  background-color: #ffc18b;
+  background-color: #f8f6e0;
   box-shadow: 0 3px 5px 1px lightgray;
   text-align: center;
   padding: 8px;
@@ -151,4 +152,68 @@ h3 {
   margin-left: auto;
   margin-right: auto;
   width: 400px;
+}
+
+.secondaryInfoCards{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #d9ecf2;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 8px;
+  padding-left: 16px;
+  border-radius: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 3px 5px 1px lightgray;
+}
+
+.dateContainer{
+  display: flex;
+  gap: 5px;
+}
+
+.dateContainer label{
+  color: white;
+  border-radius: 10px;
+  background-color: #46499c;
+  width: fit-content;
+  padding: 8px 15px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.props{
+  margin-left: 40px;
+}
+
+#deg{
+  font-size: 23px;
+}
+
+.dsc{
+  margin-left: 50px;
+}
+
+.about{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.divdelete{
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.delete{
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: black !important;
+  cursor: pointer;
+}
+
+#high{
+  justify-content: space-between;
 }
