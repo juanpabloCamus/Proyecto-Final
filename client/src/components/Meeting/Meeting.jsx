@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react'
+import React,{ useEffect } from 'react'
 import { useParams } from 'react-router-dom' 
 import { JitsiMeeting } from '@jitsi/react-sdk'
 import styles from './Meeting.module.css'
@@ -12,15 +12,19 @@ function Meeting() {
     const navigate = useNavigate()
     const dispatch=useDispatch()
     const {id_meet}=useParams()
-    const user=useSelector(state=>state.users.users)
+    const user = JSON.parse(localStorage.getItem("userData"))
+
     console.log(user)
+    
     useEffect(()=>
     {
       dispatch(fetchMeeting(id_meet))
       dispatch(fetchUser())
-    },[])
-    const meetback=useSelector(state=>state.meeting.meeting)
-  /* let permiso = false
+    },[dispatch,id_meet])
+
+    const meetback = useSelector(state=>state.meeting.meeting)
+
+    /* let permiso = false
     let tiempo = Date()
     let horario = tiempo.slice(4,24)
     if(horario>"Jun 08 2022 11:10:00"){
@@ -28,23 +32,21 @@ function Meeting() {
     }else{
         permiso = false
     } */
-  
-
 
     return (
-        /* permiso? */
+        meetback.idMeeting !== undefined && user.fullName ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
-            roomName = {meetback.idMeeting  }
-            userInfo = {{displayName: "your name"}}
+            roomName = { meetback.idMeeting }
+            userInfo = {{displayName: user.fullName }}
             onReadyToClose = {() => {navigate('/')}}
             />
         </div>
-        /* :
+        :
         <div>
-            <h2>No es horario de la reunion</h2>
-        </div> */
+            <h2>No existe la reunion</h2>
+        </div>
     );
 }
 

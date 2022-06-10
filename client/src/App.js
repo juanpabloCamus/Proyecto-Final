@@ -37,7 +37,6 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
-            <Route path="/meet" element={ <Meeting /> } />
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>

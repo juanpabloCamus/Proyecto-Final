@@ -10,7 +10,8 @@ router.get('/room/:id', async (req,res)=>{
         let room = await meeting.findAll({
             where: {id: id}
         })
-        if(room[0].dataValues.idMeeting){
+        
+        if(room[0] ?? room[0].dataValues.idMeeting){
             delete room[0].dataValues.messege
             delete room[0].dataValues.createdAt
             delete room[0].dataValues.jobId
