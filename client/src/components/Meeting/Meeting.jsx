@@ -32,9 +32,9 @@ function Meeting() {
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
-            roomName = { 'ROCKET_YOUR_CUSTOM_ROOM_NAME' }   
+            roomName = { 'ROCKET_YOUR_CUSTOM_ROOM_NAME' }
             userInfo = {{displayName: 'YOUR_USERNAME'}}
-            onReadyToClose = {() => {navigate('/')}}          
+            onReadyToClose = {() => {navigate('/')}}
             />
         </div>
         /* :
