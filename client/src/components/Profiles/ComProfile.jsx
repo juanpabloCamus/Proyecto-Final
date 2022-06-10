@@ -20,6 +20,7 @@ import {BiBuilding} from 'react-icons/bi'
 import {HiChip} from 'react-icons/hi'
 import {TiStarFullOutline} from 'react-icons/ti'
 import cannot from "../../assets/cannot.png";
+import Swal from "sweetalert2";
 
 
 function ComProfile() {
@@ -51,13 +52,17 @@ function ComProfile() {
         dispatch(modalActions.activatePremium(true));
     }
 
+    function handlePremiumInfo(){
+        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to ${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}`})
+    }
+
     if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (
         <div className={styles.cannot}>
         <img alt="warning" src={cannot}></img>
         <h1>You can't access here</h1>
       </div>
       )
-    
+      console.log(user);
     return (
         <div className={styles.pageContainer}>
             <Premium></Premium>
@@ -89,7 +94,7 @@ function ComProfile() {
                         <h5>{user.speciality}</h5>
                         { user.foundation === null ? <label></label> :
                         <label>Since {user.foundation.slice(0,4)}</label>}
-                        {user.premium ? <label id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
+                        {user.premium ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>

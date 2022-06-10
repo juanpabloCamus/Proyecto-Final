@@ -167,7 +167,9 @@
     width: fit-content;
     padding: 8px 10px;
     border-radius: 10px;
-    background-color: #f8f6e0;
+    background: #E0EAFC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color:#000000
   }
 
@@ -225,6 +227,8 @@
     border-radius: 5px;
     position: relative;
     right: 13px;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .cannot{

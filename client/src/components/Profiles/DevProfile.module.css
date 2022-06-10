@@ -136,7 +136,7 @@ h3 {
 }
 .reportaje {
   display: flex;
-
+  background-color: white;
   justify-content: flex-end;
 }
 .reportaje button {
@@ -144,9 +144,9 @@ h3 {
   font-size: 30px;
   margin-right: 50px;
   margin-top: 30px;
-  background-color: #E3EEF6;
   border: none;
   cursor: pointer;
+  background-color: white;
 }
 .reportaje button:hover{
     color:red
@@ -224,5 +224,9 @@ h3 {
 
 #high{
   justify-content: space-between;
+}
+
+#arrange{
+  border: none;
 }
 
