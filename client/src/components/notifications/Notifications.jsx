@@ -10,6 +10,8 @@ import styles from './notifications.module.css'
 
 export const Notifications = () => {
 
+  const { id } = JSON.parse(localStorage.getItem("userData"))
+
   const {notifications} = useSelector( state => state.notifications)
 
   const dispatch = useDispatch()
@@ -19,8 +21,8 @@ export const Notifications = () => {
   const { fullName, name, profileType } = userLocalStorage
 
   useEffect(() => {
-    dispatch(fetchNotifications())
-  },[dispatch])
+    dispatch(fetchNotifications(id))
+  },[dispatch, id])
 
   console.log(notifications)
 
@@ -35,14 +37,13 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
             <div>
-              {/* { !notifications ? <p>loading</p> :
+              { !notifications ? <p>loading</p> :
               notifications.map(n => (
+                n.codeNoti == 1 ?
                 <NotificationDevCard 
                 {...n}
-                />
-              ))} */}
-              
-              <NotificationDevCard />
+                /> : null
+              ))}
             </div>
           )
         }

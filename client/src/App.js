@@ -18,8 +18,6 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 
 import { Notifications } from "./components/notifications/Notifications";
-
-
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";

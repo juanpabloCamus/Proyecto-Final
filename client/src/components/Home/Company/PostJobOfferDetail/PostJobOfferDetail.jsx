@@ -7,10 +7,8 @@ import { NotFound } from "../../../not_found/NotFound";
 import styles from "../PostJobOfferDetail/PostJobOfferDetail.module.css";
 import arrow from "../../../../assets/arrow.png";
 import { BiHide } from "react-icons/bi";
-import { GrFormView, GrView } from "react-icons/gr";
 import { FaEye } from "react-icons/fa";
 import { IoCreateOutline } from "react-icons/io5";
-import { CgCloseO } from "react-icons/cg";
 import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
@@ -253,8 +251,8 @@ function PostJobOffer() {
                         />
                       </div>
                       <div className={styles.detailsContainer}>
-                        <p>{el.fullName}</p>
-                        <p>{el.stack}</p>
+                        <p ><b>{el.fullName}</b></p>
+                        <p ><b>{el.stack}</b></p>
                         {el.description === null ? (
                           <p className={styles.null}>
                             Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -266,8 +264,8 @@ function PostJobOffer() {
                         )}
 
                         <div className={styles.subDetails}>
-                          <p>English Level: {el.english_level}</p>
-                          <p>Seniority: {el.seniority}</p>
+                          <p><b>English Level:</b> {el.english_level}</p>
+                          <p><b>Seniority: </b>{el.seniority}</p>
                           {/* <p>Time: {el.time}</p> */}
                         </div>
 

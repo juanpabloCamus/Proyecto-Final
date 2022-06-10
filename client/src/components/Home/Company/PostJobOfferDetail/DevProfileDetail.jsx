@@ -1,4 +1,3 @@
-import { CloudinaryContext } from "cloudinary-react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
@@ -6,16 +5,14 @@ import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 import styles from "./PostJobOfferDetail.module.css";
 import { Image } from "cloudinary-react";
-import { Link } from "react-router-dom";
 //import Meeting from "../../../Meeting/Meeting";
-//import { Redirect } from "react-router"
 import { MeetingModal } from "../../Company/ArrangeMeeting/MeetingModal"
 
 function DevProfileDetail() {
   let { id_job, id_dev } = useParams();
   let dispatch = useDispatch();
   let navigate = useNavigate();
-
+console.log(useParams())
   useEffect(() => {
     dispatch(fetchJobDetail(id_job));
   }, [dispatch, id_job]);
@@ -40,19 +37,16 @@ function DevProfileDetail() {
                 cloudName="dhar2oawa"
                 publicId={filterUser[0].user_account.profile_pic}
                 className={styles.imgU}
-                //width="10"
-                //crop="scale"
+         
               />
             </div>
             <div>
-              {/* <Navigate to={`company/user/${id_dev}`}> */}
               <button
                 onClick={() => navigate(`/company/user/${id_dev}`)}
                 className={styles.buttonU}
               >
                 More Info
               </button>
-              {/* </Navigate> */}
             </div>
           </div>
 

@@ -9,7 +9,10 @@
   margin-left: auto;
   margin-right: auto;
 }
-
+.fullName
+{
+  font-size: 23px;
+}
 
 .postCard {
   display: flex;

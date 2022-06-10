@@ -6,6 +6,7 @@ import { modalActions } from "../../redux/modal_slice/modalSlice";
 import styles from "./EditDev.module.css";
 import EditDevExpForm from "./EditDevExpForm/EditDevExpForm";
 import EditDevEduForm from "./EditDevEduForm/EditDevEduForm";
+import { fetchUser } from "../../redux/users/users";
 
 
 
@@ -13,11 +14,14 @@ import EditDevEduForm from "./EditDevEduForm/EditDevEduForm";
 export const EditDev = () => {
   const { isOpen, editDevExp, editDevEdu } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
+  const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
+  const { id } = userLocalStorage
 
   const handleCloseModal = () => {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevExp(false));
     dispatch(modalActions.activateEditDevEdu(false));
+    dispatch(fetchUser(id))
   };
 
   return ReactDOM.createPortal(

@@ -37,7 +37,7 @@ export const UserNav = () => {
   );
 
   const jobs = useSelector((state) => state.jobs.jobs);
-  console.log(jobs ? jobs[0]?.offers : null);
+
 
   //////////
   const handleMenu = () => {

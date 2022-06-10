@@ -7,7 +7,6 @@ async(id)=>{
         if(id){
             var res= await axios.get(`/users/notis/${id}`)
         }
-        console.log(res.data)
         return res.data
     } catch (error) {
         console.log(error)

@@ -7,8 +7,9 @@ const router = Router();
 router.post('/arrangeMeeting', async (req,res)=>{
     try {
         const {messege,id_comp,id_dev,id_job} = req.body
+        
         let {dateTime} = req.body
-
+        
         if(dateTime){
             let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
             let array = dateTime.split('-')
@@ -50,12 +51,22 @@ router.put('/statusDev/:id', async (req,res)=>{
         if(status){
             let idMeet = Math.random()*100000000000000000+'rocket'
 
+            let meet = await meeting.findAll({
+                where: {id:id}
+            })
+
             await meeting.update({
                 status: status,
                 idMeeting: idMeet
             },{
                 where: {id: id}
             })
+            let notiUser = await usernotis.create({
+                codeNoti:2
+            })
+            notiUser.setUser_account(meet[0].dataValues.userAccountId)
+            notiUser.setMeeting(id)
+
         }else{
             await meeting.update({
                 status: status

@@ -18,6 +18,11 @@ import { MdWork } from "react-icons/md";
 import Loading from "../Loading/Loading";
 import axios from "axios"
 import Swal from "sweetalert2";
+import {FaUserGraduate} from 'react-icons/fa'
+import { MdPerson } from "react-icons/md";
+import {GiTechnoHeart} from 'react-icons/gi'
+import {MdDeleteOutline} from 'react-icons/md'
+
 function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -43,26 +48,67 @@ function DevProfile() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevEdu(true));
   }
+
+  async function handleDelete(e){
+
+    if (e.target.name === 'exp'){
+
+      const res = await Swal.fire({
+        text:'Are you sure you want to delete this?',
+        showCancelButton: true,
+      });
+
+      if (res.isConfirmed) {
+        try {
+          await axios.delete(`users/experience/${e.target.value}`)
+          dispatch(fetchUser(id))
+        } catch (error) {
+          Swal.fire({icon:"error",text:`${error.response.data}`})
+        }
+      }
+    }
+
+    if (e.target.name === 'edu'){
+
+      const res = await Swal.fire({
+        text:'Are you sure you want to delete this?',
+        showCancelButton: true,
+      });
+
+      if (res.isConfirmed) {
+      try {
+        await axios.delete(`users/education/${e.target.value}`)
+        dispatch(fetchUser(id))
+      } catch (error) {
+        Swal.fire({icon:"error",text:`${error.response.data}`})
+      }
+    }
+    }
+  }
+
   const  handleReport=async (id)=>{
 
     try{
-
       const res = await Swal.fire({
-        input: "textarea",
-        inputLabel: "Why do you want to report?",
-        inputPlaceholder: "Type your message here...",
-        inputAttributes: {
-          "aria-label": "Type your message here",
-        },
-        showCancelButton: true,
-      });
+        input: 'select',
+           inputOptions: {
+          'spam': 'Spam',
+          'inappropiate lenguaje': 'Inappropiate Lenguaje',
+          'false information': 'False Information',
+          'inappropriate content':'Inappropriate Content'
+
+           },
+       inputPlaceholder: 'Select reports',
+       showCancelButton: true,
+
+     })
 
       if (res.isConfirmed) {
         await axios.put(`users/report/${id}`, res.value, idCom, profileType);
       }
     }catch(error)
     {
-      console.log(error)
+       console.log(error)
     }
   }
 
@@ -72,7 +118,7 @@ function DevProfile() {
     <h1>You can't access here</h1>
   </div>
   )
-
+  
   return (
     <div>
       <div className={styles.pageContainer}>
@@ -148,7 +194,7 @@ function DevProfile() {
 
             <div className={styles.secondaryInfo}>
               <div className={styles.secondaryInfoContainer}>
-                <h3>Tecnologies</h3>
+                <h3>Technologies <GiTechnoHeart/></h3>
                 {userTechs?.length === 0 ? (
                   <p>You can add your techs here, please complete profile</p>
                 ) : (
@@ -175,7 +221,7 @@ function DevProfile() {
                 <label>English level: {user.english_level}</label>
               )}
               <div className={styles.secondaryInfoContainer}>
-                <h3>About</h3>
+                <h3 className={styles.about}>About <MdPerson/></h3>
                 {user.description === null ? (
                   <p>Not description yet? Please complete your profile</p>
                 ) : (
@@ -183,18 +229,56 @@ function DevProfile() {
                 )}
               </div>
               <div
-                onClick={handleEditExp}
                 className={styles.secondaryInfoContainer}
               >
-                <h3>Experience</h3>
-                {profileType == "develop" && <button>Add experience</button>}
+                <h3>Experience <MdWork/></h3>
+                {user.experiences?.length > 0 ?  
+                  
+                  user.experiences.map((e) => 
+                    <div className={styles.secondaryInfoCards} key={e.id}>
+                      <div id={styles.high} className={styles.dateContainer}>
+                        <div className={styles.dateContainer}>
+                        <label>{e.start_date}</label> 
+                        {e.end_date === '1800-12-12' ? <label>Present</label>
+                        : <label>{e.end_date}</label>
+                        }
+                        </div>
+                        <button name="exp" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                      </div>
+                      <h2 className={styles.props}>{e.company}</h2>
+                      <h3 id={styles.deg} className={styles.props}>{e.position}</h3>
+                      <p className={styles.dsc}>{e.description}</p>
+                    </div>
+                  )
+
+                : null}
+                {profileType == "develop" && <button onClick={handleEditExp}>Add experience</button>}
               </div>
               <div
-                onClick={handleEditEdu}
                 className={styles.secondaryInfoContainer}
               >
-                <h3>Education</h3>
-                {profileType == "develop" && <button>Add education</button>}
+                <h3>Education <FaUserGraduate/></h3>
+                {user.education?.length > 0 ?  
+                  
+                  user.education.map((e) => 
+                    <div className={styles.secondaryInfoCards} key={e.id}>
+                      <div id={styles.high} className={styles.dateContainer}>
+                        <div className={styles.dateContainer}>
+                        <label>{e.start_date}</label> 
+                        {e.end_date === '1800-12-12' ? <label>Present</label>
+                        : <label>{e.end_date}</label>
+                        }
+                        </div>
+                        <button name="edu" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                      </div>
+                      <h2 className={styles.props}>{e.institution}</h2>
+                      <h3 id={styles.deg} className={styles.props}>{e.degree}</h3>
+                      <p className={styles.dsc}>{e.description}</p>
+                    </div>
+                  )
+
+                : null}
+                {profileType == "develop" && <button onClick={handleEditEdu}>Add education</button>}
               </div>
             </div>
           </div>

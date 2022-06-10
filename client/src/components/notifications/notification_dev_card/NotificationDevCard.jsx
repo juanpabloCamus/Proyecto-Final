@@ -3,16 +3,16 @@ import styles from './notificationDevCard.module.css'
 
 import axios from 'axios'
 
-export const NotificationDevCard = ({
-  companyName,
+export const NotificationDevCard = ({meeting}) => {
+
+const { companyName,
   dateTime,
   messege,
-  id
-}) => {
+  id} = meeting
 
   //const [ state, setState ] = useState(null)
 
-  console.log(id)
+  console.log(meeting)
 
   const handleAcceptClick = () => {
     acceptOrDecline(true, id)
