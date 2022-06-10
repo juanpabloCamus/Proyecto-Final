@@ -14,6 +14,7 @@ router.post('/', async (req,res)=>{
         res.send(uploadedResponse.public_id)
     }catch(error){
         console.log(error)
+        res.status(400).send(error.message)
     }
 })  
 

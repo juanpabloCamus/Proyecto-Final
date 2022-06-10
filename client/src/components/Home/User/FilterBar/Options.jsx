@@ -55,4 +55,5 @@ const optionsSeniority = [
       {value:"+ 10000$", label:"+ 10000$"}
 ]
 
+
   export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}

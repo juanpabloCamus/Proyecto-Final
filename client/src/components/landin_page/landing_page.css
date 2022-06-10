@@ -40,7 +40,7 @@
 .landing__page_first_section{
     display: flex;
     flex-direction: column;
-    margin: 220px 0;
+    margin: 300px 0;
     align-items: center;
     position: relative;
 }

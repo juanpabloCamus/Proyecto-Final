@@ -1,4 +1,6 @@
 .pageContainer{
+    background-color: rgba(227, 227, 227, 0.51);
+    box-shadow: 0 4px 7px 1px lightgray;
     border-radius: 20px;
     margin: 50px auto;
     width: 75%;
@@ -33,15 +35,9 @@
     width: 100%;
 }
 
-#banner{
-    object-fit: contain;
-}
 
 .infoProfileContainer{
-    background-color: rgba(201, 221, 238, 0.51);
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 50px;
+    padding: 60px 30px;
     border-bottom: 3px solid black;
 }
 
@@ -50,8 +46,17 @@
     align-items: center;
 }
 
-#logo{
-    width: 150px;
+.userPhoto{
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    padding: 35px;
+    width: 230px;
+    height: 230px;
+    overflow: hidden;
 }
 
 .nameContainer{
@@ -81,21 +86,12 @@
 
 .descriptionContainer, .jobsContainer, .technologiesContainer{
     padding: 50px;
-    background-color: rgba(201, 221, 238, 0.51);
 }
 
 .jobsContainer{
     display: flex;
     flex-direction: column;
     gap: 20px;
-}
-
-.technologiesContainer{
-    border-top: 3px solid black;
-}
-
-.technologiesContainer h3{
-    text-align: center;
 }
 
 
@@ -147,28 +143,41 @@
   }
   
   .companyTechsContainer{
-      margin-top: 20px;
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap:20px;
-    align-content: center;
-    justify-content: center;
     align-items: center;
   }
 
+
+  .technologiesContainer, .descriptionContainer{
+      background-color: white;
+      box-shadow: 0 3px 5px 1px lightgray;
+      margin: 20px 30px;
+  }
+
   .techsContainer label, .companyTechsContainer label{
+    box-shadow: 0 3px 5px 1px lightgray;
     margin-top: auto;
     margin-bottom: auto;
     text-align: center;
     width: fit-content;
-    padding: 8px;
+    padding: 8px 10px;
     border-radius: 10px;
-    background-color: rgba(239, 245, 250, 0.793);
-    color:#46499c
+    background-color: #ffc18b;
+    color:#000000
   }
 
   .companyTechsContainer label{
-      background-color: white;
+      background-color: #efefef;
+  }
+
+
+
+  h3{
+    font-size: 30px;
+    font-weight: 500;
   }
   
   .jobContainer{
@@ -183,10 +192,12 @@
     width: 50%;
     display: flex;
     justify-content: space-around;
+    padding: 20px 0;
   }
 
   .editProfileButtonContainer > *{
-    background-color: #46499c;
+    background-color: #5c5c5c;
+    box-shadow: 0 4px 7px 1px lightgray;
     border-radius: 8px;
     color: white;
     font-size: 18px;
@@ -196,5 +207,9 @@
 }
 
 #premium{
+    background-color: rgb(253, 147, 26);
     border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }

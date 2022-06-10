@@ -13,7 +13,7 @@
   padding: 50px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1000px;
+  max-width: 800px;
   background-color: rgba(239, 245, 250, 0.793);
   display: flex;
   flex-direction: column;
@@ -30,6 +30,13 @@
   align-items: center;
   gap: 50px;
   border-bottom: 1px solid black;
+}
+.imgContainer {
+  border-radius: 50%;
+  width: 15%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .back button {
@@ -52,7 +59,9 @@
 .fields {
   margin: 10px;
 }
-
+.negrita p{
+  font-weight: bold;
+}
 .detailTwo {
   height: 10rem;
   display: flex;
@@ -81,6 +90,7 @@
   padding: 8px;
   width: 100px;
 }
+
 
 .button1 {
   background-color: #46499c;
@@ -323,14 +333,78 @@
   color: #333;
 }
 
-.user_icon img {
-  height: 20%;
+.user_icon {
+  height: 300px;
+  width: 300px;
+}
+
+/* .containerMain{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  width: 700px;
+} */
+
+
+.container1{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+
+/* .container2{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 7rem;
+  padding: 5%;
+} */
+
+.container3{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  gap: 7rem;
+}
+
+.container8{
+  margin-right: 58%;
+}
+
+.imgU{
   object-fit: contain;
-  width: 20%;
+  height: 80%;
+  width: 80%;
   border-radius: 50%;
 }
 
-.containerMain{
+
+/* /////////////////////////////////// */
+
+
+
+.dev_profile_buttons {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+
+
+.buttonU{
+  border: none;
+  box-shadow: 0px 4px 8px 1px lightgray;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  padding: 12px 24px;
+  background-color: #46499c;
+}
+
+.buttonU_1{
+  background-color: rgb(255, 118, 33);
 }
