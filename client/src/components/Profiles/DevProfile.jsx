@@ -19,7 +19,6 @@ import {FaUserGraduate} from 'react-icons/fa'
 import { MdPerson } from "react-icons/md";
 import {GiTechnoHeart} from 'react-icons/gi'
 import {MdDeleteOutline} from 'react-icons/md'
-import {MeetingModal} from '../Home/Company/ArrangeMeeting/MeetingModal'
 
 function DevProfile() {
   const dispatch = useDispatch();
@@ -114,6 +113,7 @@ function DevProfile() {
        console.log(error)
     }
   }
+  
 
   if (profileType[0] === 'develop' && sessionStorage.id !== user.id) return (
     <div className={styles.cannot}>
@@ -126,7 +126,6 @@ function DevProfile() {
     <div>
       <div className={styles.pageContainer}>
         <EditDev />
-        <MeetingModal/>
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image
@@ -191,7 +190,7 @@ function DevProfile() {
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
-                  <button onClick={handleOpenModal}>Arrange Meeting</button>
+                  <button id={styles.arrange} onClick={handleOpenModal}>Arrange Meeting</button>
                 </div>
               )}
             </div>
@@ -242,9 +241,9 @@ function DevProfile() {
                     <div className={styles.secondaryInfoCards} key={e.id}>
                       <div id={styles.high} className={styles.dateContainer}>
                         <div className={styles.dateContainer}>
-                        <label>{e.start_date}</label> 
+                        <label>{e.start_date.slice(5,10) + '-' +e.start_date.slice(0,4)}</label> 
                         {e.end_date === '1800-12-12' ? <label>Present</label>
-                        : <label>{e.end_date}</label>
+                        : <label>{e.end_date.slice(5,10) + '-' +e.end_date.slice(0,4)}</label>
                         }
                         </div>
                         { profileType[0] === 'company' ? null :
@@ -270,9 +269,9 @@ function DevProfile() {
                     <div className={styles.secondaryInfoCards} key={e.id}>
                       <div id={styles.high} className={styles.dateContainer}>
                         <div className={styles.dateContainer}>
-                        <label>{e.start_date}</label> 
+                        <label>{e.start_date.slice(5,10) + '-' +e.start_date.slice(0,4)}</label> 
                         {e.end_date === '1800-12-12' ? <label>Present</label>
-                        : <label>{e.end_date}</label>
+                        : <label>{e.end_date.slice(5,10) + '-' +e.end_date.slice(0,4)}</label>
                         }
                         </div>
                         { profileType[0] === 'company' ? null :

@@ -48,7 +48,7 @@ function App() {
               <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
               <Route path="home/meet/:id_meet" element={<Meeting/>} />
-
+              <Route path="home/company/:id" element={<ComProfile />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
