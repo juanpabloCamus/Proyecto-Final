@@ -26,9 +26,9 @@ let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(
             </div>
             <hr />
             <p className={styles.notification_message}>Developer had accepted arrange an interview via Jitsi for the job position of: {jobPosition}</p>
-            <p>scheduled meeting to: {dateTime}</p>
+            <p>Scheduled meeting at: {dateTime}</p>
             <div className={styles.notification_buttons}>
-                <button className={styles.notification_accept_button} onClick={navigate("/meet")}>Go to Jitsi</button>
+                <button className={styles.notification_accept_button} onClick={() => navigate("/meet")}>Go to Jitsi</button>
             </div>
       </>
       )

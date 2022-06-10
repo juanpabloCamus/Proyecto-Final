@@ -9,11 +9,15 @@ import { RiDeleteBinFill } from 'react-icons/ri'
 import styles from './notificationDevCard.module.css'
 import { useState } from 'react'
 
+
 export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
 
-const [ disableButtons, setDisableButtons ] = useState(false)
+
+const [refresh, setRefresh] = useState(false)
 
 const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
+const {notifications} = useSelector(state => state.notifications)
+console.log(notifications)
 
 const user_id = userLocalStorage.id
 const dispatch = useDispatch()
@@ -28,6 +32,8 @@ const { companyName,
   jobPosition,
   id} = meeting
 
+  const findStatus = notifications.find(item => item.codeNoti === 2)
+  let status = findStatus?.meeting.status
   
 
   const handleAcceptClick = () => {
@@ -37,7 +43,7 @@ const { companyName,
       icon:"success",
       title:"You accept the meeting"
     })
-    setDisableButtons(true)
+    setRefresh(true)
   }
 
   const handleDeclineClick = () => {
@@ -55,10 +61,10 @@ const { companyName,
         Swal.fire(
           'The meeting has been declined',
         )
-        setDisableButtons(true)
+       
       }
+      setRefresh(true)
     })
-    
   }
   
   const acceptOrDecline = async(status, id) => {
@@ -68,6 +74,8 @@ const { companyName,
       console.log(err)
     }
   }
+
+  console.log(status)
 
   return (
     
@@ -90,13 +98,13 @@ const { companyName,
 
               <div className={styles.notification_buttons} >
                   <button 
-                  className={`${styles.notification_accept_button} ${disableButtons ? styles.disable : ""}`} 
+                  className={`${styles.notification_accept_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
                   onClick={handleAcceptClick}
-                  disabled={disableButtons ? true : false}
+                  
                   >Accept</button>
-                  <button className={`${styles.notification_decline_button} ${disableButtons ? styles.disable : ""}`} 
+                  <button className={`${styles.notification_decline_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
                   onClick={handleDeclineClick}
-                  disabled={disableButtons ? true : false}
+                  
                   >Decline</button>
               </div>
           </>
