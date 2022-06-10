@@ -89,6 +89,9 @@ meeting.belongsTo(job)
 meeting.hasMany(usernotis)
 usernotis.belongsTo(meeting)
 
+meeting.hasMany(compnotis)
+compnotis.belongsTo(meeting)
+
 ///////////RELACIONES DE USER ACCOUNT//////////////
 
 user_account.hasMany(applied_job)
