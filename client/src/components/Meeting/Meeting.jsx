@@ -1,12 +1,21 @@
-import React from 'react'
+import React,{ useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom' 
 import { JitsiMeeting } from '@jitsi/react-sdk'
 import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux'
+
 
 function Meeting() {
 
     const navigate = useNavigate()
+    const {id}=useParams()
+    const dispatch=useDispatch()
 
+    useEffect(()=>
+    {
+      dispatch()
+    },[])
     /* let permiso = false
     let tiempo = Date()
     let horario = tiempo.slice(4,24)
@@ -15,6 +24,8 @@ function Meeting() {
     }else{
         permiso = false
     } */
+
+ 
 
     return (
         /* permiso? */
