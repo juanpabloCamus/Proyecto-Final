@@ -2,10 +2,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 export const fetchMeeting=createAsyncThunk('meeting/fetchMeeting',
-async(id)=>{
+async(id_meet)=>{
     try {
-        const res=axios.get(`/meeting/room/${id}`)
-        return res.data
+        const res=await axios.get(`/meeting/room/${id_meet}`)
+        return res.data[0]
     } catch (error) {
         console.log(error)
     }

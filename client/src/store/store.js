@@ -31,7 +31,7 @@ export const store = configureStore({
         jobDetail: jobDetailSlice,
         jobs:jobsSlice,
         notifications:notificationSlice, 
-        meet:meetingSlice,
+        meeting:meetingSlice,
 
         //admin Slices
         adminUsers: adminUsersSlice,
