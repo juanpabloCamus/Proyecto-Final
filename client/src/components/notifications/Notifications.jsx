@@ -36,15 +36,17 @@ export const Notifications = () => {
         </div>
         {
           profileType[0] === "develop" && (
-            <div>
-              { !notifications ? <p>loading</p> :
-              notifications.map(n => (
-                n.codeNoti == 1 ?
-                <NotificationDevCard 
-                {...n}
-                /> : null
-              ))}
-            </div>
+          
+              !notifications ? <p>loading</p> :
+                notifications.map((n,i) => (
+                
+                  <NotificationDevCard
+                  key={i} 
+                  {...n}
+                  />
+                
+              ))
+            
           )
         }
 

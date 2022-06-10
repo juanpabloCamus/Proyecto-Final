@@ -91,17 +91,6 @@
   width: 100px;
 }
 
-.buttonU {
-  background-color: #46499c;
-  border-radius: 3px;
-  cursor: pointer;
-  color: white;
-  border: none;
-  font-size: 15px;
-  margin-top: 10px;
-  padding: 8px;
-  width: 100px;
-}
 
 .button1 {
   background-color: #46499c;
@@ -344,32 +333,33 @@
   color: #333;
 }
 
-/* .user_icon img {
-  
-  height: 30%;
-  width: 30%;
-} */
+.user_icon {
+  height: 300px;
+  width: 300px;
+}
 
-.containerMain{
+/* .containerMain{
   display: flex;
   flex-direction: row;
   justify-content:space-around;
   width: 700px;
-}
+} */
+
 
 .container1{
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 
-.container2{
+/* .container2{
   display: flex;
   flex-direction: column;
   text-align: center;
   gap: 7rem;
   padding: 5%;
-}
+} */
 
 .container3{
   display: flex;
@@ -389,4 +379,32 @@
   height: 80%;
   width: 80%;
   border-radius: 50%;
+}
+
+
+/* /////////////////////////////////// */
+
+
+
+.dev_profile_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  
+}
+
+
+.buttonU{
+  border: none;
+  box-shadow: 0px 4px 8px 1px lightgray;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+  padding: 12px 24px;
+  background-color: #46499c;
+}
+
+.buttonU_1{
+  background-color: rgb(255, 118, 33);
 }

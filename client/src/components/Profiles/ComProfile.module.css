@@ -9,6 +9,7 @@
 .profileContainer{
     display: flex;
     flex-direction: column;
+    background-color: rgba(234, 234, 239, 0.629);
 }
 
 /* .buttons{
@@ -53,12 +54,11 @@
     align-items: center;
     justify-content: center;
     margin-right: 30px;
-    padding: 15px;
+    padding: 35px;
     width: 230px;
+    height: 230px;
+    overflow: hidden;
 }
-
-
-
 
 .nameContainer{
     display: flex;
@@ -78,7 +78,8 @@
 .labelContainer{
     display: flex;
     align-items: center;
-    gap: 3px;
+    justify-content: center;
+    gap: 10px;
 }
 
 .infoAsset{
@@ -166,12 +167,12 @@
     width: fit-content;
     padding: 8px 10px;
     border-radius: 10px;
-    background-color: #ffc18b;
+    background-color: #f8f6e0;
     color:#000000
   }
 
   .companyTechsContainer label{
-      background-color: #efefef;
+      background-color: #f8f6e0;
   }
 
 
@@ -197,7 +198,7 @@
   }
 
   .editProfileButtonContainer > *{
-    background-color: #5c5c5c;
+    background-color: #46499c;
     box-shadow: 0 4px 7px 1px lightgray;
     border-radius: 8px;
     color: white;
@@ -214,3 +215,15 @@
     align-items: center;
     gap: 8px;
 }
+
+#premiumLabel{
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #46499c;
+    padding: 5px;
+    border-radius: 5px;
+    position: relative;
+    right: 13px;
+}
+

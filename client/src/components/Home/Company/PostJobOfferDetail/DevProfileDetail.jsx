@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
 import { fetchJobDetail } from "../../../../redux/jobs/jobDetail";
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
+
 import styles from "./PostJobOfferDetail.module.css";
 import { Image } from "cloudinary-react";
 //import Meeting from "../../../Meeting/Meeting";
@@ -31,54 +32,45 @@ console.log(useParams())
       <MeetingModal/>
       {filterUser ? (
         <div className={styles.containerMain}>
-          <div className={styles.container1}>
-            <div className={styles.user_icon}>
-              <Image
-                cloudName="dhar2oawa"
-                publicId={filterUser[0].user_account.profile_pic}
-                className={styles.imgU}
-         
-              />
-            </div>
-            <div>
-              <button
-                onClick={() => navigate(`/company/user/${id_dev}`)}
-                className={styles.buttonU}
-              >
-                More Info
-              </button>
-            </div>
-          </div>
+            <div className={styles.container1}>
+                <div className={styles.user_icon}>
+                  <Image
+                    cloudName="dhar2oawa"
+                    publicId={filterUser[0].user_account.profile_pic}
+            
+                  />
+                </div>
 
-          <div className={styles.container2}>
-            <div className={styles.container3}>
-              <div className={styles.container4}>
-                <div className={styles.container5}>
+                <div className={styles.container2}> 
                   <h3>{filterUser[0].user_account.fullName}</h3>
+                  <div className={styles.container6}> 
+                    <h4>Description:</h4>
+                    <p>{filterUser[0].description} </p>
+                  </div>
                 </div>
-                <div className={styles.container6}> 
-                  <h4>Description:</h4>
-                  <h4>{filterUser[0].description} Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, eius tenetur? Fugit repellat dolore ipsam sint adipisci molestiae vero asperiores architecto dolorem minima eos, quisquam accusantium error suscipit placeat reiciendis.</h4>
-                </div>
-              </div>
-
-              <div className={styles.container7}>
-                <a
-                  className={styles.a}
-                  href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
-                  target="_blank"
-                >
-                  <button className={styles.buttonU}>Download PDF</button>
-                </a>
-              </div>
             </div>
 
-            <div>
-              <button onClick={handleOpenModal}>
-                <span>Arrange Meeting</span>
-              </button>
+            <div className={styles.dev_profile_buttons}>
+                
+                      <a
+                        className={styles.buttonU}
+                        href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
+                        target="_blank"
+                      >
+                        Download PDF
+                      </a>
+
+                    <button
+                      onClick={() => navigate(`/company/user/${id_dev}`)}
+                      className={styles.buttonU}
+                    >
+                      More Info
+                    </button>
+                 
+                    <button onClick={handleOpenModal} className={`${styles.buttonU} ${styles.buttonU_1}`}>Arrange Meeting</button>
+                  
             </div>
-          </div>
+
         </div>
       ) : (
         <></>

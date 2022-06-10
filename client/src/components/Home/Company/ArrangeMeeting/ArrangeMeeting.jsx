@@ -5,11 +5,15 @@ import { useSelector } from 'react-redux'
 import Swal from "sweetalert2"
 import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
+
+import styles from './arrangeModal.module.css'
+
 function ArrangeMeeting() {
     
     const { id } = JSON.parse(localStorage.getItem("userData"))
     let id_comp = id
 
+  
     let { id_job, id_dev } = useParams();
     const dispatch=useDispatch()
     
@@ -17,16 +21,15 @@ function ArrangeMeeting() {
     const [messege, setMessege]=useState("")
 
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
+
+    if(id_job){
     let filterJob = jobDetails?.find(
       (e) => e.id == id_job
     )
-    let filterAplication = filterJob?.applied_jobs?.find(
+    var filterAplication = filterJob?.applied_jobs?.find(
       (e) => e.userAccountId == id_dev
     )
-    let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-    //  let filterUser = jobDetail[0]?.applied_jobs?.find(
-    //   (e) => e.userAccountId == id_dev
-    // ) 
+    }
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
@@ -68,28 +71,59 @@ function ArrangeMeeting() {
     const handleSubmit = () => {
 
       dispatch(modalActions.activateArrangeMeeting(false))
+      dispatch(modalActions.setModalValue())
       send()
     }
 
 // console.log(filterUser)
-  return (
+  return ( 
       <>
-      <h1>Arrange Meeting</h1>
-    <form onSubmit={handleSubmit}>
-        <label>{`Set date and time of the meeting (user preferent: between ${filterAplication.timeRange})`}:</label>
-        {/* <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`} :</label> */}
-        <input 
+        <h2 className={styles.arrange_modal_title}>Arrange Meeting</h2>
+        { id_job ? (
+        <form onSubmit={handleSubmit} className={styles.arrange_form}>
+            <label>{`Set date and time of the meeting (user preferent: between ${filterAplication.timeRange})`}:</label>
+            <input 
+                name="dateTime" 
+                type='datetime-local'
+                onChange={handledateTime}
+            ></input>
+            <label>Brief message:</label>
+            <textarea
+            rows="5" 
+            name="messege"
+            onChange={handleMessege}
+            ></textarea>
+            <button type='submit' className={styles.arrange_modal_button}>Send</button>
+        </form>
+        ):(
+          <>
+            <form onSubmit={handleSubmit}>
+            <lebel>Set 1 to 3 posible dates for the meeting:</lebel>
+            <input 
             name="dateTime" 
             type='datetime-local'
             onChange={handledateTime}
-        ></input>
-        <label>Brief message:</label>
-        <textarea 
-        name="messege"
-        onChange={handleMessege}
-        ></textarea>
-        <button type='submit'>Send</button>
-    </form>
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <label>Brief message:</label>
+              <textarea 
+              name="messege"
+              onChange={handleMessege}
+              ></textarea>
+              <button type='submit'>Send</button>
+              </form>
+          </>
+        )
+}
     </>
   )
 }
