@@ -12,13 +12,13 @@ import { Link } from "react-router-dom";
 import { MeetingModal } from "../../Company/ArrangeMeeting/MeetingModal"
 
 function DevProfileDetail() {
-  let { id_comp, id_dev } = useParams();
+  let { id_job, id_dev } = useParams();
   let dispatch = useDispatch();
   let navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchJobDetail(id_comp));
-  }, [dispatch]);
+    dispatch(fetchJobDetail(id_job));
+  }, [dispatch, id_job]);
   let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
     (e) => e.userAccountId == id_dev

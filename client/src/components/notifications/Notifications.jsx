@@ -21,7 +21,8 @@ export const Notifications = () => {
   useEffect(() => {
     dispatch(fetchNotifications())
   },[dispatch])
-  
+
+  console.log(notifications)
 
   return (
     <div className={styles.notifications}>
@@ -34,12 +35,12 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
             <div>
-              { !notifications ? <p>loading</p> :
+              {/* { !notifications ? <p>loading</p> :
               notifications.map(n => (
                 <NotificationDevCard 
                 {...n}
                 />
-              ))}
+              ))} */}
               
               <NotificationDevCard />
             </div>

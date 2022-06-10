@@ -4,9 +4,9 @@ import axios from 'axios'
 export const fetchNotifications=createAsyncThunk('notifications/fetchNotifications',
 async(id)=>{
     try {
-        //if(id){
-            var res= await axios.get(`/users/onenoti/1`)
-        //}
+        if(id){
+            var res= await axios.get(`/users/notis/${id}`)
+        }
         console.log(res.data)
         return res.data
     } catch (error) {
