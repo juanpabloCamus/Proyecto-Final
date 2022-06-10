@@ -4,7 +4,7 @@ import { JitsiMeeting } from '@jitsi/react-sdk'
 import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
-
+import { fetchMeeting } from '../../redux/meeting/meeting';
 
 function Meeting() {
 
@@ -14,8 +14,11 @@ function Meeting() {
 
     useEffect(()=>
     {
-      dispatch()
-    },[])
+      dispatch(fetchMeeting(id))
+    },[dispatch])
+
+    const meetback=useSelector(state=>state.meet.meeting)
+    console.log(meetback)
     /* let permiso = false
     let tiempo = Date()
     let horario = tiempo.slice(4,24)

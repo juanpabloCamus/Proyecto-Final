@@ -13,7 +13,7 @@ async(id)=>{
 })
 
 const initialState = {
-    meet: {},
+    meeting: {},
 }
 export const meetingSlice=createSlice({
     name:'meeting',
@@ -27,7 +27,7 @@ export const meetingSlice=createSlice({
         },
         [fetchMeeting.fulfilled]:(state,{payload})=>
         {
-          state.meet=payload
+          state.meeting=payload
           state.status="fulfilled"
         },
         [fetchMeeting.rejected]:(state)=>
