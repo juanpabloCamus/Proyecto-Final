@@ -13,9 +13,12 @@ import { Image } from 'cloudinary-react'
 import Loading from "../Loading/Loading";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { Premium } from "./CompanyPremium/Premium";
-
-
+import {GiTechnoHeart} from 'react-icons/gi'
 import { FaMedal } from 'react-icons/fa'
+import { MdWork } from "react-icons/md";
+import {BiBuilding} from 'react-icons/bi'
+import {HiChip} from 'react-icons/hi'
+import {TiStarFullOutline} from 'react-icons/ti'
 
 
 function ComProfile() {
@@ -44,6 +47,8 @@ function ComProfile() {
         dispatch(modalActions.setModalValue());
         dispatch(modalActions.activatePremium(true));
     }
+
+    console.log(user);
     
     return (
         <div className={styles.pageContainer}>
@@ -76,13 +81,14 @@ function ComProfile() {
                         <h5>{user.speciality}</h5>
                         { user.foundation === null ? <label></label> :
                         <label>Since {user.foundation.slice(0,4)}</label>}
+                        {user.premium ? <label id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>
                         <div className={styles.labelContainer}>
                             {user.country === null ? null :
                             <div>
-                            <img src={location} className={styles.infoAsset} alt=""></img>
+                            <img id={styles.location} src={location} className={styles.infoAsset} alt=""></img>
                             { user.city === null ? <label>{user.country}</label> :
                                 <label>{`${user.country}, ${user.city}`}</label>
                             }
@@ -97,7 +103,7 @@ function ComProfile() {
                             <div className={styles.labelContainer}>
                         {user.web_site === null ? null :
                         <div>
-                            <img src={web} className={styles.infoAsset} alt=""></img>
+                            <img id={styles.web} src={web} className={styles.infoAsset} alt=""></img>
                             <a target="_blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
                         }
@@ -106,11 +112,13 @@ function ComProfile() {
                 </div>
                 <div className={styles.editProfileButtonContainer}>
                         <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
+                        {user.premium ? null : 
                         <button id={styles.premium} onClick={handlePremium}>Be premium <FaMedal/></button>
+                        }
                 </div>
                 {companyTechs.length === 0 ? <h3>Start adding jobs offers and complete your profile!</h3> :
                 <div className={styles.technologiesContainer}>
-                    <h3>Technologies used at {user.name}</h3>
+                    <h3>Technologies used at {user.name} <GiTechnoHeart></GiTechnoHeart></h3>
                     <div className={styles.companyTechsContainer}>
                         {companyTechs.map(t => t ==='Cplus' ?
                         (<label key={t} >C+</label>) :
@@ -123,11 +131,11 @@ function ComProfile() {
                 </div>
                 }
                 <div className={styles.descriptionContainer}>
-                    <h3>Description</h3>
+                    <h3>Description <HiChip></HiChip></h3>
                     <p>{user.description}</p>
                 </div>
                 <div className={styles.jobsContainer}>
-                    <h3>Current job offers at {user.name}</h3>
+                    <h3>Current job offers at {user.name} <MdWork></MdWork></h3>
                     <div>
                         {user.jobs.map((j) => 
                             <div className={styles.jobContainer}>

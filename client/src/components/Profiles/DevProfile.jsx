@@ -187,7 +187,7 @@ function DevProfile() {
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`}>Send</Link>
+                  <Link to={`/editdevprofile/${id}`}>Contact</Link>
                 </div>
               )}
             </div>
@@ -243,7 +243,9 @@ function DevProfile() {
                         : <label>{e.end_date}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="exp" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.company}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.position}</h3>
@@ -269,7 +271,9 @@ function DevProfile() {
                         : <label>{e.end_date}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="edu" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.institution}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.degree}</h3>

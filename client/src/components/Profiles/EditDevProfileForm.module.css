@@ -61,3 +61,13 @@ select{
     font-weight: 600;
     padding: 15px 
 }
+
+.backButton{
+    background-color: #46499c76;
+    border: none;
+    position: relative;
+    right: 80px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
