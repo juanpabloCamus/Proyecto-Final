@@ -31,14 +31,10 @@ export const store = configureStore({
         techs:techsSlice,
         jobDetail: jobDetailSlice,
         jobs:jobsSlice,
-<<<<<<< HEAD
-        notifications:notificationSlice, 
         meeting:meetingSlice,
-=======
         notifications:notificationSlice,
         companyNotifications:companyNotificationSlice, 
       
->>>>>>> f4e15aacc605db85be671ed7088307871fbe575f
 
         //admin Slices
         adminUsers: adminUsersSlice,
