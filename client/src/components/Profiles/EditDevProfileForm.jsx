@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { MdClose } from "react-icons/md";
 import { fetchTechs } from "../../redux/techs/techs";
 import Loading from "../Loading/Loading";
+import {GrClose} from 'react-icons/gr'
 
 
 let techId = 0;
@@ -192,6 +193,9 @@ function EditDevProfileForm() {
     return (
         
         <div className={styles.formContainer}>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+            <GrClose></GrClose>
+            </button>
             <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Fullname</label>

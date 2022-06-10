@@ -22,6 +22,7 @@ import {FaUserGraduate} from 'react-icons/fa'
 import { MdPerson } from "react-icons/md";
 import {GiTechnoHeart} from 'react-icons/gi'
 import {MdDeleteOutline} from 'react-icons/md'
+import {MeetingModal} from '../Home/Company/ArrangeMeeting/MeetingModal'
 
 function DevProfile() {
   const dispatch = useDispatch();
@@ -47,6 +48,11 @@ function DevProfile() {
   function handleEditEdu() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevEdu(true));
+  }
+
+  const handleOpenModal = () =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateArrangeMeeting(true))
   }
 
   async function handleDelete(e){
@@ -123,6 +129,7 @@ function DevProfile() {
     <div>
       <div className={styles.pageContainer}>
         <EditDev />
+        <MeetingModal/>
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image
@@ -187,7 +194,7 @@ function DevProfile() {
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`}>Send</Link>
+                  <button onClick={handleOpenModal}>Arrange Meeting</button>
                 </div>
               )}
             </div>
@@ -243,7 +250,9 @@ function DevProfile() {
                         : <label>{e.end_date}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="exp" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.company}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.position}</h3>
@@ -269,7 +278,9 @@ function DevProfile() {
                         : <label>{e.end_date}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="edu" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.institution}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.degree}</h3>

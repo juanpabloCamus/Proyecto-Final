@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
 const nodemailer = require('nodemailer');
 
 const router = Router();
@@ -52,6 +52,29 @@ router.get('/:id', async (req,res)=>{
         }
         res.send(company)
     }catch(error){
+        console.log(error)
+    }
+})
+
+router.get('/notis/:id',async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let notis = await compnotis.findAll({
+            where:{companyAccountId:id},
+            include: {model: meeting, include:[{model:job},{model:user_account}]}
+        })
+        for(let i=0;i<notis.length;i++){
+            notis[i].dataValues.meeting.dataValues.fullName = notis[i].dataValues.meeting.dataValues.user_account.dataValues.fullName
+            notis[i].dataValues.meeting.dataValues.emailUser = notis[i].dataValues.meeting.dataValues.user_account.dataValues.email
+            notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            delete notis[i].dataValues.meeting.dataValues.job
+            delete notis[i].dataValues.meeting.dataValues.user_account
+            delete notis[i].dataValues.meeting.dataValues.idMeeting 
+        }
+        
+        res.send(notis)
+    } catch (error) {
         console.log(error)
     }
 })
