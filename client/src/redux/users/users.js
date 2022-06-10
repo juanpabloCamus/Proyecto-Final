@@ -6,7 +6,7 @@ export const fetchUser=createAsyncThunk('users/fetchUser',
 async(id)=>{
     try {
         const res=await axios.get(`/users/${id}`)
-        return res.data
+        return res.data[0]
         
     } catch (error) {
         console.log(error)

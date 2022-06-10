@@ -7,7 +7,6 @@ const router = Router();
 router.get('/room/:id', async (req,res)=>{
     try {
         const {id} = req.params
-
         let room = await meeting.findAll({
             where: {id: id}
         })
