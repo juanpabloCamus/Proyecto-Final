@@ -62,7 +62,8 @@ router.get('/notis/:id',async (req,res)=>{
 
         let notis = await usernotis.findAll({
             where:{userAccountId:id},
-            include: {model: meeting, include:{model:job,include:company_account}}
+            include: {model: meeting, include:{model:job,include:company_account}},
+            order:[['createdAt','desc']]
         })
         for(let i=0;i<notis.length;i++){
             notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name

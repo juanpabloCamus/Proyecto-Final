@@ -62,7 +62,8 @@ router.get('/notis/:id',async (req,res)=>{
 
         let notis = await compnotis.findAll({
             where:{companyAccountId:id},
-            include: {model: meeting, include:[{model:job},{model:user_account}]}
+            include: {model: meeting, include:[{model:job},{model:user_account}]},
+            order:[['createdAt','desc']]
         })
         for(let i=0;i<notis.length;i++){
             notis[i].dataValues.meeting.dataValues.fullName = notis[i].dataValues.meeting.dataValues.user_account.dataValues.fullName
@@ -70,7 +71,7 @@ router.get('/notis/:id',async (req,res)=>{
             notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
             delete notis[i].dataValues.meeting.dataValues.job
             delete notis[i].dataValues.meeting.dataValues.user_account
-            delete notis[i].dataValues.meeting.dataValues.idMeeting 
+            delete notis[i].dataValues.meeting.dataValues.idMeeting
         }
         
         res.send(notis)
