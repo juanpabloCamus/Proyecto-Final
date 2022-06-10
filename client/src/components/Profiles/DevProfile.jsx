@@ -22,6 +22,7 @@ import {FaUserGraduate} from 'react-icons/fa'
 import { MdPerson } from "react-icons/md";
 import {GiTechnoHeart} from 'react-icons/gi'
 import {MdDeleteOutline} from 'react-icons/md'
+import {MeetingModal} from '../Home/Company/ArrangeMeeting/MeetingModal'
 
 function DevProfile() {
   const dispatch = useDispatch();
@@ -47,6 +48,11 @@ function DevProfile() {
   function handleEditEdu() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevEdu(true));
+  }
+
+  const handleOpenModal = () =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateArrangeMeeting(true))
   }
 
   async function handleDelete(e){
@@ -123,6 +129,7 @@ function DevProfile() {
     <div>
       <div className={styles.pageContainer}>
         <EditDev />
+        <MeetingModal/>
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image
@@ -187,7 +194,7 @@ function DevProfile() {
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`}>Contact</Link>
+                  <button onClick={handleOpenModal}>Arrange Meeting</button>
                 </div>
               )}
             </div>
