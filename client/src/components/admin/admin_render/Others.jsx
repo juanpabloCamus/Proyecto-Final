@@ -1,13 +1,38 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
+import { FaPlusSquare } from 'react-icons/fa'
+import { adminOtherActions, fetchAdminOthers } from "../../../redux/admin/adminOtherSlice"
+import axios from "axios"
+import { useEffect } from "react"
+
+import Swal from "sweetalert2"
 
 import './table.css'
-import { adminOtherActions } from "../../../redux/admin/adminOtherSlice"
 
 export const Others = () => {   
   
+ 
   const {others} = useSelector(state => state.adminOther)
-  console.log(others)
+  const dispatch = useDispatch()
+
+
+  useEffect(() =>{
+    dispatch(fetchAdminOthers())
+  },[dispatch])
+
+  const handleAddNewTech = async(id) =>{
+    try {
+      await axios.post(`/techs/${id}`)
+      dispatch(fetchAdminOthers())
+
+      Swal.fire({
+        icon:"success",
+        text:"Technology added"
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
@@ -17,6 +42,7 @@ export const Others = () => {
             <tr>
               <th>Name</th>
               <th>Times Requested</th>
+              <th>Add new technology</th>
             </tr>
           </thead>
         <tbody>
@@ -29,6 +55,9 @@ export const Others = () => {
               <td>
                 {other.count}
               </td>
+              <td>
+                  <FaPlusSquare onClick={() => handleAddNewTech(other.id)} className="add_new_tech_button"/>
+                </td>
             </tr>
           ))
           : 
