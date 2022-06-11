@@ -32,7 +32,7 @@ export const UserNav = () => {
     (state) => state.companyProfile.companyProfile[0]
   );
 
-
+console.log(user)
 
   //////////
   const handleMenu = () => {
