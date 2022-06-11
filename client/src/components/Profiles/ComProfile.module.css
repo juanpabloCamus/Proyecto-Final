@@ -1,7 +1,7 @@
 .pageContainer{
     background-color: rgba(227, 227, 227, 0.51);
     box-shadow: 0 4px 7px 1px lightgray;
-    border-radius: 20px;
+    border-radius: 5px;
     margin: 50px auto;
     width: 75%;
 }
@@ -12,7 +12,7 @@
     background-color: rgba(234, 234, 239, 0.629);
 }
 
-/* .buttons{
+/*.buttons{
     border: none;
     padding: 5px;
     padding-top: 10px;
@@ -32,19 +32,29 @@
 }  */
 
 .bannerProfileContainer{
-    height: 30%;
+    height: 100%;
     width: 100%;
+    background-color: white;
 }
 
+#banner{
+    border-bottom: 3px solid whitesmoke;
+}
 
 .infoProfileContainer{
     padding: 60px 30px;
     border-bottom: 3px solid black;
+    background-color: white;
+}
+
+.infoIcons{
+    font-size: 20px;
 }
 
 .logoNameContainer{
     display: flex;
     align-items: center;
+    
 }
 
 .userPhoto{
@@ -58,6 +68,7 @@
     width: 230px;
     height: 230px;
     overflow: hidden;
+    border: 1px solid whitesmoke;
 }
 
 .nameContainer{
@@ -73,6 +84,8 @@
     display: flex;
     gap: 50px;
     justify-content: center;
+    border-top: 2px solid whitesmoke;
+    margin-top: 10px;
 }
 
 .labelContainer{
@@ -80,10 +93,8 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-}
-
-.infoAsset{
-    width: 25px;
+    margin-top: 10px;
+    
 }
 
 .descriptionContainer, .jobsContainer, .technologiesContainer{

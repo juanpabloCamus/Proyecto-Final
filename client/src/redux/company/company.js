@@ -5,7 +5,6 @@ export const fetchCompany=createAsyncThunk('company/fetchCompany',
 async(id)=>{
     try {
         const res=await axios.get(`/company/${id}`)
-        //console.log(res.data[0])
         return res.data[0]
     } catch (error) {
         console.log(error)

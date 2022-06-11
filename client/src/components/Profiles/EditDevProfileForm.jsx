@@ -145,7 +145,6 @@ function EditDevProfileForm() {
     }
 
     const cloudinaryUpload = async (base64EncodeFile, file) => {
-        console.log(base64EncodeFile)
         try {
             const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
@@ -184,7 +183,6 @@ function EditDevProfileForm() {
         const sessionStorage = JSON.parse(localStorage.getItem("userData"));
         sessionStorage.profile_pic = user.profile_pic
         localStorage.setItem("userData", JSON.stringify(sessionStorage))
-        //console.log()
         navigate(`/home/profile/${id}`)
     }
     
@@ -530,7 +528,7 @@ function EditDevProfileForm() {
                     {e.tech === "" ? (
                         <></>
                     ) : (
-                        <MdClose onClick={() => handleDelete(e.id)} />
+                        <MdClose onClick={() => handleDelete(e.id)} className={styles.delete_added_tech} />
                     )}
                     </div>
                 ))}

@@ -1,9 +1,6 @@
 import React, { useEffect } from "react";
 import styles from './ComProfile.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import location from '../../assets/location.png';
-import size from '../../assets/size.png';
-import web from '../../assets/website.png';
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -18,6 +15,9 @@ import {HiChip} from 'react-icons/hi'
 import {TiStarFullOutline} from 'react-icons/ti'
 import cannot from "../../assets/cannot.png";
 import Swal from "sweetalert2";
+import { MdLocationOn } from "react-icons/md";
+import {IoIosPeople} from 'react-icons/io'
+import {TbWorld} from 'react-icons/tb'
 
 
 function ComProfile() {
@@ -50,7 +50,7 @@ function ComProfile() {
     }
 
     function handlePremiumInfo(){
-        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to ${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}`})
+        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to ${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}. Now your jobs offers are in the top!`})
     }
 
     if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (
@@ -89,28 +89,31 @@ function ComProfile() {
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>
-                        <div className={styles.labelContainer}>
+                        <div>
                             {user.country === null ? null :
-                            <div>
-                            <img id={styles.location} src={location} className={styles.infoAsset} alt=""></img>
+                            <div className={styles.labelContainer}>
+                            <MdLocationOn id={styles.location} className={styles.infoIcons}></MdLocationOn>
                             { user.city === null ? <label>{user.country}</label> :
                                 <label>{`${user.country}, ${user.city}`}</label>
                             }
                             </div>
                             }
                         </div>
-                        {user.size === 'Not Specified' ? null :
-                            <div className={styles.labelContainer}>
-                            <img src={size} className={styles.infoAsset} alt=""></img>
-                            <label>{user.size}</label>
-                            </div>}
-                            <div className={styles.labelContainer}>
-                        {user.web_site === null ? null :
                         <div>
-                            <img id={styles.web} src={web} className={styles.infoAsset} alt=""></img>
-                            <a target="blank" href={user.web_site.slice()}>WebSite</a>
+                            {user.size === 'Not Specified' ? null :
+                            <div className={styles.labelContainer}> 
+                            <IoIosPeople className={styles.infoIcons}></IoIosPeople>
+                            <label>{user.size}</label>
+                            </div>
+                            }
                         </div>
-                        }
+                        <div>
+                            {user.web_site === null ? null :
+                            <div className={styles.labelContainer}>
+                            <TbWorld className={styles.infoIcons}></TbWorld>
+                            <a target="blank" href={user.web_site.slice()}>WebSite</a>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>

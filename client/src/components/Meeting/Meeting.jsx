@@ -13,8 +13,6 @@ function Meeting() {
     const dispatch=useDispatch()
     const {id_meet}=useParams()
     const user = JSON.parse(localStorage.getItem("userData"))
-
-    console.log(user)
     
     useEffect(()=>
     {

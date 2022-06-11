@@ -98,7 +98,6 @@ function EditComProfileForm() {
     }
 
     const cloudinaryUpload = async (base64EncodeFile, file) => {
-        console.log(base64EncodeFile)
         try {
             const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
