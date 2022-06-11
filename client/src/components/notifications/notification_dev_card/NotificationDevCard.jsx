@@ -3,21 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchNotifications } from '../../../redux/notifications/notifications'
 import { useNavigate } from 'react-router'
 import Swal from 'sweetalert2'
-
 import { RiDeleteBinFill } from 'react-icons/ri'
-
 import styles from './notificationDevCard.module.css'
-/* import { useState } from 'react' */
+import { useEffect, useState } from 'react'
 
 
 export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
 
 
-/* const [refresh, setRefresh] = useState(false) */
+const [refresh, setRefresh] = useState(false)
 
 const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
-const {notifications} = useSelector(state => state.notifications)
-console.log(notifications)
 
 const user_id = userLocalStorage.id
 const dispatch = useDispatch()
@@ -25,6 +21,11 @@ const navigate = useNavigate()
 
 let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
 
+useEffect(()=>{
+  dispatch(fetchNotifications(user_id))
+},[refresh, dispatch, user_id])
+
+const {notifications} = useSelector(state => state.notifications)
 
 const { companyName,
   dateTime,
@@ -43,7 +44,7 @@ const { companyName,
       icon:"success",
       title:"You accept the meeting"
     })
-    /* setRefresh(true) */
+    setRefresh(true)
   }
 
   const handleDeclineClick = () => {
@@ -63,7 +64,7 @@ const { companyName,
         )
        
       }
-      /* setRefresh(true) */
+      setRefresh(true)
     })
   }
   
@@ -75,7 +76,6 @@ const { companyName,
     }
   }
 
-  console.log(findStatus)
 
   return (
     
@@ -95,18 +95,20 @@ const { companyName,
               <p className={styles.notification_message}>Hi dear developer,</p>
               <p className={styles.notification_message}>{messege}</p>
               <p>The Company arrange a meeting to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
-
+              
               <div className={styles.notification_buttons} >
-                  <button 
-                  className={`${styles.notification_accept_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
-                  onClick={handleAcceptClick}
-                  
-                  >Accept</button>
-                  <button className={`${styles.notification_decline_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
-                  onClick={handleDeclineClick}
-                  
-                  >Decline</button>
+                {console.log(refresh,status)}
+                <button 
+                className={`${styles.notification_accept_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
+                onClick={handleAcceptClick}
+                disabled={refresh||status!==undefined?true:false}
+                >Accept</button>
+                <button className={`${styles.notification_decline_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
+                onClick={handleDeclineClick}
+                disabled={refresh||status!==undefined?true:false}
+                >Decline</button>
               </div>
+              
           </>
         }
 
@@ -121,7 +123,7 @@ const { companyName,
               <h3 className={styles.notification2_title}>Congrats, {userLocalStorage.fullName}!</h3>
               <p>The meeting had been arranged to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
               <div className={styles.notification_buttons}>
-                  <button className={styles.notification_accept_button} onClick={() => navigate("/meet")}>Go to Jitsi</button>
+                  <button className={styles.notification_accept_button} onClick={() => navigate(`/home/meet/${id}`)}>Go to Jitsi</button>
               </div>
           </>
         }
