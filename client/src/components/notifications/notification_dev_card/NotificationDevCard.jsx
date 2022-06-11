@@ -61,15 +61,14 @@ const { companyName,
         Swal.fire(
           'The meeting has been declined',
         )
-       
+        setRefresh(true)
       }
-      setRefresh(true)
     })
   }
   
   const acceptOrDecline = async(status, id) => {
     try {
-      const res = await axios.put(`/meeting/statusDev/${id}`, {status})
+       await axios.put(`/meeting/statusDev/${id}`, {status})
     } catch (err) {
       console.log(err)
     }
@@ -94,7 +93,7 @@ const { companyName,
               <hr />
               <p className={styles.notification_message}>Hi dear developer,</p>
               <p className={styles.notification_message}>{messege}</p>
-              <p>The Company arrange a meeting to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
+              <p>The Company arrange a meeting at: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
 
               <div className={styles.notification_buttons} >
                   <button 
