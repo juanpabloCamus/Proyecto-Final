@@ -5,7 +5,6 @@ import Post from "../Post/Post";
 import styles from "./Favorites.module.css"
 function Favorites() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
-  //console.log(user)
   const dispatch = useDispatch();
   
   useEffect(() => {
