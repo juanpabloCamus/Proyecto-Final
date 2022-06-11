@@ -1,9 +1,7 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate, useParams } from "react-router";
-import { MdClose } from "react-icons/md";
+import React from "react";
+import { useDispatch} from "react-redux";
+import {  useParams } from "react-router";
 import styles from "./DeleteJobOffer.module.css";
 import Swal from "sweetalert2";
 import { modalActions } from "../../../../../redux/modal_slice/modalSlice";
@@ -57,7 +55,6 @@ function ReactiveJobOffer() {
         <div className={styles.div}>
           <img className={styles.img} src={pregunta} alt="" />
           <h2 className={styles.h2}>Do you want to disable your offer?</h2>
-          {/* <p>You won't be able to revert this</p> */}
           <div>
             <button onClick={handleSubmit} type="submit">
                 Yes, disable it!

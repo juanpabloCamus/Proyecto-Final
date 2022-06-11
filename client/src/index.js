@@ -1,16 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
 import {BrowserRouter,Routes,Route,} from "react-router-dom"
 import { Provider } from 'react-redux'
-
-
 import App from "./App";
 import "./index.css";
-
 import { store } from './store/store'
 import reportWebVitals from "./reportWebVitals";
-
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();

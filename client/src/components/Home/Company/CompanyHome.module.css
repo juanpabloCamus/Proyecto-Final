@@ -13,7 +13,9 @@
   color: #46499c;
   font-size: 50px;
 }
-
+.negrita {
+  font-weight: bold;
+}
 .cards {
   display: flex;
   justify-items: center;

@@ -17,7 +17,7 @@ export const EditJobOffer = () => {
   let detail = jobsCompanyDetail.jobs?.find((e) => e.id == id);
   const dispatch = useDispatch();
 
-  const [formValues, handleInputChange, reset] = useForm({
+  const [formValues, handleInputChange] = useForm({
     position: detail.position,
     description: detail.description,
     time: detail.time,
@@ -74,9 +74,7 @@ export const EditJobOffer = () => {
     setAddedTechs(deletedTechs);
   };
 
-  const handleCloseModal = () => {
-    dispatch(modalActions.setModalValue());
-  };
+
   const handleSubmit = (e) => {
     dispatch(modalActions.activateDelete(false))
     e.preventDefault();

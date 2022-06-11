@@ -1,6 +1,7 @@
 .notification_card{
     box-shadow: 0px 4px 8px 1px lightgray;
     padding: 30px;
+    position: relative;
 }
 
 .notification_text{
@@ -38,4 +39,16 @@
 
 .notification_decline_button{
     background-color: rgb(249, 72, 72);
+}
+
+.delete_notification{
+    color: rgb(161, 161, 161);
+    cursor: pointer;
+    font-size: 20px;
+    position: absolute;
+    right: 34px;
+}
+
+.delete_notification:hover{
+    color: rgb(199, 15, 15);
 }

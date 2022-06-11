@@ -18,8 +18,6 @@ import PostJobOfferDetail from "./components/Home/Company/PostJobOfferDetail/Pos
 
 
 import { Notifications } from "./components/notifications/Notifications";
-
-
 import './App.css'
 import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
@@ -39,7 +37,6 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
-            <Route path="/meet" element={ <Meeting /> } />
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
@@ -50,6 +47,8 @@ function App() {
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
               <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
+              <Route path="home/meet/:id_meet" element={<Meeting/>} />
+              <Route path="home/company/:id" element={<ComProfile />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={["company"]} />}>
@@ -60,8 +59,10 @@ function App() {
               <Route path="editcomprofile/:id" element={<EditComProfileForm />} />
               <Route path="company/companyjob/:id" element={<PostDetail />} />
               <Route path="company/user/:id" element={<DevProfile/>}/>
-              <Route path="company/offers/:id_comp/dev/:id_dev" element={<DevProfileDetail/>}/>
+              <Route path="company/offers/:id_job/dev/:id_dev" element={<DevProfileDetail/>}/>
               <Route path="company/notifications" element={<Notifications />} />
+              <Route path="company/meet/:id_meet" element={<Meeting />} />
+
             </Route>
               
           

@@ -62,13 +62,18 @@ router.get('/notis/:id',async (req,res)=>{
 
         let notis = await usernotis.findAll({
             where:{userAccountId:id},
-            include: {model: meeting, include:{model:job,include:company_account}}
+            include: {model: meeting, include:{model:job,include:company_account}},
+            order:[['createdAt','desc']]
         })
         for(let i=0;i<notis.length;i++){
             notis[i].dataValues.meeting.dataValues.companyName = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.name
             notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
             notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
-            delete notis[i].dataValues.meeting.dataValues.job 
+            delete notis[i].dataValues.meeting.dataValues.job
+            delete notis[i].dataValues.meeting.dataValues.idMeeting
+            if(notis[i].codeNoti===1){
+                delete notis[i].dataValues.meeting.dataValues.status
+            }
         }
         
         res.send(notis)

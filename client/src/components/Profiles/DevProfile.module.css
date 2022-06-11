@@ -1,5 +1,5 @@
 .pageContainer {
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0 5px 8px 1px lightgrey;
   margin: 50px auto;
   overflow: hidden;
@@ -10,11 +10,13 @@
   background-color: rgba(234, 234, 239, 0.629);
   display: flex;
   flex-direction: column;
+  
 }
 
 .bannerProfileContainer {
   height: 30%;
   width: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
 #banner {
@@ -28,7 +30,7 @@ h3 {
 }
 
 .infoContainer {
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .mainInfoContainer {
@@ -39,6 +41,7 @@ h3 {
   border-bottom: 3px solid black;
   position: relative;
   width: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
 .mainInfoBox{
@@ -56,7 +59,9 @@ h3 {
   width: 220px;
   height: 220px;
   overflow: hidden;
+  border: 1px solid whitesmoke;
 }
+
 
 
 .nameContainer h2 {
@@ -75,7 +80,7 @@ h3 {
 }
 
 .secondaryInfoContainer {
-  border-radius: 8px;
+  
   box-shadow: 0 3px 5px 1px lightgray;
   background-color: white;
   margin: 15px 0;
@@ -104,7 +109,10 @@ h3 {
 }
 
 .userTechsContainer label {
-  background-color: #f8f6e0;
+  background: #E0EAFC;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #CFDEF3, #E0EAFC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
   box-shadow: 0 3px 5px 1px lightgray;
   text-align: center;
   padding: 8px;
@@ -128,7 +136,7 @@ h3 {
 }
 .reportaje {
   display: flex;
-
+  background-color: white;
   justify-content: flex-end;
 }
 .reportaje button {
@@ -136,9 +144,9 @@ h3 {
   font-size: 30px;
   margin-right: 50px;
   margin-top: 30px;
-  background-color: #E3EEF6;
   border: none;
   cursor: pointer;
+  background-color: white;
 }
 .reportaje button:hover{
     color:red
@@ -217,3 +225,8 @@ h3 {
 #high{
   justify-content: space-between;
 }
+
+#arrange{
+  border: none;
+}
+

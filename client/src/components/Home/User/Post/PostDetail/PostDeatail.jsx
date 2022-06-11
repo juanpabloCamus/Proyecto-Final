@@ -1,4 +1,4 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {  useParams, useNavigate, Link } from "react-router-dom";
 import arrow from "../../../../../assets/arrow.png";
 import cannot from "../../../../../assets/cannot.png";
 import selectedHeart from "../../../../../assets/heart.png";
@@ -20,7 +20,6 @@ function PostDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   //redux para abir y cerrar react portal
-  const { isOpen } = useSelector((state) => state.modal);
 
   const [state, setState] = useState(true);
   const [check, setCheck] = useState(true);
@@ -38,14 +37,19 @@ function PostDetail() {
   const handleReport = async (id) => {
     try {
       const res = await Swal.fire({
-        input: "textarea",
-        inputLabel: "Why do you want to report?",
-        inputPlaceholder: "Type your message here...",
-        inputAttributes: {
-          "aria-label": "Type your message here",
-        },
-        showCancelButton: true,
-      });
+        input: 'select',
+           inputOptions: {
+          'spam': 'Spam',
+          'inappropiate lenguaje': 'Inappropiate Lenguaje',
+          'false information': 'False Information',
+          'inappropriate content':'Inappropriate Content'
+
+           },
+       inputPlaceholder: 'Select reports',
+       showCancelButton: true,
+
+     })
+        console.log(res.value)
 
       if (res.isConfirmed) {
         await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);
@@ -148,7 +152,9 @@ function PostDetail() {
             />
           </div>
           <div className={styles.nameContainer}>
-            <h1>{company_accounts[0].name}</h1>
+          <Link to={`/home/company/${company_accounts[0].id}`}>
+          <h1 id={styles.companyName}>{company_accounts[0].name}</h1>
+          </Link>
             <h5>{company_accounts[0].speciality}</h5>
           </div>
         </div>

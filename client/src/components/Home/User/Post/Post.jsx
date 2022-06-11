@@ -22,17 +22,15 @@ export default function Post({id,position,salary_range,time,requirements,company
     <Link to={`/home/post/${id}`}>
       <div className={styles.postCard}>
         <div className={styles.imgContainer}>
-          {/* {<img id={styles.logo} src={logo} alt="Company logo"></img>} */}
           <Image
               cloudName="dhar2oawa"
               publicId={logo}
               id={styles.logo}
-              //width="100"
-              //crop="scale"
+       
             />
         </div>
         <div className={styles.detailsContainer}>
-          <h2>{companyName}</h2>
+          <Link to={`/home/company/${company_accounts[0].id}`}><h2 id={styles.companyName}>{companyName}</h2></Link>
           <h3>{position}</h3>
           <div className={styles.subDetails}>
             <p>{salary_range === '10000$'? '+ 10000$': salary_range}</p>

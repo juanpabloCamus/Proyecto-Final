@@ -1,4 +1,4 @@
-const optionsTech = [{value: "", label:"Technologies"},
+/* const optionsTech = [{value: "", label:"Technologies"},
     { value: 'JavaScript', label: 'JavaScript' },
     { value: 'HTML', label: 'HTML' },
     { value: 'CSS', label: 'CSS' },
@@ -18,7 +18,7 @@ const optionsTech = [{value: "", label:"Technologies"},
     { value: 'Ruby', label: 'Ruby' },
     { value: 'Swift', label: 'Swift' },
     { value: 'Assembler', label: 'Assembler' }]
-
+ */
 
 
 const optionsTime = [
@@ -55,19 +55,5 @@ const optionsSeniority = [
       {value:"+ 10000$", label:"+ 10000$"}
 ]
 
-const optionsStack=[
-    {value:"",label:"Stack"},
-    {value:"Back End Enginer",label:"Back End Enginer"},
-    {value:"Back End Developer",label:"Back End Developer"},
-    {value:"Front End Developer",label:"Front End Developer"},
-    {value:"Software Enginer",label:"Software Enginer"},
-    {value:"Mobile Developer",label:"Mobile Developer"},
 
-
-
-
-
-
-
-]
-  export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary,optionsStack}
+  export {optionsTime, optionsSeniority, optionsLevel, optionsSalary}

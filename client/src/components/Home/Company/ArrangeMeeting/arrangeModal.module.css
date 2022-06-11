@@ -1,0 +1,26 @@
+.arrange_modal_title{
+    border-bottom: 2px solid black;
+    font-size: 35px;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.arrange_form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.arrange_modal_button{
+    background-color: rgb(70, 73, 156);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 15px 30px;
+    margin-top: 10px;
+}
