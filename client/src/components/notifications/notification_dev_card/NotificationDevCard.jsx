@@ -26,6 +26,9 @@ useEffect(()=>{
   dispatch(fetchNotifications(user_id))
 },[refresh, dispatch, user_id])
 
+useEffect(() =>{
+  
+},[])
 
 const { companyName,
   dateTime,

@@ -528,7 +528,7 @@ function EditDevProfileForm() {
                     {e.tech === "" ? (
                         <></>
                     ) : (
-                        <MdClose onClick={() => handleDelete(e.id)} />
+                        <MdClose onClick={() => handleDelete(e.id)} className={styles.delete_added_tech} />
                     )}
                     </div>
                 ))}

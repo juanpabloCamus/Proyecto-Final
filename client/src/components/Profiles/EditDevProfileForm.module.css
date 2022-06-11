@@ -71,3 +71,31 @@ select{
     padding: 10px;
     cursor: pointer;
   }
+
+  .added_techs{
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.added_techs div{
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px 1px lightgray;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px;
+    
+}
+
+.delete_added_tech{
+    cursor: pointer;
+    color:rgb(190, 33, 33);
+    font-size: 32px;
+    padding: 5px;
+    border-radius: 5px;
+}

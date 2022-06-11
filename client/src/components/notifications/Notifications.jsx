@@ -7,6 +7,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import styles from './notifications.module.css'
 import { fetchCompanyNotifications } from '../../redux/notifications/companyNotifications'
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 115317096edd3d445ea0fa2c7d1986da13ea9e40
 export const Notifications = () => {
 
   const { id } = JSON.parse(localStorage.getItem("userData"))
@@ -25,8 +30,7 @@ export const Notifications = () => {
     dispatch(fetchCompanyNotifications(id))
   },[dispatch, id])
 
-
-
+  
   return (
     <div className={styles.notifications}>
       <h2>Hi, {fullName ? fullName : name}</h2>
@@ -42,7 +46,8 @@ export const Notifications = () => {
                 notifications.map((n,i) => (
                 
                   <NotificationDevCard
-                  key={i} 
+                  key={i}
+                 
                   {...n}
                   />
                 
