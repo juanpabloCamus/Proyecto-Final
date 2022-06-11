@@ -1,4 +1,4 @@
-const optionsTech = [{value: "", label:"Technologies"},
+/* const optionsTech = [{value: "", label:"Technologies"},
     { value: 'JavaScript', label: 'JavaScript' },
     { value: 'HTML', label: 'HTML' },
     { value: 'CSS', label: 'CSS' },
@@ -18,7 +18,7 @@ const optionsTech = [{value: "", label:"Technologies"},
     { value: 'Ruby', label: 'Ruby' },
     { value: 'Swift', label: 'Swift' },
     { value: 'Assembler', label: 'Assembler' }]
-
+ */
 
 
 const optionsTime = [
@@ -56,4 +56,4 @@ const optionsSeniority = [
 ]
 
 
-  export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}
+  export {optionsTime, optionsSeniority, optionsLevel, optionsSalary}

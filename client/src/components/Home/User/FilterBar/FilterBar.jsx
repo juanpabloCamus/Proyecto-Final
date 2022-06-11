@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchJobs } from "../../../../redux/jobs/jobs";
 import style from "./FilterBar.module.css";
 import { customStyles } from "./StyleSelect";
 import {
-  optionsTech,
   optionsTime,
   optionsSeniority,
   optionsLevel,
   optionsSalary,
 } from "./Options";
+import { fetchTechs } from "../../../../redux/techs/techs";
  
 
 function FilterBar() {
@@ -53,8 +53,18 @@ function FilterBar() {
     setSearch(e.target.value);
   };
 
+  const techs = useSelector((state)=>state.techs.techs)
+  
+  let optionsTech = [{value: "", label:"Technologies"}]
+
+  for(let i=0;i<techs.length;i++){
+    let option = { value: techs[i].name, label: techs[i].name === 'Cplus' ? 'C+' : techs[i].name === 'Cplusplus' ? 'C++' : techs[i].name === 'CSharp' ? 'C#' : techs[i].name}
+    optionsTech.push(option)
+  }
+
   useEffect(() => {
     dispatch(fetchJobs({ tech, seniority, time, eLevel, salary, search }));
+    dispatch(fetchTechs())
   }, [dispatch, tech, seniority, time, eLevel, salary, search]);
 
   return (
