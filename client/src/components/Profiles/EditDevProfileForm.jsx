@@ -21,15 +21,19 @@ function EditDevProfileForm() {
 
     const user = useSelector(state => state.users.user[0])
 
-    useEffect(() => {
+     useEffect(() => {
         dispatch(fetchUser(id))
         dispatch(fetchTechs());
+        addCurrentTechs();
+    }, [dispatch, id])
+    
+    const addCurrentTechs = () => {
         if(user === undefined) return null
 
         let currentTechs = user.technologies.map(t => t.name)
 
         for (let i = 0; i < currentTechs.length; i++) {
-            
+
             const techObj = {
                 tech: currentTechs[i],
                 id: techId++,
@@ -37,8 +41,7 @@ function EditDevProfileForm() {
 
             setAddedTechs((value) => [...value, techObj]);
         }
-    }, [dispatch, id, user])
-    
+    };
     
     const techs = useSelector((state) => state.techs.techs);
     
