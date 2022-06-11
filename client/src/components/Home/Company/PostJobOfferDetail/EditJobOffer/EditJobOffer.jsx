@@ -14,7 +14,7 @@ export const EditJobOffer = () => {
   const { id } = useParams();
   const techs = useSelector((state) => state.techs.techs);
   let jobsCompanyDetail = useSelector((state) => state.company.company);
-  let detail = jobsCompanyDetail.jobs?.find((e) => e.id == id);
+  let detail = jobsCompanyDetail.jobs?.find((e) => e.id === parseInt(id));
   const dispatch = useDispatch();
 
   const [formValues, handleInputChange] = useForm({
@@ -90,6 +90,8 @@ export const EditJobOffer = () => {
   
   };
   const [visible, setIsVisible] = React.useState(false);
+  
+  if(visible){}
 
   const editOffer = async (id) => {
     try {

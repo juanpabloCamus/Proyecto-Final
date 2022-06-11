@@ -136,7 +136,7 @@ function DevProfile() {
           </div>
           <div className={styles.infoContainer}>
             <div className={styles.reportaje}>
-              {profileType == "company" && (
+              {profileType[0] === "company" && (
                 <button onClick={() => handleReport(id)}>
                   <MdReportGmailerrorred />
                 </button>
@@ -184,7 +184,7 @@ function DevProfile() {
 
               </div>
               
-              {profileType == "develop"? (
+              {profileType[0] === "develop"? (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
                 </div>
@@ -257,7 +257,7 @@ function DevProfile() {
                   )
 
                 : null}
-                {profileType == "develop" && <button onClick={handleEditExp}>Add experience</button>}
+                {profileType[0] === "develop" && <button onClick={handleEditExp}>Add experience</button>}
               </div>
               <div
                 className={styles.secondaryInfoContainer}
@@ -285,7 +285,7 @@ function DevProfile() {
                   )
 
                 : null}
-                {profileType == "develop" && <button onClick={handleEditEdu}>Add education</button>}
+                {profileType[0] === "develop" && <button onClick={handleEditEdu}>Add education</button>}
               </div>
             </div>
           </div>

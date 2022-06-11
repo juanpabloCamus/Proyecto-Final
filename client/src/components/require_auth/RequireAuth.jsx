@@ -1,11 +1,9 @@
-import { useSelector } from "react-redux"
-import { useLocation, Navigate, Outlet } from "react-router"
+import { Navigate, Outlet } from "react-router"
 
 
 export const RequireAuth = ({allowedRoles}) => {
 
 const storage = JSON.parse(localStorage.getItem("userData"))
-const { isLogged } = useSelector(state => state.auth)
 
 
 

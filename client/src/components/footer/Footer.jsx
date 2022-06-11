@@ -1,18 +1,10 @@
-import { Link } from 'react-router-dom'
-
 import {BsFillSuitHeartFill} from 'react-icons/bs'
 import {IoIosRocket} from 'react-icons/io'
 import { BsFacebook } from 'react-icons/bs'
 import { BsTwitter } from 'react-icons/bs'
 import { ImLinkedin } from 'react-icons/im'
-
-
 import styles from './footer.module.css'
 
-
-const handleFooterlogin = () =>{
-
-}
 
 export const Footer = () => {
   return (
@@ -25,7 +17,6 @@ export const Footer = () => {
             </div>
             <div className={styles.contact_us}>
               <h3>Want to know more about us?</h3>
-              {/* <button className={styles.footer_button} onClick={handleFooterlogin}>Join us</button> */}
               <div className={styles.social_media}>
                 <BsFacebook />
                 <BsTwitter />

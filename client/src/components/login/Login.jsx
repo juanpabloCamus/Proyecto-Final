@@ -1,31 +1,24 @@
 import React, { useState } from "react";
 import { useForm } from "../../hooks/useForm";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
 import { authActions } from "../../redux/auth/authSlice";
 
-import { useLocation } from "react-router";
-import Swal from "sweetalert2";
 import "./login.css";
 
 export const Login = () => {
-  const [formValues, handleInputChange, reset] = useForm({
+  const [formValues, handleInputChange] = useForm({
     email: "",
     password: "",
   });
 
   const { email, password } = formValues;
-  // const { profileType } = useSelector(state => state.conditionalReg)
-  const { isLogged } = useSelector((state) => state.auth);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
   const [userError, setUserError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -67,9 +60,6 @@ export const Login = () => {
     dispatch(modalActions.activateLoginModal(false));
   };
 
-  const ResetPassword = () => {
-    
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();

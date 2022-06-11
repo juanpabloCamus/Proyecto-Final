@@ -14,7 +14,7 @@ import './register.css'
 export const Register = () => {
 
 const [condition, setCondition] = useState('')
-const [formValues, handleInputChange, reset] = useForm({
+const [formValues, handleInputChange] = useForm({
     name: '',
     fullName: '',
     email: '',

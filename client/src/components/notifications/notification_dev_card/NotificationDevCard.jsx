@@ -7,13 +7,13 @@ import Swal from 'sweetalert2'
 import { RiDeleteBinFill } from 'react-icons/ri'
 
 import styles from './notificationDevCard.module.css'
-import { useState } from 'react'
+/* import { useState } from 'react' */
 
 
 export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
 
 
-const [refresh, setRefresh] = useState(false)
+/* const [refresh, setRefresh] = useState(false) */
 
 const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 const {notifications} = useSelector(state => state.notifications)
@@ -43,7 +43,7 @@ const { companyName,
       icon:"success",
       title:"You accept the meeting"
     })
-    setRefresh(true)
+    /* setRefresh(true) */
   }
 
   const handleDeclineClick = () => {
@@ -63,7 +63,7 @@ const { companyName,
         )
        
       }
-      setRefresh(true)
+      /* setRefresh(true) */
     })
   }
   
