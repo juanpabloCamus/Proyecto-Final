@@ -36,6 +36,14 @@ y
     margin-top: 30px;
 }
 
+#forgot{
+    margin-top: 15px;
+}
+
+#notHave{
+    margin-top: 5px;
+}
+
 .switch_form:hover{
     text-decoration: underline;
 }

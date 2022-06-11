@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 import { modalActions } from '../../redux/modal_slice/modalSlice';
+import ForgotPass from '../login/ForgotPass';
 import { Login } from '../login/Login';
 import { OptionalRegister } from '../optional_register/OptionalRegister';
+
 
 import "./auth.css"
 
@@ -15,6 +17,7 @@ export const Auth = () => {
 const { isOpen } = useSelector(state => state.modal)
 const { activeLoginModal } = useSelector(state => state.modal)
 const { activeRegisterModal } = useSelector(state => state.modal)
+const { activateForgotPass } = useSelector(state => state.modal)
 
 const dispatch = useDispatch()
 
@@ -22,6 +25,7 @@ const handleCloseModal = ()  =>{
     dispatch(modalActions.setModalValue())
     dispatch(modalActions.activateLoginModal(false))
     dispatch(modalActions.activateRegisterModal(false))
+    dispatch(modalActions.activateForgotPass(false))
 }
 
 
@@ -45,6 +49,10 @@ const handleCloseModal = ()  =>{
 
                     {
                         activeRegisterModal && <OptionalRegister/>
+                    }
+
+                    {
+                        activateForgotPass && <ForgotPass/>
                     }
                     </div>
                 </div>

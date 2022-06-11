@@ -111,7 +111,7 @@ function EditDevProfileForm() {
         const file = e.target.files[0]
         previewFile(file)
         
-        }
+        };
 
     const previewFile = (file) => {
         const reader = new FileReader();
