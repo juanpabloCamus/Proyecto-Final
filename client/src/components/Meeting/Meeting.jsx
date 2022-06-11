@@ -34,12 +34,12 @@ function Meeting() {
     } */
 
     return (
-        meetback.idMeeting !== undefined && user.fullName ?
+        meetback.idMeeting !== undefined && (user.fullName || user.name) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
             roomName = { meetback.idMeeting }
-            userInfo = {{displayName: user.fullName }}
+            userInfo = {{displayName: user.profileType[0] === 'develop' ? user.fullName : user.name }}
             onReadyToClose = {() => {navigate('/')}}
             />
         </div>
