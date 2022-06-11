@@ -27,7 +27,7 @@ export const UserNav = () => {
     dispatch(fetchCompanyProfile(id));
     dispatch(fetchJobs());
   }, [dispatch, id]);
-  const user = useSelector((state) => state.users.user[0]);
+  const user = useSelector((state) => state.users.user);
   const companyProfile = useSelector(
     (state) => state.companyProfile.companyProfile[0]
   );
