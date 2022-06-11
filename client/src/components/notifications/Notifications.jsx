@@ -4,11 +4,8 @@ import { NotificationComCard } from './notification_com_card/NotificationComCard
 import { fetchNotifications } from '../../redux/notifications/notifications'
 import { AiFillNotification } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-
 import styles from './notifications.module.css'
 import { fetchCompanyNotifications } from '../../redux/notifications/companyNotifications'
-
-
 
 export const Notifications = () => {
 
@@ -16,8 +13,6 @@ export const Notifications = () => {
 
   const {notifications} = useSelector( state => state.notifications)
   const {companyNotifications} = useSelector( state => state.companyNotifications)
-
-
 
   const dispatch = useDispatch()
 
@@ -29,7 +24,6 @@ export const Notifications = () => {
     dispatch(fetchNotifications(id))
     dispatch(fetchCompanyNotifications(id))
   },[dispatch, id])
-
   
   return (
     <div className={styles.notifications}>

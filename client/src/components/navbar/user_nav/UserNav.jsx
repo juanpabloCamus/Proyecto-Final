@@ -32,8 +32,6 @@ export const UserNav = () => {
     (state) => state.companyProfile.companyProfile[0]
   );
 
-
-
   //////////
   const handleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -49,7 +47,6 @@ export const UserNav = () => {
   };
 
   const handleNotify = () => {
-    console.log(profile)
     if(profile==='develop'){
       navigate("/home/notifications")
     }else{

@@ -21,7 +21,6 @@ export const notificationSlice=createSlice({
     name:'notifications',
     initialState,
     reducers:{
-
     },
     extraReducers:{
         [fetchNotifications.pending]:(state)=>{
