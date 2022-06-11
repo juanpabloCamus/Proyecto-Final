@@ -99,21 +99,33 @@ const switchForm = () =>{
     dispatch(modalActions.activateRegisterModal(false))
 }
 
+const validateForm = () =>{
+
+    if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)){
+        setError({...error, error: true, errorMsg: "Password must have a least 8 characters,an uppercase, a lowercase and a number"})
+        return false 
+    }
+
+    return true
+}   
+
+
 const handleSubmit = (e) => {
     e.preventDefault()
     
-    if(profileType === 'dev'){
-        postNewUser()
+    if(validateForm()){
 
-    }
-
-    if(profileType === 'com'){
-        postNewCompany()
-
-    }
-
+        if(profileType === 'dev'){
+            postNewUser()
     
-
+        }
+    
+        if(profileType === 'com'){
+            postNewCompany()
+    
+        }
+    }
+ 
 }
 
   return (
