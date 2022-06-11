@@ -49,7 +49,6 @@ function PostDetail() {
        showCancelButton: true,
 
      })
-        console.log(res.value)
 
       if (res.isConfirmed) {
         await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);

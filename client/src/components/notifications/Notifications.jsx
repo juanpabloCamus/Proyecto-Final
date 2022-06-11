@@ -4,20 +4,20 @@ import { NotificationComCard } from './notification_com_card/NotificationComCard
 import { fetchNotifications } from '../../redux/notifications/notifications'
 import { AiFillNotification } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-
 import styles from './notifications.module.css'
 import { fetchCompanyNotifications } from '../../redux/notifications/companyNotifications'
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 115317096edd3d445ea0fa2c7d1986da13ea9e40
 export const Notifications = () => {
 
   const { id } = JSON.parse(localStorage.getItem("userData"))
 
   const {notifications} = useSelector( state => state.notifications)
   const {companyNotifications} = useSelector( state => state.companyNotifications)
-
-
 
   const dispatch = useDispatch()
 

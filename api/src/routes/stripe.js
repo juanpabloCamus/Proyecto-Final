@@ -9,7 +9,6 @@ const stripe = new Stripe("sk_test_51L81c0EOWKFCUuQuMDreApqgh1IAXci6RbVtq36eyZ19
 router.post('/', async (req, res)=> {
     
     const { pay_id, id_user } = req.body
-    console.log(id_user);
     let company = await company_account.findAll(
         {
             where:{id: id_user}

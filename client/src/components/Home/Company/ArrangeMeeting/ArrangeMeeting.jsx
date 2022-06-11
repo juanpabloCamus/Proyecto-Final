@@ -23,7 +23,6 @@ function ArrangeMeeting() {
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
 
     if(id_job){
-      console.log(typeof id_job)
     let filterJob = jobDetails?.find(
       (e) => e.id === parseInt(id_job)
     )
