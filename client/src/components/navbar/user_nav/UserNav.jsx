@@ -49,7 +49,6 @@ export const UserNav = () => {
   };
 
   const handleNotify = () => {
-    console.log(profile)
     if(profile==='develop'){
       navigate("/home/notifications")
     }else{

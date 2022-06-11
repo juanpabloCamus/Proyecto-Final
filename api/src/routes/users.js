@@ -71,9 +71,6 @@ router.get('/notis/:id',async (req,res)=>{
             notis[i].dataValues.meeting.dataValues.companyLogo = notis[i].dataValues.meeting.dataValues.job.company_accounts[0].dataValues.logo
             delete notis[i].dataValues.meeting.dataValues.job
             delete notis[i].dataValues.meeting.dataValues.idMeeting
-            if(notis[i].codeNoti===1){
-                delete notis[i].dataValues.meeting.dataValues.status
-            }
         }
         
         res.send(notis)
@@ -120,7 +117,6 @@ router.post('/:id/experience', async (req,res)=>{
     try{
         const {id} = req.params
         const {company,position,description,start_date,end_date} = req.body
-        console.log(req.body);
         if(company&&position){
             if(!/^[a-zA-Z\s]+$/.test(company)){
                 res.status(400).send('The company name should only contain letters and spaces')
@@ -154,7 +150,6 @@ router.post('/:idUser/favs/:idJob', async (req,res)=>{
     try{
         const {idUser,idJob} = req.params
         const {state} = req.body
-        console.log(state)
         if(idUser&&idJob&&(state===true||state===false)){
             const jobid = await job.findAll({
                 where:{id: idJob},

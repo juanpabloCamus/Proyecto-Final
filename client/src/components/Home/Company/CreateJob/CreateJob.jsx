@@ -71,9 +71,6 @@ export default function CreateJob() {
 
   const addTechs = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
-    console.log(addedTechs?.map(el=>el.tech).includes(e.target.value))
-    //console.log('hola', addedTechs?.find((el)=>el.tech==e.target.value))
 
     if(!addedTechs?.map(el=>el.tech).includes(e.target.value)&&addedTechs.length<8){
       const techObj = {
@@ -86,7 +83,6 @@ export default function CreateJob() {
       }
       else{
         setAddedTechs([...addedTechs, techObj]);
-        console.log(addedTechs)
       }
     }
   };

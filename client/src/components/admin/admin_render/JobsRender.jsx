@@ -11,7 +11,6 @@ export const JobsRender = () => {
 
   const { jobs } = useSelector(state => state.adminJob)
   const dispatch = useDispatch()
-  console.log(jobs)
 
   useEffect(() =>{
     dispatch(fetchAdminJobs())
@@ -19,8 +18,7 @@ export const JobsRender = () => {
 
   const handleToggleButton = async(id) =>{
     try {
-      const res = await axios.delete(`/jobs/${id}`)
-      console.log(res)
+      await axios.delete(`/jobs/${id}`)
       dispatch(fetchAdminJobs())
     } catch (error) {
       console.log(error)
