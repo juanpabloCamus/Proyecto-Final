@@ -27,12 +27,10 @@ export const UserNav = () => {
     dispatch(fetchCompanyProfile(id));
     dispatch(fetchJobs());
   }, [dispatch, id]);
-  const user = useSelector((state) => state.users.user);
+  const user = useSelector((state) => state.users.user[0]);
   const companyProfile = useSelector(
     (state) => state.companyProfile.companyProfile[0]
   );
-
-
 
   //////////
   const handleMenu = () => {
@@ -102,7 +100,7 @@ export const UserNav = () => {
           ) : (
             <Image
               cloudName="dhar2oawa"
-              publicId={user[0]?.profile_pic}
+              publicId={user?.profile_pic}
               id={styles.banner}
             />
           )}
