@@ -23,7 +23,7 @@ import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
-import { useSelector } from "react-redux";
+
 
 
 function App() {
