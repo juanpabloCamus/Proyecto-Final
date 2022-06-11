@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import styles from './ComProfile.module.css';
-import { Navbar } from "../navbar/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import location from '../../assets/location.png';
 import size from '../../assets/size.png';
 import web from '../../assets/website.png';
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
-import Post from "../Home/User/Post/Post";
 import { Link } from "react-router-dom";
 import { Image } from 'cloudinary-react'
 import Loading from "../Loading/Loading";
@@ -16,7 +14,6 @@ import { Premium } from "./CompanyPremium/Premium";
 import {GiTechnoHeart} from 'react-icons/gi'
 import { FaMedal } from 'react-icons/fa'
 import { MdWork } from "react-icons/md";
-import {BiBuilding} from 'react-icons/bi'
 import {HiChip} from 'react-icons/hi'
 import {TiStarFullOutline} from 'react-icons/ti'
 import cannot from "../../assets/cannot.png";
@@ -62,31 +59,25 @@ function ComProfile() {
         <h1>You can't access here</h1>
       </div>
       )
-      console.log(user);
+      
     return (
         <div className={styles.pageContainer}>
             <Premium></Premium>
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
-                    {/* <img id={styles.banner} alt="banner" src={user.banner}></img> */}
                     <Image
                         cloudName="dhar2oawa"
                         publicId={user.banner}
                         id={styles.banner}
-                        //width="100"
-                        //crop="scale"
                         />
                 </div>
                 <div className={styles.infoProfileContainer}>
                     <div className={styles.logoNameContainer}>
-                        {/* <img id={styles.logo} src={user.logo} alt="profile_pic"></img> */}
                         <div className={styles.userPhoto}>
                             <Image
                                     id={styles.logo}
                                     cloudName="dhar2oawa"
                                     publicId={user.logo}
-                                    // width="100"
-                                    // crop="scale"
                                     />
                         </div>
                         <div className={styles.nameContainer}>
@@ -117,7 +108,7 @@ function ComProfile() {
                         {user.web_site === null ? null :
                         <div>
                             <img id={styles.web} src={web} className={styles.infoAsset} alt=""></img>
-                            <a target="_blank" href={user.web_site.slice()}>WebSite</a>
+                            <a target="blank" href={user.web_site.slice()}>WebSite</a>
                         </div>
                         }
                         </div>
@@ -153,7 +144,7 @@ function ComProfile() {
                     <h3>Current job offers at {user.name} <MdWork></MdWork></h3>
                     <div>
                         {user.jobs.map((j) => 
-                            <div className={styles.jobContainer}>
+                            <div className={styles.jobContainer} key={j.id}>
                             <Link to={
                                 profileType[0] === 'develop' ?
                                 `/home/post/${id}` :
@@ -180,12 +171,12 @@ function ComProfile() {
                                 </div>
                                 <div className={styles.techsContainer}>
                                 {j.technologies.map(t => t.name==='Cplus' ?
-                                    (<label key={t.id} >C+</label>) :
+                                    (<label key={t.name} >C+</label>) :
                                     t.name==='Cplusplus' ?
-                                    (<label key={t.id} >C++</label>) :
+                                    (<label key={t.name} >C++</label>) :
                                     t.name==='CSharp' ?
-                                    (<label key={t.id} >C#</label>) :
-                                    (<label key={t.id} >{t.name}</label>))}
+                                    (<label key={t.name} >C#</label>) :
+                                    (<label key={t.name} >{t.name}</label>))}
                                 </div>
                             </div>
                             </Link>

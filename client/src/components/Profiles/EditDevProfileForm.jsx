@@ -19,13 +19,27 @@ function EditDevProfileForm() {
     const navigate = useNavigate()
     const {id} = useParams()
 
+    const user = useSelector(state => state.users.user[0])
+
     useEffect(() => {
         dispatch(fetchUser(id))
         dispatch(fetchTechs());
-        addCurrentTechs()
-    }, [dispatch, id])
+        if(user === undefined) return null
+
+        let currentTechs = user.technologies.map(t => t.name)
+
+        for (let i = 0; i < currentTechs.length; i++) {
+            
+            const techObj = {
+                tech: currentTechs[i],
+                id: techId++,
+            };
+
+            setAddedTechs((value) => [...value, techObj]);
+        }
+    }, [dispatch, id, user])
     
-    const user = useSelector(state => state.users.user[0])
+    
     const techs = useSelector((state) => state.techs.techs);
     
     const [currentInfo, setCurrentInfo] = useState(
@@ -53,22 +67,6 @@ function EditDevProfileForm() {
     const [addedTechs, setAddedTechs] = useState([]);
     const [ previewImage, setPreviewImage ] = useState("")
     const [ previewBanner, setPreviewBanner ] = useState("")
-
-    const addCurrentTechs = () => {
-        if(user === undefined) return null
-
-        let currentTechs = user.technologies.map(t => t.name)
-
-        for (let i = 0; i < currentTechs.length; i++) {
-            
-            const techObj = {
-                tech: currentTechs[i],
-                id: techId++,
-            };
-
-            setAddedTechs((value) => [...value, techObj]);
-        }
-    };
 
     const addTechs = (e) => {
 

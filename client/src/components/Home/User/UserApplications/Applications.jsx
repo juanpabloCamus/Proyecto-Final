@@ -3,15 +3,12 @@ import styles from './Applications.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchUser } from "../../../../redux/users/users";
-import cannot from '../../../../assets/cannot.png'
 import Loading from "../../../Loading/Loading";
 import { Image } from 'cloudinary-react';
 import { Link } from "react-router-dom";
 
 function Applications() {
 
-    const sessionStorage = JSON.parse(localStorage.getItem("userData"));
-    const profileType = sessionStorage.profileType;
     const dispatch = useDispatch()
     const { id } = useParams();
 
@@ -39,8 +36,6 @@ function Applications() {
                     cloudName="dhar2oawa"
                     publicId={j.job.company_accounts[0].logo}
                     id={styles.logo}
-                    //width="100"
-                    //crop="scale"
                     />
                 </div>
                 <div className={styles.detailsContainer}>

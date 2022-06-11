@@ -7,7 +7,6 @@ import { MdInfo } from "react-icons/md";
 import axios from 'axios'
 import { modalActions } from "../../../redux/modal_slice/modalSlice";
 import { useDispatch } from "react-redux";
-import { fetchUser } from "../../../redux/users/users";
 const stripePromise = loadStripe('pk_test_51L81c0EOWKFCUuQuvpKTAS4gqQdXUpYpEbF1vTvnVLj5RsaUaQnwLpaIS9T6NmWtwqLKpDQE9mCnrURZs0Uombrf003R5Ch5fU')
 
 function CheckoutForm() {

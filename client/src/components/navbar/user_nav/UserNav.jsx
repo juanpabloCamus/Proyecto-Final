@@ -94,6 +94,7 @@ export const UserNav = () => {
           onClick={handleMenu}
           className={styles.logged_user_icon}
           title={sessionStorage?.fullName || sessionStorage?.name}>
+
           {sessionStorage.profileType[0] === "company" ? (
             <Image
               cloudName="dhar2oawa"
