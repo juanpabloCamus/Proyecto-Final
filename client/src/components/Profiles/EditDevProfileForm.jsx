@@ -21,7 +21,7 @@ function EditDevProfileForm() {
 
     const user = useSelector(state => state.users.user[0])
 
-    useEffect(() => {
+     useEffect(() => {
         dispatch(fetchUser(id))
         dispatch(fetchTechs());
         addCurrentTechs();
