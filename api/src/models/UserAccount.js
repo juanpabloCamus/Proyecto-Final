@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
         profile_pic: {
             type:DataTypes.TEXT,
-            defaultValue:'http://espaciores.org/wp-content/uploads/2021/07/cohete.png'
+            defaultValue:'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
         description: {
             type:DataTypes.TEXT

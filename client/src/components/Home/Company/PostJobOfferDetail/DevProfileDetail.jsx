@@ -12,7 +12,6 @@ function DevProfileDetail() {
   let { id_job, id_dev } = useParams();
   let dispatch = useDispatch();
   let navigate = useNavigate();
-console.log(useParams())
   useEffect(() => {
     dispatch(fetchJobDetail(id_job));
   }, [dispatch, id_job]);
