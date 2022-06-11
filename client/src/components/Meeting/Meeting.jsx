@@ -23,7 +23,7 @@ function Meeting() {
     return (
         meetback ?
         meetback.idMeeting ?
-        (user.profileType === 'develop' && meetback.userAccountId === user.id) || (user.profileType === 'company' && meetback.companyAccountId === user.id) ?
+        (user.profileType[0] === 'develop' && meetback.userAccountId === user.id) || (user.profileType[0] === 'company' && meetback.companyAccountId === user.id) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }

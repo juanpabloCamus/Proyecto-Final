@@ -58,6 +58,13 @@ export const Login = () => {
   const switchForm = () => {
     dispatch(modalActions.activateRegisterModal(true));
     dispatch(modalActions.activateLoginModal(false));
+    dispatch(modalActions.activateForgotPass(false));
+  };
+
+  const switchFormForgot = () => {
+    dispatch(modalActions.activateRegisterModal(false));
+    dispatch(modalActions.activateLoginModal(false));
+    dispatch(modalActions.activateForgotPass(true));
   };
 
   const handleSubmit = (e) => {
@@ -92,7 +99,10 @@ export const Login = () => {
         <button type="submit" className="login__button">
           Send
         </button>
-        <div className="switch_form">
+        <div id="forgot" className="switch_form">
+          <p onClick={switchFormForgot}>Forgot your password?</p>
+        </div>
+        <div id="notHave" className="switch_form">
           <p onClick={switchForm}>Not have an account yet?</p>
         </div>
         <div className="switch_form">

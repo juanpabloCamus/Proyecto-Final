@@ -83,6 +83,9 @@ module.exports = (sequelize) => {
         },
         premiumDate:{
             type: DataTypes.DATE,
+        },
+        recoverId:{
+            type: DataTypes.INTEGER,
         }
 
     },{timestamps:false})
