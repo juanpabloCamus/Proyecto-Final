@@ -12,7 +12,8 @@ const initialState = {
     editDevExp: null,
     editDevEdu: null,
     arrangeMeeting: null,
-    premiumModal: null
+    premiumModal: null,
+    activateForgotPass: null
 }
 
 const modalSlice = createSlice({
@@ -55,6 +56,9 @@ const modalSlice = createSlice({
         },
         activatePremium(state, {payload}){
             state.premiumModal = payload
+        },
+        activateForgotPass(state, {payload}){
+            state.activateForgotPass = payload
         }
     }
 })

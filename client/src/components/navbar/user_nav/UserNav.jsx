@@ -32,8 +32,6 @@ export const UserNav = () => {
     (state) => state.companyProfile.companyProfile[0]
   );
 
-
-
   //////////
   const handleMenu = () => {
     setToggleMenu(!toggleMenu);
