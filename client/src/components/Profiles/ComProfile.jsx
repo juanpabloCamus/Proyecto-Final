@@ -50,7 +50,7 @@ function ComProfile() {
     }
 
     function handlePremiumInfo(){
-        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to ${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}. Now your jobs offers are in the top!`})
+        Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to 0${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}. Now your jobs offers are in the top!`})
     }
 
     if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (

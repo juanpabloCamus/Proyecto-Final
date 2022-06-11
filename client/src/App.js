@@ -23,6 +23,7 @@ import Meeting from "./components/Meeting/Meeting";
 import DevProfileDetail from "./components/Home/Company/PostJobOfferDetail/DevProfileDetail";
 import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
+import ChangePass from "./components/ChangePass/ChangePass";
 
 
 
@@ -39,6 +40,7 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
+            <Route path="/recover/password" element={ <ChangePass /> } />
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
