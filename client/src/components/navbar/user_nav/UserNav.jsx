@@ -37,6 +37,7 @@ export const UserNav = () => {
   //////////
   const handleMenu = () => {
     setToggleMenu(!toggleMenu);
+    
   };
   
   const handleLogout = () => {

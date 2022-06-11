@@ -72,7 +72,7 @@ const uploadFile = async (base64EncodeFile, data) => {
                         idUser,
                         idJob,
                         timeRange
-                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`})})
+                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`,timer:1500})})
 
     
     } catch (err) {

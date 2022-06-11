@@ -55,6 +55,7 @@ function ArrangeMeeting() {
               text: res.data,
               showConfirmButton: false,
               showCancelButton: false,
+              timer:1000
             });
           } else {
             Swal.fire({
@@ -62,6 +63,8 @@ function ArrangeMeeting() {
               text: res.data,
               showConfirmButton: false,
               showCancelButton: false,
+              timer:1000
+
             });
           }
         } catch (error) {

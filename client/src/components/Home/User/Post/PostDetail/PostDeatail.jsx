@@ -49,11 +49,19 @@ function PostDetail() {
        showCancelButton: true,
 
      })
-        console.log(res.value)
 
       if (res.isConfirmed) {
-        await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);
-      }
+         await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);
+         Swal.fire({
+          icon: "success",
+
+          text:"Has been reported successfully",
+          showConfirmButton: false,
+          timer:1000
+
+         })
+         
+      } 
     } catch (error) {
       console.log(error);
     }
