@@ -1,26 +1,3 @@
-const optionsTech = [{value: "", label:"Technologies"},
-    { value: 'JavaScript', label: 'JavaScript' },
-    { value: 'HTML', label: 'HTML' },
-    { value: 'CSS', label: 'CSS' },
-    { value: 'React', label: 'React' },
-    { value: 'NodeJS', label: 'NodeJS' },
-    { value: 'PHP', label: 'PHP' },
-    { value: 'Python', label: 'Python' },
-    { value: 'NextJS', label: 'NextJS' },
-    { value: 'CSharp', label: 'CSharp' },
-    { value: 'C', label: 'C' },
-    { value: 'C++', label: 'C++' },
-    { value: 'TypeScript', label: 'TypeScript' },
-    { value: 'C+', label: 'C+' },
-    { value: 'Assembler', label: 'Assembler' },
-    { value: 'Pascal', label: 'Pascal' },
-    { value: 'SQL', label: 'SQL' },
-    { value: 'Ruby', label: 'Ruby' },
-    { value: 'Swift', label: 'Swift' },
-    { value: 'Assembler', label: 'Assembler' }]
-
-
-
 const optionsTime = [
    {value:"",label:"Time"},
    {value:"No Especificado",label:"Not specified"},
@@ -56,4 +33,4 @@ const optionsSeniority = [
 ]
 
 
-  export {optionsTech, optionsTime, optionsSeniority, optionsLevel, optionsSalary}
+  export {optionsTime, optionsSeniority, optionsLevel, optionsSalary}

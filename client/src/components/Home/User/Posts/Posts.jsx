@@ -8,7 +8,6 @@ import styles from "./Posts.module.css";
 export function Posts() {
   const dispatch = useDispatch();
   const jobs = useSelector((state) => state.jobs.jobs);
-  const userLocalStorage=JSON.parse(localStorage.getItem("user"))
   const [pagina, setPagina]=useState(0);
   const [render,setRender]= useState([])
   const [newJobs, setNewJobs] = useState([])

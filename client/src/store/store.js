@@ -9,6 +9,7 @@ import jobDetailSlice  from '../redux/jobs/jobDetail'
 import authSlice from '../redux/auth/authSlice'
 import CompanyPSlice from '../redux/Profile/profileData'
 import notificationSlice from '../redux/notifications/notifications'
+import  meetingSlice  from '../redux/meeting/meeting'
 import companyNotificationSlice from '../redux/notifications/companyNotifications'
 
 //Admin Slices
@@ -30,6 +31,7 @@ export const store = configureStore({
         techs:techsSlice,
         jobDetail: jobDetailSlice,
         jobs:jobsSlice,
+        meeting:meetingSlice,
         notifications:notificationSlice,
         companyNotifications:companyNotificationSlice, 
       

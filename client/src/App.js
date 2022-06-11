@@ -28,6 +28,7 @@ import { Footer } from "./components/footer/Footer";
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)
+  if(isLogged){}
 
   return <div className="app">
     <Navbar/>
@@ -37,7 +38,6 @@ function App() {
 
             {/* Public Routes*/}
             <Route path="/" element={ <LandinPage /> } />
-            <Route path="/meet" element={ <Meeting /> } />
             {/* Private Routes */}
             
             <Route element={<RequireAuth allowedRoles={["develop"]} />}>
@@ -48,6 +48,7 @@ function App() {
               <Route path="editdevprofile/:id" element={<EditDevProfileForm />} />
               <Route path="home/myapplications/:id" element={<Applications />} />
               <Route path="home/notifications" element={<Notifications />} />
+              <Route path="home/meet/:id_meet" element={<Meeting/>} />
               <Route path="home/company/:id" element={<ComProfile />} />
             </Route>
 
@@ -61,6 +62,8 @@ function App() {
               <Route path="company/user/:id" element={<DevProfile/>}/>
               <Route path="company/offers/:id_job/dev/:id_dev" element={<DevProfileDetail/>}/>
               <Route path="company/notifications" element={<Notifications />} />
+              <Route path="company/meet/:id_meet" element={<Meeting />} />
+
             </Route>
               
           
