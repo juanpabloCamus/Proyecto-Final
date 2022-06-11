@@ -20,9 +20,9 @@ function Meeting() {
 
     const meetback = useSelector(state=>state.meeting.meeting)
     
-    console.log(meetback.userAccountId)
-    console.log(meetback.companyAccountId)
-    console.log(user.id)
+    console.log(typeof meetback.userAccountId)
+    console.log(typeof meetback.companyAccountId)
+    console.log(typeof user.id)
 
     return (
         meetback ?
