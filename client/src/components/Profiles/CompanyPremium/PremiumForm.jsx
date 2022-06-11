@@ -43,6 +43,7 @@ function CheckoutForm() {
                 elements.getElement(CardElement).clear()
                 dispatch(modalActions.setModalValue());
                 dispatch(modalActions.activatePremium(false));
+                window.location.reload();
             }catch(e){
                 Swal.fire({icon:'error', text: e.response.data})
             }

@@ -7,11 +7,11 @@ const router = Router();
 router.get('/room/:id', async (req,res)=>{
     try {
         const {id} = req.params
-
         let room = await meeting.findAll({
             where: {id: id}
         })
-        if(room[0].dataValues.idMeeting){
+        
+        if(room[0] ?? room[0].dataValues.idMeeting){
             delete room[0].dataValues.messege
             delete room[0].dataValues.createdAt
             delete room[0].dataValues.jobId
@@ -84,18 +84,31 @@ router.put('/statusDev/:id', async (req,res)=>{
             },{
                 where: {id: id}
             })
+            let notiComp = await compnotis.create({
+                codeNoti:1
+            })
             let notiUser = await usernotis.create({
                 codeNoti:2
             })
             notiUser.setUser_account(meet[0].dataValues.userAccountId)
             notiUser.setMeeting(id)
+            notiComp.setCompany_account(meet[0].dataValues.companyAccountId)
+            notiComp.setMeeting(id)
 
         }else{
+            let meet = await meeting.findAll({
+                where: {id:id}
+            })
             await meeting.update({
                 status: status
             },{
                 where: {id: id}
             })
+            let notiComp = await compnotis.create({
+                codeNoti:2
+            })
+            notiComp.setCompany_account(meet[0].dataValues.companyAccountId)
+            notiComp.setMeeting(id)
         }
 
         res.send(status?'offer accepted':'offer declined')

@@ -1,4 +1,4 @@
-import {  useParams, useNavigate } from "react-router-dom";
+import {  useParams, useNavigate, Link } from "react-router-dom";
 import arrow from "../../../../../assets/arrow.png";
 import cannot from "../../../../../assets/cannot.png";
 import selectedHeart from "../../../../../assets/heart.png";
@@ -152,7 +152,9 @@ function PostDetail() {
             />
           </div>
           <div className={styles.nameContainer}>
-            <h1>{company_accounts[0].name}</h1>
+          <Link to={`/home/company/${company_accounts[0].id}`}>
+          <h1 id={styles.companyName}>{company_accounts[0].name}</h1>
+          </Link>
             <h5>{company_accounts[0].speciality}</h5>
           </div>
         </div>

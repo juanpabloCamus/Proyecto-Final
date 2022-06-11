@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../../redux/users/users";
 import PostU from "./Post/Post";
-import Post from "../User/Post/Post";
 import styles from "./CompanyHome.module.css";
 import { Link } from "react-router-dom";
 
@@ -74,7 +73,7 @@ function CompanyHome() {
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
   let [radio, setRadio] = useState(radioStorage || "offers");

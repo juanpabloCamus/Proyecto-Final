@@ -21,16 +21,16 @@ function ArrangeMeeting() {
     const [messege, setMessege]=useState("")
 
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
+
+    if(id_job){
+      console.log(typeof id_job)
     let filterJob = jobDetails?.find(
-      (e) => e.id == id_job
+      (e) => e.id === parseInt(id_job)
     )
-    let filterAplication = filterJob?.applied_jobs?.find(
-      (e) => e.userAccountId == id_dev
+    var filterAplication = filterJob?.applied_jobs?.find(
+      (e) => e.userAccountId === parseInt(id_dev)
     )
-    let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
-    //  let filterUser = jobDetail[0]?.applied_jobs?.find(
-    //   (e) => e.userAccountId == id_dev
-    // ) 
+    }
 
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
@@ -76,13 +76,12 @@ function ArrangeMeeting() {
       send()
     }
 
-// console.log(filterUser)
   return ( 
       <>
         <h2 className={styles.arrange_modal_title}>Arrange Meeting</h2>
+        { id_job ? (
         <form onSubmit={handleSubmit} className={styles.arrange_form}>
             <label>{`Set date and time of the meeting (user preferent: between ${filterAplication.timeRange})`}:</label>
-            {/* <label>{`Set date and time of the meeting (user preferent: between ${filterUser.timeRange})`} :</label> */}
             <input 
                 name="dateTime" 
                 type='datetime-local'
@@ -96,6 +95,35 @@ function ArrangeMeeting() {
             ></textarea>
             <button type='submit' className={styles.arrange_modal_button}>Send</button>
         </form>
+        ):(
+          <>
+            <form onSubmit={handleSubmit}>
+            <lebel>Set 1 to 3 posible dates for the meeting:</lebel>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <label>Brief message:</label>
+              <textarea 
+              name="messege"
+              onChange={handleMessege}
+              ></textarea>
+              <button type='submit'>Send</button>
+              </form>
+          </>
+        )
+}
     </>
   )
 }

@@ -1,8 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./DevProfile.module.css";
-import { Navbar } from "../navbar/Navbar";
-import location from "../../assets/location.png";
-import size from "../../assets/size.png";
 import cannot from "../../assets/cannot.png";
 import { fetchUser } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +44,11 @@ function DevProfile() {
   function handleEditEdu() {
     dispatch(modalActions.setModalValue());
     dispatch(modalActions.activateEditDevEdu(true));
+  }
+
+  const handleOpenModal = () =>{
+    dispatch(modalActions.setModalValue())
+    dispatch(modalActions.activateArrangeMeeting(true))
   }
 
   async function handleDelete(e){
@@ -111,6 +113,7 @@ function DevProfile() {
        console.log(error)
     }
   }
+  
 
   if (profileType[0] === 'develop' && sessionStorage.id !== user.id) return (
     <div className={styles.cannot}>
@@ -133,7 +136,7 @@ function DevProfile() {
           </div>
           <div className={styles.infoContainer}>
             <div className={styles.reportaje}>
-              {profileType == "company" && (
+              {profileType[0] === "company" && (
                 <button onClick={() => handleReport(id)}>
                   <MdReportGmailerrorred />
                 </button>
@@ -181,13 +184,13 @@ function DevProfile() {
 
               </div>
               
-              {profileType == "develop"? (
+              {profileType[0] === "develop"? (
                 <div className={styles.editProfileButtonContainer}>
                   <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`}>Send</Link>
+                  <button id={styles.arrange} onClick={handleOpenModal}>Arrange Meeting</button>
                 </div>
               )}
             </div>
@@ -238,12 +241,14 @@ function DevProfile() {
                     <div className={styles.secondaryInfoCards} key={e.id}>
                       <div id={styles.high} className={styles.dateContainer}>
                         <div className={styles.dateContainer}>
-                        <label>{e.start_date}</label> 
+                        <label>{e.start_date.slice(5,10) + '-' +e.start_date.slice(0,4)}</label> 
                         {e.end_date === '1800-12-12' ? <label>Present</label>
-                        : <label>{e.end_date}</label>
+                        : <label>{e.end_date.slice(5,10) + '-' +e.end_date.slice(0,4)}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="exp" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.company}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.position}</h3>
@@ -252,7 +257,7 @@ function DevProfile() {
                   )
 
                 : null}
-                {profileType == "develop" && <button onClick={handleEditExp}>Add experience</button>}
+                {profileType[0] === "develop" && <button onClick={handleEditExp}>Add experience</button>}
               </div>
               <div
                 className={styles.secondaryInfoContainer}
@@ -264,12 +269,14 @@ function DevProfile() {
                     <div className={styles.secondaryInfoCards} key={e.id}>
                       <div id={styles.high} className={styles.dateContainer}>
                         <div className={styles.dateContainer}>
-                        <label>{e.start_date}</label> 
+                        <label>{e.start_date.slice(5,10) + '-' +e.start_date.slice(0,4)}</label> 
                         {e.end_date === '1800-12-12' ? <label>Present</label>
-                        : <label>{e.end_date}</label>
+                        : <label>{e.end_date.slice(5,10) + '-' +e.end_date.slice(0,4)}</label>
                         }
                         </div>
+                        { profileType[0] === 'company' ? null :
                         <button name="edu" value={e.id} onClick={handleDelete} className={styles.delete}><MdDeleteOutline/></button>
+                        }
                       </div>
                       <h2 className={styles.props}>{e.institution}</h2>
                       <h3 id={styles.deg} className={styles.props}>{e.degree}</h3>
@@ -278,7 +285,7 @@ function DevProfile() {
                   )
 
                 : null}
-                {profileType == "develop" && <button onClick={handleEditEdu}>Add education</button>}
+                {profileType[0] === "develop" && <button onClick={handleEditEdu}>Add education</button>}
               </div>
             </div>
           </div>

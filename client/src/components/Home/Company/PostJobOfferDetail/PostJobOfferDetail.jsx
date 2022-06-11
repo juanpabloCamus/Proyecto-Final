@@ -47,14 +47,14 @@ function PostJobOffer() {
     dispatch(modalActions.activateDelete(false));
     dispatch(modalActions.activateReactive(true));
   };
-  let renderJob = company.jobs?.filter((e) => e.id == id)[0];
+  let renderJob = company.jobs?.filter((e) => e.id === parseInt(id))[0];
   const radioStorage = JSON.parse(localStorage.getItem("radio1"));
   let [radio1, setRadio1] = useState(radioStorage || "edit");
   localStorage.setItem("radio1", JSON.stringify(radio1));
   useEffect(() => {
     dispatch(fetchJobDetail(id));
     dispatch(fetchCompany(userLocalStorage.id));
-  }, [dispatch, id, estado]);
+  }, [dispatch, id, estado, userLocalStorage.id]);
   function handleCircle(e) {
     let isChecked = e.target.checked;
     if (isChecked) {
@@ -141,7 +141,7 @@ function PostJobOffer() {
                   <h4>Technologies Required:</h4>
                   <div className={styles.techContainer}>
                     {renderJob.technologies.map((t) => (
-                      <label className={styles.tech} key={t.id}>
+                      <label className={styles.tech} key={t.name}>
                         {t.name === "Cplus" || t.tech === "Cplus" ? (
                           <p>C+</p>
                         ) : t.name === "Cplusplus" || t.tech === "Cplusplus" ? (
@@ -239,7 +239,7 @@ function PostJobOffer() {
             ?.map((e) => e.user_account)
             ?.map((el) => {
               return (
-                <div className={styles.postsContainer}>
+                <div className={styles.postsContainer} key={el.id}>
                   <Link to={`/company/offers/${id}/dev/${el.id}`}>
                     <div className={styles.postCard}>
                       <div className={styles.imgContainer}>
@@ -266,19 +266,18 @@ function PostJobOffer() {
                         <div className={styles.subDetails}>
                           <p><b>English Level:</b> {el.english_level}</p>
                           <p><b>Seniority: </b>{el.seniority}</p>
-                          {/* <p>Time: {el.time}</p> */}
                         </div>
 
                         <div className={styles.techsContainer}>
                           {el.technologies?.map((t) =>
                             t.name === "Cplus" ? (
-                              <label key={t.id}>C+</label>
+                              <label key={t.name}>C+</label>
                             ) : t.name === "Cplusplus" ? (
-                              <label key={t.id}>C++</label>
+                              <label key={t.name}>C++</label>
                             ) : t.name === "CSharp" ? (
-                              <label key={t.id}>C#</label>
+                              <label key={t.name}>C#</label>
                             ) : (
-                              <label key={t.id}>{t.name}</label>
+                              <label key={t.name}>{t.name}</label>
                             )
                           )}
                         </div>

@@ -6,6 +6,7 @@ import styles from './EditComProfileForm.module.css';
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
 import Swal from 'sweetalert2'
 import Loading from "../Loading/Loading";
+import {GrClose} from 'react-icons/gr'
 
 function EditComProfileForm() {
 
@@ -139,6 +140,9 @@ function EditComProfileForm() {
     
     return (
         <div className={styles.formContainer}>
+            <button className={styles.backButton} onClick={() => navigate(-1)}>
+                <GrClose></GrClose>
+            </button>
             <h2>Profile Information</h2>
             <form className={styles.form}>
                 <label>Company name</label>
