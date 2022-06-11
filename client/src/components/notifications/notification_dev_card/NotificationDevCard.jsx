@@ -69,13 +69,13 @@ const { companyName,
   
   const acceptOrDecline = async(status, id) => {
     try {
-      const res = await axios.put(`/meeting/statusDev/${id}`, {status})
+      await axios.put(`/meeting/statusDev/${id}`, {status})
     } catch (err) {
       console.log(err)
     }
   }
 
-  console.log(status)
+  console.log(findStatus)
 
   return (
     
