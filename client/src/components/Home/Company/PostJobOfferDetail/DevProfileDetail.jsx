@@ -6,7 +6,6 @@ import { modalActions } from '../../../../redux/modal_slice/modalSlice'
 
 import styles from "./PostJobOfferDetail.module.css";
 import { Image } from "cloudinary-react";
-//import Meeting from "../../../Meeting/Meeting";
 import { MeetingModal } from "../../Company/ArrangeMeeting/MeetingModal"
 
 function DevProfileDetail() {
@@ -19,7 +18,7 @@ console.log(useParams())
   }, [dispatch, id_job]);
   let jobDetail = useSelector((state) => state.jobDetail.jobDetail);
   let filterUser = jobDetail[0]?.applied_jobs?.filter(
-    (e) => e.userAccountId == id_dev
+    (e) => e.userAccountId === parseInt(id_dev)
   );
 
   const handleOpenModal = () =>{
@@ -55,7 +54,7 @@ console.log(useParams())
                       <a
                         className={styles.buttonU}
                         href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
-                        target="_blank"
+                        target="blank"
                       >
                         Download PDF
                       </a>
