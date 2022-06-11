@@ -21,6 +21,7 @@
 
 #banner {
   object-fit: contain;
+  border-bottom: 3px solid whitesmoke;
 }
 
 h3 {

@@ -25,6 +25,7 @@ import Applications from "./components/Home/User/UserApplications/Applications";
 import { Footer } from "./components/footer/Footer";
 
 
+
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)
