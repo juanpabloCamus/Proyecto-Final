@@ -19,7 +19,7 @@ export const UserNav = () => {
   const dispatch = useDispatch();
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
-  const profile = sessionStorage.profileType.join(" ");
+  const profile = sessionStorage.profileType[0];
   ///////////
   const id = sessionStorage.id;
   useEffect(() => {
@@ -93,8 +93,8 @@ export const UserNav = () => {
         <div
           onClick={handleMenu}
           className={styles.logged_user_icon}
-          title={sessionStorage?.fullName || sessionStorage?.name}
-        >
+          title={sessionStorage?.fullName || sessionStorage?.name}>
+
           {sessionStorage.profileType[0] === "company" ? (
             <Image
               cloudName="dhar2oawa"
