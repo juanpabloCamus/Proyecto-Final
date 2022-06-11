@@ -28,6 +28,7 @@ import { Footer } from "./components/footer/Footer";
 function App() {
 
   const { isLogged } = useSelector(state => state.auth)
+  if(isLogged){}
 
   return <div className="app">
     <Navbar/>
