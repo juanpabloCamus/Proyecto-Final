@@ -5,7 +5,6 @@ import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeeting } from '../../redux/meeting/meeting';
-import { fetchUser } from '../../redux/users/users';
 
 function Meeting() {
 
@@ -17,7 +16,6 @@ function Meeting() {
     useEffect(()=>
     {
       dispatch(fetchMeeting(id_meet))
-      dispatch(fetchUser())
     },[dispatch,id_meet])
 
     const meetback = useSelector(state=>state.meeting.meeting)
