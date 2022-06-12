@@ -118,6 +118,10 @@
     border-radius: 10px;
 }
 
+#companyName:hover{
+    color: #46499c;
+  }
+
 #logo{
     max-width: 150px;
 }
