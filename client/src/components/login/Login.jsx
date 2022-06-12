@@ -47,7 +47,7 @@ export const Login = () => {
           navigate("/");
         }
       } else {
-        setErrorMessage(res.data);
+        setErrorMessage("Account banned");
         setUserError(true);
       }
     } catch (error) {
