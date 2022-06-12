@@ -98,12 +98,12 @@ export const UserNav = () => {
 
           {sessionStorage.profileType[0] === "company" ? (
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={companyProfile?.logo}
             />
           ) : (
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={user?.profile_pic}
               id={styles.banner}
             />
