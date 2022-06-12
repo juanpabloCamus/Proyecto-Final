@@ -101,7 +101,7 @@ function ComProfile() {
             <div className={styles.profileContainer}>
                 <div className={styles.bannerProfileContainer}>
                     <Image
-                        cloudName="dhar2oawa"
+                        cloudName="dlt2bs82a"
                         publicId={user.banner}
                         id={styles.banner}
                         />
@@ -118,7 +118,7 @@ function ComProfile() {
                         <div className={styles.userPhoto}>
                             <Image
                                     id={styles.logo}
-                                    cloudName="dhar2oawa"
+                                    cloudName="dlt2bs82a"
                                     publicId={user.logo}
                                     />
                         </div>
@@ -200,7 +200,7 @@ function ComProfile() {
                                 {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}
                                 <Image
                                 id={styles.logo}
-                                cloudName="dhar2oawa"
+                                cloudName="dlt2bs82a"
                                 publicId={user.logo}
                                 // width="100"
                                 // crop="scale"

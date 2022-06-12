@@ -33,7 +33,7 @@ function DevProfileDetail() {
             <div className={styles.container1}>
                 <div className={styles.user_icon}>
                   <Image
-                    cloudName="dhar2oawa"
+                    cloudName="dlt2bs82a"
                     publicId={filterUser[0].user_account.profile_pic}
             
                   />
@@ -52,7 +52,7 @@ function DevProfileDetail() {
                 
                       <a
                         className={styles.buttonU}
-                        href={`https://res.cloudinary.com/dhar2oawa/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
+                        href={`https://res.cloudinary.com/dlt2bs82a/image/upload/fl_attachment:elbarto/${filterUser[0]?.pdf}.pdf`}
                         target="blank"
                       >
                         Download PDF

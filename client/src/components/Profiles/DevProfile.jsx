@@ -136,7 +136,7 @@ function DevProfile() {
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={user.banner}
               id={styles.banner}
             />
@@ -156,7 +156,7 @@ function DevProfile() {
                     <div className={styles.userPhoto}>
                       <Image
                         id={styles.logo}
-                        cloudName="dhar2oawa"
+                        cloudName="dlt2bs82a"
                         publicId={user.profile_pic}
                 
                       />
