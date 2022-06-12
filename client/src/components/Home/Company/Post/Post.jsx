@@ -10,7 +10,7 @@ function Post({id,profile_pic,fullName,description,email,technologies,english_le
     <div className={styles.postCard}>
       <div className={styles.imgContainer}>
       <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={profile_pic}
               width="100"
             />
