@@ -145,7 +145,7 @@ function PostDetail() {
         <div className={styles.companyInfoContainer}>
           <div className={styles.logoContainer}>
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={company_accounts[0].logo}
               id={styles.logo}
             />
