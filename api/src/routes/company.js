@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis, report_type} = require('../db')
 const nodemailer = require('nodemailer');
 
 const router = Router();
@@ -165,22 +165,56 @@ router.post('/register', async (req,res)=>{
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
+        const {report} = req.body
 
         let company = await company_account.findAll({
             where:{id: id}
         })
 
-        if(company.length>0){
+        let reporte = await report_type.findAll({
+            where: {name: report}
+        })
+
+        if(company.length>0&&reporte.length>0){
+            reporte[0].dataValues.id === 1?
             await company_account.update(
                 {
-                    reports: company[0].dataValues.reports+1
+                    reports: company[0].dataValues.reports+1,
+                    reportSpam: company[0].dataValues.reportSpam+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 2 ?
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportLang: company[0].dataValues.reportLang+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 3 ?
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportFalse: company[0].dataValues.reportFalse+1
+                },{
+                    where:{id: id}
+                }
+            )
+            :
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportCoIn: company[0].dataValues.reportCoIn+1
                 },{
                     where:{id: id}
                 }
             )
             res.send('Company reported')
         }else{
-            res.send('Company not exist')
+            res.send('Company or report type not exist')
         }
     } catch (error) {
         console.log(error)
