@@ -47,7 +47,7 @@ let db =
         ssl: true,
       })
     : new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/proyecto_final_db`,
+        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/proyecto_final_db`, 
         { logging: false, native: false }
       );
 

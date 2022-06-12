@@ -38,13 +38,16 @@ const handleOpenModal = () =>{
         </div>
         <div className="landing__page_first_section animate__animated animate__fadeInUp">
           <h2><span className='span_1'>Rocket</span>, a bridge to connect <span className='span_2'>developers</span> and <span className='span_3'>companies</span> around the world.</h2>
-          <div className='landing__page_first_section_text'>
-            <p>Apply to several job offers made them by the best companies and startups</p>
-            <p>Get interviewed directly with the hiring recruiters</p>
-            <p>Get hired quickly through our notification system</p>
-          </div>
-          <div className='rocket_image'>
-            <img src={rocket} alt="" />
+          <div className='rocket__list'>
+              <div className='rocket_image'>
+                <img src={rocket} alt="" />
+              </div>
+            <div className='landing__page_first_section_text'>
+              <p>Apply to several job offers made them by the best companies and startups</p>
+              <p>Get interviewed directly with the hiring recruiters</p>
+              <p>Get hired quickly through our notification system</p>
+            </div>
+            
           </div>
         </div>
         <Acordion></Acordion>

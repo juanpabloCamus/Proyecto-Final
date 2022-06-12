@@ -40,7 +40,7 @@
 .landing__page_first_section{
     display: flex;
     flex-direction: column;
-    margin: 300px 0;
+    margin: 50px 0;
     align-items: center;
     position: relative;
 }
@@ -51,7 +51,16 @@
     text-align: center;
 }
 
+.rocket__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
 .landing__page_first_section_text{
+    
     border-left: 5px solid black;
     padding-left: 15px;
 }
@@ -70,11 +79,10 @@
 }
 
 .rocket_image{
-    position: absolute;
-    width: 350px;
+    /* position: absolute; */
+    width: 400px;
     top: 130px;
     left: 30px;
-
     animation: floating 4s ease-in-out infinite;
 }
 
