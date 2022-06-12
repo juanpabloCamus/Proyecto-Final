@@ -20,6 +20,7 @@ router.get('/company', async (req,res)=>{
 
 router.get('/jobs', async (req,res)=>{
     let jobs = await job.findAll({
+        include:company_account,
         order:[['reports','desc'],['id','asc']]
     })
     res.send(jobs)
