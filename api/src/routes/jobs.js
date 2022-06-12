@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs } = require('../db');
+const { user } = require('../data');
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, report_type} = require('../db');
 
 const router = Router();
 
@@ -216,22 +217,56 @@ router.post('/:id', async (req,res)=>{
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
+        const {report} = req.body
 
         let jobs = await job.findAll({
             where:{id: id}
         })
 
-        if(jobs.length>0){
+        let reporte = await report_type.findAll({
+            where: {name: report}
+        })
+
+        if(jobs.length>0&&reporte.length>0){
+            reporte[0].dataValues.id === 1?
             await job.update(
                 {
-                    reports: jobs[0].dataValues.reports+1
+                    reports: jobs[0].dataValues.reports+1,
+                    reportSpam: jobs[0].dataValues.reportSpam+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 2 ?
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportLang: jobs[0].dataValues.reportLang+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 3 ?
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportFalse: jobs[0].dataValues.reportFalse+1
+                },{
+                    where:{id: id}
+                }
+            )
+            :
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportCoIn: jobs[0].dataValues.reportCoIn+1
                 },{
                     where:{id: id}
                 }
             )
             res.send('Job reported')
         }else{
-            res.send('Job not exist')
+            res.send('Job or report type not exist')
         }
     } catch (error) {
         console.log(error)
