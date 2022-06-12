@@ -76,7 +76,7 @@ function ComProfile() {
           if (res.isConfirmed) {
             await axios.put(`company/report/${id}`, {report});
             Swal.fire({
-                icon: 'warning',
+                icon: 'info',
                 text:`You have reported for ${report}`,
                 timer:1500,
                 showConfirmButton:false

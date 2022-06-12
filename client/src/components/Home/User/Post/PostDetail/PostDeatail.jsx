@@ -53,7 +53,7 @@ function PostDetail() {
       if (res.isConfirmed) {
         await axios.put(`jobs/report/${id}`, {report});
         Swal.fire({
-          icon: 'warning',
+          icon: 'info',
           text:`You have reported for ${report}`,
           timer:1500,
           showConfirmButton:false
