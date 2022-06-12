@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology,meeting,usernotis,compnotis} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology,meeting,usernotis,compnotis, report_type} = require('../db')
 const nodemailer = require('nodemailer');
 
 const router = Router();
@@ -41,7 +41,7 @@ router.get('/:id', async (req,res)=>{
         const {id} = req.params
 
         let user = await user_account.findAll({
-            where:{id:id,active: true},
+            where:{id:id},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model: applied_job, include: {model:job, include: [{model:company_account},{model:technology}]}},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ],[experience, 'end_date', 'DESC' ],[technology, 'name', 'ASC' ]]
         })
@@ -516,22 +516,57 @@ router.put('/education/:id', async (req,res)=>{
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
+        const {report} = req.body
 
         let user = await user_account.findAll({
             where:{id: id}
         })
 
-        if(user.length>0){
+        let reporte = await report_type.findAll({
+            where:{name:report}
+        })
+
+        if(user.length>0&&reporte.length>0){
+            reporte[0].dataValues.id === 1?
             await user_account.update(
                 {
-                    reports: user[0].dataValues.reports+1
+                    reports: user[0].dataValues.reports+1,
+                    reportSpam: user[0].dataValues.reportSpam+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 2 ?
+            await user_account.update(
+                {
+                    reports: user[0].dataValues.reports+1,
+                    reportLang: user[0].dataValues.reportLang+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 3 ?
+            await user_account.update(
+                {
+                    reports: user[0].dataValues.reports+1,
+                    reportFalse: user[0].dataValues.reportFalse+1
+                },{
+                    where:{id: id}
+                }
+            )
+            :
+            await user_account.update(
+                {
+                    reports: user[0].dataValues.reports+1,
+                    reportCoIn: user[0].dataValues.reportCoIn+1
                 },{
                     where:{id: id}
                 }
             )
             res.send('User reported')
+            
         }else{
-            res.send('User not exist')
+            res.send('User or report type not exist')
         }
     } catch (error) {
         console.log(error)
@@ -617,8 +652,6 @@ router.put('/experience/:id', async (req,res)=>{
     }
 })
 
-
-
 router.delete('/:id', async (req,res)=>{
     try{
         const {id} = req.params
@@ -648,8 +681,6 @@ router.delete('/:id', async (req,res)=>{
         console.log(error)
     }
 })
-
-
 
 router.delete('/education/:id', async (req,res)=>{
     try{

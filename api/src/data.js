@@ -324,10 +324,30 @@ const techs = [
     }
 ]
 
+const reports = [
+    {
+        id:1,
+        name: 'spam'
+    },
+    {
+        id:2,
+        name: 'inappropiate lenguaje'
+    },
+    {
+        id:3,
+        name: 'false information'
+    },
+    {
+        id:4,
+        name: 'inappropriate content'
+    }
+]
+
 
 module.exports = {
     user,
     company,
     jobs,
-    techs
+    techs,
+    reports
 }
