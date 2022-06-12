@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
                 }
                 await company_account.update({recoverId : recoverId}, {where:{email:email}})
             }
-            
+            console.log(recoverId);
             //------------------NODEMAILER-----------------------//
                     
             const trasnsporter = nodemailer.createTransport({
