@@ -17,7 +17,7 @@ import cannot from "../../assets/cannot.png";
 import Swal from "sweetalert2";
 import { MdLocationOn } from "react-icons/md";
 import {IoIosPeople} from 'react-icons/io'
-import {TbWorld} from 'react-icons/tb'
+// import {TbWorld} from 'react-icons/tb'
 
 
 function ComProfile() {
@@ -110,7 +110,7 @@ function ComProfile() {
                         <div>
                             {user.web_site === null ? null :
                             <div className={styles.labelContainer}>
-                            <TbWorld className={styles.infoIcons}></TbWorld>
+                            {/* <TbWorld className={styles.infoIcons}></TbWorld> */}
                             <a target="blank" href={user.web_site.slice()}>WebSite</a>
                             </div>
                             }
