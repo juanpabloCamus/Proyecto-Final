@@ -84,7 +84,6 @@
     display: flex;
     gap: 50px;
     justify-content: center;
-    border-top: 2px solid whitesmoke;
     margin-top: 10px;
 }
 

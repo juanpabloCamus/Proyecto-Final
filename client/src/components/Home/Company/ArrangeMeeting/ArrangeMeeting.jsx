@@ -5,50 +5,38 @@ import { useSelector } from 'react-redux'
 import Swal from "sweetalert2"
 import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../../redux/modal_slice/modalSlice'
-
 import styles from './arrangeModal.module.css'
 
 function ArrangeMeeting() {
-    
-    const devLocalStorage = JSON.parse(localStorage.getItem("userData"))
-    let id_comp = devLocalStorage.id
 
-    let { id_job, id_dev, id } = useParams();
+    const { id } = JSON.parse(localStorage.getItem("userData"))
+    let id_comp = id
 
+
+    let { id_job, id_dev } = useParams();
     const dispatch=useDispatch()
-    
+
     const [dateTime,setDateTime]=useState("")
     const [messege, setMessege]=useState("")
-
-    let idDev = id
-
-    console.log(id_job)
-    console.log(id_dev)
-    console.log(id)
 
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
 
     if(id_job){
-      let filterJob = jobDetails?.find(
-        (e) => e.id === parseInt(id_job)
-      )
-      var filterAplication = filterJob?.applied_jobs?.find(
-        (e) => e.userAccountId === parseInt(id_dev)
-      )
+    let filterJob = jobDetails?.find(
+      (e) => e.id === parseInt(id_job)
+    )
+    var filterAplication = filterJob?.applied_jobs?.find(
+      (e) => e.userAccountId === parseInt(id_dev)
+    )
     }
-
     const handledateTime=(e)=>{
         setDateTime(e.target.value)
     }
     const handleMessege=(e)=>{
-
         setMessege(e.target.value)
     }
     const send = async () => {
-     
         try {
-          if(id_job){
-            console.log(dateTime,messege,id_comp,id_dev,id_job)
             const res= await axios.post('meeting/arrangeMeeting', {
                 dateTime,
                 messege,
@@ -57,32 +45,6 @@ function ArrangeMeeting() {
                 id_job
             })
 
-            console.log(res.data)
-            if (res.data) {
-              Swal.fire({
-                icon: "success",
-                text: res.data,
-                showConfirmButton: false,
-                showCancelButton: false,
-              });
-            } else {
-              Swal.fire({
-                icon: "error",
-                text: res.data,
-                showConfirmButton: false,
-                showCancelButton: false,
-              });
-            }
-
-          }else{
-            console.log(dateTime,messege,id_comp,idDev)
-            const res= await axios.post('meeting/compMeeting', {
-              dateTime,
-              messege,
-              id_comp,
-              idDev
-          })
-          console.log(res.data)
           if (res.data) {
             Swal.fire({
               icon: "success",
@@ -98,28 +60,22 @@ function ArrangeMeeting() {
               showCancelButton: false,
             });
           }
-          }
         } catch (error) {
           console.log(error);
         }
       };
      
     const handleSubmit = () => {
-
       dispatch(modalActions.activateArrangeMeeting(false))
       dispatch(modalActions.setModalValue())
       send()
     }
-
   return ( 
       <>
         <h2 className={styles.arrange_modal_title}>Arrange Meeting</h2>
+        { id_job ? (
         <form onSubmit={handleSubmit} className={styles.arrange_form}>
-          {id_job ? 
             <label>{`Set date and time of the meeting (user preferent: between ${filterAplication.timeRange})`}:</label>
-            :
-            <label>Set date and time of the meeting:</label>
-          }
             <input 
                 name="dateTime" 
                 type='datetime-local'
@@ -133,8 +89,36 @@ function ArrangeMeeting() {
             ></textarea>
             <button type='submit' className={styles.arrange_modal_button}>Send</button>
         </form>
+        ):(
+          <>
+            <form onSubmit={handleSubmit}>
+            <lebel>Set 1 to 3 posible dates for the meeting:</lebel>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <input 
+            name="dateTime" 
+            type='datetime-local'
+            onChange={handledateTime}
+            ></input>
+            <label>Brief message:</label>
+              <textarea 
+              name="messege"
+              onChange={handleMessege}
+              ></textarea>
+              <button type='submit'>Send</button>
+              </form>
+          </>
+        )
+}
     </>
   )
 }
-
 export default ArrangeMeeting
