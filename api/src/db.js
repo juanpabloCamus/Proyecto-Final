@@ -111,6 +111,15 @@ education.belongsTo(user_account)
 user_account.hasMany(meeting)
 meeting.belongsTo(user_account)
 
+company_account.hasMany(meeting)
+meeting.belongsTo(company_account)
+
+user_account.hasMany(usernotis)
+usernotis.belongsTo(user_account)
+
+company_account.hasMany(compnotis)
+compnotis.belongsTo(company_account)
+
 //////////////// LOAD DATABASE ///////////////
 
 async function loadDb(){

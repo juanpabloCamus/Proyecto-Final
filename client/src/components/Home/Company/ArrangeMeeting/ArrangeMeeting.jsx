@@ -13,9 +13,7 @@ function ArrangeMeeting() {
     const devLocalStorage = JSON.parse(localStorage.getItem("userData"))
     let id_comp = devLocalStorage.id
 
-  
-    let { id_job, id_dev } = useParams();
-    let { id } = useParams();
+    let { id_job, id_dev, id } = useParams();
 
     const dispatch=useDispatch()
     
@@ -27,12 +25,12 @@ function ArrangeMeeting() {
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
 
     if(id_job){
-    let filterJob = jobDetails?.find(
-      (e) => e.id === parseInt(id_job)
-    )
-    var filterAplication = filterJob?.applied_jobs?.find(
-      (e) => e.userAccountId === parseInt(id_dev)
-    )
+      let filterJob = jobDetails?.find(
+        (e) => e.id === parseInt(id_job)
+      )
+      var filterAplication = filterJob?.applied_jobs?.find(
+        (e) => e.userAccountId === parseInt(id_dev)
+      )
     }
 
     const handledateTime=(e)=>{
