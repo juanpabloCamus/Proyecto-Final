@@ -63,7 +63,43 @@ router.post('/arrangeMeeting', async (req,res)=>{
     } catch (error) {
         console.log(error)
     }
-    
+})
+
+router.post('/compMeeting', async (req,res)=>{
+    try {
+        const {messege,id_comp,idDev} = req.body
+        
+        let {dateTime} = req.body
+        
+        if(dateTime){
+            let meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            let array = dateTime.split('-')
+            let array2 = array[2].split('T')
+            array.pop()
+            array = array.concat(array2)
+            array[1] = meses[array[1]-1]
+            array = [array[1],array[2],array[0],array[3]]
+            dateTime = array.join(' ')
+        }
+        if(dateTime&&messege&&id_comp&&idDev){
+            let meet = await meeting.create({
+                dateTime: dateTime,
+                messege: messege,
+            })
+            let notiUser = await usernotis.create({
+                codeNoti: 3
+            })
+            notiUser.setUser_account(idDev)
+            notiUser.setMeeting(meet.dataValues.id)
+            meet.setUser_account(idDev)
+            meet.setCompany_account(id_comp)
+            res.send('Meeting created')
+        }else{
+            res.send('Invalid data')
+        }
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 router.put('/statusDev/:id', async (req,res)=>{
