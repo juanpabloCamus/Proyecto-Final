@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, report_type} = require('../db')
 
 const router = Router();
 
@@ -20,7 +20,6 @@ router.get('/company', async (req,res)=>{
 
 router.get('/jobs', async (req,res)=>{
     let jobs = await job.findAll({
-        include:company_account,
         order:[['reports','desc'],['id','asc']]
     })
     res.send(jobs)
