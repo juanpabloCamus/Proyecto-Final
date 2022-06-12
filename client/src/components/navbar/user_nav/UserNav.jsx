@@ -32,10 +32,14 @@ export const UserNav = () => {
     (state) => state.companyProfile.companyProfile[0]
   );
 
+  window.onclick = function(){
+    setToggleMenu(false)
+  }
   //////////
   const handleMenu = () => {
-    setToggleMenu(!toggleMenu);
+    setTimeout(()=>setToggleMenu(true),10)
   };
+
   
   const handleLogout = () => {
     localStorage.removeItem("userData");
@@ -43,7 +47,7 @@ export const UserNav = () => {
     localStorage.removeItem("radio");
     dispatch(authActions.getNewUser({}));
     navigate("/");
-    setToggleMenu(!toggleMenu);
+    setToggleMenu(false);
   };
 
   const handleNotify = () => {
@@ -94,12 +98,12 @@ export const UserNav = () => {
 
           {sessionStorage.profileType[0] === "company" ? (
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={companyProfile?.logo}
             />
           ) : (
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={user?.profile_pic}
               id={styles.banner}
             />
@@ -119,14 +123,14 @@ export const UserNav = () => {
                   ? `/company/profile/${sessionStorage.id}`
                   : "/admin"
               }
-              onClick={() => setToggleMenu(!toggleMenu)}
+              onClick={() => setToggleMenu(false)}
             >
               <span className={styles.option}>Profile</span>
             </Link>
           }
           {
             profile === "develop" ?
-            <Link to={`/home/myapplications/${sessionStorage.id}`}><span className={styles.option}>Applications</span></Link> : null
+            <Link to={`/home/myapplications/${sessionStorage.id}` } onClick={() => setToggleMenu(false)}><span className={styles.option}>Applications</span></Link> : null
           }
           <span className={styles.option} onClick={handleLogout}>
             Logout
