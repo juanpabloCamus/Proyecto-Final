@@ -2,8 +2,12 @@ import React from 'react';
 import styles from './ForgotPass.module.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { modalActions } from '../../redux/modal_slice/modalSlice';
+import { useDispatch } from 'react-redux';
 
 function ForgotPass() {
+
+    const dispatch = useDispatch()
 
     async function handleSubmit(e){
         e.preventDefault()
@@ -12,6 +16,10 @@ function ForgotPass() {
         try{
             await axios.post('/forgotpass', {email})
             .then(res => Swal.fire({icon:'success', text:res.data}))
+            dispatch(modalActions.setModalValue())
+            dispatch(modalActions.activateLoginModal(false))
+            dispatch(modalActions.activateRegisterModal(false))
+            dispatch(modalActions.activateForgotPass(false))
         }catch(e){
             Swal.fire({icon:'error',text:e.response.data})
         }

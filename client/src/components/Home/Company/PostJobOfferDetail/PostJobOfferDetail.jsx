@@ -244,7 +244,7 @@ function PostJobOffer() {
                     <div className={styles.postCard}>
                       <div className={styles.imgContainer}>
                         <Image
-                          cloudName="dhar2oawa"
+                          cloudName="dlt2bs82a"
                           publicId={el.profile_pic}
                           id={styles.banner}
                           width="100"
