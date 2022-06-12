@@ -13,26 +13,28 @@ function ArrangeMeeting() {
     const devLocalStorage = JSON.parse(localStorage.getItem("userData"))
     let id_comp = devLocalStorage.id
 
-  
-    let { id_job, id_dev } = useParams();
-    let { id } = useParams();
+    let { id_job, id_dev, id } = useParams();
 
     const dispatch=useDispatch()
     
     const [dateTime,setDateTime]=useState("")
     const [messege, setMessege]=useState("")
+
     let idDev = id
 
+    console.log(id_job)
+    console.log(id_dev)
+    console.log(id)
 
     let jobDetails = useSelector((state) => state.jobDetail.jobDetail);
 
     if(id_job){
-    let filterJob = jobDetails?.find(
-      (e) => e.id === parseInt(id_job)
-    )
-    var filterAplication = filterJob?.applied_jobs?.find(
-      (e) => e.userAccountId === parseInt(id_dev)
-    )
+      let filterJob = jobDetails?.find(
+        (e) => e.id === parseInt(id_job)
+      )
+      var filterAplication = filterJob?.applied_jobs?.find(
+        (e) => e.userAccountId === parseInt(id_dev)
+      )
     }
 
     const handledateTime=(e)=>{
@@ -46,6 +48,7 @@ function ArrangeMeeting() {
      
         try {
           if(id_job){
+            console.log(dateTime,messege,id_comp,id_dev,id_job)
             const res= await axios.post('meeting/arrangeMeeting', {
                 dateTime,
                 messege,
@@ -54,6 +57,7 @@ function ArrangeMeeting() {
                 id_job
             })
 
+            console.log(res.data)
             if (res.data) {
               Swal.fire({
                 icon: "success",
@@ -71,13 +75,14 @@ function ArrangeMeeting() {
             }
 
           }else{
+            console.log(dateTime,messege,id_comp,idDev)
             const res= await axios.post('meeting/compMeeting', {
               dateTime,
               messege,
               id_comp,
               idDev
           })
-
+          console.log(res.data)
           if (res.data) {
             Swal.fire({
               icon: "success",
