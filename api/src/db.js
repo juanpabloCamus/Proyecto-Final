@@ -10,9 +10,10 @@ const OtherTechs = require('./models/OtherTechs')
 const Meeting = require('./models/Meeting')
 const UserNotis = require('./models/UserNotis')
 const CompanyNotis = require('./models/CompanyNotis')
+const Reports = require('./models/Reports')
 
 require('dotenv').config();
-const { user, company, jobs, techs} = require('./data.js')
+const { user, company, jobs, techs, reports} = require('./data.js')
 
 const {
     DB_USER, DB_PASSWORD, DB_NAME, DB_HOST
@@ -62,8 +63,9 @@ OtherTechs(db);
 Meeting(db);
 UserNotis(db);
 CompanyNotis(db);
+Reports(db);
 
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = db.models
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis, report_type} = db.models
 
 
 /////////// RELACIONES DE JOBS //////////////
@@ -124,10 +126,16 @@ async function loadDb(){
   let users = await user_account.findAll();
   if(users.length > 0) return null
 
-
   techs.map((u) => {
     technology.create({
       name: u.name
+    })
+  })
+
+  reports.map((r) => {
+    report_type.create({
+      id: r.id,
+      name: r.name
     })
   })
 
@@ -209,7 +217,6 @@ async function loadDb(){
     await j.addUser_account(j.dataValues.id)
 
   })
-
 }
 module.exports = {
   ...db.models,

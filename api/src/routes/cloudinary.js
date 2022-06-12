@@ -9,7 +9,7 @@ router.post('/', async (req,res)=>{
     try{
         const fileStr = req.body.data;
         const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
-            upload_preset: 'b2ml2dvj'
+            upload_preset: 'mb1d1ia5'
         })
         res.send(uploadedResponse.public_id)
     }catch(error){

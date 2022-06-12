@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, report_type} = require('../db')
 
 const router = Router();
 

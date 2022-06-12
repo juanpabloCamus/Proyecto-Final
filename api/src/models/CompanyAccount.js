@@ -77,12 +77,35 @@ module.exports = (sequelize) => {
             allowNull: false,
             defaultValue: 0
         },
+        reportSpam:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportLang:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportFalse:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportCoIn:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
         premium:{
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
         premiumDate:{
             type: DataTypes.DATE,
+        },
+        recoverId:{
+            type: DataTypes.INTEGER,
         }
 
     },{timestamps:false})

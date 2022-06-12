@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
         profile_pic: {
             type:DataTypes.TEXT,
-            defaultValue:'http://espaciores.org/wp-content/uploads/2021/07/cohete.png'
+            defaultValue:'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
         description: {
             type:DataTypes.TEXT
@@ -64,6 +64,29 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0
+        },
+        reportSpam:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportLang:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportFalse:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportCoIn:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        recoverId:{
+            type: DataTypes.INTEGER,
         }
     },{timestamps:false})
 }
