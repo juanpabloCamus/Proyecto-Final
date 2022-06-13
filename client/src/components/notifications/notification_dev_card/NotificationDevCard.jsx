@@ -27,10 +27,6 @@ useEffect(()=>{
   dispatch(fetchNotifications(user_id))
 },[refresh, dispatch, user_id])
 
-useEffect(() =>{
-  
-},[])
-
 const { companyName,
       dateTime,
   messege,
@@ -77,7 +73,6 @@ const { companyName,
     }
   }
 
-console.log(codeNoti)
   return (
     
       <div className={`${styles.notification_card} animate__animated animate__fadeInUp`}>

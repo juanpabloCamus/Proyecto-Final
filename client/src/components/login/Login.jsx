@@ -47,8 +47,14 @@ export const Login = () => {
           navigate("/");
         }
       } else {
-        setErrorMessage("Account banned");
-        setUserError(true);
+        if(res.data.active === false){
+          setErrorMessage("Account banned");
+          setUserError(true);
+        }else{
+          setErrorMessage(res.data);
+          setUserError(true);
+        }
+        
       }
     } catch (error) {
       console.log(error);
