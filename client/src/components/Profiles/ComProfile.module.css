@@ -11,7 +11,22 @@
     flex-direction: column;
     background-color: rgba(234, 234, 239, 0.629);
 }
-
+.reportaje {
+    display: flex;
+    background-color: white;
+    justify-content: flex-end;
+  }
+  .reportaje button {
+    color: black;
+    font-size: 30px;
+    margin-top: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+  }
+  .reportaje button:hover{
+      color:red
+  }
 /*.buttons{
     border: none;
     padding: 5px;

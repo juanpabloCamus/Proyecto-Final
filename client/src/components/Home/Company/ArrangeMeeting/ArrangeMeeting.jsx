@@ -52,7 +52,7 @@ function ArrangeMeeting() {
                 id_job
             })
 
-            if (res.data) {
+            if (res.data === 'Meeting created') {
               Swal.fire({
                 icon: "success",
                 text: res.data,
@@ -76,12 +76,13 @@ function ArrangeMeeting() {
               idDev
           })
 
-          if (res.data) {
+          if (res.data === 'Meeting created') {
             Swal.fire({
               icon: "success",
               text: res.data,
               showConfirmButton: false,
               showCancelButton: false,
+              timer:1000
             });
           } else {
             Swal.fire({
@@ -89,6 +90,8 @@ function ArrangeMeeting() {
               text: res.data,
               showConfirmButton: false,
               showCancelButton: false,
+              timer:1000
+
             });
           }
           }
