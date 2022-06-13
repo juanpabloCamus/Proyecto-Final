@@ -68,7 +68,9 @@ router.get('/notis/:id',async (req,res)=>{
         for(let i=0;i<notis.length;i++){
             notis[i].dataValues.meeting.dataValues.fullName = notis[i].dataValues.meeting.dataValues.user_account.dataValues.fullName
             notis[i].dataValues.meeting.dataValues.emailUser = notis[i].dataValues.meeting.dataValues.user_account.dataValues.email
-            notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            if(notis[i].dataValues.meeting.dataValues.job){
+                notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            }
             delete notis[i].dataValues.meeting.dataValues.job
             delete notis[i].dataValues.meeting.dataValues.user_account
             delete notis[i].dataValues.meeting.dataValues.idMeeting
