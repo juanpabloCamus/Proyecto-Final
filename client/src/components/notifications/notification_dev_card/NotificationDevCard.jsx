@@ -8,7 +8,7 @@ import styles from './notificationDevCard.module.css'
 import { useEffect, useState } from 'react'
 
 
-export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
+export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) => {
 
 
 const [refresh, setRefresh] = useState(false)
@@ -23,6 +23,14 @@ const navigate = useNavigate()
 
 let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
 
+const checked = async () => {
+  await axios.put(`/notis/${id}`)
+}
+
+if(check===false){
+  checked()
+}
+
 useEffect(()=>{
   dispatch(fetchNotifications(user_id))
 },[refresh, dispatch, user_id])
@@ -31,11 +39,12 @@ const { companyName,
   dateTime,
   messege,
   jobPosition,
-  id,
   status} = meeting
 
+  const id_meet = meeting.id
+
   const handleAcceptClick = () => {
-    acceptOrDecline(true, id)
+    acceptOrDecline(true, id_meet)
     dispatch(fetchNotifications(user_id))
     Swal.fire({
       icon:"success",
@@ -45,7 +54,7 @@ const { companyName,
   }
 
   const handleDeclineClick = () => {
-    acceptOrDecline(false, id)
+    acceptOrDecline(false, id_meet)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",

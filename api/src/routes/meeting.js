@@ -124,7 +124,7 @@ router.put('/statusDev/:id', async (req,res)=>{
 
             console.log(user[0].dataValues.email)
             console.log(company[0].dataValues.email)
-
+            
             await meeting.update({
                 status: status,
                 idMeeting: idMeet
