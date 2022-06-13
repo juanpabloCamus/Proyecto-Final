@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { FaWindowClose } from 'react-icons/fa'
 import { MdDoneOutline } from 'react-icons/md'
 import { AdminFilterBar } from './admin_filterbar/AdminFilterBar'
+import { BsInfoCircle } from "react-icons/bs";
 
 export const JobsRender = () => {
 
@@ -45,6 +46,7 @@ export const JobsRender = () => {
           jobs.map((job, i) => (
             <tr key={i}>
               <td>
+                {console.log(job.company_accounts)}
                 {job.company_accounts[0].name}
               </td>
               <td>
@@ -62,7 +64,27 @@ export const JobsRender = () => {
                 }
               </td>
               <td></td>
-              <td>{job.reports}</td>
+              <td>{job.reports}
+              <span className="field">
+                        <BsInfoCircle />
+                        <span className="quote">
+                          <label>Spam:  <label>{job.reportSpam}</label>
+                            </label><br/>
+                            <label>Inappropiate Lenguaje: <label>{job.reportLang}</label>
+                            </label><br/>
+                            <label>False Information: <label>{job.reportFalse}</label>
+                            </label><br/>
+                         
+                            <label>Inappropiate content:
+                          <label>{job.reportCoIn}</label>
+                            </label><br/>
+                         
+                          </span>
+                         
+                          
+                       
+                      </span>
+                      </td>
             </tr>
           ))
           : 

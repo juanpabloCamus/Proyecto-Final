@@ -112,6 +112,7 @@ export const EditJobOffer = () => {
           text: res.data,
           showConfirmButton: false,
           showCancelButton: false,
+          timer:1000,
         });
       } else {
         Swal.fire({

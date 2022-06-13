@@ -6,6 +6,7 @@ import axios from "axios"
 import { FaWindowClose } from 'react-icons/fa'
 import { MdDoneOutline } from 'react-icons/md'
 import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
+import { BsInfoCircle } from "react-icons/bs";
 
 import './table.css'
 
@@ -70,12 +71,34 @@ export const UsersRender = () => {
     
               </td>
               <td></td>
-              <td>{user.reports}</td>
+              <td>{user.reports}
+              <span className="field">
+                        <BsInfoCircle />
+                        <span className="quote">
+                          <label>Spam:  <label>{user.reportSpam}</label>
+                            </label><br/>
+                            <label>Inappropiate Lenguaje: <label>{user.reportLang}</label>
+                            </label><br/>
+                            <label>False Information: <label>{user.reportFalse}</label>
+                            </label><br/>
+                         
+                            <label>Inappropiate content:
+                          <label>{user.reportCoIn}</label>
+                            </label><br/>
+                         
+                          </span>
+                         
+                          
+                       
+                      </span>
+                      </td>
             </tr>
           ))
           : 
           <p className="no_results">There are no results for your search</p>
+        
         }
+
       </tbody>
       </table>
     </div>
