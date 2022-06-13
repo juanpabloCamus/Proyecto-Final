@@ -32,7 +32,7 @@ useEffect(() =>{
 },[])
 
 const { companyName,
-  dateTime,
+      dateTime,
   messege,
   jobPosition,
   id,
@@ -41,7 +41,7 @@ const { companyName,
   const handleAcceptClick = () => {
     acceptOrDecline(true, id)
     dispatch(fetchNotifications(user_id))
-    Swal.fire({
+      Swal.fire({
       icon:"success",
       title:"You accept the meeting"
     })
