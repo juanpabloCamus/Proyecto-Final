@@ -24,7 +24,7 @@ export const Notifications = () => {
     dispatch(fetchNotifications(id))
     dispatch(fetchCompanyNotifications(id))
   },[dispatch, id])
-  
+  console.log(companyNotifications)
   return (
     <div className={styles.notifications}>
       <h2>Hi, {fullName ? fullName : name}</h2>
