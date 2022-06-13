@@ -55,7 +55,7 @@ const user = [
         fullName: 'Paloma Vaira',
         email: 'palo@notevoyadecir.com',
         password: '26465456',
-        date_birth: '2000-05-10',
+        date_birth: '2000-07-07',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
