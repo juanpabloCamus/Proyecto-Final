@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./DevProfile.module.css";
 import cannot from "../../assets/cannot.png";
-import { fetchUser } from "../../redux/users/users";
+import { fetchActions, fetchUser, usersActions } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Image } from "cloudinary-react";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
-import  {fetchActions}  from "../../redux/Profile/profileData";
 import { EditDev } from "./EditDev";
 import { MdReportGmailerrorred } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
@@ -30,8 +29,7 @@ function DevProfile() {
   }, [dispatch, id]);
 
   useEffect(()=> {
-    return(dispatch(fetchActions.getClean()))
-    
+    return(dispatch(usersActions.getClean()))
 },[dispatch])
   
   const user = useSelector((state) => state.users.user[0]);

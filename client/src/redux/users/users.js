@@ -55,5 +55,6 @@ export const usersSlice=createSlice({
  }
 })
 
+export const usersActions = usersSlice.actions
 export const fetchActions=fetchUsers.actions
 export default usersSlice.reducer

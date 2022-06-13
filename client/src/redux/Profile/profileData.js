@@ -21,7 +21,7 @@ export const CompanyPSlice=createSlice({
     initialState,
     reducers:{
         getClean(state){
-            state.companyProfile = {}
+            state.companyProfile = []
         }
 
     },
