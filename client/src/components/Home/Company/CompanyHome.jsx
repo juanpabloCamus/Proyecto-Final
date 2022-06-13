@@ -71,6 +71,7 @@ function CompanyHome() {
   },[users,pagina,render])
 
   useEffect(() => {
+    dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch, id]);
 
