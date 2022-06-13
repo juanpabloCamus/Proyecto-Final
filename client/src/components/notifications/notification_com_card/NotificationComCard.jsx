@@ -4,9 +4,10 @@ import { RiDeleteBinFill } from 'react-icons/ri'
 import styles from './notificationComCard.module.css'
 
 
-export const NotificationComCard = ({codeNoti, createdAt, meeting}) => {
+export const NotificationComCard = ({id, check, codeNoti, createdAt, meeting}) => {
 
-const {fullName, emailUser, dateTime, jobPosition, id} = meeting
+const {fullName, emailUser, dateTime, jobPosition} = meeting
+const id_meet = meeting.id
 const navigate = useNavigate()
 
 let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
@@ -31,7 +32,7 @@ let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(
                   <p>Scheduled meeting at: {dateTime}</p>
                     <br />
                   <div className={styles.notification_buttons}>
-                      <button className={styles.notification_accept_button} onClick={() => navigate(`/company/meet/${id}`)}>Go to Jitsi</button>
+                      <button className={styles.notification_accept_button} onClick={() => navigate(`/company/meet/${id_meet}`)}>Go to Jitsi</button>
                   </div>
             </>
             )
@@ -65,7 +66,7 @@ let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(
                   <p>Scheduled meeting at: {dateTime}</p>
                     <br />
                   <div className={styles.notification_buttons}>
-                      <button className={styles.notification_accept_button} onClick={() => navigate(`/company/meet/${id}`)}>Go to Jitsi</button>
+                      <button className={styles.notification_accept_button} onClick={() => navigate(`/company/meet/${id_meet}`)}>Go to Jitsi</button>
                   </div>
             </>
             )

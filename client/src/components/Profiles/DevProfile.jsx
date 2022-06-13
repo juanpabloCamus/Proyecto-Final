@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./DevProfile.module.css";
 import cannot from "../../assets/cannot.png";
-import { fetchUser } from "../../redux/users/users";
+import { fetchActions, fetchUser, usersActions } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -27,6 +27,10 @@ function DevProfile() {
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);
+
+  useEffect(()=> {
+    return(dispatch(usersActions.getClean()))
+},[dispatch])
   
   const user = useSelector((state) => state.users.user[0]);
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));

@@ -457,6 +457,23 @@ router.put('/:id', async (req,res)=>{
     }
 })
 
+router.put('/notis/:id', async (req,res)=>{
+    const {id} = req.params
+
+    const noti = await usernotis.findAll({
+        where:{id: id}
+    })
+
+    if(noti.length>0){
+        await usernotis.update({
+            check: true
+        },{
+            where:{id: id}
+        })
+    }
+    res.send('noti checked')
+})
+
 router.put('/education/:id', async (req,res)=>{
     try {
         const {id} = req.params
@@ -726,6 +743,27 @@ router.delete('/experience/:id', async (req,res)=>{
         res.send('Sucesfully deleted')
     }catch(error){
         res.status(400).send(error)
+        console.log(error)
+    }
+})
+
+router.delete('/notis/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let noti = await usernotis.findAll({
+            where:{id:id}
+        })
+
+        if(noti.length>0){
+            await usernotis.destroy({
+                where: {id: id}
+            })
+        }
+
+        res.send('noti deleted')
+
+    } catch (error) {
         console.log(error)
     }
 })
