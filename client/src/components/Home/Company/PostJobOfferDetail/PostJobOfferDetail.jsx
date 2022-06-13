@@ -91,7 +91,7 @@ function PostJobOffer() {
                 checked={radio1 === "developers"}
                 onChange={(e) => handleCircle(e)}
               />
-              <label className={styles.label}>Developers</label>
+              <label className={styles.label}>Applicants</label>
             </div>
           </div>
 
@@ -231,7 +231,7 @@ function PostJobOffer() {
                 checked={radio1 === "developers"}
                 onChange={(e) => handleCircle(e)}
               />
-              <label className={styles.label}>Developers</label>
+              <label className={styles.label}>Applicants</label>
             </div>
           </div>
           <FilterBarUser />

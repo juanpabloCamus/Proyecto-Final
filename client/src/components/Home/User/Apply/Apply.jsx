@@ -74,7 +74,7 @@ const uploadFile = async (base64EncodeFile, data) => {
                         idUser,
                         idJob,
                         timeRange
-                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`,timer:1500})},dispatch(modalActions.setModalValue()))
+                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`})},dispatch(modalActions.setModalValue()))
 
      dispatch(modalActions.activeApplyModal(false))
     } catch (err) {
