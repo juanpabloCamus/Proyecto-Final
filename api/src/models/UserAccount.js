@@ -26,7 +26,8 @@ module.exports = (sequelize) => {
             defaultValue:'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
         description: {
-            type:DataTypes.TEXT
+            type:DataTypes.TEXT,
+            defaultValue:'An user from Rocket.'
         },
         profileType:{
             type: DataTypes.ENUM('develop','admin')
