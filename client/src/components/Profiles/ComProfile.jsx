@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styles from './ComProfile.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
+import  {fetchActions}  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Image } from 'cloudinary-react'
@@ -30,7 +31,10 @@ function ComProfile() {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])
 
-  
+    useEffect(()=> {
+        return(dispatch(fetchActions.getClean()))
+        
+    },[dispatch])
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
 

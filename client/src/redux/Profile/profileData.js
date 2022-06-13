@@ -20,6 +20,9 @@ export const CompanyPSlice=createSlice({
     name:'companyProfile',
     initialState,
     reducers:{
+        getClean(state){
+            state.companyProfile = {}
+        }
 
     },
     extraReducers:{
