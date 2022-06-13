@@ -127,7 +127,7 @@ function ComProfile() {
                         <h5>{user.speciality}</h5>
                         { user.foundation === null ? <label></label> :
                         <label>Since {user.foundation.slice(0,4)}</label>}
-                        {user.premium ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
+                        {user.premium && profileType[0] === "company" ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>

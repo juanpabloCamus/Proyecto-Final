@@ -63,14 +63,19 @@ select{
 }
 
 .backButton{
-    background-color: #46499c76;
+    font-size: 20px;
     border: none;
     position: relative;
     right: 80px;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
-  }
+}
+
+.backButton:hover{
+    background-color: rgba(70, 73, 156, 0.9);
+}
+
 
   .added_techs{
     align-items: center;
