@@ -47,11 +47,11 @@ console.log(res.data)
           navigate("/");
         }
       } else {
-        if(res.data.active ?? res.data.active === false){
-          setErrorMessage("Account banned");
+        if(typeof res.data === 'string'){
+          setErrorMessage(res.data);
           setUserError(true);
         }else{
-          setErrorMessage(res.data);
+          setErrorMessage("Account banned"); 
           setUserError(true);
         }
         
