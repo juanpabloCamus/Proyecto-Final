@@ -77,7 +77,7 @@ const { companyName,
     }
   }
 
-
+console.log(codeNoti)
   return (
     
       <div className={`${styles.notification_card} animate__animated animate__fadeInUp`}>
