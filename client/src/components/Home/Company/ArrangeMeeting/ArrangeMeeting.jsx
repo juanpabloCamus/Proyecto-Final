@@ -77,7 +77,6 @@ function ArrangeMeeting() {
           })
 
           if (res.data === 'Meeting created') {
-            console.log(res.data)
             Swal.fire({
               icon: "success",
               text: res.data,
@@ -86,7 +85,6 @@ function ArrangeMeeting() {
               timer:1000
             });
           } else {
-            console.log(res.data)
             Swal.fire({
               icon: "error",
               text: res.data,
