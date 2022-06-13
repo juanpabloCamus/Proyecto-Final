@@ -47,11 +47,11 @@ export const Login = () => {
           navigate("/");
         }
       } else {
-        if(typeof res.data === 'string'){
-          setErrorMessage(res.data);
+        if(res.data.profileType === ("develop" || "company")){
+          setErrorMessage("Account banned"); 
           setUserError(true);
         }else{
-          setErrorMessage("Account banned"); 
+          setErrorMessage(res.data);
           setUserError(true);
         }
         
