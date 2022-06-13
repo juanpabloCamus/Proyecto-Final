@@ -47,7 +47,7 @@ console.log(res.data)
           navigate("/");
         }
       } else {
-        if(res.data.active === false){
+        if(res.data.active ?? res.data.active === false){
           setErrorMessage("Account banned");
           setUserError(true);
         }else{
