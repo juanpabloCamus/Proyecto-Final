@@ -34,9 +34,9 @@ export const usersSlice=createSlice({
     name:'users',
     initialState,
     reducers:{
-        // filterByValue(state, {payload}){
-        //     state.users = state.users[0].offers.filter(user => user.fullName.includes(payload))
-        // }
+        getClean(state){
+            state.user = {}
+        }
     },
     extraReducers:{
         [fetchUser.pending]:(state)=>{

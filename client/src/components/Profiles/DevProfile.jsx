@@ -7,6 +7,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Image } from "cloudinary-react";
 import { modalActions } from "../../redux/modal_slice/modalSlice";
+import  {fetchActions}  from "../../redux/Profile/profileData";
 import { EditDev } from "./EditDev";
 import { MdReportGmailerrorred } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
@@ -27,6 +28,11 @@ function DevProfile() {
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);
+
+  useEffect(()=> {
+    return(dispatch(fetchActions.getClean()))
+    
+},[dispatch])
   
   const user = useSelector((state) => state.users.user[0]);
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
