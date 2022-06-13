@@ -24,7 +24,7 @@ const navigate = useNavigate()
 let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
 
 const checked = async () => {
-  await axios.put(`/notis/${id}`)
+ await axios.put(`/users/notis/${id}`)
 }
 
 if(check===false){

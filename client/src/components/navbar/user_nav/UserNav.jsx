@@ -12,32 +12,36 @@ import { FiBell } from "react-icons/fi";
 import { fetchUser } from "../../../redux/users/users";
 import { fetchCompanyProfile } from "../../../redux/Profile/profileData";
 import { fetchJobs } from "../../../redux/jobs/jobs";
+import { fetchNotifications } from "../../../redux/notifications/notifications";
+import { fetchCompanyNotifications } from "../../../redux/notifications/companyNotifications";
 
 export const UserNav = () => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
-  // const [showNotiPoint, setShowNotiPoint] = useState(false)
+  const [showNotiPoint, setShowNotiPoint] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profile = sessionStorage.profileType[0];
 
+  const id = sessionStorage.id;
 
 //////////  Notifications  ////////////
 const {notifications} = useSelector( state => state.notifications)
 const {companyNotifications} = useSelector( state => state.companyNotifications)
 
-let devNotis = [...notifications]
-let comNotis = [...companyNotifications]
-
-
-  const id = sessionStorage.id;
+ 
   useEffect(() => {
+
     dispatch(fetchUser(id));
     dispatch(fetchCompanyProfile(id));
     dispatch(fetchJobs());
+    dispatch(fetchNotifications(id))
+    dispatch(fetchCompanyNotifications(id))
+
   }, [dispatch, id]);
+
   const user = useSelector((state) => state.users.user[0]);
   const companyProfile = useSelector(
     (state) => state.companyProfile.companyProfile[0]
@@ -46,7 +50,27 @@ let comNotis = [...companyNotifications]
   window.onclick = function(){
     setToggleMenu(false)
   }
-  //////////
+
+  useEffect(() =>{
+    
+    if(notifications.length > 0) {
+      console.log("entro")
+      if(notifications[0]?.check){
+        setShowNotiPoint(true)
+      }
+    }
+
+    if(companyNotifications.length > 0 ) {
+      if(companyNotifications[0]?.check){
+        setShowNotiPoint(true)
+      }
+    }
+
+  },[notifications, companyNotifications])
+
+ console.log(showNotiPoint)
+
+
   const handleMenu = () => {
     setTimeout(()=>setToggleMenu(true),10)
   };
@@ -78,7 +102,12 @@ let comNotis = [...companyNotifications]
             className={styles.icon_bell}
             title={sessionStorage?.fullName || sessionStorage?.name}>
             <FiBell className={styles.bell} />
-            <span className={`${styles.bell_point_notification} ${styles.active}`}></span>
+            {
+              showNotiPoint ? 
+              <span className={styles.bell_point_notification}></span> 
+              :
+              null
+            }
           </div>
 
         </div>
