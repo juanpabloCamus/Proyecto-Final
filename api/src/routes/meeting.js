@@ -114,6 +114,17 @@ router.put('/statusDev/:id', async (req,res)=>{
                 where: {id:id}
             })
 
+            let user = await user_account.findAll({
+                where: {id: meet[0].dataValues.userAccountId}
+            })
+
+            let company = await company_account.findAll({
+                where: {id: meet[0].dataValues.companyAccountId}
+            })
+
+            console.log(user[0].dataValues.email)
+            console.log(company[0].dataValues.email)
+
             await meeting.update({
                 status: status,
                 idMeeting: idMeet
