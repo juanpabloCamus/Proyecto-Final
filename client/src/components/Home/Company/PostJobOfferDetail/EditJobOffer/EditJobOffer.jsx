@@ -177,7 +177,7 @@ export const EditJobOffer = () => {
               >
                 <option value=""></option>
 
-                <option value="Not required">Not required</option>
+                <option value="Not Specified">Not Specified</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>

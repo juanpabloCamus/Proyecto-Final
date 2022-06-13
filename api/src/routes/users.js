@@ -451,7 +451,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(english_level){
-            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            if(english_level!=='Not Specified'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 errores.push('english level')
             }else{
                 await job.update(

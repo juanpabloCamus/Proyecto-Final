@@ -35,7 +35,7 @@ function FilterBar() {
     e.preventDefault();
     setSearch(e.target.value);
   };
-
+console.log(window.location)
   useEffect(() => {
     dispatch(fetchUsers({seniority, eLevel, search }));
   }, [dispatch, seniority, eLevel, search]);
