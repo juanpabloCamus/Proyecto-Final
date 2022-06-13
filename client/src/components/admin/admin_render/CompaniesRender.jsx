@@ -6,6 +6,7 @@ import axios from "axios"
 import { FaWindowClose } from "react-icons/fa"
 import { MdDoneOutline } from 'react-icons/md'
 import { AdminFilterBar } from "./admin_filterbar/AdminFilterBar"
+import { BsInfoCircle } from "react-icons/bs";
 
 
 export const CompaniesRender = () => {
@@ -65,7 +66,26 @@ export const CompaniesRender = () => {
                 }
               </td>
               <td></td>
-              <td>{company.reports}</td>
+              <td>{company.reports}  <span className="field">
+                        <BsInfoCircle />
+                        <span className="quote">
+                          <label>Spam:  <label>{company.reportSpam}</label>
+                            </label><br/>
+                            <label>Inappropiate Lenguaje: <label>{company.reportLang}</label>
+                            </label><br/>
+                            <label>False Information: <label>{company.reportFalse}</label>
+                            </label><br/>
+                         
+                            <label>Inappropiate content:
+                          <label>{company.reportCoIn}</label>
+                            </label><br/>
+                         
+                          </span>
+                         
+                          
+                       
+                      </span>
+                      </td>
             </tr>
           ))
           : 

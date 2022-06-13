@@ -35,8 +35,8 @@ export const Notifications = () => {
         </div>
         {
           profileType[0] === "develop" && (
-          
-              notifications.length === 0 ? <p>You do not have any notifications yet</p> :
+            notifications ?
+              notifications.length < 1 ? <p>You do not have any notifications yet</p> :
                 notifications.map((n,i) => (
                 
                   <NotificationDevCard
@@ -46,7 +46,7 @@ export const Notifications = () => {
                   />
                 
               ))
-            
+            : <p>Loading</p>
           )
         }
 
@@ -54,15 +54,15 @@ export const Notifications = () => {
           profileType[0] === "company" && (
             <div>
               {
-                !companyNotifications ? <p>loading</p> :
-                companyNotifications.map((n,i) => (
-
-                    <NotificationComCard
-                      key={i}
-                      {...n}
-                    />
-
-                ))
+                companyNotifications ?
+                  companyNotifications.length < 1 ? <p>You do not have any notifications yet</p> :
+                    companyNotifications.map((n,i) => (
+                      <NotificationComCard
+                        key={i}
+                        {...n}
+                      />
+                    ))
+                  :<p>loading</p>
               }
             </div>
           )

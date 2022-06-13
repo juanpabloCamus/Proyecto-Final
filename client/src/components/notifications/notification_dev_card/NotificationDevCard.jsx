@@ -17,6 +17,7 @@ const [refresh, setRefresh] = useState(false)
 const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
 const user_id = userLocalStorage.id
+const userName = userLocalStorage.fullName
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
@@ -25,10 +26,6 @@ let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(
 useEffect(()=>{
   dispatch(fetchNotifications(user_id))
 },[refresh, dispatch, user_id])
-
-useEffect(() =>{
-  
-},[])
 
 const { companyName,
   dateTime,
@@ -76,7 +73,6 @@ const { companyName,
     }
   }
 
-
   return (
     
       <div className={`${styles.notification_card} animate__animated animate__fadeInUp`}>
@@ -92,9 +88,10 @@ const { companyName,
                 <p>Job position: {jobPosition}</p>
               </div>
               <hr />
-              <p className={styles.notification_message}>Hi dear developer,</p>
+              <p className={styles.notification_message}>Hi dear {userName},</p>
               <p className={styles.notification_message}>{messege}</p>
-              <p>The Company arrange a meeting to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
+              <br />
+              <p>The Company {companyName} arrange a meeting at: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
               
               <div className={styles.notification_buttons} >
                 <button 
@@ -126,6 +123,34 @@ const { companyName,
               </div>
           </>
         }
+        {
+          codeNoti === 3 && 
+          <> 
+              <div className={styles.notification_text}>
+                <p >From: {companyName}</p>
+                <p>Sent: {dateOfSend}</p>
+              </div>
+              <hr />
+              <p className={styles.notification_message}>Hi dear {userName},</p>
+              <p className={styles.notification_message}>{messege}</p>
+              <br />
+              <p>The Company {companyName} arrange a meeting at: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
+              
+              <div className={styles.notification_buttons} >
+                <button 
+                className={`${styles.notification_accept_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
+                onClick={handleAcceptClick}
+                disabled={refresh||status!==null?true:false}
+                >Accept</button>
+                <button className={`${styles.notification_decline_button} ${status !== null && status !== undefined ? styles.disable : null }`} 
+                onClick={handleDeclineClick}
+                disabled={refresh||status!==null?true:false}
+                >Decline</button>
+              </div>
+              
+          </>
+        }
+
       </div>
   )
 }
