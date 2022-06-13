@@ -33,10 +33,4 @@ router.post('/', async (req, res)=> {
     }
 })
 
-router.put('/', async (req,res)=>{
-    const { pay_id, id_user } = req.body
-    await company_account.update({premium:true, premiumDate:new Date()}, {where:{id:id_user}})
-    res.send('asd')
-})
-
 module.exports = router;
