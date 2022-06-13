@@ -164,6 +164,23 @@ router.post('/register', async (req,res)=>{
     }
 })
 
+router.put('/notis/:id', async (req,res)=>{
+    const {id} = req.params
+
+    let noti = await compnotis.findAll({
+        where:{id: id}
+    })
+
+    if(noti.length>0){
+        await compnotis.update({
+            check: true
+        },{
+            where:{id: id}
+        })
+    }
+    res.send('noti checked')
+})
+
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
@@ -392,6 +409,27 @@ router.delete('/:id', async (req,res)=>{
         res.send('Company eliminated')
     }catch(error){
         console.log()
+    }
+})
+
+router.delete('/notis/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let noti = await compnotis.findAll({
+            where:{id:id}
+        })
+
+        if(noti.length>0){
+            await compnotis.destroy({
+                where: {id: id}
+            })
+        }
+
+        res.send('noti deleted')
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
