@@ -18,6 +18,8 @@ import Swal from "sweetalert2";
 import { MdLocationOn } from "react-icons/md";
 import {IoIosPeople} from 'react-icons/io'
 import {TbWorld} from 'react-icons/tb'
+import { MdReportGmailerrorred } from "react-icons/md";
+import axios from "axios"
 
 
 function ComProfile() {
@@ -52,7 +54,40 @@ function ComProfile() {
     function handlePremiumInfo(){
         Swal.fire({icon:'info',title:'Rocket Premium' ,text:`You are a premium user from ${user.premiumDate?.slice(5,10) + '-' + user.premiumDate?.slice(0,4)} to 0${parseInt(user.premiumDate?.slice(6,7)) + 1}-${user.premiumDate?.slice(8,10)} ${user.premiumDate?.slice(0,4)}. Now your jobs offers are in the top!`})
     }
+    const  handleReport=async (id)=>{
 
+        try{
+          const res = await Swal.fire({
+            input: 'select',
+               inputOptions: {
+              'spam': 'Spam',
+              'inappropiate lenguaje': 'Inappropiate Lenguaje',
+              'false information': 'False Information',
+              'inappropriate content':'Inappropriate Content'
+    
+               },
+           inputPlaceholder: 'Select reports',
+           showCancelButton: true,
+           
+    
+         })
+         let report=res.value
+    
+          if (res.isConfirmed) {
+            await axios.put(`company/report/${id}`, {report});
+            Swal.fire({
+                icon: 'info',
+                text:`You have reported for ${report}`,
+                timer:1500,
+                showConfirmButton:false
+            })
+          }
+        }catch(error)
+        {
+           console.log(error)
+        }
+      }
+      
     if (profileType[0] === 'company' && sessionStorage.id !== user.id) return (
         <div className={styles.cannot}>
         <img alt="warning" src={cannot}></img>
@@ -72,6 +107,13 @@ function ComProfile() {
                         />
                 </div>
                 <div className={styles.infoProfileContainer}>
+                <div className={styles.reportaje}>
+              {profileType[0] === "develop" && (
+                <button onClick={() => handleReport(id)}>
+                  <MdReportGmailerrorred />
+                </button>
+              )}
+            </div>
                     <div className={styles.logoNameContainer}>
                         <div className={styles.userPhoto}>
                             <Image
