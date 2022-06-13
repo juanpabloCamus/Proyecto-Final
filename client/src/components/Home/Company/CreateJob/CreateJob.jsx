@@ -31,7 +31,7 @@ export default function CreateJob() {
 
   const [seniority, setSeniority] = useState("Not Specified");
   const [time, setTime] = useState("Not Specified");
-  const [english_level, setEnglish_level] = useState("Not required");
+  const [english_level, setEnglish_level] = useState("Not Specified");
   const [salary_range, setSalary_range] = useState("Not Specified");
   const [addedTechs, setAddedTechs] = useState([]);
   const [showInput, setShowInput] = useState(false)
@@ -164,8 +164,8 @@ export default function CreateJob() {
               </select>
 
               <label>English level</label>
-              <select defaultValue={"Not required"} className={styles.form_select} onChange={handleELevelF}>
-                <option value="Not required">Not required</option>
+              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleELevelF}>
+                <option value="Not Specified">Not Specified</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
