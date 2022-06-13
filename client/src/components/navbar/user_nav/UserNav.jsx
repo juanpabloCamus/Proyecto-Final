@@ -14,13 +14,24 @@ import { fetchCompanyProfile } from "../../../redux/Profile/profileData";
 import { fetchJobs } from "../../../redux/jobs/jobs";
 
 export const UserNav = () => {
+
   const [toggleMenu, setToggleMenu] = useState(false);
+  // const [showNotiPoint, setShowNotiPoint] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profile = sessionStorage.profileType[0];
-  ///////////
+
+
+//////////  Notifications  ////////////
+const {notifications} = useSelector( state => state.notifications)
+const {companyNotifications} = useSelector( state => state.companyNotifications)
+
+let devNotis = [...notifications]
+let comNotis = [...companyNotifications]
+
+
   const id = sessionStorage.id;
   useEffect(() => {
     dispatch(fetchUser(id));
@@ -61,14 +72,15 @@ export const UserNav = () => {
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
-        <div>
+        <div className={styles.bell_icon_container}>
           <div
             onClick={handleNotify}
             className={styles.icon_bell}
             title={sessionStorage?.fullName || sessionStorage?.name}>
             <FiBell className={styles.bell} />
+            <span className={`${styles.bell_point_notification} ${styles.active}`}></span>
           </div>
-          
+
         </div>
 
         {profile === "develop" && (
