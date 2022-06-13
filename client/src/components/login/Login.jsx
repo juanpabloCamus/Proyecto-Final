@@ -47,7 +47,7 @@ console.log(res.data)
           navigate("/");
         }
       } else {
-        if(res.data.profileType === ("develop" || "company")){
+        if(res.data.profileType === "develop" || res.data.profileType === "company"){
           setErrorMessage("Account banned"); 
           setUserError(true);
         }else{
