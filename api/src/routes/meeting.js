@@ -56,9 +56,9 @@ router.post('/arrangeMeeting', async (req,res)=>{
             meet.setJob(id_job)
             meet.setUser_account(id_dev)
             meet.setCompany_account(id_comp)
-            res.send('meeting created')
+            res.send('Meeting created')
         }else{
-            res.send('invalid data')
+            res.send('Invalid data')
         }
     } catch (error) {
         console.log(error)

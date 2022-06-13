@@ -36,7 +36,7 @@ export const Notifications = () => {
         {
           profileType[0] === "develop" && (
           
-              notifications.length === 0 ? <p>You do not have any notifications yet</p> :
+              notifications ?? notifications.length < 1 ? <p>You do not have any notifications yet</p> :
                 notifications.map((n,i) => (
                 
                   <NotificationDevCard
