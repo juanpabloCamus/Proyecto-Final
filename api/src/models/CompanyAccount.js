@@ -36,7 +36,8 @@ module.exports = (sequelize) => {
         },
 
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue:'A company from Rocket.'
         },
 
         speciality: {
