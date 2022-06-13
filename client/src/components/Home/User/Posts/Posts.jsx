@@ -70,6 +70,7 @@ useEffect(() => {
 
   return (
     <div className="animate__animated animate__fadeIn">
+      <h2 className={styles.titlePage}>Find<span> Job</span></h2>
       <div>
         <FilterBar />
       </div>
