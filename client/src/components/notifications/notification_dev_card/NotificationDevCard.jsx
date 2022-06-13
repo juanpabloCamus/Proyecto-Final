@@ -77,8 +77,6 @@ const { companyName,
     }
   }
 
-console.log(codeNoti)
-console.log(meeting)
 
   return (
     
