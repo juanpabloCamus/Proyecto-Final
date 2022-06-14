@@ -21,6 +21,11 @@ function CompanyHome() {
   const [render,setRender]= useState([])
   const [newUsers, setNewUsers] = useState([])
 
+  useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchCompany(id));
+  }, [dispatch, id]);
+  
   if(users!==newUsers){
     setNewUsers(users)
     setRender([])
@@ -70,10 +75,6 @@ function CompanyHome() {
     }
   },[users,pagina,render])
 
-  useEffect(() => {
-    dispatch(fetchCompany(id));
-    dispatch(fetchUsers());
-  }, [dispatch, id]);
 
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
   let [radio, setRadio] = useState(radioStorage || "offers");
