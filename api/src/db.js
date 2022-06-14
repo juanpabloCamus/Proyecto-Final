@@ -172,7 +172,9 @@ async function loadDb(){
       profileType: 'develop',
       country: u.country,
       city: u.city,
-      stack: u.stack
+      stack: u.stack,
+      seniority: u.seniority,
+      english_level: u.english_level
     }) : 
     us = await user_account.create({
       fullName: u.fullName,

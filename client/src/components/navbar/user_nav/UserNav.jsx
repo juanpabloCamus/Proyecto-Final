@@ -31,6 +31,7 @@ export const UserNav = () => {
 const {notifications} = useSelector( state => state.notifications)
 const {companyNotifications} = useSelector( state => state.companyNotifications)
 
+
  
   useEffect(() => {
 
@@ -54,21 +55,30 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
   useEffect(() =>{
     
     if(notifications.length > 0) {
-      console.log("entro")
-      if(notifications[0]?.check){
+
+      const findTrueNoti = notifications.find(noti => noti.check === true)
+      
+      if(!findTrueNoti){
         setShowNotiPoint(true)
+      }
+
+      if(notifications[0]?.check){
+        setShowNotiPoint(false)
       }
     }
 
     if(companyNotifications.length > 0 ) {
-      if(companyNotifications[0]?.check){
+
+      const findTrueNoti = companyNotifications.find(noti => noti.check === true)
+      if(!findTrueNoti){
         setShowNotiPoint(true)
+      }
+      if(companyNotifications[0]?.check){
+        setShowNotiPoint(false)
       }
     }
 
   },[notifications, companyNotifications])
-
- console.log(showNotiPoint)
 
 
   const handleMenu = () => {

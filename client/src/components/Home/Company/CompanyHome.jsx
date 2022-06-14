@@ -71,7 +71,6 @@ function CompanyHome() {
   },[users,pagina,render])
 
   useEffect(() => {
-    dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch, id]);
 
@@ -131,7 +130,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}
+              {/* Create new job */}<label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
@@ -197,7 +196,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}
+              {/* Create new job */}<label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
