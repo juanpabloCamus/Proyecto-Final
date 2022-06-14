@@ -71,8 +71,8 @@ function CompanyHome() {
   },[users,pagina,render])
 
   useEffect(() => {
-    dispatch(fetchUsers());
     dispatch(fetchCompany(id));
+    dispatch(fetchUsers());
   }, [dispatch, id]);
 
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
