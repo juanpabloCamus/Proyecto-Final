@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
         },
 
         english_level: {
-            type: DataTypes.ENUM('Not required','Basic','Conversational', 'Advanced or Native'),
-            defaultValue: 'Not required'
+            type: DataTypes.ENUM('Not Specified','Basic','Conversational', 'Advanced or Native'),
+            defaultValue: 'Not Specified'
         },
 
         requirements: {
