@@ -22,7 +22,7 @@ function Meeting() {
     },[dispatch,id_meet])
 
     const meetback = useSelector(state=>state.meeting.meeting)
-    
+
     return (
         typeof meetback==='object'&&meetback.length>0 ?
         (meetback[0] && meetback[0].idMeeting) ?
