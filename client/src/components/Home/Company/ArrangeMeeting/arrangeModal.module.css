@@ -24,3 +24,10 @@
     padding: 15px 30px;
     margin-top: 10px;
 }
+
+
+@media(max-width:900px){
+    .modal{
+        width: 90%;
+    }
+}
