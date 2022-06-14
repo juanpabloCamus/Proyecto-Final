@@ -36,7 +36,6 @@ router.get('/', async (req,res)=>{
 router.get('/:id', async (req,res)=>{
     try{
         const {id} = req.params
-        const { seniority, eLevel, search } = req.query
 
         let company = await company_account.findAll({
             include: [{model:job, include:[{model:technology},{model:otherTechs},{model:applied_job},{model:user_account}]}],
@@ -44,35 +43,6 @@ router.get('/:id', async (req,res)=>{
         })
         if(company.length<1){
             res.send('The company does not exist')
-        }
-        if(seniority){
-            company[0].dataValues.jobs.dataValues.applied_jobs.filter(u=>u.dataValues.seniority === seniority)
-        }
-        if(eLevel){
-            company[0].dataValues.jobs.dataValues.applied_jobs.filter(u=>u.dataValues.english_level === eLevel)
-        }
-        if(search){
-            let allUsers = []
-            function FindJob (string, busco) {
-                
-                if(string[0]===busco[0]){
-                    for(let j=0;j<busco.length;j++){
-                        if(string[0+j]===busco[j]){
-                            if(j===busco.length-1){
-                                return string
-                            }
-                        }else{
-                            continue;
-                        }
-                    }
-                }
-            }
-            for(let i=0;i<company[0].dataValues.jobs.dataValues.applied_jobs.length;i++){
-                if(FindJob(company[0].dataValues.jobs.dataValues.applied_jobs[i].dataValues.fullName.toLowerCase(),search.toLowerCase())||FindJob(company[0].dataValues.jobs.dataValues.applied_jobs[i].dataValues.stack.toLowerCase(),search.toLowerCase())){
-                    allUsers.push(company[0].dataValues.jobs.dataValues.applied_jobs[i])
-                }
-            }
-            company[0].dataValues.jobs.dataValues.applied_jobs = allUsers
         }
         company[0].dataValues.jobs.map(j=>j.dataValues.user_accounts.map(u=>delete u.dataValues.password))
         delete company[0].dataValues.password

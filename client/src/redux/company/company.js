@@ -2,9 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios'
 
 export const fetchCompany=createAsyncThunk('company/fetchCompany',
-async(id,{seniority, eLevel, search })=>{
+async(id)=>{
     try {
-        const res=await axios.get(`/company/${id}?seniority=${seniority}&eLevel=${eLevel}&search=${search}`)
+        const res=await axios.get(`/company/${id}`)
         return res.data[0]
     } catch (error) {
         console.log(error)
