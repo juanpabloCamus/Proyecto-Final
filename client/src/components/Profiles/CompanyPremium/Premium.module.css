@@ -8,9 +8,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 30%;
+    padding: 15px;
+    width: 40%;
     z-index: 1000;
-    height: 40%;
 
 
     animation: fadeInAnimation ease 1.5s;
@@ -50,4 +50,11 @@
     100% {
         opacity: 1;
      }
+}
+
+
+@media(max-width:900px){
+    .modal{
+        width: 90%;
+    }
 }
