@@ -26,7 +26,7 @@ export const Login = () => {
   const loginUser = async () => {
     try {
       const res = await axios.post("/login", formValues);
-console.log(res.data)
+      
       if (res.data.active === true) {
         setErrorMessage("");
         setUserError(false);
