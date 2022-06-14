@@ -53,10 +53,10 @@ export default function PostJobOffer({
                   <BiHide/>
                 </div>
               )}
-            <div className={styles.applications}>
-              <h3>Applications</h3>
-              <h4>{applications.length}</h4>
-            </div>
+              <div className={styles.applications}>
+                <h3>Applications</h3>
+                <h4>{applications.length}</h4>
+              </div>
             </div>
 
           </div>

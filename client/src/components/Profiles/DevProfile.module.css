@@ -231,3 +231,21 @@ h3 {
   border: none;
 }
 
+
+
+@media(max-width:900px){
+  .pageContainer{
+    width: 90%;
+  }
+  .mainInfoContainer{
+    flex-direction: column;
+  }
+  .mainInfoBox{
+    flex-direction: column;
+    
+  }
+  .editProfileButtonContainer{
+   align-self: center;
+   margin-top: 40px;
+  }
+}

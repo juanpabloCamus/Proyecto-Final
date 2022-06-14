@@ -52,8 +52,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
     setToggleMenu(false)
   }
 
- console.log(notifications)
-  
+
 
   useEffect(() =>{
     
@@ -62,7 +61,6 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
       const findTrueNoti = notifications.find(noti => noti.check === false)
     
       if(findTrueNoti){
-        console.log("entro 1")
         setShowNotiPoint(true)
       }
 
@@ -76,7 +74,6 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
       const findTrueNoti = companyNotifications.find(noti => noti.check === false)
 
       if(findTrueNoti){
-        console.log("entro 2")
         setShowNotiPoint(true)
       }
       if(companyNotifications[0]?.check){
@@ -86,7 +83,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
 
   },[notifications, companyNotifications, profile])
 
- console.log(showNotiPoint)
+
 
   const handleMenu = () => {
     setTimeout(()=>setToggleMenu(true),10)
