@@ -19,7 +19,7 @@ function EditDevProfileForm() {
     const navigate = useNavigate()
     const {id} = useParams()
 
-    window.scrollTo(0,0)
+    
 
     const user = useSelector(state => state.users.user[0])
 

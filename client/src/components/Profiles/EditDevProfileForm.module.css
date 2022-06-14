@@ -95,6 +95,8 @@ select{
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 30px;
+    align-self: center;
+    width: 80%;
 }
 
 .added_techs div{
