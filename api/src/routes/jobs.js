@@ -110,7 +110,7 @@ router.get('/', async (req,res)=>{
                 }else{
                     return -1
                 }
-            }else if(a.dataValues.company_accounts[0].dataValues.premium === true){
+            }else if(b.dataValues.company_accounts[0].dataValues.premium === true){
                 return 1
             }else{
                 return 0
