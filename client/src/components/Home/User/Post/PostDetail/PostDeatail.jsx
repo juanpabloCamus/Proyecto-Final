@@ -134,11 +134,6 @@ function PostDetail() {
     }
   }
 
-  const scroll0 = (e)=>{
-    e.preventDefault()
-    window.scrollTo(0,0)
-  }
-
   return detail[0] ? (
     company_accounts ? (
       <div className={styles.pageContainer}>
@@ -162,7 +157,7 @@ function PostDetail() {
             />
           </div>
           <div className={styles.nameContainer}>
-          <Link to={`/home/company/${company_accounts[0].id}`} onClick={scroll0()}>
+          <Link to={`/home/company/${company_accounts[0].id}`}>
           <h1 id={styles.companyName}>{company_accounts[0].name}</h1>
           </Link>
             <h5>{company_accounts[0].speciality}</h5>

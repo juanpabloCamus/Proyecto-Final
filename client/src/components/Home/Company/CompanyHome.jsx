@@ -90,11 +90,6 @@ function CompanyHome() {
     }
   }
 
-  const scroll0 = (e)=>{
-    e.preventDefault()
-    window.scrollTo(0,0)
-  }
-
 
   return (
     <div className={styles.company_container}>
@@ -134,7 +129,7 @@ function CompanyHome() {
                     <label className={styles.label}>Developers</label>
                   </div>
                 </div>
-                <Link to="/company/createjob" className={styles.createjob_button} onClick={scroll0()}>
+                <Link to="/company/createjob" className={styles.createjob_button}>
                   <label>Create job  </label>
                   <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
                 </Link>
@@ -202,7 +197,7 @@ function CompanyHome() {
                 <label className={styles.label}>Developers</label>
               </div>
             </div>
-            <Link to="/company/createjob" className={styles.createjob_button} onClick={scroll0()}>
+            <Link to="/company/createjob" className={styles.createjob_button}>
               <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
