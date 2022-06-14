@@ -5,6 +5,7 @@ import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeeting } from '../../redux/meeting/meeting';
+import {Loading} from '../Loading/Loading'
 
 function Meeting() {
 
@@ -34,15 +35,15 @@ function Meeting() {
         </div>
         :
         <div>
-            <h2>No perteneces a esta reunion</h2>
+            <h2>You don't belong to this meeting</h2>
         </div>
         :
         <div>
-            <h2>No existe la reunion</h2>
+            <h2>The meeting doesn't exist</h2>
         </div>
         :
         <div>
-            <h2>No existe la reunion</h2>
+            <Loading></Loading>
         </div>
     );
 }
