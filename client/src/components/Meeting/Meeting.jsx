@@ -20,6 +20,8 @@ function Meeting() {
     },[dispatch,id_meet])
 
     const meetback = useSelector(state=>state.meeting.meeting)
+    
+    console.log(meetback)
 
     return (
         meetback ?
