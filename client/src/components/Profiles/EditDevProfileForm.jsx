@@ -480,7 +480,9 @@ function EditDevProfileForm() {
                     <option value='Advanced or Native'>Advanced or Native</option>
                 </select>
                 <label>Profile pic</label>
-                <input accept="image/png,image/jpeg" name="profile_pic" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input className={styles.imgInput} accept="image/png,image/jpeg" name="profile_pic" type='file' onChange={handleFileInputChange}></input>
+                </div>
                 {previewImage ?
                     <div className={styles.previewContainer}>
                         <img className={styles.preview} src={previewImage} alt="perview profile"/> 
@@ -494,7 +496,9 @@ function EditDevProfileForm() {
                     </div> 
                 : null }
                 <label>Banner pic</label>
-                <input accept="image/png,image/jpeg" name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input className={styles.imgInput} accept="image/png,image/jpeg" name="banner" type='file' onChange={handleBannerInputChange}></input>
+                </div>
                 {previewBanner ?
                     <div className={styles.previewContainer}>
                         <img className={styles.preview} src={previewBanner} alt="banner perview"/> 

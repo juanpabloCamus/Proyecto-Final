@@ -21,6 +21,7 @@ select{
     font-size: 18px;
     padding: 10px;
     outline: none;
+    background-color: white;
 }
 
 .formContainer select,  .formContainer input, .formContainer label, .formContainer textarea{
@@ -166,4 +167,36 @@ select{
   .imgInput{
     border: 1px solid whitesmoke;
     padding: 15px;
+  }
+
+  .fileselect {
+    position: relative;
+    display: inline-block;
+
+  }
+  
+  .fileselect::before {
+    background-color: #5678EF;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    content: 'Choose file'; /* testo por defecto */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    cursor: pointer;
+    margin-left: 70px;
+  }
+  
+  .fileselect input[type="file"] {
+    opacity: 0;
+    width: 200px;
+    height: 32px;
+    display: inline-block;
+    cursor: pointer;
   }
