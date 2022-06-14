@@ -8,7 +8,6 @@ import {
   optionsLevel,
 } from "../../User/FilterBar/Options";
 import { fetchUsers } from "../../../../redux/users/users";
-import {fetchCompany} from "../../../../redux/company/company"
  
 
 function FilterBar() {
@@ -19,12 +18,12 @@ function FilterBar() {
 
   const dispatch = useDispatch();
 
-  const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
-
   const handleChangeSeniority = (e) => {
     let { value } = e;
     setSeniority(value);
   };
+
+
 
   const handleChangeLevel = (e) => {
     let { value } = e;
@@ -38,12 +37,8 @@ function FilterBar() {
   };
 
   useEffect(() => {
-    if(window.location.pathname==='/company'){
-      dispatch(fetchUsers({seniority, eLevel, search }));
-      dispatch(fetchCompany(userLocalStorage.id,{seniority, eLevel, search }));
-    }
-    
-  }, [dispatch, seniority, eLevel, search,userLocalStorage.id]);
+    dispatch(fetchUsers({seniority, eLevel, search }));
+  }, [dispatch, seniority, eLevel, search]);
 
   return (
     <div className="animate__animated animate__fadeIn">
