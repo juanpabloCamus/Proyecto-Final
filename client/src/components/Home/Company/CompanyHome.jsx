@@ -16,8 +16,6 @@ function CompanyHome() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
 
-  window.scrollTo(0,0)
-
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));

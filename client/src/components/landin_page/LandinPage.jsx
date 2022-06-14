@@ -10,8 +10,6 @@ import rocket from '../../assets/rocket.png'
 
 export const LandinPage = () => {
 
-  window.scrollTo(0,0)
-
 const dispatch = useDispatch()
 
 const handleOpenModal = () =>{
