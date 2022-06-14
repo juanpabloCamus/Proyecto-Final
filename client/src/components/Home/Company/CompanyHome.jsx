@@ -88,9 +88,6 @@ function CompanyHome() {
         setRadio("developers");
       } else setRadio("offers");
     }
-    // if (!isChecked) {
-    //   setRadio("developers")
-    // }
   }
 
 
@@ -133,7 +130,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
@@ -153,7 +150,6 @@ function CompanyHome() {
                     english_level={e.english_level}
                     stack={e.stack}
                     technologies={e.technologies}
-                    // time={e.time}
                   ></PostU>
                 );
               })
@@ -199,7 +195,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
