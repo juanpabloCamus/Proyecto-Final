@@ -80,6 +80,7 @@
     -moz-transition: opacity 250ms ease-out;
     -ms-transition: opacity 250ms ease-out;
     -o-transition: opacity 250ms ease-out;
+    padding: 10px;
     transition: opacity 250ms ease-out;
    
   }

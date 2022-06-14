@@ -52,20 +52,17 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
     setToggleMenu(false)
   }
 
+ console.log(notifications)
+  
+
   useEffect(() =>{
     
-  setTimeout(function () {
-    localStorage.removeItem("userData");
-    localStorage.removeItem("radio1");
-    localStorage.removeItem("radio"); 
-    dispatch(authActions.getNewUser({}));
-    navigate("/");
-    setToggleMenu(false); }, 5000);
-    if(notifications.length > 0) {
-
-      const findTrueNoti = notifications.find(noti => noti.check === true)
+    if(notifications.length > 0 && profile === "develop") {
       
-      if(!findTrueNoti){
+      const findTrueNoti = notifications.find(noti => noti.check === false)
+    
+      if(findTrueNoti){
+        console.log("entro 1")
         setShowNotiPoint(true)
       }
 
@@ -74,10 +71,12 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
       }
     }
 
-    if(companyNotifications.length > 0 ) {
+    if(companyNotifications.length > 0 && profile === "company") {
+      
+      const findTrueNoti = companyNotifications.find(noti => noti.check === false)
 
-      const findTrueNoti = companyNotifications.find(noti => noti.check === true)
-      if(!findTrueNoti){
+      if(findTrueNoti){
+        console.log("entro 2")
         setShowNotiPoint(true)
       }
       if(companyNotifications[0]?.check){
@@ -85,8 +84,9 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
       }
     }
 
-  },[notifications, companyNotifications])
+  },[notifications, companyNotifications, profile])
 
+ console.log(showNotiPoint)
 
   const handleMenu = () => {
     setTimeout(()=>setToggleMenu(true),10)

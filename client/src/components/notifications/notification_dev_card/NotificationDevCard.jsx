@@ -56,7 +56,6 @@ export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) =
   }
 
   const handleDeclineClick = () => {
-    acceptOrDecline(false, id_meet)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -69,8 +68,9 @@ export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) =
       if (result.isConfirmed) {
         Swal.fire(
           'The meeting has been declined',
-        )
-        
+          )
+          
+      acceptOrDecline(false, id_meet)
       }
       setRefresh(true)
     })
@@ -84,11 +84,46 @@ export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) =
     }
   }
 
+
+  const deleteNotification = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, remove it!'
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'This notification has been removed',
+        )
+  
+        try {
+          
+          await axios.delete(`/users/notis/${id}`)
+        } catch (error) {
+          console.log(error)
+        }
+        
+      }
+      setRefresh(true)
+    })
+    
+  
+  }
+
+
   return (
     
       <div className={`${styles.notification_card} animate__animated animate__fadeInUp`}>
         <div>
-          <RiDeleteBinFill className={styles.delete_notification} title="Delete"/>
+          <RiDeleteBinFill 
+          className={styles.delete_notification} 
+          title="Delete"
+          onClick={deleteNotification}
+          />
         </div>
         {
           codeNoti === 1 && 
