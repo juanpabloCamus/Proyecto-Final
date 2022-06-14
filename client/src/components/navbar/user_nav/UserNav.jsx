@@ -57,7 +57,10 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
   setTimeout(function () {
     localStorage.removeItem("userData");
     localStorage.removeItem("radio1");
-    localStorage.removeItem("radio");  }, 10000);
+    localStorage.removeItem("radio"); 
+    dispatch(authActions.getNewUser({}));
+    navigate("/");
+    setToggleMenu(false); }, 5000);
     if(notifications.length > 0) {
 
       const findTrueNoti = notifications.find(noti => noti.check === true)
