@@ -13,19 +13,20 @@ import FilterBarUser from "./FilterBarUser/FilterBarUser";
 
 function CompanyHome() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
-  const company = useSelector((state) => state.company.company);
-  const [pagina, setPagina]=useState(0);
-  const [render,setRender]= useState([])
-  const [newUsers, setNewUsers] = useState([])
 
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch, id]);
-  
+
+  const users = useSelector((state) => state.users.users);
+  const company = useSelector((state) => state.company.company);
+  const [pagina, setPagina]=useState(0);
+  const [render,setRender]= useState([])
+  const [newUsers, setNewUsers] = useState([])
+
   if(users!==newUsers){
     setNewUsers(users)
     setRender([])
