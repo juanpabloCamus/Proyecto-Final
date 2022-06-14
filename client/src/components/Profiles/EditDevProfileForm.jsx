@@ -453,7 +453,7 @@ function EditDevProfileForm() {
                 <input name="city" value={currentInfo.city} onChange={handleChange} ></input>
                 <label>Seniority</label>
                 <select name="seniority" value={currentInfo.seniority} onChange={handleChange} >
-                    <option value='Not Specified' >Not Specified</option>
+                    <option value='Not specified' >Not specified</option>
                     <option value='Junior' >Junior</option>
                     <option value='Semi-Senior' >Semi-Senior</option>
                     <option value='Senior' >Senior</option>

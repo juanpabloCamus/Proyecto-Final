@@ -13,7 +13,6 @@ import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
 import { Image } from "cloudinary-react";
-import FilterBarUser from "../FilterBarUser/FilterBarUser";
 
 function PostJobOffer() {
   const { id } = useParams();
@@ -234,7 +233,6 @@ function PostJobOffer() {
               <label className={styles.label}>Applicants</label>
             </div>
           </div>
-          <FilterBarUser />
           {jobDetail[0]?.applied_jobs
             ?.map((e) => e.user_account)
             ?.map((el) => {
