@@ -315,7 +315,7 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(size){
-            if(size!=='Not Specified'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
+            if(size!=='Not specified'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
                 res.send('size')
             }else{
                 await company_account.update(

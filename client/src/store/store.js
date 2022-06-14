@@ -41,6 +41,7 @@ export const store = configureStore({
         adminCompany: adminCompanySlice,
         adminJob:adminJobSlice,
         adminOther:adminOtherSlice
+
     }
 })
 

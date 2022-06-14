@@ -13,9 +13,15 @@ import FilterBarUser from "./FilterBarUser/FilterBarUser";
 
 function CompanyHome() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users.users);
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+    dispatch(fetchCompany(id));
+  }, [dispatch, id]);
+
+  const users = useSelector((state) => state.users.users);
   const company = useSelector((state) => state.company.company);
   const [pagina, setPagina]=useState(0);
   const [render,setRender]= useState([])
@@ -33,10 +39,10 @@ function CompanyHome() {
       if(users){
         if(users.length>0){
           if(users[pagina]){
-            if(users[pagina].offers){
+            if(users[pagina].users){
               if(usersRender.length<pagina+1){
-                for(let i=0;i<users[pagina].offers.length;i++){
-                  usersRender.push(users[pagina].offers[i])
+                for(let i=0;i<users[pagina].users.length;i++){
+                  usersRender.push(users[pagina].users[i])
                 }
                 setRender(usersRender)
               }
@@ -54,10 +60,10 @@ function CompanyHome() {
         if(users){
           if(users.length>0){
             if(users[pagina+1]){
-              if(users[pagina+1].offers){
+              if(users[pagina+1].users){
                 if(usersRender.length<pagina+1){
-                  for(let i=0;i<users[pagina+1].offers.length;i++){
-                    usersRender.push(users[pagina+1].offers[i])
+                  for(let i=0;i<users[pagina+1].users.length;i++){
+                    usersRender.push(users[pagina+1].users[i])
                   }
                   let instancia = render.concat(usersRender)
                   setRender(instancia)
@@ -70,9 +76,6 @@ function CompanyHome() {
     }
   },[users,pagina,render])
 
-  useEffect(() => {
-    dispatch(fetchCompany(id));
-  }, [dispatch, id]);
 
   const radioStorage = JSON.parse(localStorage.getItem("radio"));
   let [radio, setRadio] = useState(radioStorage || "offers");
@@ -85,9 +88,6 @@ function CompanyHome() {
         setRadio("developers");
       } else setRadio("offers");
     }
-    // if (!isChecked) {
-    //   setRadio("developers")
-    // }
   }
 
 
@@ -130,7 +130,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
@@ -150,7 +150,6 @@ function CompanyHome() {
                     english_level={e.english_level}
                     stack={e.stack}
                     technologies={e.technologies}
-                    // time={e.time}
                   ></PostU>
                 );
               })
@@ -196,7 +195,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
