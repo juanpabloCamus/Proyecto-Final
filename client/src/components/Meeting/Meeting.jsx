@@ -5,7 +5,7 @@ import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeeting } from '../../redux/meeting/meeting';
-import {Loading} from '../Loading/Loading'
+import Loading from '../Loading/Loading'
 
 function Meeting() {
 
