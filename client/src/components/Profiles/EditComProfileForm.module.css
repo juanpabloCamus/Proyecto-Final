@@ -169,4 +169,8 @@ select{
   }
   
 
-  
+  @media(max-width:900px){
+    .formContainer{
+        width: 70%;
+    }
+  }

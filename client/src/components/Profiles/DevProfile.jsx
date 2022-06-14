@@ -19,6 +19,7 @@ import {FaUserGraduate} from 'react-icons/fa'
 import { MdPerson } from "react-icons/md";
 import {GiTechnoHeart} from 'react-icons/gi'
 import {MdDeleteOutline} from 'react-icons/md'
+import {RiKakaoTalkFill} from 'react-icons/ri'
 
 function DevProfile() {
   const dispatch = useDispatch();
@@ -236,7 +237,11 @@ function DevProfile() {
               {user.english_level === "Not specified" ? (
                 <label></label>
               ) : (
-                <label>English level: {user.english_level}</label>
+                <div className={styles.secondaryInfoContainer}>
+                  <h3>English level <RiKakaoTalkFill /></h3>
+                  <p>{user.english_level}</p>
+                </div>
+
               )}
               <div className={styles.secondaryInfoContainer}>
                 <h3 className={styles.about}>About <MdPerson/></h3>
