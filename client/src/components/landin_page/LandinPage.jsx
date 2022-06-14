@@ -2,10 +2,7 @@ import React from 'react'
 import { Auth } from '../auth/Auth'
 import { useDispatch } from 'react-redux'
 import Acordion from './Acordion'
-
-
 import { modalActions } from '../../redux/modal_slice/modalSlice'
-
 import './landing_page.css'
 import image from '../../assets/landing_image.png'
 import rocket from '../../assets/rocket.png'
@@ -13,6 +10,7 @@ import rocket from '../../assets/rocket.png'
 
 export const LandinPage = () => {
 
+  window.scrollY = 0
 
 const dispatch = useDispatch()
 
