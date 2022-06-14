@@ -107,6 +107,11 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
     }
   };
 
+  const scroll0 = (e)=>{
+    e.preventDefault()
+    window.scrollTo(0,0)
+  }
+
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
@@ -127,7 +132,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
         </div>
 
         {profile === "develop" && (
-          <Link to="/home/favorites" className={styles.link} onClick={window.scrollTo(0,0)}>
+          <Link to="/home/favorites" className={styles.link} onClick={scroll0}>
             <FiHeart className={styles.heart} />
           </Link>
         )}
@@ -139,7 +144,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
               : profile === "company"
               ? "/company"
               : "/admin"
-          } onClick={window.scrollTo(0,0)}
+          } onClick={scroll0}
           className={styles.link}
         >
           <BiHome className={styles.home} />
@@ -185,7 +190,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
           }
           {
             profile === "develop" ?
-            <Link to={`/home/myapplications/${sessionStorage.id}` } onClick={() => {setToggleMenu(false); window.scrollTo(0,0)}}><span className={styles.option}>Applications</span></Link> : null
+            <Link to={`/home/myapplications/${sessionStorage.id}` } onClick={() => {setToggleMenu(false); scroll0()}}><span className={styles.option}>Applications</span></Link> : null
           }
           <span className={styles.option} onClick={handleLogout}>
             Logout
