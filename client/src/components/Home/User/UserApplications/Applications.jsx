@@ -29,7 +29,7 @@ function Applications() {
         {applied_jobs.map((j) => 
             <div  key={j.createdAt} className={styles.allInfo}>
             <label className={styles.date}>{j.createdAt.slice(5,10) + '-' + j.createdAt.slice(0,4)}</label>
-            {!j.job.active ? <label className={styles.msg}>Oops..You applied this day but job is no longer available</label> : <Link to={`/home/post/${j.job.id}`}>
+            {!j.job.active ? <label className={styles.msg}>Oops..You applied this day but job is no longer available</label> : <Link to={`/home/post/${j.job.id}`} onClick={window.scrollTo(0,0)}>
             <div className={styles.postCard}>
                 <div className={styles.imgContainer}>
                 <Image

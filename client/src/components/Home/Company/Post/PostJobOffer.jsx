@@ -17,7 +17,7 @@ export default function PostJobOffer({
   return (
     <div key={id}>
       {
-        <Link to={`/company/offers/${id}`}>
+        <Link to={`/company/offers/${id}`} onClick={window.scrollTo(0,0)}>
           <div className={styles.postCard}>
            
             <div className={styles.detailsContainer}>
