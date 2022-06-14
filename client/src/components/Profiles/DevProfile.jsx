@@ -124,11 +124,6 @@ function DevProfile() {
        console.log(error)
     }
   }
-
-  const scroll0 = (e)=>{
-    e.preventDefault()
-    window.scrollTo(0,0)
-  }
   
 
   if (profileType[0] === 'develop' && sessionStorage.id !== user.id) return (
@@ -202,7 +197,7 @@ function DevProfile() {
               
               {profileType[0] === "develop"? (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`} onClick={scroll0()}>Edit Profile</Link>
+                  <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
