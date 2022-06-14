@@ -133,7 +133,7 @@ const user = [
         password: '2abc6465456',
         date_birth: '1995-12-28',
         country: 'Argentina',
-        city: 'ex Ushuaia',
+        city: 'Rio Grande',
         stack: 'Henry Mentor',
         seniority: "Senior",
         english_level: "Not specified"

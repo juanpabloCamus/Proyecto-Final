@@ -33,10 +33,10 @@ function CompanyHome() {
       if(users){
         if(users.length>0){
           if(users[pagina]){
-            if(users[pagina].offers){
+            if(users[pagina].users){
               if(usersRender.length<pagina+1){
-                for(let i=0;i<users[pagina].offers.length;i++){
-                  usersRender.push(users[pagina].offers[i])
+                for(let i=0;i<users[pagina].users.length;i++){
+                  usersRender.push(users[pagina].users[i])
                 }
                 setRender(usersRender)
               }
@@ -54,10 +54,10 @@ function CompanyHome() {
         if(users){
           if(users.length>0){
             if(users[pagina+1]){
-              if(users[pagina+1].offers){
+              if(users[pagina+1].users){
                 if(usersRender.length<pagina+1){
-                  for(let i=0;i<users[pagina+1].offers.length;i++){
-                    usersRender.push(users[pagina+1].offers[i])
+                  for(let i=0;i<users[pagina+1].users.length;i++){
+                    usersRender.push(users[pagina+1].users[i])
                   }
                   let instancia = render.concat(usersRender)
                   setRender(instancia)
@@ -71,6 +71,7 @@ function CompanyHome() {
   },[users,pagina,render])
 
   useEffect(() => {
+    dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch, id]);
 

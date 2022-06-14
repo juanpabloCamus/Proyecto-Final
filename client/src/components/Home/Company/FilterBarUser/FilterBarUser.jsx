@@ -37,7 +37,10 @@ function FilterBar() {
   };
 
   useEffect(() => {
-    dispatch(fetchUsers({seniority, eLevel, search }));
+    if(window.location.pathname==='/company'){
+      dispatch(fetchUsers({seniority, eLevel, search }));
+    }
+    
   }, [dispatch, seniority, eLevel, search]);
 
   return (

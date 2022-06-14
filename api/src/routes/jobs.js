@@ -74,7 +74,7 @@ router.get('/', async (req,res)=>{
         } 
 
         if(eLevel){
-            let ingles = ['Not required','Basic','Conversational', 'Advanced or Native']
+            let ingles = ['Not Specified','Basic','Conversational', 'Advanced or Native']
             let eng = ingles.find(i=>i===eLevel)
             if(eng){
                 jobs = jobs.filter(j=>j.dataValues.english_level===eng)
@@ -173,7 +173,7 @@ router.post('/:id', async (req,res)=>{
                 res.send('Time is invalid')
             }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
                 res.send('Invalid salary range')
-            }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            }else if(english_level!=='Not Specified'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Invalid english level')
             }else if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
                 res.send('Invalid seniority')
@@ -348,7 +348,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(english_level){
-            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            if(english_level!=='Not Specified'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 errores.push('english level')
             }else{
                 await job.update(
