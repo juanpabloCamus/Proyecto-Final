@@ -165,7 +165,7 @@ function ComProfile() {
                 </div>
                 {profileType[0] === 'develop' ? null :
                 <div className={styles.editProfileButtonContainer}>
-                        <Link to = {`/editcomprofile/${id}`}>Edit Profile</Link>
+                        <Link to = {`/editcomprofile/${id}`} onClick={window.scrollTo(0,0)}>Edit Profile</Link>
                         {user.premium ? null : 
                         <button id={styles.premium} onClick={handlePremium}>Be premium <FaMedal/></button>
                         }
@@ -198,7 +198,7 @@ function ComProfile() {
                                 profileType[0] === 'develop' ?
                                 `/home/post/${id}` :
                                 `/company/offers/${id}`
-                                }>
+                                } onClick={window.scrollTo(0,0)}>
                             <div className={styles.postCard}>
                                 <div className={styles.imgContainer}>
                                 {/* {<img id={styles.logo} src={user.logo} alt="Company logo"></img>} */}

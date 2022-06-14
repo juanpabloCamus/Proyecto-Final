@@ -127,7 +127,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
         </div>
 
         {profile === "develop" && (
-          <Link to="/home/favorites" className={styles.link}>
+          <Link to="/home/favorites" className={styles.link} onClick={window.scrollTo(0,0)}>
             <FiHeart className={styles.heart} />
           </Link>
         )}
@@ -139,7 +139,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
               : profile === "company"
               ? "/company"
               : "/admin"
-          }
+          } onClick={window.scrollTo(0,0)}
           className={styles.link}
         >
           <BiHome className={styles.home} />
@@ -185,7 +185,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
           }
           {
             profile === "develop" ?
-            <Link to={`/home/myapplications/${sessionStorage.id}` } onClick={() => setToggleMenu(false)}><span className={styles.option}>Applications</span></Link> : null
+            <Link to={`/home/myapplications/${sessionStorage.id}` } onClick={() => {setToggleMenu(false); window.scrollTo(0,0)}}><span className={styles.option}>Applications</span></Link> : null
           }
           <span className={styles.option} onClick={handleLogout}>
             Logout
