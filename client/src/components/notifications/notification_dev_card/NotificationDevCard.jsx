@@ -43,16 +43,7 @@ export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) =
     status
   } = meeting
 
-<<<<<<< HEAD
-const { companyName,
-      dateTime,
-  messege,
-  jobPosition,
-  id,
-  status} = meeting
-=======
   const id_meet = meeting.id
->>>>>>> 9a1ab7e089467473743f284b0c2cc7586c62255b
 
   const handleAcceptClick = () => {
     acceptOrDecline(true, id_meet)
