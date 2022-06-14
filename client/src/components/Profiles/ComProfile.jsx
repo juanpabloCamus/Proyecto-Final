@@ -146,7 +146,7 @@ function ComProfile() {
                             }
                         </div>
                         <div>
-                            {user.size === 'Not Specified' ? null :
+                            {user.size === 'Not specified' ? null :
                             <div className={styles.labelContainer}> 
                             <IoIosPeople className={styles.infoIcons}></IoIosPeople>
                             <label>{user.size}</label>
