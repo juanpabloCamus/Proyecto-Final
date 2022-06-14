@@ -42,6 +42,10 @@ function EditComProfileForm() {
     })
     const [ previewImage, setPreviewImage ] = useState("")
     const [ previewBanner, setPreviewBanner ] = useState("")
+    const [loading, setLoading] = useState({
+        profilepic: false,
+        banner: false
+    })
 
     function handleErrors(e){
         if(e.target.name === 'name'){
@@ -76,6 +80,7 @@ function EditComProfileForm() {
     
     const uploadImage = (e) => {
         e.preventDefault()
+        setLoading({...loading, profilepic:true})
         cloudinaryUpload(previewImage, "Image")
     }
 
@@ -94,10 +99,12 @@ function EditComProfileForm() {
 
     const uploadBanner = (e) => {
         e.preventDefault()
+        setLoading({...loading, banner:true})
         cloudinaryUpload(previewBanner, "banner")
     }
 
     const cloudinaryUpload = async (base64EncodeFile, file) => {
+        
         try {
             const res = await axios.post('/cloudinary', { data: base64EncodeFile}) 
     
@@ -106,15 +113,21 @@ function EditComProfileForm() {
             ...currentInfo,
             logo: res.data
             })
+            setLoading({...loading, profilepic:false})
+            Swal.fire({icon:'success',text:"Your profile pic has been changed", timer:1000})
         }else{
             await setCurrentInfo({
                 ...currentInfo,
                 banner: res.data
                 })
+                setLoading({...loading, banner:false})
+                Swal.fire({icon:'success',text:"Your banner has been changed", timer:1000})
         }
         } catch (err) {
             console.log(err)
         }
+
+        
     }
 
 
@@ -415,19 +428,36 @@ function EditComProfileForm() {
                 <label>Web site</label>
                 <input name="web_site" placeholder="You can add url here" type='url' value={currentInfo.web_site} onChange={handleChange}></input>
                 <label>Logo</label>
-                <input name="logo" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input className={styles.imgInput} accept="image/png,image/jpeg" name="logo" type='file' onChange={handleFileInputChange}></input>
+                </div>
                 {previewImage ?
-                    <div>
-                        <img src={previewImage} alt="perview profile"/> 
-                        <button onClick={uploadImage}>Update Profile pic</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewImage} alt="preview profile"/> 
+                        <button className={styles.previewButton} onClick={uploadImage}>
+                        {loading.profilepic ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update profile pic'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Banner pic</label>
-                <input name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input id={styles.srcfilein} className={styles.imgInput} accept="image/png,image/jpeg" name="banner" type='file' onChange={handleBannerInputChange}></input>
+                </div>
+                
                 {previewBanner ?
-                    <div>
-                        <img src={previewBanner} alt="banner perview"/> 
-                        <button onClick={uploadBanner}>Update Banner</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewBanner} alt="banner perview"/> 
+                        <button className={styles.previewButton} onClick={uploadBanner}>
+                        {loading.banner ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update banner'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Description</label>

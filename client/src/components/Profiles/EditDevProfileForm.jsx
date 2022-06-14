@@ -70,6 +70,10 @@ function EditDevProfileForm() {
     const [addedTechs, setAddedTechs] = useState([]);
     const [ previewImage, setPreviewImage ] = useState("")
     const [ previewBanner, setPreviewBanner ] = useState("")
+    const [loading, setLoading] = useState({
+        profilepic: false,
+        banner: false
+    })
 
     const addTechs = (e) => {
 
@@ -123,6 +127,7 @@ function EditDevProfileForm() {
     
     const uploadImage = (e) => {
         e.preventDefault()
+        setLoading({...loading, profilepic:true})
         cloudinaryUpload(previewImage, "Image")
     }
 
@@ -141,6 +146,7 @@ function EditDevProfileForm() {
 
     const uploadBanner = (e) => {
         e.preventDefault()
+        setLoading({...loading, banner:true})
         cloudinaryUpload(previewBanner, "banner")
     }
 
@@ -153,11 +159,15 @@ function EditDevProfileForm() {
             ...currentInfo,
             profile_pic: res.data
             })
+            setLoading({...loading, profilepic:false})
+            Swal.fire({icon:'success',text:"Your profile pic has been changed", timer:1000})
         }else{
             await setCurrentInfo({
                 ...currentInfo,
                 banner: res.data
                 })
+                setLoading({...loading, banner:false})
+                Swal.fire({icon:'success',text:"Your banner has been changed", timer:1000})
         }
         } catch (err) {
             console.log(err)
@@ -470,19 +480,31 @@ function EditDevProfileForm() {
                     <option value='Advanced or Native'>Advanced or Native</option>
                 </select>
                 <label>Profile pic</label>
-                <input name="profile_pic" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                <input accept="image/png,image/jpeg" name="profile_pic" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
                 {previewImage ?
-                    <div>
-                        <img src={previewImage} alt="perview profile"/> 
-                        <button className={styles.upload} onClick={uploadImage}>Update Profile pic</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewImage} alt="perview profile"/> 
+                        <button className={styles.previewButton} onClick={uploadImage}>
+                        {loading.profilepic ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update profile pic'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Banner pic</label>
-                <input name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                <input accept="image/png,image/jpeg" name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
                 {previewBanner ?
-                    <div>
-                        <img src={previewBanner} alt="banner perview"/> 
-                        <button className={styles.upload} onClick={uploadBanner}>Update Banner</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewBanner} alt="banner perview"/> 
+                        <button className={styles.previewButton} onClick={uploadBanner}>
+                        {loading.banner ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update banner'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Description</label>
