@@ -54,6 +54,10 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
 
   useEffect(() =>{
     
+  setTimeout(function () {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("radio1");
+    localStorage.removeItem("radio");  }, 10000);
     if(notifications.length > 0) {
 
       const findTrueNoti = notifications.find(noti => noti.check === true)

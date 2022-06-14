@@ -15,17 +15,17 @@ function CompanyHome() {
   const dispatch = useDispatch();
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
   const id = userLocalStorage.id; //id de la empresa
-  const [pagina, setPagina]=useState(0);
-  const [render,setRender]= useState([])
-  const [newUsers, setNewUsers] = useState([])
-  
-  const company = useSelector((state) => state.company.company);
   useEffect(() => {
     dispatch(fetchUsers());
     dispatch(fetchCompany(id));
   }, [dispatch, id]);
+
   const users = useSelector((state) => state.users.users);
-  
+  const company = useSelector((state) => state.company.company);
+  const [pagina, setPagina]=useState(0);
+  const [render,setRender]= useState([])
+  const [newUsers, setNewUsers] = useState([])
+
   if(users!==newUsers){
     setNewUsers(users)
     setRender([])
@@ -87,9 +87,6 @@ function CompanyHome() {
         setRadio("developers");
       } else setRadio("offers");
     }
-    // if (!isChecked) {
-    //   setRadio("developers")
-    // }
   }
 
 
@@ -132,7 +129,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
@@ -152,7 +149,6 @@ function CompanyHome() {
                     english_level={e.english_level}
                     stack={e.stack}
                     technologies={e.technologies}
-                    // time={e.time}
                   ></PostU>
                 );
               })
@@ -198,7 +194,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
