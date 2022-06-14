@@ -29,6 +29,8 @@ function ComProfile() {
     const sessionStorage = JSON.parse(localStorage.getItem("userData"));
     const profileType = sessionStorage.profileType;
     
+    window.scrollTo(0,0)
+
     useEffect(()=> {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])

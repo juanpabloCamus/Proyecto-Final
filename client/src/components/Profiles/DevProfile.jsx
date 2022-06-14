@@ -24,6 +24,8 @@ function DevProfile() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
+  window.scrollTo(0,0)
+
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);

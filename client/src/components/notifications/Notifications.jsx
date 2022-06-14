@@ -9,6 +9,8 @@ import { fetchCompanyNotifications } from '../../redux/notifications/companyNoti
 
 export const Notifications = () => {
 
+  window.scrollTo(0,0)
+
   const { id } = JSON.parse(localStorage.getItem("userData"))
 
   const {notifications} = useSelector( state => state.notifications)
