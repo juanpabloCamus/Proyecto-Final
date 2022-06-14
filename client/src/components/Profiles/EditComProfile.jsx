@@ -14,6 +14,8 @@ function EditComProfileForm() {
     const navigate = useNavigate()
     const {id} = useParams()
 
+    window.scrollTo(0,0)
+
     useEffect(() => {
         dispatch(fetchCompanyProfile(id))
     },[dispatch,id])

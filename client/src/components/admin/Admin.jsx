@@ -4,12 +4,10 @@ import { fetchAdminUsers } from '../../redux/admin/adminUsersSlice'
 import { fetchAdminCompanies } from '../../redux/admin/adminCompanySlice'
 import { fetchAdminJobs } from '../../redux/admin/adminJobSlice'
 import { fetchAdminOthers } from '../../redux/admin/adminOtherSlice'
-
 //Render Components
 import { UsersRender } from './admin_render/UsersRender'
 import { CompaniesRender } from './admin_render/CompaniesRender'
 import { JobsRender } from './admin_render/JobsRender'
-
 //Icons
 import { FaUsers } from 'react-icons/fa'
 import {FaUserAlt} from 'react-icons/fa'
@@ -19,14 +17,13 @@ import { FaBuilding } from 'react-icons/fa'
 import { RiBuildingFill } from 'react-icons/ri'
 import {GiTechnoHeart} from 'react-icons/gi'
 import { RiCodeSSlashFill } from 'react-icons/ri'
-
-
-
 import styles from './admin.module.css'
 import { Others } from './admin_render/Others'
 
 
 export const Admin = () => {
+
+  window.scrollTo(0,0)
 
 
   const [ selectOption, setSelectOption ] = useState("")
