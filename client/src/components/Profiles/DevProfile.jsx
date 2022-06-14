@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./DevProfile.module.css";
 import cannot from "../../assets/cannot.png";
-import { fetchActions, fetchUser, usersActions } from "../../redux/users/users";
+import { fetchUser, usersActions } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -35,7 +35,6 @@ function DevProfile() {
   const user = useSelector((state) => state.users.user[0]);
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profileType = sessionStorage.profileType;
-  const idCom=sessionStorage.id
   if (user === undefined) return <Loading></Loading>;
 
   let userTechs = user.technologies?.map((t) => t.name);
@@ -124,6 +123,11 @@ function DevProfile() {
        console.log(error)
     }
   }
+
+  const scroll0 = (e)=>{
+    e.preventDefault()
+    window.scrollTo(0,0)
+  }
   
 
   if (profileType[0] === 'develop' && sessionStorage.id !== user.id) return (
@@ -197,7 +201,7 @@ function DevProfile() {
               
               {profileType[0] === "develop"? (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`} onClick={window.scrollTo(0,0)}>Edit Profile</Link>
+                  <Link to={`/editdevprofile/${id}`} onClick={scroll0()}>Edit Profile</Link>
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
