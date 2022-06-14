@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const axios = require('axios');
 const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
+const nodemailer = require('nodemailer');
 
 const router = Router();
 
@@ -56,6 +57,47 @@ router.post('/arrangeMeeting', async (req,res)=>{
             meet.setJob(id_job)
             meet.setUser_account(id_dev)
             meet.setCompany_account(id_comp)
+
+            let user = await user_account.findAll({
+                where: {id: id_dev}
+            })
+
+            let company = await company_account.findAll({
+                where: {id: id_comp}
+            })
+            
+            //------------------NODEMAILER-----------------------//
+                    
+            const trasnsporter = nodemailer.createTransport({
+                host:'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth:{
+                    user:'rocketdreamjob@gmail.com',
+                    pass:'ygpiqhwomytsdkch'
+                }
+            });
+
+            const email = {
+                from: '"Rocket 🚀" <rocketdreamjob@gmail.com>',
+                to: `${user[0].dataValues.email}`,
+                subject: `Meeting with ${company[0].dataValues.name}`,
+                html: ` 
+                    <span style="color:#46499c; font-size: 45px; font-weight: 700; font-style: italic;" >Rocket</span>
+                    <h2>Hi ${user[0].dataValues.fullName}!</h2>
+                    <p>We are excited because ${company[0].dataValues.name} has requested a meeting with you on ${dateTime.slice(0,11)}, in Rocket notifications you can see all the details. Good luck!</p>
+                    <h5>Thank you very much for trusting us, we hope you get hired soon for the job of your dreams</h5>
+                    <a href=https://proyecto-final-nu.vercel.app/>Go to Rocket!</a>
+                `
+            }
+
+            trasnsporter.sendMail(email, (error, info) => {
+                if (error) console.log('Error con email de bienvenida');
+                else console.log('Email enviado')
+            })
+
+            //---------------------------------------------------        
+            
             res.send('Meeting created')
         }else{
             res.send('Invalid data')
@@ -93,6 +135,47 @@ router.post('/compMeeting', async (req,res)=>{
             notiUser.setMeeting(meet.dataValues.id)
             meet.setUser_account(idDev)
             meet.setCompany_account(id_comp)
+
+            let user = await user_account.findAll({
+                where: {id: idDev}
+            })
+
+            let company = await company_account.findAll({
+                where: {id: id_comp}
+            })
+            
+            //------------------NODEMAILER-----------------------//
+                    
+            const trasnsporter = nodemailer.createTransport({
+                host:'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth:{
+                    user:'rocketdreamjob@gmail.com',
+                    pass:'ygpiqhwomytsdkch'
+                }
+            });
+
+            const email = {
+                from: '"Rocket 🚀" <rocketdreamjob@gmail.com>',
+                to: `${user[0].dataValues.email}`,
+                subject: `Meeting with ${company[0].dataValues.name}`,
+                html: ` 
+                    <span style="color:#46499c; font-size: 45px; font-weight: 700; font-style: italic;" >Rocket</span>
+                    <h2>Hi ${user[0].dataValues.fullName}!</h2>
+                    <p>We are excited because ${company[0].dataValues.name} has requested a meeting with you on ${dateTime.slice(0,11)}, in Rocket notifications you can see all the details. Good luck!</p>
+                    <h5>Thank you very much for trusting us, we hope you get hired soon for the job of your dreams</h5>
+                    <a href=https://proyecto-final-nu.vercel.app/>Go to Rocket!</a>
+                `
+            }
+
+            trasnsporter.sendMail(email, (error, info) => {
+                if (error) console.log('Error con email de bienvenida');
+                else console.log('Email enviado')
+            })
+
+            //---------------------------------------------------              
+
             res.send('Meeting created')
         }else{
             res.send('Invalid data')
@@ -113,18 +196,7 @@ router.put('/statusDev/:id', async (req,res)=>{
             let meet = await meeting.findAll({
                 where: {id:id}
             })
-
-            let user = await user_account.findAll({
-                where: {id: meet[0].dataValues.userAccountId}
-            })
-
-            let company = await company_account.findAll({
-                where: {id: meet[0].dataValues.companyAccountId}
-            })
-
-            console.log(user[0].dataValues.email)
-            console.log(company[0].dataValues.email)
-
+            
             await meeting.update({
                 status: status,
                 idMeeting: idMeet

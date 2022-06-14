@@ -6,50 +6,55 @@ const user = [
         email: 'mati@gmail.com',
         password: 'mati',
         date_birth: '2022-05-10',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Back End Enginer'
+        stack: 'Back End Enginer',
+        seniority: "Senior",
+        english_level: "Advanced or Native"
     },
     {   
         fullName: 'Juan Pablo Camus',
         email: 'juanpablo@gmail.com',
         password: 'juampi',
         date_birth: '1980-02-23',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Front End Developer'
+        stack: 'Front End Developer',
+        seniority: "Semi-Senior",
+        english_level: "Advanced or Native"
     },
     {   
         fullName: 'Alberto Ortolani',
         email: 'beto@gmail.com',
         password: 'beto123',
         date_birth: '2000-11-02',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Mobile Developer'
+        stack: 'Mobile Developer',
+        seniority: "Not specified",
+        english_level: "Not specified"
     },
     {   
         fullName: 'Daniel Sanchez',
         email: 'dani@gmail.com',
         password: 'dsfdsfsf1654',
         date_birth: '1987-07-06',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Back End Enginer'
+        stack: 'Back End Enginer',
+        seniority: "Semi-Senior",
+        english_level: "Conversational"
     },
     {   
         fullName: 'Agustin Banegas',
         email: 'agus@gmail.com',
         password: 'agus',
         date_birth: '1995-12-28',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Back End Developer'
+        stack: 'Back End Developer',
+        seniority: "Not specified",
+        english_level: "Basic"
     },
     {   
         fullName: 'Paloma Vaira',
@@ -59,44 +64,80 @@ const user = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Software Enginer'
+        stack: 'Software Enginer',
+        seniority: "Not specified",
+        english_level: "Basic"
     },
     {   
         fullName: 'Elon Musk',
         email: 'elon@millonario.com',
         password: '26465456',
         date_birth: '2022-05-10',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Buenos Aires',
-        stack: 'Software Enginer'
+        stack: 'Software Enginer',
+        seniority: "Senior",
+        english_level: "Advanced or Native"
     },{   
         fullName: 'Carolina Leoni',
         email: 'caro@gmail.com',
         password: '2abc6465456',
         date_birth: '1995-12-28',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Cañada de Gomez',
-        stack: 'Front End Developer'
+        stack: 'Front End Developer',
+        seniority: "Junior",
+        english_level: "Basic"
     },{   
         fullName: 'Joan Alexander Quispe Cusi',
         email: 'jaqc@gmail.com',
         password: '2abc6465456',
         date_birth: '1995-12-28',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Peru',
         city: 'Lima',
-        stack: 'Front End Developer'
+        stack: 'Front End Developer',
+        seniority: "Not specified",
+        english_level: "Advanced or Native"
     },{   
         fullName: 'Cristian Villalba',
         email: 'csv@gmail.com',
         password: '2abc6465456',
         date_birth: '1995-12-28',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         country: 'Argentina',
         city: 'Chaco',
-        stack: 'Front End Developer'
+        stack: 'Front End Developer',
+        seniority: "Junior",
+        english_level: "Not specified"
+    },{   
+        fullName: 'Martina Scomazzon',
+        email: 'marti@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        country: 'Argentina',
+        city: 'Buenos Aires',
+        stack: 'Front End Developer',
+        seniority: "Junior",
+        english_level: "Not specified"
+    },{   
+        fullName: 'Abdel Said Arocha Hermoso',
+        email: 'abdel@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        country: 'Venezuela',
+        city: 'Caracas',
+        stack: 'Front End Developer',
+        seniority: "Junior",
+        english_level: "Not specified"
+    },{   
+        fullName: 'David Ezequiel Etchepare',
+        email: 'david@gmail.com',
+        password: '2abc6465456',
+        date_birth: '1995-12-28',
+        country: 'Argentina',
+        city: 'ex Ushuaia',
+        stack: 'Henry Mentor',
+        seniority: "Senior",
+        english_level: "Not specified"
     },
     {
         fullName: 'Admin',

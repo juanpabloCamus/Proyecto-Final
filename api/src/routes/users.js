@@ -7,12 +7,46 @@ const router = Router();
 
 router.get('/', async (req,res)=>{
     try{
+        const { seniority, eLevel, search } = req.query
         let users = await user_account.findAll({
             where:{profileType:"develop",active: true},
             include: [{model:technology},{model:job, include:[{model: company_account},{model:technology}]},{model:education},{model:experience}],
             order: [[education, 'end_date', 'DESC' ]]
         })
         let paginado = []
+
+        if(seniority){
+            users = users.filter(u=>u.dataValues.seniority === seniority)
+        }
+
+        if(eLevel){
+            users = users.filter(u=>u.dataValues.english_level === eLevel)
+        }
+
+        if(search){
+            let allUsers = []
+            function FindJob (string, busco) {
+                
+                if(string[0]===busco[0]){
+                    for(let j=0;j<busco.length;j++){
+                        if(string[0+j]===busco[j]){
+                            if(j===busco.length-1){
+                                return string
+                            }
+                        }else{
+                            continue;
+                        }
+                    }
+                }
+            }
+            for(let i=0;i<users.length;i++){
+                if(FindJob(users[i].dataValues.fullName.toLowerCase(),search.toLowerCase())||FindJob(users[i].dataValues.stack.toLowerCase(),search.toLowerCase())){
+                    allUsers.push(users[i])
+                }
+            }
+            users = allUsers
+        }
+
         if(users.length>0){
             for(let i=0;i<users.length;i++){
                 users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
@@ -24,7 +58,7 @@ router.get('/', async (req,res)=>{
             for(let i=0;i<cantPaginas;i++){
                 let cadaPag = {
                     page: i+1,
-                    offers: users.slice(inicio,inicio+10)
+                    users: users.slice(inicio,inicio+10)
                 }
                 inicio = inicio+10
                 paginado.push(cadaPag)
@@ -457,6 +491,23 @@ router.put('/:id', async (req,res)=>{
     }
 })
 
+router.put('/notis/:id', async (req,res)=>{
+    const {id} = req.params
+
+    const noti = await usernotis.findAll({
+        where:{id: id}
+    })
+
+    if(noti.length>0){
+        await usernotis.update({
+            check: true
+        },{
+            where:{id: id}
+        })
+    }
+    res.send('noti checked')
+})
+
 router.put('/education/:id', async (req,res)=>{
     try {
         const {id} = req.params
@@ -726,6 +777,27 @@ router.delete('/experience/:id', async (req,res)=>{
         res.send('Sucesfully deleted')
     }catch(error){
         res.status(400).send(error)
+        console.log(error)
+    }
+})
+
+router.delete('/notis/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let noti = await usernotis.findAll({
+            where:{id:id}
+        })
+
+        if(noti.length>0){
+            await usernotis.destroy({
+                where: {id: id}
+            })
+        }
+
+        res.send('noti deleted')
+
+    } catch (error) {
         console.log(error)
     }
 })

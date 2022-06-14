@@ -55,6 +55,9 @@ a:active {
   justify-content: space-between;
   padding: 15px 0;
 }
+.createjob_button_container label:hover{
+  cursor: pointer;
+}
 
 .createjob_button {
   background-color: rgb(70, 73, 156);

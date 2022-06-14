@@ -8,34 +8,54 @@ import styles from './notificationDevCard.module.css'
 import { useEffect, useState } from 'react'
 
 
-export const NotificationDevCard = ({codeNoti, createdAt, meeting}) => {
+export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) => {
 
 
-const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
 
-const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
+  const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
-const user_id = userLocalStorage.id
-const userName = userLocalStorage.fullName
-const dispatch = useDispatch()
-const navigate = useNavigate()
+  const user_id = userLocalStorage.id
+  const userName = userLocalStorage.fullName
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
+  let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
 
-useEffect(()=>{
-  dispatch(fetchNotifications(user_id))
-},[refresh, dispatch, user_id])
+  const checked = async () => {
+    await axios.put(`/users/notis/${id}`)
+  }
 
+  if(check===false){
+    checked()
+  }
+
+  useEffect(()=>{
+    dispatch(fetchNotifications(user_id))
+  },[refresh, dispatch, user_id])
+
+  const { 
+    companyName,
+    dateTime,
+    messege,
+    jobPosition,
+    status
+  } = meeting
+
+<<<<<<< HEAD
 const { companyName,
       dateTime,
   messege,
   jobPosition,
   id,
   status} = meeting
+=======
+  const id_meet = meeting.id
+>>>>>>> 9a1ab7e089467473743f284b0c2cc7586c62255b
 
   const handleAcceptClick = () => {
-    acceptOrDecline(true, id)
+    acceptOrDecline(true, id_meet)
     dispatch(fetchNotifications(user_id))
       Swal.fire({
       icon:"success",
@@ -45,7 +65,7 @@ const { companyName,
   }
 
   const handleDeclineClick = () => {
-    acceptOrDecline(false, id)
+    acceptOrDecline(false, id_meet)
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -59,7 +79,7 @@ const { companyName,
         Swal.fire(
           'The meeting has been declined',
         )
-       
+        
       }
       setRefresh(true)
     })
@@ -119,7 +139,7 @@ const { companyName,
               <h3 className={styles.notification2_title}>Congrats, {userLocalStorage.fullName}!</h3>
               <p>The meeting had been arranged to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
               <div className={styles.notification_buttons}>
-                  <button className={styles.notification_accept_button} onClick={() => navigate(`/home/meet/${id}`)}>Go to Jitsi</button>
+                  <button className={styles.notification_accept_button} onClick={() => navigate(`/home/meet/${id_meet}`)}>Go to Jitsi</button>
               </div>
           </>
         }
