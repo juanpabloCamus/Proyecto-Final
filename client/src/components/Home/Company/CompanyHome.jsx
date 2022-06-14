@@ -157,7 +157,7 @@ function CompanyHome() {
                 );
               })
             ) : (
-              <p>No hay usuarios</p>
+              <p>Developers not found</p>
             )}
           </div>
         </div>
