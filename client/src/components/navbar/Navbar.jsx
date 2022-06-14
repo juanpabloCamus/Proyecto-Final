@@ -23,9 +23,14 @@ export const Navbar = () => {
     dispatch(modalActions.activateLoginModal(false));
   };
 
+  const scroll0 = (e)=>{
+    e.preventDefault()
+    window.scrollTo(0,0)
+  }
+
   return (
     <nav className="nav animate__animated animate__fadeInDownBig">
-      <Link to="/">
+      <Link to="/" onClick={scroll0()}>
         <div className="logo">
           <span>Rocket</span>
         </div>

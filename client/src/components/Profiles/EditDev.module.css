@@ -51,3 +51,9 @@
         opacity: 1;
      }
 }
+
+@media(max-width:900px){
+    .modal{
+        width: 90%;
+    }
+}

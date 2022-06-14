@@ -5,8 +5,14 @@ import { Image } from 'cloudinary-react';
 
 
 function Post({id,profile_pic,fullName,description,email,technologies,english_level,seniority,stack}) {
+
+  const scroll0 = (e)=>{
+    e.preventDefault()
+    window.scrollTo(0,0)
+  }
+
   return (
-    <Link to={`/company/user/${id}`}>
+    <Link to={`/company/user/${id}`} onClick={scroll0()}>
     <div className={styles.postCard}>
       <div className={styles.imgContainer}>
       <Image
