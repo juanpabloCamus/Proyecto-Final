@@ -91,3 +91,42 @@
         transform: translatey(0px);
     }
 }
+
+
+
+/* Media Queries */
+
+@media(max-width: 768px){
+    .landing__page-container{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .landing__page-text{
+        order: 2;
+        text-align: center;
+    }
+    .landing__page-button{
+        align-self: center;
+    }
+
+    .rocket_image{
+        /* width: 150px;
+        top: 460px;
+        left: 230px; */
+        display: none;
+    }
+
+    .landing__page_first_section{
+        margin: 150px 0;
+    }
+
+    .landing__page_first_section h2{
+        font-size: 38px;
+    }
+
+    .landing__page_first_section_text{
+        margin: 0;
+    }
+
+}

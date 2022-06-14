@@ -34,6 +34,7 @@ const handleOpenModal = () =>{
             <img src={image} alt="" />
           </div>
         </div>
+        
         <div className="landing__page_first_section animate__animated animate__fadeInUp">
           <h2><span className='span_1'>Rocket</span>, a bridge to connect <span className='span_2'>developers</span> and <span className='span_3'>companies</span> around the world.</h2>
           <div className='landing__page_first_section_text'>

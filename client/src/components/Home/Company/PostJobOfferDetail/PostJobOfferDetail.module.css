@@ -27,9 +27,8 @@
   margin-right: auto;
   max-width: 1000px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
+  justify-content: space-between;
+  gap: 30px;
   border-bottom: 1px solid black;
 }
 .imgContainer {
@@ -62,12 +61,6 @@
 }
 .negrita p{
   font-weight: bold;
-}
-.detailTwo {
-  height: 10rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
 #description {
@@ -266,16 +259,15 @@
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 .postCard {
   display: flex;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
-  height: 15rem;
+  width: 90%;
   background-color: white;
   border-radius: 5px;
   padding: 1rem;
@@ -431,4 +423,15 @@
 
 .buttonU_1{
   background-color: rgb(255, 118, 33);
+}
+
+@media(max-width:900px){
+  .postCard {
+    flex-direction: column;
+  }
+  .imgContainer{
+    margin: 0 auto;
+    width: 80%;
+  }
+  
 }
