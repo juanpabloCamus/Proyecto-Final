@@ -130,7 +130,7 @@ function CompanyHome() {
               </div>
             </div>
             <Link to="/company/createjob" className={styles.createjob_button}>
-              {/* Create new job */}<label>Create job  </label>
+              {/* Create new job */}<label>Create job</label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>
           </div>
