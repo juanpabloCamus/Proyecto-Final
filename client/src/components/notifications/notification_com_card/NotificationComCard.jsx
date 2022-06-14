@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router'
 import { RiDeleteBinFill } from 'react-icons/ri'
 
 import styles from './notificationComCard.module.css'
+import axios from 'axios'
 
 
 export const NotificationComCard = ({id, check, codeNoti, createdAt, meeting}) => {
@@ -11,6 +12,15 @@ const id_meet = meeting.id
 const navigate = useNavigate()
 
 let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
+
+const checked = async () => {
+  await axios.put(`/company/notis/${id}`)
+}
+
+if(check===false){
+  checked()
+}
+
 
   return (
   <div className={styles.notification_card}>
