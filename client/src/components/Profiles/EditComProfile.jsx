@@ -402,7 +402,7 @@ function EditComProfileForm() {
                 <input placeholder="Example: OS & Software" name="speciality" value={currentInfo.speciality} onChange={handleChange} ></input>
                 <label>Size</label>
                 <select name="size" value={currentInfo.size} onChange={handleChange} >
-                    <option value='Not Specified'>Not specified</option>
+                    <option value='Not specified'>Not specified</option>
                     <option value="0 - 500">0 - 500</option>
                     <option value="500 - 2000">500 - 2000</option>
                     <option value="2000 - 5000">2000 - 5000</option>
