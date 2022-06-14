@@ -5,6 +5,9 @@
     margin-right: auto;
     margin-top: 100px;
     margin-bottom: 500px;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 3px 5px 1px lightgray;
 }
 
 .formContainer{
@@ -26,4 +29,19 @@
 
 .button:hover{
     background-color: rgba(70, 73, 156, 0.9);
+}
+
+#error{
+    color: red;
+}
+
+.formContainer h2{
+    color: black;
+    text-decoration: underline;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    align-self: center;
 }

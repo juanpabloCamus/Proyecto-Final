@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styles from "./DevProfile.module.css";
 import cannot from "../../assets/cannot.png";
-import { fetchUser } from "../../redux/users/users";
+import { fetchUser, usersActions } from "../../redux/users/users";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
@@ -19,6 +19,7 @@ import {FaUserGraduate} from 'react-icons/fa'
 import { MdPerson } from "react-icons/md";
 import {GiTechnoHeart} from 'react-icons/gi'
 import {MdDeleteOutline} from 'react-icons/md'
+import {RiKakaoTalkFill} from 'react-icons/ri'
 
 function DevProfile() {
   const dispatch = useDispatch();
@@ -27,11 +28,14 @@ function DevProfile() {
   useEffect(() => {
     dispatch(fetchUser(id));
   }, [dispatch, id]);
+
+  useEffect(()=> {
+    return(dispatch(usersActions.getClean()))
+},[dispatch])
   
   const user = useSelector((state) => state.users.user[0]);
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profileType = sessionStorage.profileType;
-  const idCom=sessionStorage.id
   if (user === undefined) return <Loading></Loading>;
 
   let userTechs = user.technologies?.map((t) => t.name);
@@ -104,10 +108,17 @@ function DevProfile() {
        showCancelButton: true,
 
      })
+     let report=res.value
 
       if (res.isConfirmed) {
-        await axios.put(`users/report/${id}`, res.value, idCom, profileType);
-      }
+        await axios.put(`users/report/${id}`, {report});
+        Swal.fire({
+          icon: 'info',
+          text:`You have reported for ${report}`,
+          timer:1500,
+          showConfirmButton:false
+      })
+    }
     }catch(error)
     {
        console.log(error)
@@ -129,7 +140,7 @@ function DevProfile() {
         <div className={styles.profileContainer}>
           <div className={styles.bannerProfileContainer}>
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={user.banner}
               id={styles.banner}
             />
@@ -149,7 +160,7 @@ function DevProfile() {
                     <div className={styles.userPhoto}>
                       <Image
                         id={styles.logo}
-                        cloudName="dhar2oawa"
+                        cloudName="dlt2bs82a"
                         publicId={user.profile_pic}
                 
                       />
@@ -221,7 +232,11 @@ function DevProfile() {
               {user.english_level === "Not specified" ? (
                 <label></label>
               ) : (
-                <label>English level: {user.english_level}</label>
+                <div className={styles.secondaryInfoContainer}>
+                  <h3>English level <RiKakaoTalkFill /></h3>
+                  <p>{user.english_level}</p>
+                </div>
+
               )}
               <div className={styles.secondaryInfoContainer}>
                 <h3 className={styles.about}>About <MdPerson/></h3>

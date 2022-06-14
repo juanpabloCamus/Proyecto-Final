@@ -24,7 +24,7 @@
     height: 100%;
     object-fit: contain;
     width: 100%;
-    border-radius: 50%;
+    padding: 5px;
 }
 
 .logged_user_menu{
@@ -127,10 +127,26 @@
     color: rgb(132, 132, 132);
     background-color: white;
     font-size: 22px;
+
 }
 
 .bell:hover{
     color: rgb(232, 200, 17);
+}
+
+.icon_bell{
+    position: relative;
+}
+
+.bell_point_notification{
+    background-color: rgb(107, 73, 189);
+    border-radius: 50%;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    width: 8px;
+    height: 8px;
 }
 
 .heart:hover{

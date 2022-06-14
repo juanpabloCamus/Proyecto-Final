@@ -112,6 +112,7 @@ export const EditJobOffer = () => {
           text: res.data,
           showConfirmButton: false,
           showCancelButton: false,
+          timer:1000,
         });
       } else {
         Swal.fire({
@@ -149,7 +150,7 @@ export const EditJobOffer = () => {
                 className={styles.form_select}
                 onChange={handleSeniorF}
               >
-                <option value="Not Specified">Not Specified</option>
+                <option value="Not specified">Not specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
@@ -163,7 +164,7 @@ export const EditJobOffer = () => {
               >
                 <option value=""></option>
 
-                <option value="Not Specified">Not Specified</option>
+                <option value="Not specified">Not specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
@@ -176,7 +177,7 @@ export const EditJobOffer = () => {
               >
                 <option value=""></option>
 
-                <option value="Not required">Not required</option>
+                <option value="Not specified">Not specified</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
@@ -189,7 +190,7 @@ export const EditJobOffer = () => {
                 onChange={handleSalaryF}
               >
                 <option value=""></option>
-                <option value="Not Specified">Not Specified</option>
+                <option value="Not specified">Not specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>

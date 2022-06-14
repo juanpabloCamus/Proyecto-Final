@@ -1,5 +1,6 @@
 const { Router } = require('express');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs } = require('../db');
+const { user } = require('../data');
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, report_type} = require('../db');
 
 const router = Router();
 
@@ -57,7 +58,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(seniority){
-            let snrt = ['Not Specified', 'Junior', 'Semi-Senior', 'Senior']
+            let snrt = ['Not specified', 'Junior', 'Semi-Senior', 'Senior']
             let seni = snrt.find(s=>s===seniority)
             if(seni){
                 jobs = jobs.filter(j=>j.dataValues.seniority===seni)
@@ -65,7 +66,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(time){
-            let tiempo = ['Not Specified', 'Part-Time', 'Full-Time']
+            let tiempo = ['Not specified', 'Part-Time', 'Full-Time']
             let tim = tiempo.find(t=>t===time)
             if(tim){
                 jobs = jobs.filter(j=>j.dataValues.time===tim)
@@ -73,7 +74,7 @@ router.get('/', async (req,res)=>{
         } 
 
         if(eLevel){
-            let ingles = ['Not required','Basic','Conversational', 'Advanced or Native']
+            let ingles = ['Not specified','Basic','Conversational', 'Advanced or Native']
             let eng = ingles.find(i=>i===eLevel)
             if(eng){
                 jobs = jobs.filter(j=>j.dataValues.english_level===eng)
@@ -81,7 +82,7 @@ router.get('/', async (req,res)=>{
         }
 
         if(salary){
-            let salario = ['Not Specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','10000$']
+            let salario = ['Not specified','0$ - 1000$','1000$ - 3000$','3000$ - 6000$','6000$ - 10000$','10000$']
             let sal = salario.find(s=>s===salary)
             if(sal){
                 jobs = jobs.filter(j=>j.dataValues.salary_range===sal)
@@ -97,6 +98,24 @@ router.get('/', async (req,res)=>{
             }
         }
         jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
+
+        jobs.sort(function (a,b){
+            if(a.dataValues.company_accounts[0].dataValues.premium === true){
+                if(a.dataValues.company_accounts[0].dataValues.premium === b.dataValues.company_accounts[0].dataValues.premium){
+                    if(a.dataValues.company_accounts[0].dataValues.id > b.dataValues.company_accounts[0].dataValues.id){
+                        return -1
+                    }else{
+                        return 1
+                    }
+                }else{
+                    return -1
+                }
+            }else if(b.dataValues.company_accounts[0].dataValues.premium === true){
+                return 1
+            }else{
+                return 0
+            }
+        })
 
         if(jobs.length>0){
             let cantPaginas = Math.ceil(jobs.length/10)
@@ -148,13 +167,13 @@ router.post('/:id', async (req,res)=>{
         if(position&&description&&time&&salary_range&&english_level&&requirements&&seniority&&technologies){
             if(!/^[a-zA-Z\s]+$/.test(position)){
                 res.send('Invalid position')
-            }else if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
+            }else if(time!=='Not specified'&&time!=='Part-Time'&&time!=='Full-Time'){
                 res.send('Time is invalid')
-            }else if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
+            }else if(salary_range!=='Not specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
                 res.send('Invalid salary range')
-            }else if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            }else if(english_level!=='Not specified'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 res.send('Invalid english level')
-            }else if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+            }else if(seniority!=='Not specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
                 res.send('Invalid seniority')
             }else{
                 const newJob = await job.create({
@@ -216,22 +235,56 @@ router.post('/:id', async (req,res)=>{
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
+        const {report} = req.body
 
         let jobs = await job.findAll({
             where:{id: id}
         })
 
-        if(jobs.length>0){
+        let reporte = await report_type.findAll({
+            where: {name: report}
+        })
+
+        if(jobs.length>0&&reporte.length>0){
+            reporte[0].dataValues.id === 1?
             await job.update(
                 {
-                    reports: jobs[0].dataValues.reports+1
+                    reports: jobs[0].dataValues.reports+1,
+                    reportSpam: jobs[0].dataValues.reportSpam+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 2 ?
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportLang: jobs[0].dataValues.reportLang+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 3 ?
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportFalse: jobs[0].dataValues.reportFalse+1
+                },{
+                    where:{id: id}
+                }
+            )
+            :
+            await job.update(
+                {
+                    reports: jobs[0].dataValues.reports+1,
+                    reportCoIn: jobs[0].dataValues.reportCoIn+1
                 },{
                     where:{id: id}
                 }
             )
             res.send('Job reported')
         }else{
-            res.send('Job not exist')
+            res.send('Job or report type not exist')
         }
     } catch (error) {
         console.log(error)
@@ -267,7 +320,7 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(time){
-            if(time!=='Not Specified'&&time!=='Part-Time'&&time!=='Full-Time'){
+            if(time!=='Not specified'&&time!=='Part-Time'&&time!=='Full-Time'){
                 errores.push('time')
             }else{
                 await job.update(
@@ -280,7 +333,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(salary_range){
-            if(salary_range!=='Not Specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
+            if(salary_range!=='Not specified'&&salary_range!=='0$ - 1000$'&&salary_range!=='1000$ - 3000$'&&salary_range!=='3000$ - 6000$'&&salary_range!=='6000$ - 10000$'&&salary_range!=='10000$'){
                 errores.push('salary range')
             }else{
                 await job.update(
@@ -293,7 +346,7 @@ router.put('/:id', async (req,res)=>{
             }
         }
         if(english_level){
-            if(english_level!=='Not required'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
+            if(english_level!=='Not specified'&&english_level!=='Basic'&&english_level!=='Conversational'&&english_level!=='Advanced or Native'){
                 errores.push('english level')
             }else{
                 await job.update(
@@ -315,7 +368,7 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(seniority){
-            if(seniority!=='Not Specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
+            if(seniority!=='Not specified'&&seniority!=='Junior'&&seniority!== 'Semi-Senior'&&seniority!== 'Senior'){
                 errores.push('seniority')
             }else{
                 await job.update(

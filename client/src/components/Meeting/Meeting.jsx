@@ -5,6 +5,7 @@ import styles from './Meeting.module.css'
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMeeting } from '../../redux/meeting/meeting';
+import Loading from '../Loading/Loading'
 
 function Meeting() {
 
@@ -21,28 +22,28 @@ function Meeting() {
     const meetback = useSelector(state=>state.meeting.meeting)
 
     return (
-        meetback ?
-        meetback.idMeeting ?
-        (user.profileType[0] === 'develop' && meetback.userAccountId === user.id) || (user.profileType[0] === 'company' && meetback.companyAccountId === user.id) ?
+        typeof meetback==='object'&&meetback.length>0 ?
+        meetback[0] ?
+        (user.profileType[0] === 'develop' && meetback[0].userAccountId === user.id) || (user.profileType[0] === 'company' && meetback[0].companyAccountId === user.id) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
-            roomName = { meetback.idMeeting }
+            roomName = { meetback[0].idMeeting }
             userInfo = {{displayName: user.profileType[0] === 'develop' ? user.fullName : user.name }}
             onReadyToClose = {() => user.profileType[0] === 'develop' ? navigate('/home') : navigate('/company')}
             />
         </div>
         :
         <div>
-            <h2>No perteneces a esta reunion</h2>
+            <h2>You don't belong to this meeting</h2>
         </div>
         :
         <div>
-            <h2>No existe la reunion</h2>
+            <h2>The meeting doesn't exist</h2>
         </div>
         :
         <div>
-            <h2>No existe la reunion</h2>
+            <Loading></Loading>
         </div>
     );
 }

@@ -13,7 +13,6 @@ import { BsInfoCircle } from "react-icons/bs";
 import { modalActions } from "../../../../redux/modal_slice/modalSlice";
 import { Edit } from "./EditJobOffer/Edit";
 import { Image } from "cloudinary-react";
-import FilterBarUser from "../FilterBarUser/FilterBarUser";
 
 function PostJobOffer() {
   const { id } = useParams();
@@ -91,7 +90,7 @@ function PostJobOffer() {
                 checked={radio1 === "developers"}
                 onChange={(e) => handleCircle(e)}
               />
-              <label className={styles.label}>Developers</label>
+              <label className={styles.label}>Applicants</label>
             </div>
           </div>
 
@@ -231,45 +230,33 @@ function PostJobOffer() {
                 checked={radio1 === "developers"}
                 onChange={(e) => handleCircle(e)}
               />
-              <label className={styles.label}>Developers</label>
+              <label className={styles.label}>Applicants</label>
             </div>
           </div>
-          <FilterBarUser />
           {jobDetail[0]?.applied_jobs
-            ?.map((e) => e.user_account)
-            ?.map((el) => {
+            ?.map((e) =>{
               return (
-                <div className={styles.postsContainer} key={el.id}>
-                  <Link to={`/company/offers/${id}/dev/${el.id}`}>
+                <div className={styles.postsContainer} key={e.user_account.id}>
+                  <Link to={`/company/offers/${id}/dev/${e.user_account.id}`}>
                     <div className={styles.postCard}>
                       <div className={styles.imgContainer}>
                         <Image
-                          cloudName="dhar2oawa"
-                          publicId={el.profile_pic}
+                          cloudName="dlt2bs82a"
+                          publicId={e.user_account.profile_pic}
                           id={styles.banner}
                           width="100"
                         />
                       </div>
                       <div className={styles.detailsContainer}>
-                        <p ><b>{el.fullName}</b></p>
-                        <p ><b>{el.stack}</b></p>
-                        {el.description === null ? (
-                          <p className={styles.null}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
-                          </p>
-                        ) : (
-                          <p>{el.description}</p>
-                        )}
-
+                        <p className={styles.fullName}><b>{e.user_account.fullName}</b></p>
+                        <p ><b>{e.user_account.stack}</b></p>
                         <div className={styles.subDetails}>
-                          <p><b>English Level:</b> {el.english_level}</p>
-                          <p><b>Seniority: </b>{el.seniority}</p>
+                          <p><b>English Level:</b> {e.user_account.english_level}</p>
+                          <p><b>Seniority: </b>{e.user_account.seniority}</p>
                         </div>
-
+                      </div>
                         <div className={styles.techsContainer}>
-                          {el.technologies?.map((t) =>
+                          {e.user_account.technologies?.map((t) =>
                             t.name === "Cplus" ? (
                               <label key={t.name}>C+</label>
                             ) : t.name === "Cplusplus" ? (
@@ -281,7 +268,6 @@ function PostJobOffer() {
                             )
                           )}
                         </div>
-                      </div>
                     </div>
                   </Link>
                 </div>

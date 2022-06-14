@@ -93,3 +93,9 @@
 #subsNow{
     font-weight: bold;
 }
+
+@media(max-width:900px){
+    .modal{
+        width: 90%;
+    }
+}

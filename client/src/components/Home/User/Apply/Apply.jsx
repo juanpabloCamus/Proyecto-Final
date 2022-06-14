@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import './ApplyModal.css'
 import Swal from 'sweetalert2';
+import { modalActions } from '../../../../redux/modal_slice/modalSlice';
+import { useDispatch } from 'react-redux';
 
 
 function Apply() {
@@ -20,7 +22,7 @@ const [loading, setLoading] = useState(false)
 const { description, idUser, idJob, timeRange } = postData
 
 const { id } = useParams()
-
+const dispatch=useDispatch()
 const userLocalStorage=JSON.parse(localStorage.getItem("userData"))
 
 const handleFileInputChange = (e) => {
@@ -72,9 +74,9 @@ const uploadFile = async (base64EncodeFile, data) => {
                         idUser,
                         idJob,
                         timeRange
-                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`})})
+                    }).then(res => {Swal.fire({icon:'success',title:'Congratulations!',text:`${res.data}`})},dispatch(modalActions.setModalValue()))
 
-    
+     dispatch(modalActions.activeApplyModal(false))
     } catch (err) {
         Swal.fire({icon:'error',text:`${err.response.data}`})
     }

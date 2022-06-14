@@ -11,6 +11,7 @@
 .table td{
     padding: 12px 8px;
     text-align: center;
+    
 }
 
 
@@ -32,11 +33,12 @@
     color: white;
     font-size: 18px;
     text-align: left;
-}
 
+}
 
 .table_headers tr th{
     padding: 10px 8px;
+
 }
 
 .disable_button{
@@ -60,3 +62,38 @@
     cursor: pointer;
     font-size: 28px;
 }
+
+  .field{
+    margin-top: 14px;
+    margin-left: 10px;
+  }
+  .quote {
+    position: relative;
+    display: none;
+    text-align: left;
+    color: #fff;
+    background: #333;
+    -webkit-box-shadow: 2px 2px 5px #aaa;
+    -moz-box-shadow: 2px 2px 5px #aaa;
+    box-shadow: 2px 2px 5px #aaa;
+    -webkit-transition: opacity 250ms ease-out;
+    -moz-transition: opacity 250ms ease-out;
+    -ms-transition: opacity 250ms ease-out;
+    -o-transition: opacity 250ms ease-out;
+    padding: 10px;
+    transition: opacity 250ms ease-out;
+   
+  }
+  .quote label{
+    color: white;
+    font-size: 12px;
+    text-align: left;
+
+
+  }
+  
+  
+  .field:hover .quote {
+    position: absolute;
+    display: block;
+  }

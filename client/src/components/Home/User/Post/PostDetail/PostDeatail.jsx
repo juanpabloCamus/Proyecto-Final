@@ -27,7 +27,6 @@ function PostDetail() {
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"));
 
   let idUser = userLocalStorage.id;
-  let profileType = userLocalStorage.profileType[0];
   let idJob = id;
 
   useEffect(() => {
@@ -43,16 +42,23 @@ function PostDetail() {
           'inappropiate lenguaje': 'Inappropiate Lenguaje',
           'false information': 'False Information',
           'inappropriate content':'Inappropriate Content'
-
-           },
+          },
        inputPlaceholder: 'Select reports',
        showCancelButton: true,
 
      })
+      
+     let report = res.value
 
       if (res.isConfirmed) {
-        await axios.put(`jobs/report/${id}`, res.value, idUser, profileType);
-      }
+        await axios.put(`jobs/report/${id}`, {report});
+        Swal.fire({
+          icon: 'info',
+          text:`You have reported for ${report}`,
+          timer:1500,
+          showConfirmButton:false
+      })
+    }
     } catch (error) {
       console.log(error);
     }
@@ -145,7 +151,7 @@ function PostDetail() {
         <div className={styles.companyInfoContainer}>
           <div className={styles.logoContainer}>
             <Image
-              cloudName="dhar2oawa"
+              cloudName="dlt2bs82a"
               publicId={company_accounts[0].logo}
               id={styles.logo}
             />

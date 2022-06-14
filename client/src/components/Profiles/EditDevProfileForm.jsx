@@ -19,6 +19,8 @@ function EditDevProfileForm() {
     const navigate = useNavigate()
     const {id} = useParams()
 
+    
+
     const user = useSelector(state => state.users.user[0])
 
      useEffect(() => {
@@ -70,6 +72,10 @@ function EditDevProfileForm() {
     const [addedTechs, setAddedTechs] = useState([]);
     const [ previewImage, setPreviewImage ] = useState("")
     const [ previewBanner, setPreviewBanner ] = useState("")
+    const [loading, setLoading] = useState({
+        profilepic: false,
+        banner: false
+    })
 
     const addTechs = (e) => {
 
@@ -123,6 +129,7 @@ function EditDevProfileForm() {
     
     const uploadImage = (e) => {
         e.preventDefault()
+        setLoading({...loading, profilepic:true})
         cloudinaryUpload(previewImage, "Image")
     }
 
@@ -141,6 +148,7 @@ function EditDevProfileForm() {
 
     const uploadBanner = (e) => {
         e.preventDefault()
+        setLoading({...loading, banner:true})
         cloudinaryUpload(previewBanner, "banner")
     }
 
@@ -153,11 +161,15 @@ function EditDevProfileForm() {
             ...currentInfo,
             profile_pic: res.data
             })
+            setLoading({...loading, profilepic:false})
+            Swal.fire({icon:'success',text:"Your profile pic has been changed", timer:1000})
         }else{
             await setCurrentInfo({
                 ...currentInfo,
                 banner: res.data
                 })
+                setLoading({...loading, banner:false})
+                Swal.fire({icon:'success',text:"Your banner has been changed", timer:1000})
         }
         } catch (err) {
             console.log(err)
@@ -453,7 +465,7 @@ function EditDevProfileForm() {
                 <input name="city" value={currentInfo.city} onChange={handleChange} ></input>
                 <label>Seniority</label>
                 <select name="seniority" value={currentInfo.seniority} onChange={handleChange} >
-                    <option value='Not Specified' >Not Specified</option>
+                    <option value='Not specified' >Not specified</option>
                     <option value='Junior' >Junior</option>
                     <option value='Semi-Senior' >Semi-Senior</option>
                     <option value='Senior' >Senior</option>
@@ -470,19 +482,35 @@ function EditDevProfileForm() {
                     <option value='Advanced or Native'>Advanced or Native</option>
                 </select>
                 <label>Profile pic</label>
-                <input name="profile_pic" placeholder="You can add url here" type='file' onChange={handleFileInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input className={styles.imgInput} accept="image/png,image/jpeg" name="profile_pic" type='file' onChange={handleFileInputChange}></input>
+                </div>
                 {previewImage ?
-                    <div>
-                        <img src={previewImage} alt="perview profile"/> 
-                        <button className={styles.upload} onClick={uploadImage}>Update Profile pic</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewImage} alt="perview profile"/> 
+                        <button className={styles.previewButton} onClick={uploadImage}>
+                        {loading.profilepic ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update profile pic'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Banner pic</label>
-                <input name="banner" placeholder="You can add url here" type='file' onChange={handleBannerInputChange}></input>
+                <div className={styles.fileselect} id={styles.srcfile1}>
+                <input className={styles.imgInput} accept="image/png,image/jpeg" name="banner" type='file' onChange={handleBannerInputChange}></input>
+                </div>
                 {previewBanner ?
-                    <div>
-                        <img src={previewBanner} alt="banner perview"/> 
-                        <button className={styles.upload} onClick={uploadBanner}>Update Banner</button>
+                    <div className={styles.previewContainer}>
+                        <img className={styles.preview} src={previewBanner} alt="banner perview"/> 
+                        <button className={styles.previewButton} onClick={uploadBanner}>
+                        {loading.banner ? (
+                        <div id={styles.loading}></div>
+                        ) : 
+                        'Update banner'
+                        }
+                        </button>
                     </div> 
                 : null }
                 <label>Description</label>

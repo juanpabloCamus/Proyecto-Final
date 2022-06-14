@@ -91,3 +91,16 @@
     font-size: 36px;
     font-weight: 300;
 }
+
+
+@media(max-width:900px){
+    .admin_container{
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+        gap: 20px;
+        width: 90%;
+    }
+    .dashboard_statistics{
+        flex-wrap: wrap;
+    }
+}

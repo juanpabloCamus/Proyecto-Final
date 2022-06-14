@@ -68,3 +68,12 @@
     justify-content: center;
     gap: 100px;
 }
+
+
+@media(max-width:760px){
+    .nav{
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}

@@ -33,7 +33,7 @@ function Applications() {
             <div className={styles.postCard}>
                 <div className={styles.imgContainer}>
                 <Image
-                    cloudName="dhar2oawa"
+                    cloudName="dlt2bs82a"
                     publicId={j.job.company_accounts[0].logo}
                     id={styles.logo}
                     />

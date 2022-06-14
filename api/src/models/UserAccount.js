@@ -26,7 +26,8 @@ module.exports = (sequelize) => {
             defaultValue:'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
         description: {
-            type:DataTypes.TEXT
+            type:DataTypes.TEXT,
+            defaultValue:'An user from Rocket.'
         },
         profileType:{
             type: DataTypes.ENUM('develop','admin')
@@ -61,6 +62,26 @@ module.exports = (sequelize) => {
             defaultValue: 'Not specified'
         },
         reports:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportSpam:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportLang:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportFalse:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
+        reportCoIn:{
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0

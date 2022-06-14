@@ -26,7 +26,7 @@ export const Login = () => {
   const loginUser = async () => {
     try {
       const res = await axios.post("/login", formValues);
-
+      
       if (res.data.active === true) {
         setErrorMessage("");
         setUserError(false);
@@ -47,8 +47,14 @@ export const Login = () => {
           navigate("/");
         }
       } else {
-        setErrorMessage("Account banned");
-        setUserError(true);
+        if(res.data.profileType === "develop" || res.data.profileType === "company"){
+          setErrorMessage("Account banned"); 
+          setUserError(true);
+        }else{
+          setErrorMessage(res.data);
+          setUserError(true);
+        }
+        
       }
     } catch (error) {
       console.log(error);

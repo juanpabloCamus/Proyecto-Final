@@ -7,6 +7,7 @@ import {
   optionsSeniority,
   optionsLevel,
 } from "../../User/FilterBar/Options";
+import { fetchUsers } from "../../../../redux/users/users";
  
 
 function FilterBar() {
@@ -36,7 +37,7 @@ function FilterBar() {
   };
 
   useEffect(() => {
-    // dispatch(fetchJobs({stack, seniority, time, eLevel, search }));
+    dispatch(fetchUsers({seniority, eLevel, search }));
   }, [dispatch, seniority, eLevel, search]);
 
   return (

@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const axios = require('axios');
-const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis} = require('../db')
+const {company_account, user_account, experience, education, job, applied_job, technology, otherTechs, meeting, usernotis, compnotis, report_type} = require('../db')
 const nodemailer = require('nodemailer');
 
 const router = Router();
@@ -68,7 +68,9 @@ router.get('/notis/:id',async (req,res)=>{
         for(let i=0;i<notis.length;i++){
             notis[i].dataValues.meeting.dataValues.fullName = notis[i].dataValues.meeting.dataValues.user_account.dataValues.fullName
             notis[i].dataValues.meeting.dataValues.emailUser = notis[i].dataValues.meeting.dataValues.user_account.dataValues.email
-            notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            if(notis[i].dataValues.meeting.dataValues.job){
+                notis[i].dataValues.meeting.dataValues.jobPosition = notis[i].dataValues.meeting.dataValues.job.position
+            }
             delete notis[i].dataValues.meeting.dataValues.job
             delete notis[i].dataValues.meeting.dataValues.user_account
             delete notis[i].dataValues.meeting.dataValues.idMeeting
@@ -162,25 +164,76 @@ router.post('/register', async (req,res)=>{
     }
 })
 
+router.put('/notis/:id', async (req,res)=>{
+    const {id} = req.params
+
+    let noti = await compnotis.findAll({
+        where:{id: id}
+    })
+
+    if(noti.length>0){
+        await compnotis.update({
+            check: true
+        },{
+            where:{id: id}
+        })
+    }
+    res.send('noti checked')
+})
+
 router.put('/report/:id', async (req,res)=>{
     try {
         const {id} = req.params
+        const {report} = req.body
 
         let company = await company_account.findAll({
             where:{id: id}
         })
 
-        if(company.length>0){
+        let reporte = await report_type.findAll({
+            where: {name: report}
+        })
+
+        if(company.length>0&&reporte.length>0){
+            reporte[0].dataValues.id === 1?
             await company_account.update(
                 {
-                    reports: company[0].dataValues.reports+1
+                    reports: company[0].dataValues.reports+1,
+                    reportSpam: company[0].dataValues.reportSpam+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 2 ?
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportLang: company[0].dataValues.reportLang+1
+                },{
+                    where:{id: id}
+                }
+            )
+            : reporte[0].dataValues.id === 3 ?
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportFalse: company[0].dataValues.reportFalse+1
+                },{
+                    where:{id: id}
+                }
+            )
+            :
+            await company_account.update(
+                {
+                    reports: company[0].dataValues.reports+1,
+                    reportCoIn: company[0].dataValues.reportCoIn+1
                 },{
                     where:{id: id}
                 }
             )
             res.send('Company reported')
         }else{
-            res.send('Company not exist')
+            res.send('Company or report type not exist')
         }
     } catch (error) {
         console.log(error)
@@ -262,7 +315,7 @@ router.put('/:id', async (req,res)=>{
             )
         }
         if(size){
-            if(size!=='Not Specified'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
+            if(size!=='Not specified'&&size!=='0 - 500'&&size!=='500 - 2000'&&size!=='2000 - 5000'&&size!=='5000 - 10000'&&size!=='10000 - 50000'&&size!=='+50000'){
                 res.send('size')
             }else{
                 await company_account.update(
@@ -356,6 +409,27 @@ router.delete('/:id', async (req,res)=>{
         res.send('Company eliminated')
     }catch(error){
         console.log()
+    }
+})
+
+router.delete('/notis/:id', async (req,res)=>{
+    try {
+        const {id} = req.params
+
+        let noti = await compnotis.findAll({
+            where:{id:id}
+        })
+
+        if(noti.length>0){
+            await compnotis.destroy({
+                where: {id: id}
+            })
+        }
+
+        res.send('noti deleted')
+
+    } catch (error) {
+        console.log(error)
     }
 })
 
