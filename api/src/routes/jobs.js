@@ -99,8 +99,6 @@ router.get('/', async (req,res)=>{
         }
         jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
 
-        jobs[2].dataValues.company_accounts[0].dataValues.premium
-
         jobs.sort(function (a,b){
             if(a.dataValues.company_accounts[0].dataValues.premium === true){
                 if(a.dataValues.company_accounts[0].dataValues.premium === b.dataValues.company_accounts[0].dataValues.premium){
