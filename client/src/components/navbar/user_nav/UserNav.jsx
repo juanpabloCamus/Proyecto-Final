@@ -132,7 +132,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
         </div>
 
         {profile === "develop" && (
-          <Link to="/home/favorites" className={styles.link} onClick={scroll0}>
+          <Link to="/home/favorites" className={styles.link} onClick={scroll0()}>
             <FiHeart className={styles.heart} />
           </Link>
         )}
@@ -144,7 +144,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
               : profile === "company"
               ? "/company"
               : "/admin"
-          } onClick={scroll0}
+          } onClick={scroll0()}
           className={styles.link}
         >
           <BiHome className={styles.home} />

@@ -128,9 +128,14 @@ export default function CreateJob() {
     postNewJob(id);
   };
 
+  const scroll0 = (e)=>{
+    e.preventDefault()
+    window.scrollTo(0,0)
+  }
+
   return (
     <div>
-      <Link to={"/company"} onClick={window.scrollTo(0,0)}>
+      <Link to={"/company"} onClick={scroll0()}>
         <img className={styles.arrowBack} alt="arrowBack" src={img}></img>
       </Link>
       <div className={styles.form_container}>

@@ -19,6 +19,11 @@ function Applications() {
     const user = useSelector((state) => state.users.user[0]);
     if(user === undefined) return <Loading></Loading>
     const { applied_jobs } = user 
+
+    const scroll0 = (e)=>{
+      e.preventDefault()
+      window.scrollTo(0,0)
+    }
     
     return (
         <div className={styles.pageContainer}>
@@ -29,7 +34,7 @@ function Applications() {
         {applied_jobs.map((j) => 
             <div  key={j.createdAt} className={styles.allInfo}>
             <label className={styles.date}>{j.createdAt.slice(5,10) + '-' + j.createdAt.slice(0,4)}</label>
-            {!j.job.active ? <label className={styles.msg}>Oops..You applied this day but job is no longer available</label> : <Link to={`/home/post/${j.job.id}`} onClick={window.scrollTo(0,0)}>
+            {!j.job.active ? <label className={styles.msg}>Oops..You applied this day but job is no longer available</label> : <Link to={`/home/post/${j.job.id}`} onClick={scroll0()}>
             <div className={styles.postCard}>
                 <div className={styles.imgContainer}>
                 <Image
