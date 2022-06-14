@@ -14,17 +14,11 @@ export default function PostJobOffer({
   applications,
   active,
 }) {
-
-
-  const scroll0 = (e)=>{
-    e.preventDefault()
-    window.scrollTo(0,0)
-  }
   
   return (
     <div key={id}>
       {
-        <Link to={`/company/offers/${id}`} onClick={scroll0()}>
+        <Link to={`/company/offers/${id}`}>
           <div className={styles.postCard}>
            
             <div className={styles.detailsContainer}>

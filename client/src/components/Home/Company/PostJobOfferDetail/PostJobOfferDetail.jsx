@@ -63,11 +63,6 @@ function PostJobOffer() {
     }
   }
 
-  const scroll0 = (e)=>{
-    e.preventDefault()
-    window.scrollTo(0,0)
-  }
-
   return (
     <div>
       {radio1 === "edit" ? (
@@ -242,7 +237,7 @@ function PostJobOffer() {
             ?.map((e) =>{
               return (
                 <div className={styles.postsContainer} key={e.user_account.id}>
-                  <Link to={`/company/offers/${id}/dev/${e.user_account.id}`} onClick={scroll0()}>
+                  <Link to={`/company/offers/${id}/dev/${e.user_account.id}`}>
                     <div className={styles.postCard}>
                       <div className={styles.imgContainer}>
                         <Image
