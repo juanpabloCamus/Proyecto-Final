@@ -24,13 +24,13 @@ function Meeting() {
     console.log(meetback)
 
     return (
-        meetback ?
-        meetback.idMeeting ?
-        (user.profileType[0] === 'develop' && meetback.userAccountId === user.id) || (user.profileType[0] === 'company' && meetback.companyAccountId === user.id) ?
+        meetback[0] ?
+        meetback[0].idMeeting ?
+        (user.profileType[0] === 'develop' && meetback[0].userAccountId === user.id) || (user.profileType[0] === 'company' && meetback[0].companyAccountId === user.id) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
             getIFrameRef = { node => node.style.height = '800px' }
-            roomName = { meetback.idMeeting }
+            roomName = { meetback[0].idMeeting }
             userInfo = {{displayName: user.profileType[0] === 'develop' ? user.fullName : user.name }}
             onReadyToClose = {() => user.profileType[0] === 'develop' ? navigate('/home') : navigate('/company')}
             />
