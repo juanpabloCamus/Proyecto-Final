@@ -46,7 +46,6 @@ export const JobsRender = () => {
           jobs.map((job, i) => (
             <tr key={i}>
               <td>
-                {console.log(job.company_accounts)}
                 {job.company_accounts[0].name}
               </td>
               <td>

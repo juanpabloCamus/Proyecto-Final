@@ -13,7 +13,7 @@ export const Notifications = () => {
 
   const {notifications} = useSelector( state => state.notifications)
   const {companyNotifications} = useSelector( state => state.companyNotifications)
-
+ 
   const dispatch = useDispatch()
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
