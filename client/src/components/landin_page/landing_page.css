@@ -72,7 +72,7 @@
 
 .rocket_image{
     position: absolute;
-    width: 350px;
+    width: 200px;
     top: 130px;
     left: 30px;
 
@@ -95,6 +95,16 @@
 
 
 /* Media Queries */
+
+@media(max-width: 1200px){
+    .rocket_image{
+        width: 150px;
+        left: 5px;
+    }
+    .landing__page_first_section{
+        margin: 200px 0;
+    }
+}
 
 @media(max-width: 768px){
     .landing__page-container{
