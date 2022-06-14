@@ -11,35 +11,37 @@ import { useEffect, useState } from 'react'
 export const NotificationDevCard = ({id, check, codeNoti, createdAt, meeting}) => {
 
 
-const [refresh, setRefresh] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
 
-const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
+  const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
 
-const user_id = userLocalStorage.id
-const userName = userLocalStorage.fullName
-const dispatch = useDispatch()
-const navigate = useNavigate()
+  const user_id = userLocalStorage.id
+  const userName = userLocalStorage.fullName
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
+  let dateOfSend = new Date(createdAt).toDateString().split(" ").slice(1, 4).join(" ")
 
-const checked = async () => {
-  await axios.put(`/notis/${id}`)
-}
+  const checked = async () => {
+    await axios.put(`/users/notis/${id}`)
+  }
 
-if(check===false){
-  checked()
-}
+  if(check===false){
+    checked()
+  }
 
-useEffect(()=>{
-  dispatch(fetchNotifications(user_id))
-},[refresh, dispatch, user_id])
+  useEffect(()=>{
+    dispatch(fetchNotifications(user_id))
+  },[refresh, dispatch, user_id])
 
-const { companyName,
-  dateTime,
-  messege,
-  jobPosition,
-  status} = meeting
+  const { 
+    companyName,
+    dateTime,
+    messege,
+    jobPosition,
+    status
+  } = meeting
 
   const id_meet = meeting.id
 
@@ -68,7 +70,7 @@ const { companyName,
         Swal.fire(
           'The meeting has been declined',
         )
-       
+        
       }
       setRefresh(true)
     })
@@ -128,7 +130,7 @@ const { companyName,
               <h3 className={styles.notification2_title}>Congrats, {userLocalStorage.fullName}!</h3>
               <p>The meeting had been arranged to: <span className={styles.notification_meeting_date}>{dateTime}</span></p>
               <div className={styles.notification_buttons}>
-                  <button className={styles.notification_accept_button} onClick={() => navigate(`/home/meet/${id}`)}>Go to Jitsi</button>
+                  <button className={styles.notification_accept_button} onClick={() => navigate(`/home/meet/${id_meet}`)}>Go to Jitsi</button>
               </div>
           </>
         }

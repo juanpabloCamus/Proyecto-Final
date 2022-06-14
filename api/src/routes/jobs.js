@@ -99,6 +99,26 @@ router.get('/', async (req,res)=>{
         }
         jobs.map(j=>j.dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password))
 
+        jobs[2].dataValues.company_accounts[0].dataValues.premium
+
+        jobs.sort(function (a,b){
+            if(a.dataValues.company_accounts[0].dataValues.premium === true){
+                if(a.dataValues.company_accounts[0].dataValues.premium === b.dataValues.company_accounts[0].dataValues.premium){
+                    if(a.dataValues.company_accounts[0].dataValues.id > b.dataValues.company_accounts[0].dataValues.id){
+                        return -1
+                    }else{
+                        return 1
+                    }
+                }else{
+                    return -1
+                }
+            }else if(a.dataValues.company_accounts[0].dataValues.premium === true){
+                return 1
+            }else{
+                return 0
+            }
+        })
+
         if(jobs.length>0){
             let cantPaginas = Math.ceil(jobs.length/10)
             let inicio = 0

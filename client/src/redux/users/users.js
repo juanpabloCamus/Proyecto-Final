@@ -14,9 +14,9 @@ async(id)=>{
 }
 )
 export const fetchUsers=createAsyncThunk('users/fetchUser',
-async()=>{
+async({seniority, eLevel, search })=>{
     try {
-        const res=await axios.get(`/users/`)
+        const res=await axios.get(`/users?seniority=${seniority}&eLevel=${eLevel}&search=${search}`)
         return res.data
         
     } catch (error) {
