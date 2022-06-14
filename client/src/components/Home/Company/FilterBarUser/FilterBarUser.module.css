@@ -73,3 +73,16 @@
 .BtnSearch:hover{
    background-color: #e4f1fb 
 }
+
+
+@media(max-width:900px){
+    .filterBar{
+        flex-direction: column;
+    }
+    .filterSet{
+        flex-direction: column;
+    }
+    .filterSet_menu{
+        flex-wrap: wrap;
+    }
+}

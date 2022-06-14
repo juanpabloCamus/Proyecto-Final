@@ -44,3 +44,10 @@ a:active {
   color: #46499c;
   font-size: 50px;
 }
+
+@media(max-width:900px){
+  .postsContainer{
+    width: 95%;
+    margin: 0 auto;
+  }
+}

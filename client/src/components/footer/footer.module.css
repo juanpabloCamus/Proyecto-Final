@@ -14,7 +14,8 @@
     font-size: 70px;font-weight: 700;
     font-style: italic;
     padding: 60px 0;
-    outline: none;}
+    outline: none;
+}
 
 
 .logo_container{
@@ -91,3 +92,15 @@
     color: rgb(138, 40, 243);
 }
 
+@media(max-width:760px){
+    .footer_container{
+        flex-direction: column;
+        gap: 30px;
+    }
+    .logo_container{
+        font-size: 50px;
+    }
+    .social_media{
+        margin-top: 15px;
+    }
+}
