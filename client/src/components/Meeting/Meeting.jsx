@@ -8,6 +8,8 @@ import { fetchMeeting } from '../../redux/meeting/meeting';
 import Loading from '../Loading/Loading'
 
 function Meeting() {
+    
+    window.scrollTo(0,0)
 
     const navigate = useNavigate()
     const dispatch=useDispatch()
@@ -24,8 +26,8 @@ function Meeting() {
     console.log(meetback)
 
     return (
-        meetback[0] ?
-        meetback[0].idMeeting ?
+        typeof meetback==='object'&&meetback.length<1 ?
+        meetback[0] && meetback[0].idMeeting ?
         (user.profileType[0] === 'develop' && meetback[0].userAccountId === user.id) || (user.profileType[0] === 'company' && meetback[0].companyAccountId === user.id) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
