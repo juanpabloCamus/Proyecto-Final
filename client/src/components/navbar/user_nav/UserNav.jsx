@@ -110,7 +110,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
-        <div className={styles.bell_icon_container}>
+        {profile !== 'admin' ? <div className={styles.bell_icon_container}>
           <div
             onClick={handleNotify}
             className={styles.icon_bell}
@@ -124,7 +124,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
             }
           </div>
 
-        </div>
+        </div>:<></>}
 
         {profile === "develop" && (
           <Link to="/home/favorites" className={styles.link}>
