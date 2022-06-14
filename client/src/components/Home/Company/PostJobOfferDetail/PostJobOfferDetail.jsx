@@ -248,23 +248,13 @@ function PostJobOffer() {
                         />
                       </div>
                       <div className={styles.detailsContainer}>
-                        <p ><b>{e.user_account.fullName}</b></p>
+                        <p className={styles.fullName}><b>{e.user_account.fullName}</b></p>
                         <p ><b>{e.user_account.stack}</b></p>
-                        {e.user_account.description === null ? (
-                          <p className={styles.null}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua.
-                          </p>
-                        ) : (
-                          <p>{e.user_account.description}</p>
-                        )}
-
                         <div className={styles.subDetails}>
                           <p><b>English Level:</b> {e.user_account.english_level}</p>
                           <p><b>Seniority: </b>{e.user_account.seniority}</p>
                         </div>
-
+                      </div>
                         <div className={styles.techsContainer}>
                           {e.user_account.technologies?.map((t) =>
                             t.name === "Cplus" ? (
@@ -278,7 +268,6 @@ function PostJobOffer() {
                             )
                           )}
                         </div>
-                      </div>
                     </div>
                   </Link>
                 </div>
