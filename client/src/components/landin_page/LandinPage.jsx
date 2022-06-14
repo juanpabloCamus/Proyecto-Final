@@ -10,7 +10,7 @@ import rocket from '../../assets/rocket.png'
 
 export const LandinPage = () => {
 
-  window.scrollY = 0
+  window.scrollTo(0,0)
 
 const dispatch = useDispatch()
 
