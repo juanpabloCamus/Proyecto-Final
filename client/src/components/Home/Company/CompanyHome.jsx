@@ -129,7 +129,7 @@ function CompanyHome() {
                     <label className={styles.label}>Developers</label>
                   </div>
                 </div>
-                <Link to="/company/createjob" className={styles.createjob_button}>
+                <Link to="/company/createjob" className={styles.createjob_button} onClick={window.scrollTo(0,0)}>
                   <label>Create job  </label>
                   <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
                 </Link>
@@ -197,7 +197,7 @@ function CompanyHome() {
                 <label className={styles.label}>Developers</label>
               </div>
             </div>
-            <Link to="/company/createjob" className={styles.createjob_button}>
+            <Link to="/company/createjob" className={styles.createjob_button} onClick={window.scrollTo(0,0)}>
               <label>Create job  </label>
               <BsFileEarmarkPlusFill className={styles.createjob_button_icon} />
             </Link>

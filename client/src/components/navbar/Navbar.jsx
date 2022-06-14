@@ -25,7 +25,7 @@ export const Navbar = () => {
 
   return (
     <nav className="nav animate__animated animate__fadeInDownBig">
-      <Link to="/">
+      <Link to="/" onClick={window.scrollTo(0,0)}>
         <div className="logo">
           <span>Rocket</span>
         </div>

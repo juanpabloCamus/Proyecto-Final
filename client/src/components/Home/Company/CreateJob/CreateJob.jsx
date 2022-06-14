@@ -130,7 +130,7 @@ export default function CreateJob() {
 
   return (
     <div>
-      <Link to={"/company"}>
+      <Link to={"/company"} onClick={window.scrollTo(0,0)}>
         <img className={styles.arrowBack} alt="arrowBack" src={img}></img>
       </Link>
       <div className={styles.form_container}>

@@ -237,7 +237,7 @@ function PostJobOffer() {
             ?.map((e) =>{
               return (
                 <div className={styles.postsContainer} key={e.user_account.id}>
-                  <Link to={`/company/offers/${id}/dev/${e.user_account.id}`}>
+                  <Link to={`/company/offers/${id}/dev/${e.user_account.id}`} onClick={window.scrollTo(0,0)}>
                     <div className={styles.postCard}>
                       <div className={styles.imgContainer}>
                         <Image

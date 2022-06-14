@@ -197,7 +197,7 @@ function DevProfile() {
               
               {profileType[0] === "develop"? (
                 <div className={styles.editProfileButtonContainer}>
-                  <Link to={`/editdevprofile/${id}`}>Edit Profile</Link>
+                  <Link to={`/editdevprofile/${id}`} onClick={window.scrollTo(0,0)}>Edit Profile</Link>
                 </div>
               ) : (
                 <div className={styles.editProfileButtonContainer}>
