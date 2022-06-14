@@ -27,7 +27,7 @@ function Meeting() {
 
     return (
         typeof meetback==='object'&&meetback.length<1 ?
-        meetback[0] && meetback[0].idMeeting ?
+        (meetback[0] && meetback[0].idMeeting) ?
         (user.profileType[0] === 'develop' && meetback[0].userAccountId === user.id) || (user.profileType[0] === 'company' && meetback[0].companyAccountId === user.id) ?
         <div className={styles.pageContainer}>
             <JitsiMeeting 
