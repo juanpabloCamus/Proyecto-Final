@@ -34,16 +34,19 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
 
  
   useEffect(() => {
-
-    dispatch(fetchUser(id));
-    dispatch(fetchCompanyProfile(id));
-    dispatch(fetchJobs());
+    if(profile === 'develop'){
+      dispatch(fetchUser(id));
     dispatch(fetchNotifications(id))
-    dispatch(fetchCompanyNotifications(id))
+    }
+    if(profile === 'company'){
+      dispatch(fetchCompanyProfile(id));
+      dispatch(fetchCompanyNotifications(id))
+    }
+    dispatch(fetchJobs());
 
-  }, [dispatch, id]);
+  }, [dispatch, id, profile]);
 
-  const user = useSelector((state) => state.users.user[0]);
+  const user = useSelector((state) => state.users?.user);
   const companyProfile = useSelector(
     (state) => state.companyProfile.companyProfile[0]
   );
@@ -52,7 +55,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
     setToggleMenu(false)
   }
 
-
+  console.log(user)
 
   useEffect(() =>{
     
@@ -159,7 +162,7 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
           ) : (
             <Image
               cloudName="dlt2bs82a"
-              publicId={user?.profile_pic}
+              publicId={user[0]?.profile_pic}
               id={styles.banner}
             />
           )}
