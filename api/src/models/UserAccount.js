@@ -37,7 +37,8 @@ module.exports = (sequelize) => {
             defaultValue: true
         },
         stack: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            defaultValue: 'Developer'
         },
         banner: {
             type: DataTypes.TEXT,
