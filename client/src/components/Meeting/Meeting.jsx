@@ -8,8 +8,6 @@ import { fetchMeeting } from '../../redux/meeting/meeting';
 import Loading from '../Loading/Loading'
 
 function Meeting() {
-    
-    window.scrollTo(0,0)
 
     const navigate = useNavigate()
     const dispatch=useDispatch()

@@ -28,7 +28,7 @@ const optionsSeniority = [
       {value:"1000$ - 3000$",label:"1000$ - 3000$"},
       {value:"3000$ - 6000$",label:"3000$ - 6000$"},
       {value:"6000$ - 10000$",label:"6000$ - 10000$"},
-      {value:"+ 10000$", label:"+ 10000$"}
+      {value:'10000$', label:"+ 10000$"}
 ]
 
 

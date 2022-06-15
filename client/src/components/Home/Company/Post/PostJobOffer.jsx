@@ -14,6 +14,7 @@ export default function PostJobOffer({
   applications,
   active,
 }) {
+  
   return (
     <div key={id}>
       {

@@ -5,6 +5,7 @@ import { Image } from 'cloudinary-react';
 
 
 function Post({id,profile_pic,fullName,description,email,technologies,english_level,seniority,stack}) {
+
   return (
     <Link to={`/company/user/${id}`}>
     <div className={styles.postCard}>

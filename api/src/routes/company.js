@@ -408,7 +408,7 @@ router.delete('/:id', async (req,res)=>{
 
         res.send('Company eliminated')
     }catch(error){
-        console.log()
+        console.log(error)
     }
 })
 

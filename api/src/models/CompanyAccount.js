@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         
         logo: {
             type: DataTypes.TEXT,
-            defaultValue: 'https://w7.pngwing.com/pngs/837/779/png-transparent-computer-icons-rocket-launch-launch-pad-icons-purple-violet-spacecraft.png'
+            defaultValue: 'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
 
         description: {

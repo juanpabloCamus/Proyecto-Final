@@ -23,8 +23,6 @@ import { Others } from './admin_render/Others'
 
 export const Admin = () => {
 
-  window.scrollTo(0,0)
-
 
   const [ selectOption, setSelectOption ] = useState("")
   const dispatch = useDispatch()
