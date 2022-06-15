@@ -32,7 +32,7 @@ function ChangePass() {
 
         if(form.recoverId === 0) return Swal.fire({icon:'error', text:'Enter your recovery code'})
         if(form.password === '') return Swal.fire({icon:'error', text:'Enter your new password'})
-        if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\x00-\xFF\d]{8,}$/)) return setError({...error,password:true})
+        if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#/=])[A-Za-z\d@$!%*?&#/=]{8,}$/)) return setError({...error,password:true})
         if(form.password !== form.confirmPass) return setError({password:false,match:true})
         setError({password:false,match:false})
 
