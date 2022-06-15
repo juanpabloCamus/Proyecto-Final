@@ -55,8 +55,6 @@ const {companyNotifications} = useSelector( state => state.companyNotifications)
     setToggleMenu(false)
   }
 
-  console.log(user)
-
   useEffect(() =>{
     
     if(notifications.length > 0 && profile === "develop") {

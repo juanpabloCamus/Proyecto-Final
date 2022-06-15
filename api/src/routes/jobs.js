@@ -146,6 +146,9 @@ router.get('/:id',async (req,res)=>{
         if(jobId.length<1){
             res.send('There is no job offer')
         }
+        if(jobId[0].dataValues.user_accounts.length>0){
+            jobId[0].dataValues.user_accounts.map(u=>delete u.dataValues.password)
+        }
         if(jobId[0].dataValues.applied_jobs.length>0){
             jobId[0].dataValues.applied_jobs.map(u=>delete u.dataValues.user_account.dataValues.password)
         }
