@@ -19,7 +19,7 @@ export default function Acordion () {
                 <IoMdArrowDropdown/>
             </div>
             <ul className="box-item-content">
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dignissimos officia nisi, nam veniam quae voluptatum! Minus aliquid sint fugiat recusandae?</li>
+                <li>Rocket helps you to boost your career as a developer connecting you in a fast way with hundred of good companies and startups. Just search for your dream job, apply and be hired!</li>
             </ul>
         </div>
         <div className="box-item">
@@ -31,7 +31,7 @@ export default function Acordion () {
                 <IoMdArrowDropdown />
             </div>
             <ul className="box-item-content">
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, reiciendis fuga quia labore sunt animi!</li>
+                <li>It's really easy, create an account in Rocket, login in our app, then look for your job of interest, go for application window and load your CV. Then just wait for a company reponse. Now your so close to have an interview for land yor drema job!</li>
             </ul>
         </div>
         <div  className="box-item ">
@@ -43,8 +43,7 @@ export default function Acordion () {
                 <IoMdArrowDropdown />
             </div>
             <ul className="box-item-content">
-                <li>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt fugit dolore dolores sit neque! Excepturi in quos quia optio deleniti porro culpa perferendis consectetur ea?</li>
-        
+                <li>First of all, a quick connection between you and the company, no third recruiters. You avoid tedious and long process of hiring. You can have a direct interview through our platform and get hired so much fast!</li>
             </ul>
         </div>
         <div className="box-item">
@@ -56,7 +55,7 @@ export default function Acordion () {
                 <IoMdArrowDropdown />
             </div>
             <ul className="box-item-content">
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis cum, facere esse illum inventore quod veritatis mollitia quisquam maiores laudantium ducimus nihil excepturi, consectetur eaque eius deserunt saepe animi? Dolore, magnam! Optio molestias quibusdam recusandae maiores voluptatibus animi, error molestiae!</li>
+                <li>It depends on the company response. Once you got the first meeting, you probably are now in the hiring process. So you can wait for the next steps to land your dream job!</li>
             </ul>
         </div>
     </div>
