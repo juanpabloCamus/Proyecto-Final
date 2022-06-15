@@ -26,17 +26,8 @@ router.get('/', async (req,res)=>{
         if(search){
             let allUsers = []
             function FindJob (string, busco) {
-                
-                if(string[0]===busco[0]){
-                    for(let j=0;j<busco.length;j++){
-                        if(string[0+j]===busco[j]){
-                            if(j===busco.length-1){
-                                return string
-                            }
-                        }else{
-                            continue;
-                        }
-                    }
+                if(string.includes(busco)){
+                    return string
                 }
             }
             for(let i=0;i<users.length;i++){
@@ -49,6 +40,7 @@ router.get('/', async (req,res)=>{
 
         if(users.length>0){
             for(let i=0;i<users.length;i++){
+                delete users[i].dataValues.password
                 users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
             }
         }

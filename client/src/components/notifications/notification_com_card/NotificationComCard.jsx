@@ -53,8 +53,7 @@ const deleteNotification = () => {
       )
 
       try {
-       const res = await axios.delete(`/company/notis/${id}`)
-       console.log(res)
+        await axios.delete(`/company/notis/${id}`)
       } catch (error) {
         console.log(error)
       }

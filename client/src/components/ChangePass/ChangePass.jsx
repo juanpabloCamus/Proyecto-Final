@@ -32,7 +32,7 @@ function ChangePass() {
 
         if(form.recoverId === 0) return Swal.fire({icon:'error', text:'Enter your recovery code'})
         if(form.password === '') return Swal.fire({icon:'error', text:'Enter your new password'})
-        if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\x00-\xFF\d]{8,}$/)) return setError({...error,password:true})
+        if(!form.password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#/=])[A-Za-z\d@$!%*?&#/=]{8,}$/)) return setError({...error,password:true})
         if(form.password !== form.confirmPass) return setError({password:false,match:true})
         setError({password:false,match:false})
 
@@ -56,7 +56,7 @@ function ChangePass() {
                 <input name='password' onChange={handleChange} type='password'></input>
                 <label>Confirm password</label>
                 <input name='confirmPass' onChange={handleChange} type='password'></input>
-                {error.password ? <label id={styles.error}>Password must have a least 8 characters,an uppercase, a lowercase and a number</label> : null}
+                {error.password ? <label id={styles.error}>Password must have a least 8 characters,an uppercase, a lowercase, a special character and a number</label> : null}
                 {error.match ? <label id={styles.error}>Passwords do not match</label> : null}
                 <button className={styles.button} type='submit'>Submit</button>
             </form>
