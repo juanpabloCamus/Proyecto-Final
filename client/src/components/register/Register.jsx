@@ -102,7 +102,7 @@ const switchForm = () =>{
 const validateForm = () =>{
 
     if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#/=])[A-Za-z\d@$!%*?&#/=]{8,}$/)){
-        setError({...error, error: true, errorMsg: "Password must have a least 8 characters,an uppercase, a lowercase and a number"})
+        setError({...error, error: true, errorMsg: "Password must have a least 8 characters,an uppercase, a lowercase, a special character and a number"})
         return false 
     }
 
