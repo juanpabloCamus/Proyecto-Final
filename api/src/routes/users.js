@@ -26,20 +26,8 @@ router.get('/', async (req,res)=>{
         if(search){
             let allUsers = []
             function FindJob (string, busco) {
-                
-                if(string[0]===busco[0]){
-                    for(let j=0;j<busco.length;j++){
-                        if(string[j]===busco[j]){
-                            if(j===busco.length-1){
-                                let slice = string.slice(0,j)
-                                if(slice === busco){
-                                    return string
-                                }
-                            }
-                        }else{
-                            continue;
-                        }
-                    }
+                if(string.includes(busco)){
+                    return string
                 }
             }
             for(let i=0;i<users.length;i++){
