@@ -49,6 +49,7 @@ router.get('/', async (req,res)=>{
 
         if(users.length>0){
             for(let i=0;i<users.length;i++){
+                delete users[i].dataValues.password
                 users[i].dataValues.jobs.map(c=>c.dataValues.company_accounts.map(p=>delete p.dataValues.password))
             }
         }

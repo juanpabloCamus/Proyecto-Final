@@ -56,7 +56,7 @@ function ChangePass() {
                 <input name='password' onChange={handleChange} type='password'></input>
                 <label>Confirm password</label>
                 <input name='confirmPass' onChange={handleChange} type='password'></input>
-                {error.password ? <label id={styles.error}>Password must have a least 8 characters,an uppercase, a lowercase and a number</label> : null}
+                {error.password ? <label id={styles.error}>Password must have a least 8 characters,an uppercase, a lowercase, a special character and a number</label> : null}
                 {error.match ? <label id={styles.error}>Passwords do not match</label> : null}
                 <button className={styles.button} type='submit'>Submit</button>
             </form>
