@@ -1,6 +1,7 @@
 .postCard{
   margin-left: auto;
   margin-right: auto;
+  
   height: 15rem;
   background-color: white;
   border-radius: 5px;
@@ -8,16 +9,22 @@
   transition: 0.5s;
   color: black;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  gap:40px;
 }
 
 .postCard:hover{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   cursor: pointer;
 }
+.imgContainer{
+  width: 20%;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
 
 .detailsContainer{
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -35,12 +42,14 @@
 }
 
 .techsContainer{
-  
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
   font-size: 15px;
   flex-wrap: wrap;
+  max-height: 180px;
 }
 
 .techsContainer label{
@@ -75,4 +84,5 @@
     gap: 20px;
     text-align: center;
   }
+
 }
