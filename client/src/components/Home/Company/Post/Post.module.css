@@ -48,6 +48,7 @@
 
 #profilePic{
   border-radius: 5px;
+  max-height: 200px;
 }
 
 
