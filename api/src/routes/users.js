@@ -29,9 +29,12 @@ router.get('/', async (req,res)=>{
                 
                 if(string[0]===busco[0]){
                     for(let j=0;j<busco.length;j++){
-                        if(string[0+j]===busco[j]){
+                        if(string[j]===busco[j]){
                             if(j===busco.length-1){
-                                return string
+                                let slice = string.slice(0,j)
+                                if(slice === busco){
+                                    return string
+                                }
                             }
                         }else{
                             continue;
