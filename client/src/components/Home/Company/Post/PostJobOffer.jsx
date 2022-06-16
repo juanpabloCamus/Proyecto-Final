@@ -14,6 +14,7 @@ export default function PostJobOffer({
   applications,
   active,
 }) {
+  
   return (
     <div key={id}>
       {
@@ -21,12 +22,12 @@ export default function PostJobOffer({
           <div className={styles.postCard}>
            
             <div className={styles.detailsContainer}>
-              <h3>{position}</h3>
-              <p>Salary Range:</p>
+              <h3 id={styles.position} >{position}</h3>
+              <p className={styles.infoTitle}>Salary Range:</p>
               <div className={styles.subDetails}>
                 <p>{salary_range === "10000$" ? "+ 10000$" : salary_range}</p>
-                <p>Seniority: {seniority}</p>
-                <p>Time: {time}</p>
+                <p className={styles.infoTitle}>Seniority: {seniority}</p>
+                <p className={styles.infoTitle}>Time: {time}</p>
               </div>
             </div>
             <div className={styles.techsContainer}>
@@ -53,10 +54,10 @@ export default function PostJobOffer({
                   <BiHide/>
                 </div>
               )}
-            <div className={styles.applications}>
-              <h3>Applications</h3>
-              <h4>{applications.length}</h4>
-            </div>
+              <div className={styles.applications}>
+                <h3>Applications</h3>
+                <h4>{applications.length}</h4>
+              </div>
             </div>
 
           </div>

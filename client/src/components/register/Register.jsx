@@ -99,21 +99,21 @@ const switchForm = () =>{
     dispatch(modalActions.activateRegisterModal(false))
 }
 
-// const validateForm = () =>{
+const validateForm = () =>{
 
-//     if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[\x00-\xFF\d]{8,}$/)){
-//         setError({...error, error: true, errorMsg: "Password must have a least 8 characters,an uppercase, a lowercase and a number"})
-//         return false 
-//     }
+    if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#/=])[A-Za-z\d@$!%*?&#/=]{8,}$/)){
+        setError({...error, error: true, errorMsg: "Password must have a least 8 characters,an uppercase, a lowercase, a special character and a number"})
+        return false 
+    }
 
-//     return true
-// }   
+    return true
+}   
 
 
 const handleSubmit = (e) => {
     e.preventDefault()
     
-    // if(validateForm()){
+        if(validateForm()){
 
         if(profileType === 'dev'){
             postNewUser()
@@ -123,7 +123,7 @@ const handleSubmit = (e) => {
         if(profileType === 'com'){
             postNewCompany()
     
-        // }
+        }
     }
  
 }

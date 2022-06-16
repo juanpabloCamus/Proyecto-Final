@@ -12,22 +12,41 @@ import { FiBell } from "react-icons/fi";
 import { fetchUser } from "../../../redux/users/users";
 import { fetchCompanyProfile } from "../../../redux/Profile/profileData";
 import { fetchJobs } from "../../../redux/jobs/jobs";
+import { fetchNotifications } from "../../../redux/notifications/notifications";
+import { fetchCompanyNotifications } from "../../../redux/notifications/companyNotifications";
 
 export const UserNav = () => {
+
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [showNotiPoint, setShowNotiPoint] = useState(false)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const sessionStorage = JSON.parse(localStorage.getItem("userData"));
   const profile = sessionStorage.profileType[0];
-  ///////////
+
   const id = sessionStorage.id;
+
+//////////  Notifications  ////////////
+const {notifications} = useSelector( state => state.notifications)
+const {companyNotifications} = useSelector( state => state.companyNotifications)
+
+
+ 
   useEffect(() => {
-    dispatch(fetchUser(id));
-    dispatch(fetchCompanyProfile(id));
+    if(profile === 'develop'){
+      dispatch(fetchUser(id));
+    dispatch(fetchNotifications(id))
+    }
+    if(profile === 'company'){
+      dispatch(fetchCompanyProfile(id));
+      dispatch(fetchCompanyNotifications(id))
+    }
     dispatch(fetchJobs());
-  }, [dispatch, id]);
-  const user = useSelector((state) => state.users.user[0]);
+
+  }, [dispatch, id, profile]);
+
+  const user = useSelector((state) => state.users?.user);
   const companyProfile = useSelector(
     (state) => state.companyProfile.companyProfile[0]
   );
@@ -35,7 +54,38 @@ export const UserNav = () => {
   window.onclick = function(){
     setToggleMenu(false)
   }
-  //////////
+
+  useEffect(() =>{
+    
+    if(notifications.length > 0 && profile === "develop") {
+      
+      const findTrueNoti = notifications.find(noti => noti.check === false)
+    
+      if(findTrueNoti){
+        setShowNotiPoint(true)
+      }
+
+      if(notifications[0]?.check){
+        setShowNotiPoint(false)
+      }
+    }
+
+    if(companyNotifications.length > 0 && profile === "company") {
+      
+      const findTrueNoti = companyNotifications.find(noti => noti.check === false)
+
+      if(findTrueNoti){
+        setShowNotiPoint(true)
+      }
+      if(companyNotifications[0]?.check){
+        setShowNotiPoint(false)
+      }
+    }
+
+  },[notifications, companyNotifications, profile])
+
+
+
   const handleMenu = () => {
     setTimeout(()=>setToggleMenu(true),10)
   };
@@ -61,15 +111,21 @@ export const UserNav = () => {
   return (
     <div className={styles.logged_user_navbar}>
       <div className={styles.logged_user_links}>
-        <div>
+        {profile !== 'admin' ? <div className={styles.bell_icon_container}>
           <div
             onClick={handleNotify}
             className={styles.icon_bell}
             title={sessionStorage?.fullName || sessionStorage?.name}>
             <FiBell className={styles.bell} />
+            {
+              showNotiPoint ? 
+              <span className={styles.bell_point_notification}></span> 
+              :
+              null
+            }
           </div>
-          
-        </div>
+
+        </div>:<></>}
 
         {profile === "develop" && (
           <Link to="/home/favorites" className={styles.link}>
@@ -104,7 +160,7 @@ export const UserNav = () => {
           ) : (
             <Image
               cloudName="dlt2bs82a"
-              publicId={user?.profile_pic}
+              publicId={user[0]?.profile_pic}
               id={styles.banner}
             />
           )}

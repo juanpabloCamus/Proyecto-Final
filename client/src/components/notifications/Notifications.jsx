@@ -13,7 +13,7 @@ export const Notifications = () => {
 
   const {notifications} = useSelector( state => state.notifications)
   const {companyNotifications} = useSelector( state => state.companyNotifications)
-
+ 
   const dispatch = useDispatch()
 
   const userLocalStorage = JSON.parse(localStorage.getItem("userData"))
@@ -54,15 +54,15 @@ export const Notifications = () => {
           profileType[0] === "company" && (
             <div>
               {
-                !companyNotifications ? <p>loading</p> :
-                companyNotifications.map((n,i) => (
-
-                    <NotificationComCard
-                      key={i}
-                      {...n}
-                    />
-
-                ))
+                companyNotifications ?
+                  companyNotifications.length < 1 ? <p>You do not have any notifications yet</p> :
+                    companyNotifications.map((n,i) => (
+                      <NotificationComCard
+                        key={i}
+                        {...n}
+                      />
+                    ))
+                  :<p>loading</p>
               }
             </div>
           )

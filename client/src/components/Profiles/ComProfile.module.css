@@ -240,6 +240,7 @@
     border: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
 }
 
@@ -262,3 +263,30 @@
     margin-right: auto;
     width: 400px;
   }
+
+
+
+@media(max-width:900px){
+    .pageContainer{
+        width: 90%;
+    }
+    .logoNameContainer{
+        flex-direction: column;
+        text-align: center;
+    }
+    .smallInfoContainer{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .editProfileButtonContainer{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .editProfileButtonContainer > *{
+        text-align: center;
+    }
+    .userPhoto{
+        margin: 0;
+        margin-bottom: 20px;
+    }
+}

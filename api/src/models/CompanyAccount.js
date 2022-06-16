@@ -32,11 +32,12 @@ module.exports = (sequelize) => {
         
         logo: {
             type: DataTypes.TEXT,
-            defaultValue: 'https://w7.pngwing.com/pngs/837/779/png-transparent-computer-icons-rocket-launch-launch-pad-icons-purple-violet-spacecraft.png'
+            defaultValue: 'https://espaciores.org/wp-content/uploads/2021/07/cohete.png'
         },
 
         description: {
-            type: DataTypes.TEXT
+            type: DataTypes.TEXT,
+            defaultValue:'A company from Rocket.'
         },
 
         speciality: {
@@ -44,8 +45,8 @@ module.exports = (sequelize) => {
         },
         
         size: {
-            type: DataTypes.ENUM('Not Specified','0 - 500','500 - 2000','2000 - 5000','5000 - 10000','10000 - 50000','+50000'),
-            defaultValue: 'Not Specified'
+            type: DataTypes.ENUM('Not specified','0 - 500','500 - 2000','2000 - 5000','5000 - 10000','10000 - 50000','+50000'),
+            defaultValue: 'Not specified'
         },
 
         foundation: {

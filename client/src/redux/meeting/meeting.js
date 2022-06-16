@@ -5,7 +5,7 @@ export const fetchMeeting=createAsyncThunk('meeting/fetchMeeting',
 async(id_meet)=>{
     try {
         const res=await axios.get(`/meeting/room/${id_meet}`)
-        return res.data[0]
+        return res.data
     } catch (error) {
         console.log(error)
     }

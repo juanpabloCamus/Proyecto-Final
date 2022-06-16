@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { LandinPage } from "./components/landin_page/LandinPage";
 import { RequireAuth } from "./components/require_auth/RequireAuth";
 import { Admin } from "./components/admin/Admin";
-import Home from "./components/Home/Home";
+import Home from "./components/Home/Home"; 
 import PostDetail from "./components/Home/User/Post/PostDetail/PostDeatail";
 import CreateJob from "./components/Home/Company/CreateJob/CreateJob";
 import { Navbar } from "./components/navbar/Navbar";

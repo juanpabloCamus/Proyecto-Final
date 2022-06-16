@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styles from './ComProfile.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import  { fetchCompanyProfile }  from "../../redux/Profile/profileData";
+import  {fetchActions}  from "../../redux/Profile/profileData";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { Image } from 'cloudinary-react'
@@ -31,12 +32,15 @@ function ComProfile() {
     const {id} = useParams()
     const sessionStorage = JSON.parse(localStorage.getItem("userData"));
     const profileType = sessionStorage.profileType;
-    
+
     useEffect(()=> {
         dispatch(fetchCompanyProfile(id))
     },[dispatch, id])
 
-  
+    useEffect(()=> {
+        return(dispatch(fetchActions.getClean()))
+        
+    },[dispatch])
 
     let user = useSelector(state => state.companyProfile.companyProfile[0])
 
@@ -131,7 +135,7 @@ function ComProfile() {
                         <h5>{user.speciality}</h5>
                         { user.foundation === null ? <label></label> :
                         <label>Since {user.foundation.slice(0,4)}</label>}
-                        {user.premium ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
+                        {user.premium && profileType[0] === "company" ? <label onClick={handlePremiumInfo} id={styles.premiumLabel}>Rocket premium <TiStarFullOutline></TiStarFullOutline></label> : null}
                         </div>
                     </div>
                     <div className={styles.smallInfoContainer}>
@@ -146,7 +150,7 @@ function ComProfile() {
                             }
                         </div>
                         <div>
-                            {user.size === 'Not Specified' ? null :
+                            {user.size === 'Not specified' ? null :
                             <div className={styles.labelContainer}> 
                             <IoIosPeople className={styles.infoIcons}></IoIosPeople>
                             <label>{user.size}</label>

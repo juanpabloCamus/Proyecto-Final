@@ -29,10 +29,10 @@ export default function CreateJob() {
     newTech: ""
   });
 
-  const [seniority, setSeniority] = useState("Not Specified");
-  const [time, setTime] = useState("Not Specified");
-  const [english_level, setEnglish_level] = useState("Not required");
-  const [salary_range, setSalary_range] = useState("Not Specified");
+  const [seniority, setSeniority] = useState("Not specified");
+  const [time, setTime] = useState("Not specified");
+  const [english_level, setEnglish_level] = useState("Not specified");
+  const [salary_range, setSalary_range] = useState("Not specified");
   const [addedTechs, setAddedTechs] = useState([]);
   const [showInput, setShowInput] = useState(false)
 
@@ -149,31 +149,31 @@ export default function CreateJob() {
               />
               
               <label>Seniority</label>
-              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleSeniorF}>
-                <option value="Not Specified">Not specified</option>
+              <select defaultValue={"Not specified"} className={styles.form_select} onChange={handleSeniorF}>
+                <option value="Not specified">Not specified</option>
                 <option value="Senior">Senior</option>
                 <option value="Semi-Senior">Semi-Senior</option>
                 <option value="Junior">Junior</option>
               </select>
 
               <label>Time</label>
-              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleTimeF}>
-                <option value="Not Specified">Not Specified</option>
+              <select defaultValue={"Not specified"} className={styles.form_select} onChange={handleTimeF}>
+                <option value="Not specified">Not specified</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
               </select>
 
               <label>English level</label>
-              <select defaultValue={"Not required"} className={styles.form_select} onChange={handleELevelF}>
-                <option value="Not required">Not required</option>
+              <select defaultValue={"Not specified"} className={styles.form_select} onChange={handleELevelF}>
+                <option value="Not specified">Not specified</option>
                 <option value="Basic">Basic</option>
                 <option value="Conversational">Conversational</option>
                 <option value="Advanced or Native">Advanced or Native</option>
               </select>
 
               <label>Salary</label>
-              <select defaultValue={"Not Specified"} className={styles.form_select} onChange={handleSalaryF}>
-                <option value="Not Specified">Not specified</option>
+              <select defaultValue={"Not specified"} className={styles.form_select} onChange={handleSalaryF}>
+                <option value="Not specified">Not specified</option>
                 <option value="0$ - 1000$">0$ - 1000$</option>
                 <option value="1000$ - 3000$">1000$ - 3000$</option>
                 <option value="3000$ - 6000$">3000$ - 6000$</option>
