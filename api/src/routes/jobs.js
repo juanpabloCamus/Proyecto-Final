@@ -102,7 +102,7 @@ router.get('/', async (req,res)=>{
         jobs.sort(function (a,b){
             if(a.dataValues.company_accounts[0].dataValues.premium === true){
                 if(a.dataValues.company_accounts[0].dataValues.premium === b.dataValues.company_accounts[0].dataValues.premium){
-                    if(a.dataValues.company_accounts[0].dataValues.id > b.dataValues.company_accounts[0].dataValues.id){
+                    if(a.dataValues.id > b.dataValues.id){
                         return -1
                     }else{
                         return 1
